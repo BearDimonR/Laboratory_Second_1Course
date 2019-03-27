@@ -7,12 +7,13 @@ import java.awt.event.MouseEvent;
 
 public class ProductCreationPanel extends JPanel {
     JLabel createBTN = new JLabel(new ImageIcon("images/CreateBTN.jpg"));
-    JLabel background = new JLabel(new ImageIcon("images/ProductCreateBackground.jpg"));
+    JLabel background = new JLabel(new ImageIcon("images/productCreationPanelBackground.jpg"));
     JTextField productNameTF = new JTextField();
     JTextField manufacturerTF = new JTextField();
     JTextField priceTF = new JTextField();
     JComboBox productGroupChooser = new JComboBox();
     JTextArea descriptionTA = new JTextArea();
+    JScrollPane descriptionScrollPane = new JScrollPane(descriptionTA);
 
     public ProductCreationPanel() {
         setLayout(AppStyles.gridBagLayout);
@@ -33,6 +34,7 @@ public class ProductCreationPanel extends JPanel {
                 descriptionTA.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
                 descriptionTA.setFont(AppStyles.fieldFont);
                 descriptionTA.setForeground(AppStyles.MainColor);
+                descriptionScrollPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
             }
             //manufacturerTF
             {
@@ -50,8 +52,8 @@ public class ProductCreationPanel extends JPanel {
             }
             //productGroupChooser
             {
-                //  productGroupChooser.setOpaque(false);
-                //productGroupChooser.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+                productGroupChooser.setBackground(Color.WHITE);
+                productGroupChooser.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
                 productGroupChooser.setFont(AppStyles.fieldFont);
                 productGroupChooser.setForeground(AppStyles.MainColor);
             }
@@ -63,23 +65,23 @@ public class ProductCreationPanel extends JPanel {
                     new Insets(0, 0, 0, 0), 0, 0));
             background.add(productNameTF, new GridBagConstraints(0, 0, 1, 1, 1, 0.0001,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
-                    new Insets(100, 353, 0, 0), 350, 0));
-            background.add(descriptionTA, new GridBagConstraints(0, 0, 1, 1, 1, 0.0001,
+                    new Insets(101, 30, 0, 0), 430, 0));
+            background.add(descriptionScrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 0.0001,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
-                    new Insets(175, 353, 0, 0), 350, 0));
-            descriptionTA.setBackground(Color.RED);
+                    new Insets(175, 30, 0, 0), 435, 100));
             background.add(productGroupChooser, new GridBagConstraints(0, 0, 1, 1, 1, 0.0001,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
-                    new Insets(350, 353, 0, 0), 350, 0));
+                    new Insets(350, 30, 0, 0), 413, 0));
             background.add(manufacturerTF, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.CENTER, GridBagConstraints.NORTH,
-                    new Insets(208, 353, 0, 0), 350, 0));
+                    new Insets(209, 30, 0, 0), 435, 0));
             background.add(priceTF, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.CENTER, GridBagConstraints.NORTH,
-                    new Insets(348, 353, 0, 0), 350, 0));
+                    new Insets(349, 30, 0, 0), 435, 0));
             background.add(createBTN, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
-                    new Insets(550, 0, 0, 0), 0, 0));
+                    new Insets(578, 1, 0, 0), 0, 0));
+
 
         }
         //add mouse listener

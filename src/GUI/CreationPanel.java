@@ -24,10 +24,10 @@ public class CreationPanel extends JPanel {
         {
             add(modeSwitchOn, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
-                    new Insets(10, 150, 0, 0), 0, 0));
+                    new Insets(5, 200, 0, 0), 0, 0));
             add(modeSwitchOff, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
-                    new Insets(10, 150, 0, 0), 0, 0));
+                    new Insets(5, 200, 0, 0), 0, 0));
             add(productCreationPanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(0, 0, 0, 0), 0, 0));
