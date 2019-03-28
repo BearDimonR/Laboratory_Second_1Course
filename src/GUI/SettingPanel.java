@@ -1,5 +1,7 @@
 package GUI;
 
+import GUI.General.AppStyles;
+
 import javax.swing.*;
 import java.awt.*;
 
