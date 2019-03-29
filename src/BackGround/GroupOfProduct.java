@@ -1,13 +1,13 @@
 package BackGround;
-public class GroupGoods {
+public class GroupOfProduct {
 
-    Goods[] goods = new Goods[0];
+    Product[] goods = new Product[0];
 
     private String stock;               //склад
     private String name;                //ім’я групи товарів (продовольчі не продовольчі)
     private String description;         //опис
 
-    GroupGoods(String stock,String name,String description){
+    GroupOfProduct(String stock, String name, String description){
         this.stock = stock;
         this.name = name;
         this.description = description;
