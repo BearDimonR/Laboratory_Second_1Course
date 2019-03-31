@@ -12,7 +12,7 @@ public class GroupEditingPanel extends JPanel {
 
     private JLabel btnEdit = new JLabel(new ImageIcon("images/EditBTN.jpg"));
     private JLabel backgroundHeader = new JLabel(new ImageIcon("images/groupEditingHeader.jpg"));
-    private JLabel backgroundClearBody = new JLabel(new ImageIcon("images/productEditingClearBody.jpg"));
+    private JLabel backgroundClearBody = new JLabel(new ImageIcon("images/productClearBody.jpg"));
     private JLabel backgroundBody = new JLabel(new ImageIcon("images/grouptEditingBody.jpg"));
     private JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalButton.jpg"));
     private JTextField tfNewGroupName = new JTextField();

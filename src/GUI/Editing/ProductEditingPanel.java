@@ -12,7 +12,7 @@ public class ProductEditingPanel extends JPanel {
     private JLabel btnEdit = new JLabel(new ImageIcon("images/EditBTN.jpg"));
     private JLabel backgroundHeader = new JLabel(new ImageIcon("images/productEditingHeader.jpg"));
     private JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalButton.jpg"));
-    private JLabel backgroundClearBody = new JLabel(new ImageIcon("images/productEditingClearBody.jpg"));
+    private JLabel backgroundClearBody = new JLabel(new ImageIcon("images/productClearBody.jpg"));
     private JLabel backgroundBody = new JLabel(new ImageIcon("images/productEditingBody.jpg"));
     //Body elements
     private JTextField tfNewProductName = new JTextField();

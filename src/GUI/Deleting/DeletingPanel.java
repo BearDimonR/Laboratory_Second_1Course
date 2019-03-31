@@ -6,17 +6,25 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DeletingPanel extends JLabel {
-    JLabel headerBackground = new JLabel(new ImageIcon("images/UC.jpg"));
-    JLabel uc1 = new JLabel(new ImageIcon("images/selectedCreateBTN.jpg"));
+    private static ProductDeletingPanel productDeletingPanel = new ProductDeletingPanel();
+    private static GroupDeletingPanel groupDeletingPanel = new GroupDeletingPanel();
+
 
     public DeletingPanel() {
         setLayout(null);
-        add(uc1);
-        add(headerBackground);
-        uc1.setBounds(50,15,914,666);
-       // uc.setBounds(50,5,400,400);
+        add(productDeletingPanel);
+        add(groupDeletingPanel);
+        groupDeletingPanel.setBounds(0, 0, 914, 666);
+        productDeletingPanel.setBounds(0, 0, 914, 666);
 
 
-
+    }
+    public static void showGroupDeleteTab(){
+        productDeletingPanel.setVisible(false);
+       groupDeletingPanel.setVisible(true);
+    }
+    public static void showProductDeleteTab(){
+        productDeletingPanel.setVisible(true);
+        groupDeletingPanel.setVisible(false);
     }
 }
