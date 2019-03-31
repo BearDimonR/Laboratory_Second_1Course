@@ -103,6 +103,14 @@ public class TitleBarPanel extends JPanel {
                     App.mainFrame.setState(Frame.ICONIFIED);
                 }
             });
+            searchTF.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    ToolBarPanel.deselectAllButtonsOnToolBar();
+                    ContentPanel.showPanel(6);
+
+                }
+            });
         }
 
     }

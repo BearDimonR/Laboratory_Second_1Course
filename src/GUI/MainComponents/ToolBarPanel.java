@@ -9,17 +9,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ToolBarPanel extends JPanel {
-    JLabel toolBarBackground = new JLabel(new ImageIcon("images/toolBarBackground.jpg"));//Background of tool bar
-    JLabel selectedCreateBTN = new JLabel(new ImageIcon("images/selectedCreateBTN.jpg"));
-    JLabel selectedEditBTN = new JLabel(new ImageIcon("images/selectedEditBTN.jpg"));
-    JLabel selectedDeleteBTN = new JLabel(new ImageIcon("images/selectedDeleteBTN.jpg"));
-    JLabel selectedQuantityBTN = new JLabel(new ImageIcon("images/selectedQuantityBTN.jpg"));
-    JLabel selectedSettingsBTN = new JLabel(new ImageIcon("images/selectedSettingsBTN.jpg"));
-    JLabel deselectedCreateBTN = new JLabel(new ImageIcon("images/deselectedCreateBTN.jpg"));
-    JLabel deselectedEditBTN = new JLabel(new ImageIcon("images/deselectedEditBTN.jpg"));
-    JLabel deselectedDeleteBTN = new JLabel(new ImageIcon("images/deselectedDeleteBTN.jpg"));
-    JLabel deselectedQuantityBTN = new JLabel(new ImageIcon("images/deselectedQuantityBTN.jpg"));
-    JLabel deselectedSettingsBTN = new JLabel(new ImageIcon("images/deselectedSettingsBTN.jpg"));
+    private static JLabel toolBarBackground = new JLabel(new ImageIcon("images/toolBarBackground.jpg"));//Background of tool bar
+    private static JLabel selectedCreateBTN = new JLabel(new ImageIcon("images/selectedCreateBTN.jpg"));
+    private static JLabel selectedEditBTN = new JLabel(new ImageIcon("images/selectedEditBTN.jpg"));
+    private static JLabel selectedDeleteBTN = new JLabel(new ImageIcon("images/selectedDeleteBTN.jpg"));
+    private static JLabel selectedQuantityBTN = new JLabel(new ImageIcon("images/selectedQuantityBTN.jpg"));
+    private static JLabel selectedSettingsBTN = new JLabel(new ImageIcon("images/selectedSettingsBTN.jpg"));
+    private static JLabel deselectedCreateBTN = new JLabel(new ImageIcon("images/deselectedCreateBTN.jpg"));
+    private static JLabel deselectedEditBTN = new JLabel(new ImageIcon("images/deselectedEditBTN.jpg"));
+    private static JLabel deselectedDeleteBTN = new JLabel(new ImageIcon("images/deselectedDeleteBTN.jpg"));
+    private static JLabel deselectedQuantityBTN = new JLabel(new ImageIcon("images/deselectedQuantityBTN.jpg"));
+    private static JLabel deselectedSettingsBTN = new JLabel(new ImageIcon("images/deselectedSettingsBTN.jpg"));
 
     public ToolBarPanel() {
         setLayout(AppStyles.gridBagLayout);
@@ -200,6 +200,19 @@ public class ToolBarPanel extends JPanel {
             });
         }
 
+    }
+
+    public static void deselectAllButtonsOnToolBar() {
+        selectedCreateBTN.setVisible(false);
+        deselectedCreateBTN.setVisible(true);
+        selectedEditBTN.setVisible(false);
+        deselectedEditBTN.setVisible(true);
+        selectedDeleteBTN.setVisible(false);
+        deselectedDeleteBTN.setVisible(true);
+        selectedQuantityBTN.setVisible(false);
+        deselectedQuantityBTN.setVisible(true);
+        selectedSettingsBTN.setVisible(false);
+        deselectedSettingsBTN.setVisible(true);
     }
 
 
