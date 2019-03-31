@@ -1,7 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ae64550f-9169-455c-8f1b-8fce70df6493" name="Default Changelist" comment="" />
+    <list default="true" id="ae64550f-9169-455c-8f1b-8fce70df6493" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/TgrouptEditingHeader.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/TproductEditingHeader.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/groupEditingHeader.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/groupEditingHeader.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/productEditingHeader.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images/productEditingHeader.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/BackGround/Goods.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/BackGround/GroupGoods.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/BackGround/GroupOfProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/BackGround/GroupOfProduct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/BackGround/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/BackGround/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/BackGround/Stock.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/BackGround/Stock.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/CreationPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/CreationPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/CreationPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/CreationPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/CreationPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/CreationPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/GroupCreationPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/GroupCreationPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/GroupCreationPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/GroupCreationPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/ProductCreationPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/ProductCreationPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/ProductCreationPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Creating/ProductCreationPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Deleting/DeletingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Deleting/DeletingPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Deleting/GroupDeletingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Deleting/GroupDeletingPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Deleting/ProductDeletingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Deleting/ProductDeletingPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/EditingPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/EditingPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/EditingPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/EditingPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/EditingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/EditingPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/GroupEditingPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/GroupEditingPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/GroupEditingPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/GroupEditingPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/GroupEditingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/GroupEditingPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/ProductEditingPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/ProductEditingPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/ProductEditingPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/ProductEditingPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/ProductEditingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Editing/ProductEditingPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/General/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/General/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/General/AppFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/General/AppFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/General/AppStyles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/General/AppStyles.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/General/TablePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/General/TablePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Login/LoginFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/Login/LoginFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ContentPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ContentPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/TitleBarPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/TitleBarPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/TitleBarPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/TitleBarPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/TitleBarPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/TitleBarPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ToolBarPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ToolBarPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ToolBarPanel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ToolBarPanel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ToolBarPanel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ToolBarPanel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ToolBarPanel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ToolBarPanel$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ToolBarPanel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ToolBarPanel$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ToolBarPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/MainComponents/ToolBarPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/QuantityPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/QuantityPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/SearchPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/SearchPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/SettingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/GUI/SettingPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Laboratory_Second_1Course/META-INF/Laboratory_Second_1Course.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Deleting/DeletingPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Deleting/DeletingPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Editing/GroupEditingPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Editing/GroupEditingPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/Editing/ProductEditingPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/Editing/ProductEditingPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/MainComponents/ContentPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/MainComponents/ContentPanel.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,23 +67,37 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BackGround/Product.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
+            <state relative-caret-position="901">
               <caret line="57" column="32" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="32" />
-              <folding>
-                <element signature="e#1650#1651#0" expanded="true" />
-                <element signature="e#1682#1683#0" expanded="true" />
-              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BackGround/Stock.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="439">
+              <caret line="165" column="46" selection-start-line="165" selection-start-column="46" selection-end-line="165" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/Editing/GroupEditingPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="13" column="76" selection-start-line="13" selection-start-column="76" selection-end-line="13" selection-end-column="76" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/BackGround/Stock.java">
+        <entry file="file://$PROJECT_DIR$/src/GUI/Editing/ProductEditingPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2195">
-              <caret line="190" column="1" selection-start-line="190" selection-start-column="1" selection-end-line="190" selection-end-column="1" />
+            <state relative-caret-position="204">
+              <caret line="12" column="71" selection-start-line="12" selection-start-column="71" selection-end-line="12" selection-end-column="71" />
               <folding>
-                <element signature="e#173#182#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -39,7 +106,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/General/AppFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
+            <state relative-caret-position="68">
               <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
             </state>
           </provider>
@@ -48,8 +115,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/General/TablePanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="47" column="56" selection-start-line="47" selection-start-column="52" selection-end-line="47" selection-end-column="56" />
+            <state relative-caret-position="731">
+              <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,7 +127,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BackGround/GroupOfProduct.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
+            <state relative-caret-position="136">
               <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
@@ -87,10 +154,12 @@
         <option value="$PROJECT_DIR$/src/BackGround/Product.java" />
         <option value="$PROJECT_DIR$/src/GUI/General/TablePanel.java" />
         <option value="$PROJECT_DIR$/src/BackGround/Stock.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Editing/ProductEditingPanel.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Editing/GroupEditingPanel.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="743" />
@@ -104,14 +173,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Laboratory_Second_1Course" type="b2602c69:ProjectViewProjectNode" />
               <item name="Laboratory_Second_1Course" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Laboratory_Second_1Course" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Laboratory_Second_1Course" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Laboratory_Second_1Course" type="b2602c69:ProjectViewProjectNode" />
@@ -135,18 +207,28 @@
               <item name="Laboratory_Second_1Course" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="Editing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Laboratory_Second_1Course" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Laboratory_Second_1Course" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
               <item name="General" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Course" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554008985114" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554006383326" />
     <property name="last_opened_file_path" value="D:/homework2/java 1.2/laba/Practice(1.2(9))" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -166,7 +248,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Stock">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GUI.General.App" />
       <module name="Laboratory_Second_1Course" />
@@ -202,8 +284,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Stock" />
         <item itemvalue="Application.App" />
+        <item itemvalue="Application.Stock" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -223,26 +305,28 @@
       <workItem from="1553898999807" duration="214000" />
       <workItem from="1553899447783" duration="345000" />
       <workItem from="1553944698388" duration="2568000" />
+      <workItem from="1554006203333" duration="173000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18877000" />
+    <option name="totallyTimeSpent" value="19050000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2730711" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2761194" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Educational.CheckDetails" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.20261438" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2024922" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -253,6 +337,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32843137" />
+      <window_info anchor="right" id="Codota" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -369,13 +454,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Editing/ProductEditingPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-487">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/General/AppStyles.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3">
@@ -397,13 +475,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/Editing/GroupEditingPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/SettingPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -418,47 +489,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BackGround/GroupOfProduct.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BackGround/Product.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
+        <state relative-caret-position="901">
           <caret line="57" column="32" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="32" />
-          <folding>
-            <element signature="e#1650#1651#0" expanded="true" />
-            <element signature="e#1682#1683#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/General/AppFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
+        <state relative-caret-position="68">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/General/TablePanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="47" column="56" selection-start-line="47" selection-start-column="52" selection-end-line="47" selection-end-column="56" />
+        <state relative-caret-position="731">
+          <caret line="47" column="56" selection-start-line="47" selection-start-column="56" selection-end-line="47" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/BackGround/GroupOfProduct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/BackGround/Stock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2195">
-          <caret line="190" column="1" selection-start-line="190" selection-start-column="1" selection-end-line="190" selection-end-column="1" />
+        <state relative-caret-position="439">
+          <caret line="165" column="46" selection-start-line="165" selection-start-column="46" selection-end-line="165" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/productEditingHeader.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Editing/GroupEditingPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="76" selection-start-line="13" selection-start-column="76" selection-end-line="13" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Editing/ProductEditingPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="71" selection-start-line="12" selection-start-column="71" selection-end-line="12" selection-end-column="71" />
           <folding>
-            <element signature="e#173#182#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

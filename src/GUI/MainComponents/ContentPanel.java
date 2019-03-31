@@ -30,22 +30,22 @@ public class ContentPanel extends JPanel {
         //add panels
         {
             add(creationPanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                    GridBagConstraints.NORTH, GridBagConstraints.NORTH,
+                    GridBagConstraints.NORTH, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));
             add(editingPanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                    GridBagConstraints.NORTH, GridBagConstraints.NORTH,
+                    GridBagConstraints.NORTH, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));
             add(deletingPanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                    GridBagConstraints.NORTH, GridBagConstraints.NORTH,
+                    GridBagConstraints.NORTH, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));
             add(quantityPanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                    GridBagConstraints.NORTH, GridBagConstraints.NORTH,
+                    GridBagConstraints.NORTH, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));
             add(settingPanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                    GridBagConstraints.NORTH, GridBagConstraints.NORTH,
+                    GridBagConstraints.NORTH, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));
             add(searchPanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                    GridBagConstraints.NORTH, GridBagConstraints.NORTH,
+                    GridBagConstraints.NORTH, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));
 
         }

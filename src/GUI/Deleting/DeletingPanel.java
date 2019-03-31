@@ -6,12 +6,17 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DeletingPanel extends JLabel {
-    JLabel uc = new JLabel(new ImageIcon("images/UC.jpg"));
+    JLabel headerBackground = new JLabel(new ImageIcon("images/UC.jpg"));
+    JLabel uc1 = new JLabel(new ImageIcon("images/selectedCreateBTN.jpg"));
 
     public DeletingPanel() {
-        setLayout(AppStyles.gridBagLayout);
-        add(uc, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
-                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                new Insets(0, 0, 0, 0), 0, 0));
+        setLayout(null);
+        add(uc1);
+        add(headerBackground);
+        uc1.setBounds(50,15,914,666);
+       // uc.setBounds(50,5,400,400);
+
+
+
     }
 }
