@@ -1,12 +1,18 @@
 package GUI.Creating;
 
+import BackGround.GroupOfProduct;
+import BackGround.Stock;
 import GUI.General.AppStyles;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class GroupCreationPanel extends JPanel {
     JLabel createBTN = new JLabel(new ImageIcon("images/CreateBTN.jpg"));
@@ -16,6 +22,7 @@ public class GroupCreationPanel extends JPanel {
     JScrollPane descriptionScrollPane = new JScrollPane(descriptionTA);
 
     public GroupCreationPanel() {
+        createBTN.setEnabled(false);
         setLayout(AppStyles.gridBagLayout);
         background.setLayout(AppStyles.gridBagLayout);
 
@@ -47,12 +54,31 @@ public class GroupCreationPanel extends JPanel {
      * Method adds listenr to creation btn img
      */
     private void addListenerToCreateBTN() {
+        groupNameTF.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+               checkFields();
+            }
+        });
+        descriptionTA.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                checkFields();
+            }
+        });
         createBTN.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //здесь бил бекенд
+                Stock.getGroups().add(new GroupOfProduct(groupNameTF.getText(),descriptionTA.getText()));
             }
         });
+    }
+
+    private void checkFields() {
+        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(groupNameTF.getText());
+        if(!matcher.matches() || groupNameTF.getText().length()>20) createBTN.setEnabled(false);
+        else if(descriptionTA.getText() == null || descriptionTA.getText().equals("")) createBTN.setEnabled(false);
+        else createBTN.setEnabled(true);
     }
 
     /**

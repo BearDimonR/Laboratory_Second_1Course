@@ -1,11 +1,15 @@
 package GUI.Creating;
 
+import BackGround.GroupOfProduct;
+import BackGround.Product;
+import BackGround.Stock;
 import GUI.General.AppStyles;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ProductCreationPanel extends JPanel {
     JLabel createBTN = new JLabel(new ImageIcon("images/CreateBTN.jpg"));
@@ -18,11 +22,13 @@ public class ProductCreationPanel extends JPanel {
     JScrollPane descriptionScrollPane = new JScrollPane(descriptionTA);
 
     public ProductCreationPanel() {
+        createBTN.setEnabled(false);
         setLayout(AppStyles.gridBagLayout);
         background.setLayout(AppStyles.gridBagLayout);
         setStylesOfTFandTA();
         addElementsOnProductPanel();
         addListenerToCreateBTN();
+        checkBox();
 
     }
 
@@ -87,11 +93,79 @@ public class ProductCreationPanel extends JPanel {
      * Method adds listenr to creation btn img
      */
     private void addListenerToCreateBTN() {
+        productNameTF.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                checkFields();
+            }
+        });
+        productGroupChooser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                checkFields();
+            }
+        });
+        descriptionTA.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                checkFields();
+            }
+        });
         createBTN.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //здесь бил бекенд
+                Stock.getGroups().get(productGroupChooser.getSelectedIndex()).addProduct(new Product(Stock.getGroups().get(productGroupChooser.getSelectedIndex()),
+                        productNameTF.getText(),manufacturerTF.getText(),Double.valueOf(priceTF.getText())));
+                createBTN.setEnabled(false);
             }
         });
+        manufacturerTF.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                checkFields();
+            }
+        });
+        priceTF.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if(!Character.isDigit(e.getKeyChar()))
+                    e.consume();
+                checkFields();
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                checkFields();
+            }
+        });
+    }
+
+    private void checkFields() {
+        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(productNameTF.getText());
+        if(!matcher.matches() || productNameTF.getText().length()>20){
+            createBTN.setEnabled(false);
+            return;
+        }
+        if(descriptionTA.getText() == null || descriptionTA.getText().equals("")){
+            createBTN.setEnabled(false);
+            return;
+        }
+        matcher.reset(manufacturerTF.getText());
+        if(!matcher.matches() || manufacturerTF.getText().length()>20){
+            createBTN.setEnabled(false);
+            return;
+        }
+        if(priceTF.getText() != null && priceTF.getText().length()==0){
+            createBTN.setEnabled(false);
+            return;
+        }
+        createBTN.setEnabled(true);
+    }
+
+    public void checkBox() {
+        productGroupChooser.removeAllItems();
+        for(int i=0;i<Stock.getGroups().size();i++){
+            productGroupChooser.addItem(Stock.getGroups().get(i).getName());
+        }
     }
 }

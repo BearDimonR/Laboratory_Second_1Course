@@ -37,7 +37,7 @@ public class TablePanel extends JPanel {
             String[] productLine = new String[6];
             productLine[0] = (i + 1) + ".";
             productLine[1] = products[i].getProductName();
-            productLine[2] = products[i].getGroupProducts();
+            productLine[2] = String.valueOf(products[i].getGroupProducts());
             productLine[3] = products[i].getManufacturer();
             productLine[4] = String.valueOf(products[i].getPrice());
             studs[i] = productLine;
