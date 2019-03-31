@@ -15,8 +15,8 @@ public class App {
             mainFrame.setSize(new Dimension(1010, 700));
             mainFrame.setVisible(true);
             mainFrame.setLocation(new Point(100, 50));
-            loginFrame.setSize(new Dimension(670, 530));
-            loginFrame.setVisible(true);
+           /* loginFrame.setSize(new Dimension(750, 500));
+            loginFrame.setVisible(true);*/
         }
     }
 }
