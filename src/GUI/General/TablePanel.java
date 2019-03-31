@@ -2,8 +2,8 @@ package GUI.General;
 
 
 
-import BackGround.Goods;
-import BackGround.GroupGoods;
+import BackGround.Product;
+import BackGround.GroupOfProduct;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -30,28 +30,28 @@ public class TablePanel extends JPanel {
                 new Insets(1, 0, 0, 0), 0, 430));
     }
 
-    public static void addDataToGoodsTable(Goods[] goods, int titleNum) {
+    public static void addDataToGoodsTable(Product[] products, int titleNum) {
         String[] titles = titlesChoser(titleNum);
-        Object[][] studs = new Object[goods.length][];
-        for (int i = 0; i < goods.length; i++) {
+        Object[][] studs = new Object[products.length][];
+        for (int i = 0; i < products.length; i++) {
             String[] studentLine = new String[6];
             studentLine[0] = (i + 1) + ".";
-            studentLine[1] = goods[i].getName();
-            studentLine[2] = goods[i].getGroupGoods();
-            studentLine[3] = goods[i].getMaker();
-            studentLine[4] = String.valueOf(goods[i].getPrice());
+            studentLine[1] = products[i].getProductName();
+            studentLine[2] = products[i].getGroupProducts();
+            studentLine[3] = products[i].getManufacturer();
+            studentLine[4] = String.valueOf(products[i].getPrice());
             studs[i] = studentLine;
         }
         model.setDataVector(studs, titles);
         t.setModel(model);
     }
-    public static void addDataToGroupOFGoodsTable(GroupGoods[] groupGoods, int titleNum) {
+    public static void addDataToGroupOFGoodsTable(GroupOfProduct[] groupOfProduct, int titleNum) {
         String[] titles = titlesChoser(titleNum);
-        Object[][] groups = new Object[groupGoods.length][];
-        for (int i = 0; i < groupGoods.length; i++) {
+        Object[][] groups = new Object[groupOfProduct.length][];
+        for (int i = 0; i < groupOfProduct.length; i++) {
             String[] studentLine = new String[2];
             studentLine[0] = (i + 1) + ".";
-            studentLine[1] = groupGoods[i].getName();
+            studentLine[1] = groupOfProduct[i].getName();
 
             groups[i] = studentLine;
         }

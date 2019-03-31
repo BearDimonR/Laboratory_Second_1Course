@@ -16,35 +16,35 @@ public class Product {
         this.price = price;
     }
 
-//    Product(String groupGoods, String name, String description, String manufacturer, int quantityInStock, double price){
-//        this.groupGoods = groupGoods;
-//        this.name = name;
-//        this.description = description;
-//        this.manufacturer = manufacturer;
-//        this.quantityInStock = quantityInStock;
-//        this.price = price;
-//    }
-//    Product(String name, String description, String manufacturer, int quantityInStock, double price){
-//        this.name = name;
-//        this.description = description;
-//        this.manufacturer = manufacturer;
-//        this.quantityInStock = quantityInStock;
-//        this.price = price;
-//    }
-//    Product(String name, String manufacturer, int quantityInStock, double price){
-//        this.name = name;
-//        this.manufacturer = manufacturer;
-//        this.quantityInStock = quantityInStock;
-//        this.price = price;
-//    }
-//    Product(String name, String manufacturer, double price){
-//        this.name = name;
-//        this.manufacturer = manufacturer;
-//        this.price = price;
-//    }
-//    Product(String name){
-//        this.name = name;
-//    }
+    Product(String groupGoods, String name, String description, String manufacturer, int quantityInStock, double price){
+        this.groupGoods = groupGoods;
+        this.name = name;
+        this.description = description;
+        this.manufacturer = manufacturer;
+        this.quantityInStock = quantityInStock;
+        this.price = price;
+    }
+    Product(String name, String description, String manufacturer, int quantityInStock, double price){
+        this.name = name;
+        this.description = description;
+        this.manufacturer = manufacturer;
+        this.quantityInStock = quantityInStock;
+        this.price = price;
+    }
+    Product(String name, String manufacturer, int quantityInStock, double price){
+        this.name = name;
+        this.manufacturer = manufacturer;
+        this.quantityInStock = quantityInStock;
+        this.price = price;
+    }
+    Product(String name, String manufacturer, double price){
+        this.name = name;
+        this.manufacturer = manufacturer;
+        this.price = price;
+    }
+    Product(String name){
+        this.name = name;
+    }
 
 
     public String getGroupProducts() {

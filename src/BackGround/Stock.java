@@ -15,9 +15,9 @@ public class Stock {
         products = new Product[10];
         // тестер
         products[0] = new Product("моЛОчка", "молоко", "торчин", 2.3);
-        products[1] = new Product("Молочка", "сир", "торчин", 2.3);
-        products[2] = new Product("Молочка", "творог", "торчин", 4.4);
-        products[3] = new Product("мЯсо", "курятина", "київ", 2.6);
+        products[1] = new Product("Молоооооочка", "сир", "торчин", 2.3);
+        products[2] = new Product("Молокоооооо", "творог", "торчин", 4.4);
+        products[3] = new Product("молоко-мясо", "курятина", "київ", 2.6);
         products[4] = new Product("мясо", "свинина", "київ", 2.7);
         products[5] = new Product("мясо", "телятина", "київ", 2.1);
         products[6] = new Product("фрукти", "ЯБЛУКО", "полтава", 4.2);
@@ -71,8 +71,12 @@ public class Stock {
     private ArrayList<Product> findByGroupProducts(String groupOfProducts) {
         if (groupOfProducts == null || groupOfProducts == "" || groupOfProducts == "[ ]*") {
         } else {
+            String word = "";
             for (int i = 0; i < products.length; i++) {
-                if (!(products[i].getGroupProducts().equals(groupOfProducts))) {
+                for (int j = 0; j < groupOfProducts.length(); j++) {
+                    word += products[i].getGroupProducts().charAt(j);
+                }
+                if (!(word.equals(groupOfProducts))) {
                     arrayList.remove(products[i]);
                 }
             }
@@ -127,19 +131,19 @@ public class Stock {
         } else {
             if (priceFrom > 0 && priceTo == 0) {
                 for (int i = 0; i < products.length; i++) {
-                    if(products[i].getPrice()<priceFrom){
+                    if (products[i].getPrice() < priceFrom) {
                         arrayList.remove(products[i]);
                     }
                 }
             } else if (priceFrom == 0 && priceTo > 0) {
                 for (int i = 0; i < products.length; i++) {
-                    if(products[i].getPrice()>priceTo){
+                    if (products[i].getPrice() > priceTo) {
                         arrayList.remove(products[i]);
                     }
                 }
             } else if (priceFrom > 0 && priceTo > 0) {
                 for (int i = 0; i < products.length; i++) {
-                    if(products[i].getPrice()<priceFrom&&products[i].getPrice()>priceTo){
+                    if (products[i].getPrice() < priceFrom && products[i].getPrice() > priceTo) {
                         arrayList.remove(products[i]);
                     }
                 }
@@ -157,11 +161,11 @@ public class Stock {
         s.reduceLettersInArray();
         s.copyToArrayList(arrayList, products);
         System.out.println(arrayList + "*************");
-        s.findByGroupProducts("молочка");
+        s.findByGroupProducts("мол");
         System.out.println(arrayList + "++++++++++++++");
         s.findByProductName(null);
         System.out.println(arrayList + "--------------");
-        s.findByPrice(0,3.8);
+        s.findByPrice(0, 3.8);
         System.out.println(arrayList + "//////////////");
     }
 
