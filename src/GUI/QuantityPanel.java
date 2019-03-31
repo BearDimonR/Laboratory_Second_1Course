@@ -1,5 +1,7 @@
 package GUI;
 
+import GUI.General.TablePanel;
+
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -9,6 +11,7 @@ public class QuantityPanel extends JPanel {
     private static int removeAmount;
     JLabel background = new JLabel(new ImageIcon("images/quantityBackground.jpg"));
     JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalButton.jpg"));
+    TablePanel tablePanel = new TablePanel(1);
 
     //Sub tool bar elements
     JLabel btnAddPlus = new JLabel(new ImageIcon("images/plus.png"));
@@ -47,6 +50,7 @@ public class QuantityPanel extends JPanel {
         background.add(tfLowestPriceearch);
         background.add(tfHighestPriceSearch);
         background.add(cbProductGroupSearch);
+        background.add(tablePanel);
 
 
         tfProductNameSearch.setBounds(224, 42, 234, 18);
@@ -54,6 +58,7 @@ public class QuantityPanel extends JPanel {
         tfLowestPriceearch.setBounds(645, 82, 65, 18);
         tfHighestPriceSearch.setBounds(752, 82, 65, 18);
         cbProductGroupSearch.setBounds(645, 42, 234, 18);
+        tablePanel.setBounds(23,148,659,494);
 
 
         background.setBounds(0, 0, 914, 666);
