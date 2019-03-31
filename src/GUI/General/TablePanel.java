@@ -3,17 +3,19 @@ package GUI.General;
 
 import BackGround.Product;
 import BackGround.GroupOfProduct;
+import BackGround.Stock;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class TablePanel extends JPanel {
     static String[] GoodsTitles = {"id", "Product", "Group", "Manufacturer", "Price"};
     static String[] GroupTitles = {"id", "Group of products"};
-    static JTable t = new JTable();
-    JScrollPane scrollPane = new JScrollPane(t);
-    static DefaultTableModel model = (DefaultTableModel) t.getModel();
+    static JTable table = new JTable();
+    JScrollPane scrollPane = new JScrollPane(table);
+    static DefaultTableModel model = (DefaultTableModel) table.getModel();
     static JList studentList = new JList();
 
     GridBagLayout gbl = new GridBagLayout();
@@ -30,38 +32,37 @@ public class TablePanel extends JPanel {
                 new Insets(1, 0, 0, 0), 0, 430));
     }
 
-    public static void addDataToGoodsTable(Product[] products, int titleNum) {
+    public static void addDataToGoodsTable(ArrayList<Product> products, int titleNum) {
         String[] titles = titlesChoser(titleNum);
-        Object[][] studs = new Object[products.length][];
-        for (int i = 0; i < products.length; i++) {
+        Object[][] studs = new Object[products.size()][];
+        for (int i = 0; i < products.size(); i++) {
             String[] productLine = new String[6];
             productLine[0] = (i + 1) + ".";
-            productLine[1] = products[i].getProductName();
-            productLine[2] = String.valueOf(products[i].getGroupProducts());
-            productLine[3] = products[i].getManufacturer();
-            productLine[4] = String.valueOf(products[i].getPrice());
+            productLine[1] = products.get(i).getProductName();
+            productLine[2] = products.get(i).getGroupProducts().getName();
+            productLine[3] = products.get(i).getManufacturer();
+            productLine[4] = String.valueOf(products.get(i).getPrice());
             studs[i] = productLine;
         }
         model.setDataVector(studs, titles);
-        t.setModel(model);
+        table.setModel(model);
     }
 
-    public static void addDataToGroupOFGoodsTable(GroupOfProduct[] groupOfProduct, int titleNum) {
+    public static void addDataToGroupOFGoodsTable(ArrayList<GroupOfProduct> groupOfProduct, int titleNum) {
         String[] titles = titlesChoser(titleNum);
-        Object[][] groups = new Object[groupOfProduct.length][];
-        for (int i = 0; i < groupOfProduct.length; i++) {
+        Object[][] groups = new Object[groupOfProduct.size()][];
+        for (int i = 0; i < groupOfProduct.size(); i++) {
             String[] groupLine = new String[2];
             groupLine[0] = (i + 1) + ".";
-            groupLine[1] = groupOfProduct[i].getName();
-
+            groupLine[1] = groupOfProduct.get(i).getName();
             groups[i] = groupLine;
         }
         model.setDataVector(groups, titles);
-        t.setModel(model);
+        table.setModel(model);
     }
 
     public static void init(int titleNum) {
-        t.setModel(new DefaultTableModel(null, titlesChoser(titleNum)));
+        table.setModel(new DefaultTableModel(null, titlesChoser(titleNum)));
     }
 
     private static String[] titlesChoser(int titleNum) {
@@ -74,6 +75,14 @@ public class TablePanel extends JPanel {
             default:
                 return GoodsTitles;
         }
+    }
+
+    public static Product getSelectedProduct(){
+        return Stock.findProductByName((String) table.getValueAt(table.getSelectedRow(),1));
+    }
+
+    public static GroupOfProduct getSelectedGroup(){
+        return Stock.findGroup((String) table.getValueAt(table.getSelectedRow(),1));
     }
 
 }
