@@ -64,6 +64,7 @@ public class CreationPanel extends JPanel {
                 modeSwitchOn.setVisible(false);
                 groupCreationPanel.setVisible(false);
                 productCreationPanel.setVisible(true);
+                productCreationPanel.checkBox();
             }
         });
         modeSwitchOff.addMouseListener(new MouseAdapter() {

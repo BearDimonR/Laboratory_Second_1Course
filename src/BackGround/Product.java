@@ -2,21 +2,21 @@ package BackGround;
 
 public class Product {
 
-    private String groupGoods;      //товар групи
+    private GroupOfProduct groupGoods;      //товар групи
     private String name;            //імя товару
     private String description;     //опис товару
     private String manufacturer;           //виробник
     private int quantityInStock;    //кількість на складі
     private double price;           // ціна за одиницю товару
 
-    Product(String groupGoods, String name, String manufacturer, double price){
+    public Product(GroupOfProduct groupGoods, String name, String manufacturer, double price){
         this.groupGoods = groupGoods;
         this.name = name;
         this.manufacturer = manufacturer;
         this.price = price;
     }
 
-    Product(String groupGoods, String name, String description, String manufacturer, int quantityInStock, double price){
+    Product(GroupOfProduct groupGoods, String name, String description, String manufacturer, int quantityInStock, double price){
         this.groupGoods = groupGoods;
         this.name = name;
         this.description = description;
@@ -24,34 +24,13 @@ public class Product {
         this.quantityInStock = quantityInStock;
         this.price = price;
     }
-    Product(String name, String description, String manufacturer, int quantityInStock, double price){
-        this.name = name;
-        this.description = description;
-        this.manufacturer = manufacturer;
-        this.quantityInStock = quantityInStock;
-        this.price = price;
-    }
-    Product(String name, String manufacturer, int quantityInStock, double price){
-        this.name = name;
-        this.manufacturer = manufacturer;
-        this.quantityInStock = quantityInStock;
-        this.price = price;
-    }
-    Product(String name, String manufacturer, double price){
-        this.name = name;
-        this.manufacturer = manufacturer;
-        this.price = price;
-    }
-    Product(String name){
-        this.name = name;
-    }
 
 
-    public String getGroupProducts() {
+    public GroupOfProduct getGroupProducts() {
         return groupGoods;
     }
 
-    public void setGroupProducts(String groupGoods) {
+    public void setGroupProducts(GroupOfProduct groupGoods) {
         this.groupGoods = groupGoods;
     }
 
@@ -96,7 +75,7 @@ public class Product {
     }
 
     public String toString (){
-        return "Група " +groupGoods+ "	Товар "+name+"	Виробник "+manufacturer+"	Ціна " +price + "\n" ;
+        return "Група " +groupGoods.getName()+ "	Товар "+name+"	Виробник "+manufacturer+"	Ціна " +price + "\n" ;
     }
 }
 

@@ -1,24 +1,17 @@
 package BackGround;
+
+import java.util.ArrayList;
+
 public class GroupOfProduct {
 
-    Product[] goods = new Product[0];
+    private ArrayList<Product> products = new ArrayList<>();
 
-    private String stock;               //склад
     private String name;                //ім’я групи товарів (продовольчі не продовольчі)
     private String description;         //опис
 
-    GroupOfProduct(String stock, String name, String description){
-        this.stock = stock;
+    public GroupOfProduct(String name, String description){
         this.name = name;
         this.description = description;
-    }
-
-    public String getStock() {
-        return stock;
-    }
-
-    public void setStock(String stock) {
-        this.stock = stock;
     }
 
     public String getName() {
@@ -35,5 +28,21 @@ public class GroupOfProduct {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+
+    public void addProduct(Product product){
+        products.add(product);
+    }
+
+    public void removeProduct(Product product){
+        products.remove(product);
     }
 }
