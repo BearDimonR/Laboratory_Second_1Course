@@ -9,17 +9,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ToolBarPanel extends JPanel {
-    private static JLabel toolBarBackground = new JLabel(new ImageIcon("images/toolBarBackground.jpg"));//Background of tool bar
-    private static JLabel selectedCreateBTN = new JLabel(new ImageIcon("images/selectedCreateBTN.jpg"));
-    private static JLabel selectedEditBTN = new JLabel(new ImageIcon("images/selectedEditBTN.jpg"));
-    private static JLabel selectedDeleteBTN = new JLabel(new ImageIcon("images/selectedDeleteBTN.jpg"));
-    private static JLabel selectedQuantityBTN = new JLabel(new ImageIcon("images/selectedQuantityBTN.jpg"));
-    private static JLabel selectedSettingsBTN = new JLabel(new ImageIcon("images/selectedSettingsBTN.jpg"));
-    private static JLabel deselectedCreateBTN = new JLabel(new ImageIcon("images/deselectedCreateBTN.jpg"));
-    private static JLabel deselectedEditBTN = new JLabel(new ImageIcon("images/deselectedEditBTN.jpg"));
-    private static JLabel deselectedDeleteBTN = new JLabel(new ImageIcon("images/deselectedDeleteBTN.jpg"));
-    private static JLabel deselectedQuantityBTN = new JLabel(new ImageIcon("images/deselectedQuantityBTN.jpg"));
-    private static JLabel deselectedSettingsBTN = new JLabel(new ImageIcon("images/deselectedSettingsBTN.jpg"));
+    private static JLabel toolBarBackground = new JLabel(new ImageIcon("images/mainFrame/toolBarBackground.jpg"));//Background of tool bar
+    private static JLabel btnSelectedCreate = new JLabel(new ImageIcon("images/toolBarButtons/selectedCreate.jpg"));
+    private static JLabel btnSelectedEdit = new JLabel(new ImageIcon("images/toolBarButtons/selectedEdit.jpg"));
+    private static JLabel btnSelectedDelete = new JLabel(new ImageIcon("images/toolBarButtons/selectedDelete.jpg"));
+    private static JLabel btnSelectedQuantity = new JLabel(new ImageIcon("images/toolBarButtons/selectedQuantity.jpg"));
+    private static JLabel btnSelectedSettings = new JLabel(new ImageIcon("images/toolBarButtons/selectedSettings.jpg"));
+    private static JLabel btnSeselectedCreate = new JLabel(new ImageIcon("images/toolBarButtons/deselectedCreate.jpg"));
+    private static JLabel btnDeselectedEdit = new JLabel(new ImageIcon("images/toolBarButtons/deselectedEdit.jpg"));
+    private static JLabel btnDeselectedDelete = new JLabel(new ImageIcon("images/toolBarButtons/deselectedDelete.jpg"));
+    private static JLabel btnDeselectedQuantity = new JLabel(new ImageIcon("images/toolBarButtons/deselectedQuantity.jpg"));
+    private static JLabel btnDeselectedSettings = new JLabel(new ImageIcon("images/toolBarButtons/deselectedSettings.jpg"));
 
     public ToolBarPanel() {
         setLayout(AppStyles.gridBagLayout);
@@ -27,10 +27,10 @@ public class ToolBarPanel extends JPanel {
 
         //set default btn selection
         {
-            selectedEditBTN.setVisible(false);
-            selectedDeleteBTN.setVisible(false);
-            selectedQuantityBTN.setVisible(false);
-            selectedSettingsBTN.setVisible(false);
+            btnSelectedEdit.setVisible(false);
+            btnSelectedDelete.setVisible(false);
+            btnSelectedQuantity.setVisible(false);
+            btnSelectedSettings.setVisible(false);
         }
 
         //set size of toll bar panel
@@ -44,55 +44,55 @@ public class ToolBarPanel extends JPanel {
         //add elements on tool bar
         {
             add(toolBarBackground);
-            toolBarBackground.add(selectedCreateBTN, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+            toolBarBackground.add(btnSelectedCreate, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(75, 0, 0, 0), 0, 0));
-            toolBarBackground.add(deselectedCreateBTN, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+            toolBarBackground.add(btnSeselectedCreate, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(75, 0, 0, 0), 0, 0));
-            toolBarBackground.add(selectedEditBTN, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+            toolBarBackground.add(btnSelectedEdit, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(160, 0, 0, 0), 0, 0));
-            toolBarBackground.add(deselectedEditBTN, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+            toolBarBackground.add(btnDeselectedEdit, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(160, 0, 0, 0), 0, 0));
-            toolBarBackground.add(selectedDeleteBTN, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+            toolBarBackground.add(btnSelectedDelete, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(250, 0, 0, 0), 0, 0));
-            toolBarBackground.add(deselectedDeleteBTN, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+            toolBarBackground.add(btnDeselectedDelete, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(250, 0, 0, 0), 0, 0));
-            toolBarBackground.add(selectedQuantityBTN, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+            toolBarBackground.add(btnSelectedQuantity, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(330, 0, 0, 0), 0, 0));
-            toolBarBackground.add(deselectedQuantityBTN, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+            toolBarBackground.add(btnDeselectedQuantity, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(330, 0, 0, 0), 0, 0));
-            toolBarBackground.add(selectedSettingsBTN, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+            toolBarBackground.add(btnSelectedSettings, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(420, 0, 0, 0), 0, 0));
-            toolBarBackground.add(deselectedSettingsBTN, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+            toolBarBackground.add(btnDeselectedSettings, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(420, 0, 0, 0), 0, 0));
         }
 
         //add mouse listeners to buttons of tool bar
         {
-            deselectedCreateBTN.addMouseListener(new MouseAdapter() {
+            btnSeselectedCreate.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     //Button selection
                     {
-                        selectedCreateBTN.setVisible(true);
-                        deselectedCreateBTN.setVisible(false);
-                        selectedEditBTN.setVisible(false);
-                        deselectedEditBTN.setVisible(true);
-                        selectedDeleteBTN.setVisible(false);
-                        deselectedDeleteBTN.setVisible(true);
-                        selectedQuantityBTN.setVisible(false);
-                        deselectedQuantityBTN.setVisible(true);
-                        selectedSettingsBTN.setVisible(false);
-                        deselectedSettingsBTN.setVisible(true);
+                        btnSelectedCreate.setVisible(true);
+                        btnSeselectedCreate.setVisible(false);
+                        btnSelectedEdit.setVisible(false);
+                        btnDeselectedEdit.setVisible(true);
+                        btnSelectedDelete.setVisible(false);
+                        btnDeselectedDelete.setVisible(true);
+                        btnSelectedQuantity.setVisible(false);
+                        btnDeselectedQuantity.setVisible(true);
+                        btnSelectedSettings.setVisible(false);
+                        btnDeselectedSettings.setVisible(true);
                     }
 
                     //Panel selection
@@ -103,21 +103,21 @@ public class ToolBarPanel extends JPanel {
 
                 }
             });
-            deselectedEditBTN.addMouseListener(new MouseAdapter() {
+            btnDeselectedEdit.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     //Button selection
                     {
-                        selectedCreateBTN.setVisible(false);
-                        deselectedCreateBTN.setVisible(true);
-                        selectedEditBTN.setVisible(true);
-                        deselectedEditBTN.setVisible(false);
-                        selectedDeleteBTN.setVisible(false);
-                        deselectedDeleteBTN.setVisible(true);
-                        selectedQuantityBTN.setVisible(false);
-                        deselectedQuantityBTN.setVisible(true);
-                        selectedSettingsBTN.setVisible(false);
-                        deselectedSettingsBTN.setVisible(true);
+                        btnSelectedCreate.setVisible(false);
+                        btnSeselectedCreate.setVisible(true);
+                        btnSelectedEdit.setVisible(true);
+                        btnDeselectedEdit.setVisible(false);
+                        btnSelectedDelete.setVisible(false);
+                        btnDeselectedDelete.setVisible(true);
+                        btnSelectedQuantity.setVisible(false);
+                        btnDeselectedQuantity.setVisible(true);
+                        btnSelectedSettings.setVisible(false);
+                        btnDeselectedSettings.setVisible(true);
                     }
 
                     //Panel selection
@@ -127,21 +127,21 @@ public class ToolBarPanel extends JPanel {
 
                 }
             });
-            deselectedDeleteBTN.addMouseListener(new MouseAdapter() {
+            btnDeselectedDelete.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     //Button selection
                     {
-                        selectedCreateBTN.setVisible(false);
-                        deselectedCreateBTN.setVisible(true);
-                        selectedEditBTN.setVisible(false);
-                        deselectedEditBTN.setVisible(true);
-                        selectedDeleteBTN.setVisible(true);
-                        deselectedDeleteBTN.setVisible(false);
-                        selectedQuantityBTN.setVisible(false);
-                        deselectedQuantityBTN.setVisible(true);
-                        selectedSettingsBTN.setVisible(false);
-                        deselectedSettingsBTN.setVisible(true);
+                        btnSelectedCreate.setVisible(false);
+                        btnSeselectedCreate.setVisible(true);
+                        btnSelectedEdit.setVisible(false);
+                        btnDeselectedEdit.setVisible(true);
+                        btnSelectedDelete.setVisible(true);
+                        btnDeselectedDelete.setVisible(false);
+                        btnSelectedQuantity.setVisible(false);
+                        btnDeselectedQuantity.setVisible(true);
+                        btnSelectedSettings.setVisible(false);
+                        btnDeselectedSettings.setVisible(true);
                     }
                     //Panel selection
                     {
@@ -150,21 +150,21 @@ public class ToolBarPanel extends JPanel {
 
                 }
             });
-            deselectedQuantityBTN.addMouseListener(new MouseAdapter() {
+            btnDeselectedQuantity.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     //Button selection
                     {
-                        selectedCreateBTN.setVisible(false);
-                        deselectedCreateBTN.setVisible(true);
-                        selectedEditBTN.setVisible(false);
-                        deselectedEditBTN.setVisible(true);
-                        selectedDeleteBTN.setVisible(false);
-                        deselectedDeleteBTN.setVisible(true);
-                        selectedQuantityBTN.setVisible(true);
-                        deselectedQuantityBTN.setVisible(false);
-                        selectedSettingsBTN.setVisible(false);
-                        deselectedSettingsBTN.setVisible(true);
+                        btnSelectedCreate.setVisible(false);
+                        btnSeselectedCreate.setVisible(true);
+                        btnSelectedEdit.setVisible(false);
+                        btnDeselectedEdit.setVisible(true);
+                        btnSelectedDelete.setVisible(false);
+                        btnDeselectedDelete.setVisible(true);
+                        btnSelectedQuantity.setVisible(true);
+                        btnDeselectedQuantity.setVisible(false);
+                        btnSelectedSettings.setVisible(false);
+                        btnDeselectedSettings.setVisible(true);
                     }
 
                     //Panel selection
@@ -174,21 +174,21 @@ public class ToolBarPanel extends JPanel {
 
                 }
             });
-            deselectedSettingsBTN.addMouseListener(new MouseAdapter() {
+            btnDeselectedSettings.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     //Button selection
                     {
-                        selectedCreateBTN.setVisible(false);
-                        deselectedCreateBTN.setVisible(true);
-                        selectedEditBTN.setVisible(false);
-                        deselectedEditBTN.setVisible(true);
-                        selectedDeleteBTN.setVisible(false);
-                        deselectedDeleteBTN.setVisible(true);
-                        selectedQuantityBTN.setVisible(false);
-                        deselectedQuantityBTN.setVisible(true);
-                        selectedSettingsBTN.setVisible(true);
-                        deselectedSettingsBTN.setVisible(false);
+                        btnSelectedCreate.setVisible(false);
+                        btnSeselectedCreate.setVisible(true);
+                        btnSelectedEdit.setVisible(false);
+                        btnDeselectedEdit.setVisible(true);
+                        btnSelectedDelete.setVisible(false);
+                        btnDeselectedDelete.setVisible(true);
+                        btnSelectedQuantity.setVisible(false);
+                        btnDeselectedQuantity.setVisible(true);
+                        btnSelectedSettings.setVisible(true);
+                        btnDeselectedSettings.setVisible(false);
                     }
 
                     //Panel selection
@@ -203,16 +203,16 @@ public class ToolBarPanel extends JPanel {
     }
 
     public static void deselectAllButtonsOnToolBar() {
-        selectedCreateBTN.setVisible(false);
-        deselectedCreateBTN.setVisible(true);
-        selectedEditBTN.setVisible(false);
-        deselectedEditBTN.setVisible(true);
-        selectedDeleteBTN.setVisible(false);
-        deselectedDeleteBTN.setVisible(true);
-        selectedQuantityBTN.setVisible(false);
-        deselectedQuantityBTN.setVisible(true);
-        selectedSettingsBTN.setVisible(false);
-        deselectedSettingsBTN.setVisible(true);
+        btnSelectedCreate.setVisible(false);
+        btnSeselectedCreate.setVisible(true);
+        btnSelectedEdit.setVisible(false);
+        btnDeselectedEdit.setVisible(true);
+        btnSelectedDelete.setVisible(false);
+        btnDeselectedDelete.setVisible(true);
+        btnSelectedQuantity.setVisible(false);
+        btnDeselectedQuantity.setVisible(true);
+        btnSelectedSettings.setVisible(false);
+        btnDeselectedSettings.setVisible(true);
     }
 
 

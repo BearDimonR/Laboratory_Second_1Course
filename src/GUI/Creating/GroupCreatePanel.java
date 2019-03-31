@@ -10,19 +10,18 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.BufferedReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class GroupCreationPanel extends JPanel {
-    JLabel createBTN = new JLabel(new ImageIcon("images/CreateBTN.jpg"));
-    JLabel background = new JLabel(new ImageIcon("images/groupCreationPanelBackground.jpg"));
-    JTextField groupNameTF = new JTextField();
-    JTextArea descriptionTA = new JTextArea();
-    JScrollPane descriptionScrollPane = new JScrollPane(descriptionTA);
+public class GroupCreatePanel extends JPanel {
+   private JLabel btnCreate = new JLabel(new ImageIcon("images/createBTN.jpg"));
+   private JLabel background = new JLabel(new ImageIcon("images/createComponents/groupCreateBackground.jpg"));
+   private JTextField tfGroupName = new JTextField();
+   private JTextArea taDescription = new JTextArea();
+   private JScrollPane spDescription = new JScrollPane(taDescription);
 
-    public GroupCreationPanel() {
-        createBTN.setEnabled(false);
+    public GroupCreatePanel() {
+        btnCreate.setEnabled(false);
         setLayout(AppStyles.gridBagLayout);
         background.setLayout(AppStyles.gridBagLayout);
 
@@ -36,49 +35,49 @@ public class GroupCreationPanel extends JPanel {
      * set border font and foreground of name text field
      */
     private void setStylesOfGroupNameTF() {
-        groupNameTF.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        groupNameTF.setFont(AppStyles.fieldFont);
-        groupNameTF.setForeground(AppStyles.MainColor);
+        tfGroupName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        tfGroupName.setFont(AppStyles.fieldFont);
+        tfGroupName.setForeground(AppStyles.MainColor);
     }
 
     /**
      * set border font and foreground of description text area
      */
     private void setStylesOfDescriptionTA() {
-        descriptionTA.setFont(AppStyles.fieldFont);
-        descriptionTA.setForeground(AppStyles.MainColor);
-        descriptionScrollPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        taDescription.setFont(AppStyles.fieldFont);
+        taDescription.setForeground(AppStyles.MainColor);
+        spDescription.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     }
 
     /**
      * Method adds listenr to creation btn img
      */
     private void addListenerToCreateBTN() {
-        groupNameTF.addKeyListener(new KeyAdapter() {
+        tfGroupName.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                checkFields();
             }
         });
-        descriptionTA.addKeyListener(new KeyAdapter() {
+        taDescription.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 checkFields();
             }
         });
-        createBTN.addMouseListener(new MouseAdapter() {
+        btnCreate.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Stock.getGroups().add(new GroupOfProduct(groupNameTF.getText(),descriptionTA.getText()));
+                Stock.getGroups().add(new GroupOfProduct(tfGroupName.getText(), taDescription.getText()));
             }
         });
     }
 
     private void checkFields() {
-        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(groupNameTF.getText());
-        if(!matcher.matches() || groupNameTF.getText().length()>20) createBTN.setEnabled(false);
-        else if(descriptionTA.getText() == null || descriptionTA.getText().equals("")) createBTN.setEnabled(false);
-        else createBTN.setEnabled(true);
+        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfGroupName.getText());
+        if(!matcher.matches() || tfGroupName.getText().length()>20) btnCreate.setEnabled(false);
+        else if(taDescription.getText() == null || taDescription.getText().equals("")) btnCreate.setEnabled(false);
+        else btnCreate.setEnabled(true);
     }
 
     /**
@@ -88,13 +87,13 @@ public class GroupCreationPanel extends JPanel {
         add(background, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
-        background.add(groupNameTF, new GridBagConstraints(0, 0, 1, 1, 1, 0.0001,
+        background.add(tfGroupName, new GridBagConstraints(0, 0, 1, 1, 1, 0.0001,
                 GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                 new Insets(177, 30, 0, 0), 435, 0));
-        background.add(descriptionScrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 0.0001,
+        background.add(spDescription, new GridBagConstraints(0, 0, 1, 1, 1, 0.0001,
                 GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                 new Insets(250, 30, 0, 0), 435, 100));
-        background.add(createBTN, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+        background.add(btnCreate, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                 GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                 new Insets(578, 1, 0, 0), 0, 0));
     }
