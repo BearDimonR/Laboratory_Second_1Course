@@ -6,6 +6,8 @@ import BackGround.GroupOfProduct;
 import BackGround.Stock;
 
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
@@ -34,7 +36,6 @@ public class TablePanel extends JPanel {
     }
 
     private void addListener() {
-        table.listener
     }
 
     public  void addDataToGoodsTable(ArrayList<Product> products, int titleNum) {
