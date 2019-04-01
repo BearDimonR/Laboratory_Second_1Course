@@ -25,7 +25,6 @@ public class Product {
         this.price = price;
     }
 
-
     public GroupOfProduct getGroupProducts() {
         return groupGoods;
     }

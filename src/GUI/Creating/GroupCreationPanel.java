@@ -66,6 +66,7 @@ public class GroupCreationPanel extends JPanel {
                 checkFields();
             }
         });
+
         createBTN.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

@@ -39,10 +39,13 @@ public class GroupOfProduct {
     }
 
     public void addProduct(Product product){
+        product.getGroupProducts().removeProduct(product);
+        product.setGroupProducts(this);
         products.add(product);
     }
 
     public void removeProduct(Product product){
         products.remove(product);
+        product.setGroupProducts(null);
     }
 }

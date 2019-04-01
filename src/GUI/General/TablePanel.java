@@ -23,6 +23,7 @@ public class TablePanel extends JPanel {
     public TablePanel(int titleType) {
         init(titleType);
         setLayout(gbl);
+        addListener();
         studentList.setVisible(true);
 
         setBackground(Color.WHITE);
@@ -32,7 +33,11 @@ public class TablePanel extends JPanel {
                 new Insets(1, 0, 0, 0), 0, 430));
     }
 
-    public static void addDataToGoodsTable(ArrayList<Product> products, int titleNum) {
+    private void addListener() {
+        table.listener
+    }
+
+    public  void addDataToGoodsTable(ArrayList<Product> products, int titleNum) {
         String[] titles = titlesChoser(titleNum);
         Object[][] studs = new Object[products.size()][];
         for (int i = 0; i < products.size(); i++) {
@@ -48,7 +53,7 @@ public class TablePanel extends JPanel {
         table.setModel(model);
     }
 
-    public static void addDataToGroupOFGoodsTable(ArrayList<GroupOfProduct> groupOfProduct, int titleNum) {
+    public  void addDataToGroupOFGoodsTable(ArrayList<GroupOfProduct> groupOfProduct, int titleNum) {
         String[] titles = titlesChoser(titleNum);
         Object[][] groups = new Object[groupOfProduct.size()][];
         for (int i = 0; i < groupOfProduct.size(); i++) {
@@ -61,11 +66,11 @@ public class TablePanel extends JPanel {
         table.setModel(model);
     }
 
-    public static void init(int titleNum) {
+    public  void init(int titleNum) {
         table.setModel(new DefaultTableModel(null, titlesChoser(titleNum)));
     }
 
-    private static String[] titlesChoser(int titleNum) {
+    private  String[] titlesChoser(int titleNum) {
         String[] titles;
         switch (titleNum) {
             case 1:
@@ -77,11 +82,11 @@ public class TablePanel extends JPanel {
         }
     }
 
-    public static Product getSelectedProduct(){
+    public  Product getSelectedProduct(){
         return Stock.findProductByName((String) table.getValueAt(table.getSelectedRow(),1));
     }
 
-    public static GroupOfProduct getSelectedGroup(){
+    public  GroupOfProduct getSelectedGroup(){
         return Stock.findGroup((String) table.getValueAt(table.getSelectedRow(),1));
     }
 
