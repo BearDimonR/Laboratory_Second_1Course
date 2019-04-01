@@ -1,9 +1,5 @@
 package GUI.General;
 
-import BackGround.GroupOfProduct;
-import BackGround.Product;
-import BackGround.Stock;
-import GUI.Creating.GroupCreationPanel;
 import GUI.Login.LoginFrame;
 
 import java.awt.*;
