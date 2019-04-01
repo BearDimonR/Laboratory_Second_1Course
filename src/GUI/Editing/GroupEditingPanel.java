@@ -1,9 +1,12 @@
 package GUI.Editing;
 
+import BackGround.Stock;
 import GUI.General.AppStyles;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,8 +32,18 @@ public class GroupEditingPanel extends JPanel {
         backgroundHeader.setLayout(null);
         editFieldsBodyBackground.setLayout(null);
         tableBodyBackground.setLayout(null);
-        tableBodyBackground.setVisible(false);
-        editFieldsBodyBackground.setVisible(true);
+        tableBodyBackground.setVisible(true);
+        editFieldsBodyBackground.setVisible(false);
+
+        tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
+        tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(tablePanel.getSelectedGroup() == null) return;
+                tableBodyBackground.setVisible(false);
+                editFieldsBodyBackground.setVisible(true);
+            }
+        });
 
         addElementsToGroupEditingPanel();
         addMouseListenersToBTNS();
@@ -83,9 +96,8 @@ public class GroupEditingPanel extends JPanel {
     }
 
     private void addElementsToClearBodyPanel() {
-        tableBodyBackground.add(tablePanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                GridBagConstraints.CENTER, GridBagConstraints.CENTER,
-                new Insets(0, 0, 0, 0), 800, 0));
+        tableBodyBackground.add(tablePanel);
+        tablePanel.setBounds(35,20,850,430);
     }
 
     private void addElementsToHeaderBackground() {
@@ -95,4 +107,7 @@ public class GroupEditingPanel extends JPanel {
         tfGroupNameSearch.setBounds(423,88,340,25);
     }
 
+    public TablePanel getTablePanel() {
+        return tablePanel;
+    }
 }

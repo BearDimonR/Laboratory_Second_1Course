@@ -1,11 +1,13 @@
 package GUI.Editing;
 
+import BackGround.Stock;
 import GUI.General.AppStyles;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 public class EditingPanel extends JPanel {
     private static ProductEditingPanel productEditPanel = new ProductEditingPanel();
@@ -73,6 +75,7 @@ public class EditingPanel extends JPanel {
                 btnModeSwitchOn.setVisible(true);
                 groupEditPanel.setVisible(true);
                 productEditPanel.setVisible(false);
+                groupEditPanel.getTablePanel().addDataToGroupOFGoodsTable(Stock.getGroups(),2);
             }
         });
     }

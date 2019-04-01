@@ -21,12 +21,12 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 public class TablePanel extends JPanel {
-    static String[] GoodsTitles = {"id", "Product", "Group", "Manufacturer", "Price"};
-    static String[] GroupTitles = {"id", "Group of products"};
-    static JTable table = new JTable();
-    JScrollPane scrollPane = new JScrollPane(table);
-    static DefaultTableModel model = (DefaultTableModel) table.getModel();
-    static JList studentList = new JList();
+    private String[] GoodsTitles = {"id", "Product", "Group", "Manufacturer", "Price"};
+    private String[] GroupTitles = {"id", "Group of products"};
+    private JTable table = new JTable();
+    private JScrollPane scrollPane = new JScrollPane(table);
+    private DefaultTableModel model = (DefaultTableModel) table.getModel();
+    private JList studentList = new JList();
 
     GridBagLayout gbl = new GridBagLayout();
 
