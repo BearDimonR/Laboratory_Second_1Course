@@ -34,7 +34,6 @@ public class TablePanel extends JPanel {
     }
 
     private void addListener() {
-        table.listener
     }
 
     public  void addDataToGoodsTable(ArrayList<Product> products, int titleNum) {
