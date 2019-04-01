@@ -23,10 +23,11 @@ public class ProductCreatePanel extends JPanel {
     public ProductCreatePanel() {
         btnCreate.setEnabled(false);
         setLayout(AppStyles.gridBagLayout);
-        background.setLayout(AppStyles.gridBagLayout);
-        setStylesOfTFandTA();
+        background.setLayout(null);
+        setStylesOfUserInputFields();
         addElementsOnProductPanel();
         addListenerToCreateBTN();
+        addListenerToUserInputFields();
         checkBox();
 
     }
@@ -35,7 +36,7 @@ public class ProductCreatePanel extends JPanel {
      * Method sets styles of all text areas and text field
      * which are situated on product creation panel
      */
-    private void setStylesOfTFandTA() {
+    private void setStylesOfUserInputFields() {
         //tfProductName
         tfProductName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         tfProductName.setFont(AppStyles.fieldFont);
@@ -68,30 +69,37 @@ public class ProductCreatePanel extends JPanel {
         add(background, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
-        background.add(tfProductName, new GridBagConstraints(0, 0, 1, 1, 1, 0.0001,
-                GridBagConstraints.NORTH, GridBagConstraints.NORTH,
-                new Insets(101, 30, 0, 0), 430, 0));
-        background.add(spDescription, new GridBagConstraints(0, 0, 1, 1, 1, 0.0001,
-                GridBagConstraints.NORTH, GridBagConstraints.NORTH,
-                new Insets(175, 30, 0, 0), 435, 100));
-        background.add(cbProductGroup, new GridBagConstraints(0, 0, 1, 1, 1, 0.0001,
-                GridBagConstraints.NORTH, GridBagConstraints.NORTH,
-                new Insets(350, 30, 0, 0), 413, 0));
-        background.add(tfManufacturer, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
-                GridBagConstraints.CENTER, GridBagConstraints.NORTH,
-                new Insets(209, 30, 0, 0), 435, 0));
-        background.add(tfPrice, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
-                GridBagConstraints.CENTER, GridBagConstraints.NORTH,
-                new Insets(349, 30, 0, 0), 435, 0));
-        background.add(btnCreate, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
-                GridBagConstraints.NORTH, GridBagConstraints.NORTH,
-                new Insets(578, 1, 0, 0), 0, 0));
+        background.add(tfProductName);
+        background.add(spDescription);
+        background.add(cbProductGroup);
+        background.add(tfManufacturer);
+        background.add(tfPrice);
+        background.add(btnCreate);
+        tfProductName.setBounds(250, 101, 445, 30);
+        spDescription.setBounds(253, 174, 438, 135);
+        cbProductGroup.setBounds(250, 351, 445, 30);
+        tfManufacturer.setBounds(250, 421, 445, 30);
+        tfPrice.setBounds(250, 491, 445, 30);
+        btnCreate.setBounds(375, 578, 165, 40);
     }
 
     /**
      * Method adds listenr to creation btn img
      */
     private void addListenerToCreateBTN() {
+
+        btnCreate.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Stock.getGroups().get(cbProductGroup.getSelectedIndex()).addProduct(new Product(Stock.getGroups().get(cbProductGroup.getSelectedIndex()),
+                        tfProductName.getText(), tfManufacturer.getText(), Double.valueOf(tfPrice.getText())));
+                btnCreate.setEnabled(false);
+            }
+        });
+
+    }
+
+    private void addListenerToUserInputFields() {
         tfProductName.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -108,14 +116,6 @@ public class ProductCreatePanel extends JPanel {
             @Override
             public void keyReleased(KeyEvent e) {
                 checkFields();
-            }
-        });
-        btnCreate.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                Stock.getGroups().get(cbProductGroup.getSelectedIndex()).addProduct(new Product(Stock.getGroups().get(cbProductGroup.getSelectedIndex()),
-                        tfProductName.getText(), tfManufacturer.getText(), Double.valueOf(tfPrice.getText())));
-                btnCreate.setEnabled(false);
             }
         });
         tfManufacturer.addKeyListener(new KeyAdapter() {

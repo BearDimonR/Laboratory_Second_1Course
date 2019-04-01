@@ -38,8 +38,8 @@ public class ProductEditingPanel extends JPanel {
 
     public ProductEditingPanel() {
         setLayout(AppStyles.gridBagLayout);
-        headerBackground.setLayout(AppStyles.gridBagLayout);
-        editFieldsBodyBackground.setLayout(AppStyles.gridBagLayout);
+        headerBackground.setLayout(null);
+        editFieldsBodyBackground.setLayout(null);
         tableBodyBackground.setLayout(AppStyles.gridBagLayout);
         editFieldsBodyBackground.setVisible(true);
         tableBodyBackground.setVisible(false);
@@ -64,60 +64,43 @@ public class ProductEditingPanel extends JPanel {
     }
 
     private void addElementsToBackgroundBody() {
-        editFieldsBodyBackground.add(tfOldProductName, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
-                GridBagConstraints.NORTHWEST, GridBagConstraints.CENTER,
-                new Insets(30, 111, 0, 0), 300, 0));
-        editFieldsBodyBackground.add(spOldDescription, new GridBagConstraints(0, 1, 1, 1, 1, 0.18,
-                GridBagConstraints.NORTHWEST, GridBagConstraints.CENTER,
-                new Insets(0, 111, 0, 0), 300, 100));
-        editFieldsBodyBackground.add(tfNewProductName, new GridBagConstraints(1, 0, 1, 1, 1, 0.18,
-                GridBagConstraints.NORTHWEST, GridBagConstraints.NORTH,
-                new Insets(30, 50, 0, 0), 300, 0));
-        editFieldsBodyBackground.add(spNewDescription, new GridBagConstraints(1, 1, 1, 1, 1, 0.18,
-                GridBagConstraints.NORTHWEST, GridBagConstraints.NORTH,
-                new Insets(0, 50, 0, 0), 300, 100));
-        editFieldsBodyBackground.add(cbOldGroup, new GridBagConstraints(0, 2, 1, 1, 1, 0.18,
-                GridBagConstraints.NORTHWEST, GridBagConstraints.CENTER,
-                new Insets(0, 111, 0, 0), 280, 0));
-        editFieldsBodyBackground.add(cbNewGroup, new GridBagConstraints(1, 2, 1, 1, 1, 0.18,
-                GridBagConstraints.NORTHWEST, GridBagConstraints.NORTH,
-                new Insets(0, 50, 0, 0), 280, 0));
-        editFieldsBodyBackground.add(tfOldManufacturer, new GridBagConstraints(0, 3, 1, 1, 1, 0.18,
-                GridBagConstraints.NORTHWEST, GridBagConstraints.CENTER,
-                new Insets(0, 111, 0, 0), 300, 0));
-        editFieldsBodyBackground.add(tfNewManufacturer, new GridBagConstraints(1, 3, 1, 1, 1, 0.18,
-                GridBagConstraints.NORTHWEST, GridBagConstraints.NORTH,
-                new Insets(0, 50, 0, 0), 300, 0));
-        editFieldsBodyBackground.add(tfOldPrice, new GridBagConstraints(0, 4, 1, 1, 1, 0.18,
-                GridBagConstraints.NORTHWEST, GridBagConstraints.CENTER,
-                new Insets(0, 111, 0, 0), 300, 0));
-        editFieldsBodyBackground.add(tfNewPrice, new GridBagConstraints(1, 4, 1, 1, 1, 0.18,
-                GridBagConstraints.NORTHWEST, GridBagConstraints.NORTH,
-                new Insets(0, 50, 0, 0), 300, 0));
-        editFieldsBodyBackground.add(btnEdit, new GridBagConstraints(0, 5, 2, 1, 1, 0.18,
-                GridBagConstraints.CENTER, GridBagConstraints.CENTER,
-                new Insets(0, 50, 0, 0), 0, 0));
+        editFieldsBodyBackground.add(tfOldProductName);
+        editFieldsBodyBackground.add(spOldDescription);
+        editFieldsBodyBackground.add(tfNewProductName);
+        editFieldsBodyBackground.add(spNewDescription);
+        editFieldsBodyBackground.add(cbOldGroup);
+        editFieldsBodyBackground.add(cbNewGroup);
+        editFieldsBodyBackground.add(tfOldManufacturer);
+        editFieldsBodyBackground.add(tfNewManufacturer);
+        editFieldsBodyBackground.add(tfOldPrice);
+        editFieldsBodyBackground.add(tfNewPrice);
+        editFieldsBodyBackground.add(btnEdit);
+        tfOldProductName.setBounds(112,30,303,20);
+        spOldDescription.setBounds(112,86,303,122);
+        cbOldGroup.setBounds(112,247,303,20);
+        tfOldManufacturer.setBounds(112,310,303,20);
+        tfOldPrice.setBounds(112,370,303,20);
+
+        tfNewProductName.setBounds(537,30,303,20);
+        spNewDescription.setBounds(537,86,303,122);
+        cbNewGroup.setBounds(537,247,303,20);
+        tfNewManufacturer.setBounds(537,310,303,20);
+        tfNewPrice.setBounds(537,370,303,20);
     }
 
     private void addElementsToBackgroundHeader() {
-        headerBackground.add(btnFind, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                GridBagConstraints.WEST, GridBagConstraints.CENTER,
-                new Insets(30, 14, 0, 0), 0, 0));
-        headerBackground.add(tfproductNameSearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
-                GridBagConstraints.CENTER, GridBagConstraints.CENTER,
-                new Insets(-10, -240, 0, 0), 230, 0));
-        headerBackground.add(cbProductGroupSearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
-                GridBagConstraints.CENTER, GridBagConstraints.CENTER,
-                new Insets(-10, 610, 0, 0), 200, 0));
-        headerBackground.add(tfManufacturerSearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
-                GridBagConstraints.CENTER, GridBagConstraints.CENTER,
-                new Insets(75, -240, 0, 0), 230, 0));
-        headerBackground.add(tfLowestPriceearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
-                GridBagConstraints.CENTER, GridBagConstraints.CENTER,
-                new Insets(75, 450, 0, 0), 50, 0));
-        headerBackground.add(tfHighestPriceSearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
-                GridBagConstraints.CENTER, GridBagConstraints.CENTER,
-                new Insets(75, 650, 0, 0), 50, 0));
+        btnFind.setBounds(13,47,54,110);
+        headerBackground.add(btnFind);
+        headerBackground.add(tfproductNameSearch);
+        headerBackground.add(cbProductGroupSearch);
+        headerBackground.add(tfManufacturerSearch);
+        headerBackground.add(tfLowestPriceearch);
+        headerBackground.add(tfHighestPriceSearch);
+        tfproductNameSearch.setBounds(229,74,227,18);
+        tfManufacturerSearch.setBounds(229,114,227,18);
+        cbProductGroupSearch.setBounds(648,74,227,17);
+        tfLowestPriceearch.setBounds(649,114,60,18);
+        tfHighestPriceSearch.setBounds(756,114,60,18);
     }
 
     private void addElementsToClearBackgroundBody() {
