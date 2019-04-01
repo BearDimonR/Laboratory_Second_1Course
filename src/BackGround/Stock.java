@@ -3,6 +3,7 @@ package BackGround;
 import java.util.ArrayList;
 
 public class Stock {
+
     private static ArrayList<GroupOfProduct> groups = new ArrayList<>();
 
     public static ArrayList<GroupOfProduct> getGroups() {
@@ -24,7 +25,7 @@ public class Stock {
         return null;
     }
 
-    private static ArrayList<Product> getAllProducts() {
+    public static ArrayList<Product> getAllProducts() {
         ArrayList<Product> products = new ArrayList<>();
         for(int i=0;i<groups.size();i++){
             products.addAll(groups.get(i).getProducts());

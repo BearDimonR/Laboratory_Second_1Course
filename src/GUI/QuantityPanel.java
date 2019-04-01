@@ -1,5 +1,6 @@
 package GUI;
 
+import BackGround.Stock;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
@@ -31,6 +32,7 @@ public class QuantityPanel extends JPanel {
     private JComboBox cbProductGroupSearch = new JComboBox();
 
     public QuantityPanel() {
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
         setLayout(null);
         background.setLayout(null);
         add(background);
@@ -51,7 +53,6 @@ public class QuantityPanel extends JPanel {
         background.add(tfHighestPriceSearch);
         background.add(cbProductGroupSearch);
         background.add(tablePanel);
-
 
         tfProductNameSearch.setBounds(224, 42, 234, 18);
         tfManufacturerSearch.setBounds(224, 82, 234, 18);
