@@ -48,4 +48,9 @@ public class GroupOfProduct {
         products.remove(product);
         product.setGroupProducts(null);
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

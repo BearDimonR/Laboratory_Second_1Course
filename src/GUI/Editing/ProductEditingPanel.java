@@ -1,12 +1,21 @@
 package GUI.Editing;
 
+import BackGround.GroupOfProduct;
+import BackGround.Product;
+import BackGround.Stock;
 import GUI.General.AppStyles;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ProductEditingPanel extends JPanel {
     private JLabel btnEdit = new JLabel(new ImageIcon("images/editBTN.jpg"));
@@ -25,8 +34,8 @@ public class ProductEditingPanel extends JPanel {
     private JTextField tfNewManufacturer = new JTextField();
     private JTextField tfOldPrice = new JTextField();
     private JTextField tfNewPrice = new JTextField();
-    private JComboBox cbOldGroup = new JComboBox();
-    private JComboBox cbNewGroup = new JComboBox();
+    private JComboBox<String> cbOldGroup = new JComboBox<>();
+    private JComboBox<String> cbNewGroup = new JComboBox<String>();
     //Header elements
     private JTextField tfproductNameSearch = new JTextField();
     private JTextField tfManufacturerSearch = new JTextField();
@@ -41,11 +50,35 @@ public class ProductEditingPanel extends JPanel {
         headerBackground.setLayout(null);
         editFieldsBodyBackground.setLayout(null);
         tableBodyBackground.setLayout(AppStyles.gridBagLayout);
-        editFieldsBodyBackground.setVisible(true);
-        tableBodyBackground.setVisible(false);
+        editFieldsBodyBackground.setVisible(false);
+        tableBodyBackground.setVisible(true);
 
         addElementsToProductEditingPanel();
         addMouseListenersToBTNS();
+
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
+        tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(tablePanel.getTable().getSelectedRow() == -1) return;
+                tableBodyBackground.setVisible(false);
+                editFieldsBodyBackground.setVisible(true);
+                tfNewProductName.setText(tablePanel.getSelectedProduct().getProductName());
+                tfOldProductName.setText(tablePanel.getSelectedProduct().getProductName());
+                taNewDescription.setText(tablePanel.getSelectedProduct().getDescription());
+                taOldDescription.setText(tablePanel.getSelectedProduct().getDescription());
+                tfOldManufacturer.setText(tablePanel.getSelectedProduct().getManufacturer());
+                tfNewManufacturer.setText(tablePanel.getSelectedProduct().getManufacturer());
+                tfOldPrice.setText(String.valueOf(tablePanel.getSelectedProduct().getPrice()));
+                tfNewPrice.setText(String.valueOf(tablePanel.getSelectedProduct().getPrice()));
+                cbOldGroup.addItem(String.valueOf(tablePanel.getSelectedProduct().getGroupProducts()));
+                cbOldGroup.setSelectedIndex(0);
+                ComboBoxModel model = new DefaultComboBoxModel<>();
+                ((DefaultComboBoxModel) model).addAll(Stock.getGroups());
+                cbNewGroup.setModel(model);
+                cbNewGroup.setSelectedItem(tablePanel.getSelectedProduct().getGroupProducts());
+            }
+        });
     }
 
     private void addElementsToProductEditingPanel() {
@@ -110,6 +143,12 @@ public class ProductEditingPanel extends JPanel {
     }
 
     private void addMouseListenersToBTNS() {
+        taNewDescription.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                checkFields();
+            }
+        });
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -120,8 +159,49 @@ public class ProductEditingPanel extends JPanel {
         btnEdit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                if (!btnEdit.isVisible()) return;
+                Product product = tablePanel.getSelectedProduct();
+                tablePanel.getTable().clearSelection();
+                product.setDescription(taNewDescription.getText());
+                product.setPrice(Double.parseDouble(tfNewPrice.getText()));
+                product.setManufacturer(tfNewManufacturer.getText());
+                product.setGroupProducts(Stock.findGroup((String) cbNewGroup.getSelectedItem()));
+                product.setProductName(tfNewProductName.getText());
+                taNewDescription.setText("");
+                taOldDescription.setText("");
+                tfNewProductName.setText("");
+                tfOldProductName.setText("");
+                tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+                editFieldsBodyBackground.setVisible(false);
+                tableBodyBackground.setVisible(true);
             }
         });
+    }
+
+    private void checkFields() {
+        //to change enable
+        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfNewProductName.getText());
+        if (!matcher.matches() || tfNewProductName.getText().length() > 20) {
+            btnEdit.setEnabled(false);
+            return;
+        }
+        if (taNewDescription.getText() == null || taNewDescription.getText().equals("")) {
+            btnEdit.setEnabled(false);
+            return;
+        }
+        matcher.reset(tfNewManufacturer.getText());
+        if (!matcher.matches() || tfNewManufacturer.getText().length() > 20) {
+            btnEdit.setEnabled(false);
+            return;
+        }
+        if (tfNewPrice.getText() != null && tfNewPrice.getText().length() == 0) {
+            btnEdit.setEnabled(false);
+            return;
+        }
+        btnEdit.setEnabled(true);
+    }
+
+    public TablePanel getTablePanel() {
+        return tablePanel;
     }
 }

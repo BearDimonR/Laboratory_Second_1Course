@@ -118,6 +118,7 @@ public class ToolBarPanel extends JPanel {
                         btnDeselectedQuantity.setVisible(true);
                         btnSelectedSettings.setVisible(false);
                         btnDeselectedSettings.setVisible(true);
+
                     }
 
                     //Panel selection

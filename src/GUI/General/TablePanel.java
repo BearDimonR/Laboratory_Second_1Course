@@ -21,9 +21,9 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 public class TablePanel extends JPanel {
-    private String[] GoodsTitles = {"id", "Product", "Group", "Manufacturer", "Price"};
-    private String[] GroupTitles = {"id", "Group of products"};
-    private JTable table = new JTable();
+    private  String[] GoodsTitles = {"id", "Product", "Group", "Manufacturer", "Price"};
+    private  String[] GroupTitles = {"id", "Group of products"};
+    private  JTable table = new JTable();
     private JScrollPane scrollPane = new JScrollPane(table);
     private DefaultTableModel model = (DefaultTableModel) table.getModel();
     private JList studentList = new JList();
@@ -100,6 +100,10 @@ public class TablePanel extends JPanel {
     public  GroupOfProduct getSelectedGroup(){
         if(table.getSelectedRow() == -1) return null;
         return Stock.findGroup((String) table.getValueAt(table.getSelectedRow(),1));
+    }
+
+    public void crearAll(){
+        model = new DefaultTableModel();
     }
 
 }
