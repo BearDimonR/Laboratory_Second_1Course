@@ -29,8 +29,8 @@ public class GroupEditingPanel extends JPanel {
         backgroundHeader.setLayout(null);
         editFieldsBodyBackground.setLayout(null);
         tableBodyBackground.setLayout(null);
-        tableBodyBackground.setVisible(false);
-        editFieldsBodyBackground.setVisible(true);
+        tableBodyBackground.setVisible(true);
+        editFieldsBodyBackground.setVisible(false);
 
         addElementsToGroupEditingPanel();
         addMouseListenersToBTNS();
@@ -83,9 +83,8 @@ public class GroupEditingPanel extends JPanel {
     }
 
     private void addElementsToClearBodyPanel() {
-        tableBodyBackground.add(tablePanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                GridBagConstraints.CENTER, GridBagConstraints.CENTER,
-                new Insets(0, 0, 0, 0), 800, 0));
+        tableBodyBackground.add(tablePanel);
+        tablePanel.setBounds(35,20,850,430);
     }
 
     private void addElementsToHeaderBackground() {
