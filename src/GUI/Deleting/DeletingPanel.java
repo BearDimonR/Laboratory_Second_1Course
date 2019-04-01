@@ -16,6 +16,8 @@ public class DeletingPanel extends JLabel {
         add(groupDeletingPanel);
         groupDeletingPanel.setBounds(0, 0, 914, 666);
         productDeletingPanel.setBounds(0, 0, 914, 666);
+        productDeletingPanel.setVisible(true);
+        groupDeletingPanel.setVisible(false);
 
 
     }
