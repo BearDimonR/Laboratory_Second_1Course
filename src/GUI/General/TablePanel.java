@@ -6,10 +6,18 @@ import BackGround.GroupOfProduct;
 import BackGround.Stock;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 public class TablePanel extends JPanel {
@@ -25,7 +33,7 @@ public class TablePanel extends JPanel {
     public TablePanel(int titleType) {
         init(titleType);
         setLayout(gbl);
-        addListener();
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         studentList.setVisible(true);
 
         setBackground(Color.WHITE);
@@ -33,9 +41,6 @@ public class TablePanel extends JPanel {
         add(scrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(1, 0, 0, 0), 0, 430));
-    }
-
-    private void addListener() {
     }
 
     public  void addDataToGoodsTable(ArrayList<Product> products, int titleNum) {
@@ -83,11 +88,17 @@ public class TablePanel extends JPanel {
         }
     }
 
+    public  JTable getTable() {
+        return table;
+    }
+
     public  Product getSelectedProduct(){
+        if(table.getSelectedRow() == -1) return null;
         return Stock.findProductByName((String) table.getValueAt(table.getSelectedRow(),1));
     }
 
     public  GroupOfProduct getSelectedGroup(){
+        if(table.getSelectedRow() == -1) return null;
         return Stock.findGroup((String) table.getValueAt(table.getSelectedRow(),1));
     }
 
