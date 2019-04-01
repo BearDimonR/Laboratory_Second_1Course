@@ -11,7 +11,7 @@ public class AppFrame extends JFrame {
     ToolBarPanel toolBarPanel = new ToolBarPanel();//panel which contains menu navigation
     ContentPanel contentPanel = new ContentPanel();//panel which contains all content
     TitleBarPanel titleBarPanel = new TitleBarPanel();//panel which contains search field, user profile pic, user name, close and minimize btns
-    JLabel logoBar = new JLabel(new ImageIcon("images/logo.jpg"));//Logo image
+    JLabel logoBar = new JLabel(new ImageIcon("images/mainFrame/logo.jpg"));//Logo image
 
     public AppFrame() {
 

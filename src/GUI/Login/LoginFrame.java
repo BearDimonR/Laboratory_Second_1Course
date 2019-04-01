@@ -13,7 +13,7 @@ public class LoginFrame extends JFrame {
             setLayout(AppStyles.gridBagLayout);
             setResizable(false);
             setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
-            setContentPane(new JLabel(new ImageIcon("images/LoginBackground.png")));
+            setContentPane(new JLabel(new ImageIcon("images/loginBackground.png")));
             setSize(750,500);
             setLocation(300,100);
             pack();

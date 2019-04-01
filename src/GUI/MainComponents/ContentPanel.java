@@ -19,7 +19,7 @@ public class ContentPanel extends JPanel {
 
     public ContentPanel() {
         setLayout(AppStyles.gridBagLayout);
-
+        showPanel(1);
         //set size of content panel
         {
             setSize(new Dimension(914, 665));

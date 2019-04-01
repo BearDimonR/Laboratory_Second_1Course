@@ -10,11 +10,11 @@ import java.awt.event.MouseEvent;
 
 public class GroupEditingPanel extends JPanel {
 
-    private JLabel btnEdit = new JLabel(new ImageIcon("images/EditBTN.jpg"));
-    private JLabel backgroundHeader = new JLabel(new ImageIcon("images/groupEditingHeader.jpg"));
-    private JLabel backgroundClearBody = new JLabel(new ImageIcon("images/productClearBody.jpg"));
-    private JLabel backgroundBody = new JLabel(new ImageIcon("images/grouptEditingBody.jpg"));
-    private JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalButton.jpg"));
+    private JLabel btnEdit = new JLabel(new ImageIcon("images/editBTN.jpg"));
+    private JLabel backgroundHeader = new JLabel(new ImageIcon("images/editComponents/groupEditHeader.jpg"));
+    private JLabel tableBodyBackground = new JLabel(new ImageIcon("images/tableBodyBackground.jpg"));
+    private JLabel editFieldsBodyBackground = new JLabel(new ImageIcon("images/editComponents/groupEditBody.jpg"));
+    private JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalBTN.jpg"));
     private JTextField tfNewGroupName = new JTextField();
     private JTextArea taNewDescription = new JTextArea();
     private JTextField tfOldGroupName = new JTextField();
@@ -27,10 +27,10 @@ public class GroupEditingPanel extends JPanel {
     public GroupEditingPanel() {
         setLayout(AppStyles.gridBagLayout);
         backgroundHeader.setLayout(AppStyles.gridBagLayout);
-        backgroundBody.setLayout(AppStyles.gridBagLayout);
-        backgroundClearBody.setLayout(AppStyles.gridBagLayout);
-        backgroundClearBody.setVisible(false);
-        backgroundBody.setVisible(true);
+        editFieldsBodyBackground.setLayout(AppStyles.gridBagLayout);
+        tableBodyBackground.setLayout(AppStyles.gridBagLayout);
+        tableBodyBackground.setVisible(false);
+        editFieldsBodyBackground.setVisible(true);
 
         addElementsToGroupEditingPanel();
         addMouseListenersToBTNS();
@@ -56,10 +56,10 @@ public class GroupEditingPanel extends JPanel {
         add(backgroundHeader, new GridBagConstraints(0, 0, 1, 1, 1, 0.6,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
-        add(backgroundClearBody, new GridBagConstraints(0, 1, 1, 1, 1, 0.6,
+        add(tableBodyBackground, new GridBagConstraints(0, 1, 1, 1, 1, 0.6,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
-        add(backgroundBody, new GridBagConstraints(0, 1, 1, 1, 1, 0.6,
+        add(editFieldsBodyBackground, new GridBagConstraints(0, 1, 1, 1, 1, 0.6,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
         addElementsToHeaderBackground();
@@ -69,26 +69,26 @@ public class GroupEditingPanel extends JPanel {
 
     private void addElementsToBodyPanel() {
 
-        backgroundBody.add(tfOldGroupName, new GridBagConstraints(0, 0, 1, 1, 0.2, 0.0001,
+        editFieldsBodyBackground.add(tfOldGroupName, new GridBagConstraints(0, 0, 1, 1, 0.2, 0.0001,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.CENTER,
                 new Insets(65, 111, 0, 0), 300, 0));
-        backgroundBody.add(spOldDescription, new GridBagConstraints(0, 1, 1, 1, 0.8, 0.00001,
+        editFieldsBodyBackground.add(spOldDescription, new GridBagConstraints(0, 1, 1, 1, 0.8, 0.00001,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.CENTER,
                 new Insets(-68, 111, 0, 0), 300, 100));
-        backgroundBody.add(tfNewGroupName, new GridBagConstraints(1, 0, 1, 1, 0.2, 0.00001,
+        editFieldsBodyBackground.add(tfNewGroupName, new GridBagConstraints(1, 0, 1, 1, 0.2, 0.00001,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.NORTH,
                 new Insets(65, 50, 0, 0), 300, 0));
-        backgroundBody.add(spNewDescription, new GridBagConstraints(1, 1, 1, 1, 0.8, 0.0001,
+        editFieldsBodyBackground.add(spNewDescription, new GridBagConstraints(1, 1, 1, 1, 0.8, 0.0001,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.NORTH,
                 new Insets(-68, 50, 0, 0), 300, 100));
-        backgroundBody.add(btnEdit, new GridBagConstraints(0, 2, 2, 1, 1, 0.0001,
+        editFieldsBodyBackground.add(btnEdit, new GridBagConstraints(0, 2, 2, 1, 1, 0.0001,
                 GridBagConstraints.CENTER, GridBagConstraints.CENTER,
                 new Insets(0, 50, 0, 0), 0, 0));
 
     }
 
     private void addElementsToClearBodyPanel() {
-        backgroundClearBody.add(tablePanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+        tableBodyBackground.add(tablePanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.CENTER, GridBagConstraints.CENTER,
                 new Insets(0, 0, 0, 0), 800, 0));
     }

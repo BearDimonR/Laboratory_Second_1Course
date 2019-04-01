@@ -9,12 +9,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ProductEditingPanel extends JPanel {
-    private JLabel btnEdit = new JLabel(new ImageIcon("images/EditBTN.jpg"));
-    private JLabel backgroundHeader = new JLabel(new ImageIcon("images/productEditingHeader.jpg"));
-    private JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalButton.jpg"));
-    private JLabel backgroundClearBody = new JLabel(new ImageIcon("images/productClearBody.jpg"));
-    private JLabel backgroundBody = new JLabel(new ImageIcon("images/productEditingBody.jpg"));
-    //Body elements
+    private JLabel btnEdit = new JLabel(new ImageIcon("images/editBTN.jpg"));
+    private JLabel headerBackground = new JLabel(new ImageIcon("images/editComponents/productEditHeader.jpg"));
+    private JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalBTN.jpg"));
+    private JLabel tableBodyBackground = new JLabel(new ImageIcon("images/tableBodyBackground.jpg"));
+    private JLabel editFieldsBodyBackground = new JLabel(new ImageIcon("images/editComponents/productEditBody.jpg"));
+    //Text fields body elements
     private JTextField tfNewProductName = new JTextField();
     private JTextArea taNewDescription = new JTextArea();
     private JTextField tfOldProductName = new JTextField();
@@ -33,29 +33,29 @@ public class ProductEditingPanel extends JPanel {
     private JTextField tfLowestPriceearch = new JTextField();
     private JTextField tfHighestPriceSearch = new JTextField();
     private JComboBox cbProductGroupSearch = new JComboBox();
-    //ClearBody elements
+    //Table body elements
     private TablePanel tablePanel = new TablePanel(1);
 
     public ProductEditingPanel() {
         setLayout(AppStyles.gridBagLayout);
-        backgroundHeader.setLayout(AppStyles.gridBagLayout);
-        backgroundBody.setLayout(AppStyles.gridBagLayout);
-        backgroundClearBody.setLayout(AppStyles.gridBagLayout);
-        backgroundBody.setVisible(true);
-        backgroundClearBody.setVisible(false);
+        headerBackground.setLayout(AppStyles.gridBagLayout);
+        editFieldsBodyBackground.setLayout(AppStyles.gridBagLayout);
+        tableBodyBackground.setLayout(AppStyles.gridBagLayout);
+        editFieldsBodyBackground.setVisible(true);
+        tableBodyBackground.setVisible(false);
 
         addElementsToProductEditingPanel();
         addMouseListenersToBTNS();
     }
 
     private void addElementsToProductEditingPanel() {
-        add(backgroundHeader, new GridBagConstraints(0, 0, 1, 1, 1, 0.6,
+        add(headerBackground, new GridBagConstraints(0, 0, 1, 1, 1, 0.6,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
-        add(backgroundClearBody, new GridBagConstraints(0, 1, 1, 1, 1, 0.6,
+        add(tableBodyBackground, new GridBagConstraints(0, 1, 1, 1, 1, 0.6,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
-        add(backgroundBody, new GridBagConstraints(0, 1, 1, 1, 1, 0.6,
+        add(editFieldsBodyBackground, new GridBagConstraints(0, 1, 1, 1, 1, 0.6,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
         addElementsToBackgroundHeader();
@@ -64,64 +64,64 @@ public class ProductEditingPanel extends JPanel {
     }
 
     private void addElementsToBackgroundBody() {
-        backgroundBody.add(tfOldProductName, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
+        editFieldsBodyBackground.add(tfOldProductName, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.CENTER,
                 new Insets(30, 111, 0, 0), 300, 0));
-        backgroundBody.add(spOldDescription, new GridBagConstraints(0, 1, 1, 1, 1, 0.18,
+        editFieldsBodyBackground.add(spOldDescription, new GridBagConstraints(0, 1, 1, 1, 1, 0.18,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.CENTER,
                 new Insets(0, 111, 0, 0), 300, 100));
-        backgroundBody.add(tfNewProductName, new GridBagConstraints(1, 0, 1, 1, 1, 0.18,
+        editFieldsBodyBackground.add(tfNewProductName, new GridBagConstraints(1, 0, 1, 1, 1, 0.18,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.NORTH,
                 new Insets(30, 50, 0, 0), 300, 0));
-        backgroundBody.add(spNewDescription, new GridBagConstraints(1, 1, 1, 1, 1, 0.18,
+        editFieldsBodyBackground.add(spNewDescription, new GridBagConstraints(1, 1, 1, 1, 1, 0.18,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.NORTH,
                 new Insets(0, 50, 0, 0), 300, 100));
-        backgroundBody.add(cbOldGroup, new GridBagConstraints(0, 2, 1, 1, 1, 0.18,
+        editFieldsBodyBackground.add(cbOldGroup, new GridBagConstraints(0, 2, 1, 1, 1, 0.18,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.CENTER,
                 new Insets(0, 111, 0, 0), 280, 0));
-        backgroundBody.add(cbNewGroup, new GridBagConstraints(1, 2, 1, 1, 1, 0.18,
+        editFieldsBodyBackground.add(cbNewGroup, new GridBagConstraints(1, 2, 1, 1, 1, 0.18,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.NORTH,
                 new Insets(0, 50, 0, 0), 280, 0));
-        backgroundBody.add(tfOldManufacturer, new GridBagConstraints(0, 3, 1, 1, 1, 0.18,
+        editFieldsBodyBackground.add(tfOldManufacturer, new GridBagConstraints(0, 3, 1, 1, 1, 0.18,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.CENTER,
                 new Insets(0, 111, 0, 0), 300, 0));
-        backgroundBody.add(tfNewManufacturer, new GridBagConstraints(1, 3, 1, 1, 1, 0.18,
+        editFieldsBodyBackground.add(tfNewManufacturer, new GridBagConstraints(1, 3, 1, 1, 1, 0.18,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.NORTH,
                 new Insets(0, 50, 0, 0), 300, 0));
-        backgroundBody.add(tfOldPrice, new GridBagConstraints(0, 4, 1, 1, 1, 0.18,
+        editFieldsBodyBackground.add(tfOldPrice, new GridBagConstraints(0, 4, 1, 1, 1, 0.18,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.CENTER,
                 new Insets(0, 111, 0, 0), 300, 0));
-        backgroundBody.add(tfNewPrice, new GridBagConstraints(1, 4, 1, 1, 1, 0.18,
+        editFieldsBodyBackground.add(tfNewPrice, new GridBagConstraints(1, 4, 1, 1, 1, 0.18,
                 GridBagConstraints.NORTHWEST, GridBagConstraints.NORTH,
                 new Insets(0, 50, 0, 0), 300, 0));
-        backgroundBody.add(btnEdit, new GridBagConstraints(0, 5, 2, 1, 1, 0.18,
+        editFieldsBodyBackground.add(btnEdit, new GridBagConstraints(0, 5, 2, 1, 1, 0.18,
                 GridBagConstraints.CENTER, GridBagConstraints.CENTER,
                 new Insets(0, 50, 0, 0), 0, 0));
     }
 
     private void addElementsToBackgroundHeader() {
-        backgroundHeader.add(btnFind, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+        headerBackground.add(btnFind, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.WEST, GridBagConstraints.CENTER,
                 new Insets(30, 14, 0, 0), 0, 0));
-        backgroundHeader.add(tfproductNameSearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
+        headerBackground.add(tfproductNameSearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
                 GridBagConstraints.CENTER, GridBagConstraints.CENTER,
                 new Insets(-10, -240, 0, 0), 230, 0));
-        backgroundHeader.add(cbProductGroupSearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
+        headerBackground.add(cbProductGroupSearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
                 GridBagConstraints.CENTER, GridBagConstraints.CENTER,
                 new Insets(-10, 610, 0, 0), 200, 0));
-        backgroundHeader.add(tfManufacturerSearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
+        headerBackground.add(tfManufacturerSearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
                 GridBagConstraints.CENTER, GridBagConstraints.CENTER,
                 new Insets(75, -240, 0, 0), 230, 0));
-        backgroundHeader.add(tfLowestPriceearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
+        headerBackground.add(tfLowestPriceearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
                 GridBagConstraints.CENTER, GridBagConstraints.CENTER,
                 new Insets(75, 450, 0, 0), 50, 0));
-        backgroundHeader.add(tfHighestPriceSearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
+        headerBackground.add(tfHighestPriceSearch, new GridBagConstraints(0, 0, 1, 1, 1, 0.18,
                 GridBagConstraints.CENTER, GridBagConstraints.CENTER,
                 new Insets(75, 650, 0, 0), 50, 0));
     }
 
     private void addElementsToClearBackgroundBody() {
-        backgroundClearBody.add(tablePanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+        tableBodyBackground.add(tablePanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.CENTER, GridBagConstraints.CENTER,
                 new Insets(0, 0, 0, 0), 800, 0));
     }

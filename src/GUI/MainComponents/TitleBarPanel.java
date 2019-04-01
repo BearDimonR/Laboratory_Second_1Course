@@ -9,12 +9,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class TitleBarPanel extends JPanel {
-    JLabel btnCancel = new JLabel(new ImageIcon("images/cancelBTN.jpg"));//icon of cancel btn
-    JLabel btnMinimize = new JLabel(new ImageIcon("images/minimise.jpg"));//icon of minimize btn
+    JLabel btnCancel = new JLabel(new ImageIcon("images/mainFrame/cancelBTN.jpg"));//icon of cancel btn
+    JLabel btnMinimize = new JLabel(new ImageIcon("images/mainFrame/minimiseBTN.jpg"));//icon of minimize btn
     JLabel userNameLabel = new JLabel("User name");// label which contains user name info
-    JLabel background = new JLabel(new ImageIcon("images/titleBarBackground.jpg"));//background picture of title bar
+    JLabel background = new JLabel(new ImageIcon("images/mainFrame/titleBarBackground.jpg"));//background picture of title bar
     JLabel userProfilePic = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
-    JTextField searchTF = new JTextField();
+    JTextField tfSearch = new JTextField();
 
     public TitleBarPanel() {
         setLayout(AppStyles.gridBagLayout);
@@ -60,10 +60,10 @@ public class TitleBarPanel extends JPanel {
 
         //set style of search text field
         {
-            searchTF.setOpaque(false);
-            searchTF.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-            searchTF.setFont(AppStyles.searchFont);
-            searchTF.setForeground(AppStyles.MainColor);
+            tfSearch.setOpaque(false);
+            tfSearch.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+            tfSearch.setFont(AppStyles.searchFont);
+            tfSearch.setForeground(AppStyles.MainColor);
         }
 
         //add elements to title bar
@@ -71,7 +71,7 @@ public class TitleBarPanel extends JPanel {
             add(background, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));
-            background.add(searchTF, new GridBagConstraints(0, 0, 1, 1, 0.1, 1,
+            background.add(tfSearch, new GridBagConstraints(0, 0, 1, 1, 0.1, 1,
                     GridBagConstraints.WEST, GridBagConstraints.CENTER,
                     new Insets(0, 65, 3, 0), 140, 0));
             background.add(userProfilePic, new GridBagConstraints(1, 0, 1, 1, 0.001, 1,
@@ -103,7 +103,7 @@ public class TitleBarPanel extends JPanel {
                     App.mainFrame.setState(Frame.ICONIFIED);
                 }
             });
-            searchTF.addMouseListener(new MouseAdapter() {
+            tfSearch.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     ToolBarPanel.deselectAllButtonsOnToolBar();

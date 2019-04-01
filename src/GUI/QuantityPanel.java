@@ -10,16 +10,16 @@ import java.awt.event.MouseEvent;
 public class QuantityPanel extends JPanel {
     private static int addAmount;
     private static int removeAmount;
-    JLabel background = new JLabel(new ImageIcon("images/quantityBackground.jpg"));
-    JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalButton.jpg"));
-    TablePanel tablePanel = new TablePanel(1);
+    private JLabel background = new JLabel(new ImageIcon("images/quantityBackground.jpg"));
+    private JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalBTN.jpg"));
+    private TablePanel tablePanel = new TablePanel(1);
 
     //Sub tool bar elements
-    JLabel btnAddPlus = new JLabel(new ImageIcon("images/plus.png"));
-    JLabel btnAddMinus = new JLabel(new ImageIcon("images/minus.png"));
-    JLabel btnRemoveMinus = new JLabel(new ImageIcon("images/minus.png"));
-    JLabel btnRemovePlus = new JLabel(new ImageIcon("images/plus.png"));
-    JLabel btnChange = new JLabel(new ImageIcon("images/ChangeBTN.jpg"));
+    private JLabel btnAddPlus = new JLabel(new ImageIcon("images/plusBTN.png"));
+    private JLabel btnAddMinus = new JLabel(new ImageIcon("images/minusBTN.png"));
+    private JLabel btnRemoveMinus = new JLabel(new ImageIcon("images/minusBTN.png"));
+    private JLabel btnRemovePlus = new JLabel(new ImageIcon("images/plusBTN.png"));
+    private JLabel btnChange = new JLabel(new ImageIcon("images/changeBTN.jpg"));
     private JTextField tfAddToStock = new JTextField();
     private JTextField tfRemoveFromStock = new JTextField();
     private JTextField tfInStock = new JTextField();
@@ -59,7 +59,7 @@ public class QuantityPanel extends JPanel {
         tfLowestPriceearch.setBounds(645, 82, 65, 18);
         tfHighestPriceSearch.setBounds(752, 82, 65, 18);
         cbProductGroupSearch.setBounds(645, 42, 234, 18);
-        tablePanel.setBounds(23,148,659,494);
+        tablePanel.setBounds(23, 148, 659, 494);
 
 
         background.setBounds(0, 0, 914, 666);

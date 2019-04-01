@@ -8,10 +8,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class CreationPanel extends JPanel {
-    private static ProductCreationPanel productCreationPanel = new ProductCreationPanel();
-    private static GroupCreationPanel groupCreationPanel = new GroupCreationPanel();
-    private static JLabel modeSwitchOn = new JLabel(new ImageIcon("images/GroupCreateModeOn.png"));
-    private static JLabel modeSwitchOff = new JLabel(new ImageIcon("images/GroupCreateModeOff.png"));
+    private static ProductCreatePanel productCreatePanel = new ProductCreatePanel();
+    private static GroupCreatePanel groupCreatePanel = new GroupCreatePanel();
+    private static JLabel btnModeSwitchOn = new JLabel(new ImageIcon("images/groupCreateModeOnBTN.png"));
+    private static JLabel btnModeSwitchBTNOff = new JLabel(new ImageIcon("images/groupCreateModeOffBTN.png"));
 
     public CreationPanel() {
         setLayout(AppStyles.gridBagLayout);
@@ -25,29 +25,29 @@ public class CreationPanel extends JPanel {
      * mode seletion togle btn set in off position
      */
     public static void setDefaultVisibility() {
-        productCreationPanel.setVisible(true);
-        groupCreationPanel.setVisible(false);
-        modeSwitchOn.setVisible(false);
-        modeSwitchOff.setVisible(true);
+        productCreatePanel.setVisible(true);
+        groupCreatePanel.setVisible(false);
+        btnModeSwitchOn.setVisible(false);
+        btnModeSwitchBTNOff.setVisible(true);
     }
 
     /**
      * Method adds creation sub panels
-     * - groupCreationPanel
-     * - productCreationPanel
+     * - groupCreatePanel
+     * - productCreatePanel
      * and mode togle btn to main creation panel
      */
     private void addSubPanels() {
-        add(modeSwitchOn, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+        add(btnModeSwitchOn, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                 new Insets(5, 200, 0, 0), 0, 0));
-        add(modeSwitchOff, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+        add(btnModeSwitchBTNOff, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                 new Insets(5, 200, 0, 0), 0, 0));
-        add(productCreationPanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+        add(productCreatePanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                 new Insets(0, 0, 0, 0), 0, 0));
-        add(groupCreationPanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
+        add(groupCreatePanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                 new Insets(0, 0, 0, 0), 0, 0));
 
@@ -57,23 +57,23 @@ public class CreationPanel extends JPanel {
      * Method adds action listeners to togle btn images
      */
     private void addListenersToModeTogleBTN() {
-        modeSwitchOn.addMouseListener(new MouseAdapter() {
+        btnModeSwitchOn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                modeSwitchOff.setVisible(true);
-                modeSwitchOn.setVisible(false);
-                groupCreationPanel.setVisible(false);
-                productCreationPanel.setVisible(true);
-                productCreationPanel.checkBox();
+                btnModeSwitchBTNOff.setVisible(true);
+                btnModeSwitchOn.setVisible(false);
+                groupCreatePanel.setVisible(false);
+                productCreatePanel.setVisible(true);
+                productCreatePanel.checkBox();
             }
         });
-        modeSwitchOff.addMouseListener(new MouseAdapter() {
+        btnModeSwitchBTNOff.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                modeSwitchOff.setVisible(false);
-                modeSwitchOn.setVisible(true);
-                groupCreationPanel.setVisible(true);
-                productCreationPanel.setVisible(false);
+                btnModeSwitchBTNOff.setVisible(false);
+                btnModeSwitchOn.setVisible(true);
+                groupCreatePanel.setVisible(true);
+                productCreatePanel.setVisible(false);
             }
         });
     }
