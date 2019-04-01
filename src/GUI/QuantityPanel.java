@@ -4,6 +4,8 @@ import BackGround.Stock;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -32,7 +34,6 @@ public class QuantityPanel extends JPanel {
     private JComboBox cbProductGroupSearch = new JComboBox();
 
     public QuantityPanel() {
-        tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
         setLayout(null);
         background.setLayout(null);
         add(background);
@@ -45,6 +46,15 @@ public class QuantityPanel extends JPanel {
         background.add(tfAddToStock);
         background.add(tfRemoveFromStock);
         background.add(tfInStock);
+
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+        tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(tfInStock.getText() == null || tfInStock.getText().equals("")) tfInStock.setText("0");
+                checkStock();
+            }
+        });
 
 
         background.add(tfProductNameSearch);
@@ -81,6 +91,7 @@ public class QuantityPanel extends JPanel {
         btnAddPlus.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(tablePanel.getSelectedProduct() == null) return;
                 addAmount++;
                 tfAddToStock.setText(String.valueOf(addAmount));
             }
@@ -88,6 +99,8 @@ public class QuantityPanel extends JPanel {
         btnAddMinus.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(tablePanel.getSelectedProduct() == null) return;
+                if(addAmount == 0) return;
                 addAmount--;
                 tfAddToStock.setText(String.valueOf(addAmount));
             }
@@ -95,6 +108,8 @@ public class QuantityPanel extends JPanel {
         btnRemovePlus.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(tablePanel.getSelectedProduct() == null) return;
+                if(removeAmount == Integer.parseInt(tfInStock.getText())) return;
                 removeAmount++;
                 tfRemoveFromStock.setText(String.valueOf(removeAmount));
             }
@@ -102,9 +117,28 @@ public class QuantityPanel extends JPanel {
         btnRemoveMinus.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(tablePanel.getSelectedProduct() == null) return;
+                if(removeAmount == 0) return;
                 removeAmount--;
                 tfRemoveFromStock.setText(String.valueOf(removeAmount));
             }
         });
+        btnChange.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(tablePanel.getSelectedProduct() == null) return;
+                tablePanel.getSelectedProduct().setQuantityInStock(Integer.parseInt(tfInStock.getText()) + addAmount - removeAmount);
+                checkStock();
+                addAmount = 0;
+                removeAmount = 0;
+                tfAddToStock.setText(String.valueOf(addAmount));
+                tfRemoveFromStock.setText(String.valueOf(removeAmount));
+            }
+        });
+    }
+
+    private void checkStock() {
+        if(tablePanel.getSelectedProduct().getQuantityInStock() == Integer.parseInt(tfInStock.getText())) return;
+        tfInStock.setText(String.valueOf(tablePanel.getSelectedProduct().getQuantityInStock()));
     }
 }
