@@ -1,8 +1,11 @@
 package GUI.Deleting;
 
+import BackGround.Stock;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -15,7 +18,6 @@ public class GroupDeletingPanel extends JPanel {
     private JTextField tfGroupNameSearch = new JTextField();
     private TablePanel tablePanel = new TablePanel(2);
 
-
     public GroupDeletingPanel() {
         setLayout(null);
         backgroundHeader.setLayout(null);
@@ -24,6 +26,8 @@ public class GroupDeletingPanel extends JPanel {
         add(tableBackground);
         addElementsToGroupDeltePanel();
         addListners();
+
+        tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
     }
 
     private void addElementsToGroupDeltePanel() {
@@ -51,6 +55,10 @@ public class GroupDeletingPanel extends JPanel {
 
     }
 
+    public TablePanel getTablePanel() {
+        return tablePanel;
+    }
+
     private void addListners() {
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
@@ -67,7 +75,9 @@ public class GroupDeletingPanel extends JPanel {
         btnDelete.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                if(tablePanel.getSelectedGroup() == null) return;
+                Stock.getGroups().remove(tablePanel.getSelectedGroup());
+                tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
             }
         });
     }

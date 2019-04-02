@@ -18,6 +18,7 @@ public class GroupCreatePanel extends JPanel {
     private JScrollPane spDescription = new JScrollPane(taDescription);
 
     public GroupCreatePanel() {
+        //to change enabled
         btnCreate.setEnabled(false);
         setLayout(AppStyles.gridBagLayout);
         background.setLayout(null);
@@ -55,12 +56,17 @@ public class GroupCreatePanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Stock.getGroups().add(new GroupOfProduct(tfGroupName.getText(), taDescription.getText()));
+                tfGroupName.setText("");
+                taDescription.setText("");
+                //to change enabled
+                btnCreate.setEnabled(false);
             }
         });
     }
 
     private void checkFields() {
         Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfGroupName.getText());
+        //to change enabled
         if (!matcher.matches() || tfGroupName.getText().length() > 20) btnCreate.setEnabled(false);
         else if (taDescription.getText() == null || taDescription.getText().equals("")) btnCreate.setEnabled(false);
         else btnCreate.setEnabled(true);

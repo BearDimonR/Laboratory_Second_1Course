@@ -21,6 +21,7 @@ public class ProductCreatePanel extends JPanel {
     private JScrollPane spDescription = new JScrollPane(taDescription);
 
     public ProductCreatePanel() {
+        //to change enabled
         btnCreate.setEnabled(false);
         setLayout(AppStyles.gridBagLayout);
         background.setLayout(null);
@@ -93,6 +94,11 @@ public class ProductCreatePanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 Stock.getGroups().get(cbProductGroup.getSelectedIndex()).addProduct(new Product(Stock.getGroups().get(cbProductGroup.getSelectedIndex()),
                         tfProductName.getText(), tfManufacturer.getText(), Double.valueOf(tfPrice.getText())));
+                tfProductName.setText("");
+                taDescription.setText("");
+                tfManufacturer.setText("");
+                tfPrice.setText("");
+                //to change enabled
                 btnCreate.setEnabled(false);
             }
         });
@@ -140,6 +146,7 @@ public class ProductCreatePanel extends JPanel {
     }
 
     private void checkFields() {
+        //to change enable
         Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfProductName.getText());
         if (!matcher.matches() || tfProductName.getText().length() > 20) {
             btnCreate.setEnabled(false);

@@ -64,12 +64,15 @@ public class ContentPanel extends JPanel {
                 break;
             case 2:
                 editingPanel.setVisible(true);
+                editingPanel.updateTable();
                 break;
             case 3:
                 deletingPanel.setVisible(true);
+                DeletingPanel.updateTable();
                 break;
             case 4:
                 quantityPanel.setVisible(true);
+                quantityPanel.updateTable();
                 break;
             case 5:
                 settingPanel.setVisible(true);

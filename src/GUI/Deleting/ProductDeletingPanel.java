@@ -1,5 +1,6 @@
 package GUI.Deleting;
 
+import BackGround.Stock;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
@@ -33,6 +34,8 @@ public class ProductDeletingPanel extends JPanel {
         tableBackground.setBounds(0, 175, 914, 491);
         addElementsToProductDeltePanel();
         addListners();
+
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
     }
 
     private void addElementsToProductDeltePanel() {
@@ -71,6 +74,10 @@ public class ProductDeletingPanel extends JPanel {
 
     }
 
+    public TablePanel getTablePanel() {
+        return tablePanel;
+    }
+
     private void addListners() {
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
@@ -87,7 +94,9 @@ public class ProductDeletingPanel extends JPanel {
         btnDelete.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                if(tablePanel.getSelectedProduct() == null) return;
+                tablePanel.getSelectedProduct().getGroupProducts().removeProduct(tablePanel.getSelectedProduct());
+                tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
             }
         });
     }

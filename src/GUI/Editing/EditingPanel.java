@@ -79,4 +79,9 @@ public class EditingPanel extends JPanel {
             }
         });
     }
+
+    public void updateTable(){
+        if(groupEditPanel.isVisible()) groupEditPanel.getTablePanel().addDataToGroupOFGoodsTable(Stock.getGroups(),2);
+        else ;//to write
+    }
 }

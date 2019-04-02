@@ -12,7 +12,7 @@ public class Stock {
 
     public static GroupOfProduct findGroup(String name){
         for(int i=0;i<groups.size();i++){
-            if(groups.get(0).getName().equals(name)) return groups.get(i);
+            if(groups.get(i).getName().equals(name)) return groups.get(i);
         }
         return null;
     }
@@ -30,7 +30,7 @@ public class Stock {
         for(int i=0;i<groups.size();i++){
             products.addAll(groups.get(i).getProducts());
         }
-        if(products.size()==0) return null;
+        if(products.size()==0) return new ArrayList<>();
         return products;
     }
     //    /**

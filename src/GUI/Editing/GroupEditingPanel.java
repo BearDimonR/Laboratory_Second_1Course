@@ -1,5 +1,6 @@
 package GUI.Editing;
 
+import BackGround.GroupOfProduct;
 import BackGround.Stock;
 import GUI.General.AppStyles;
 import GUI.General.TablePanel;
@@ -8,8 +9,12 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class GroupEditingPanel extends JPanel {
 
@@ -34,17 +39,24 @@ public class GroupEditingPanel extends JPanel {
         tableBodyBackground.setLayout(null);
         tableBodyBackground.setVisible(true);
         editFieldsBodyBackground.setVisible(false);
+        tfOldGroupName.setEditable(false);
+        taOldDescription.setEditable(false);
+        //to edit
+        btnEdit.setVisible(false);
 
-        tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
+        tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(), 2);
         tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(tablePanel.getSelectedGroup() == null) return;
+                if(tablePanel.getTable().getSelectedRow() == -1) return;
                 tableBodyBackground.setVisible(false);
                 editFieldsBodyBackground.setVisible(true);
+                tfOldGroupName.setText(tablePanel.getSelectedGroup().getName());
+                taOldDescription.setText(tablePanel.getSelectedGroup().getDescription());
+                tfNewGroupName.setText(tablePanel.getSelectedGroup().getName());
+                taNewDescription.setText(tablePanel.getSelectedGroup().getDescription());
             }
         });
-
         addElementsToGroupEditingPanel();
         addMouseListenersToBTNS();
     }
@@ -60,9 +72,43 @@ public class GroupEditingPanel extends JPanel {
         btnEdit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                //setVisible to edit
+                if (!btnEdit.isVisible()) return;
+                GroupOfProduct group = tablePanel.getSelectedGroup();
+                tablePanel.getTable().clearSelection();
+                group.setDescription(taNewDescription.getText());
+                group.setName(tfNewGroupName.getText());
+                taNewDescription.setText("");
+                taOldDescription.setText("");
+                tfNewGroupName.setText("");
+                tfOldGroupName.setText("");
+                tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
+                editFieldsBodyBackground.setVisible(false);
+                tableBodyBackground.setVisible(true);
+
 
             }
         });
+        tfNewGroupName.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                checkFields();
+            }
+        });
+        taNewDescription.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                checkFields();
+            }
+        });
+    }
+
+    private void checkFields() {
+        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfNewGroupName.getText());
+        //setVisible to edit
+        if (!matcher.matches() || tfNewGroupName.getText().length() > 20) btnEdit.setVisible(false);
+        else if (taNewDescription.getText() == null || taNewDescription.getText().equals("")) btnEdit.setVisible(false);
+        else btnEdit.setVisible(true);
     }
 
     private void addElementsToGroupEditingPanel() {
@@ -91,19 +137,21 @@ public class GroupEditingPanel extends JPanel {
         spOldDescription.setBounds(110, 123, 305, 120);
         tfNewGroupName.setBounds(536, 66, 305, 20);
         spNewDescription.setBounds(536, 123, 305, 120);
-        btnEdit.setBounds(375,490,165,40);
+
+        btnEdit.setBounds(375, 410, 165, 40);
+        
     }
 
     private void addElementsToClearBodyPanel() {
         tableBodyBackground.add(tablePanel);
-        tablePanel.setBounds(35,20,850,430);
+        tablePanel.setBounds(35, 20, 850, 430);
     }
 
     private void addElementsToHeaderBackground() {
         backgroundHeader.add(btnFind);
         backgroundHeader.add(tfGroupNameSearch);
-        btnFind.setBounds(13,47,54,110);
-        tfGroupNameSearch.setBounds(423,88,340,25);
+        btnFind.setBounds(13, 47, 54, 110);
+        tfGroupNameSearch.setBounds(423, 88, 340, 25);
     }
 
     public TablePanel getTablePanel() {

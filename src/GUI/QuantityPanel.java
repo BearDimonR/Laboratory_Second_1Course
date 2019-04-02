@@ -47,11 +47,11 @@ public class QuantityPanel extends JPanel {
         background.add(tfRemoveFromStock);
         background.add(tfInStock);
 
-        tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+        updateTable();
         tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(tfInStock.getText() == null || tfInStock.getText().equals("")) tfInStock.setText("0");
+                tfInStock.setText("0");
                 checkStock();
             }
         });
@@ -135,6 +135,10 @@ public class QuantityPanel extends JPanel {
                 tfRemoveFromStock.setText(String.valueOf(removeAmount));
             }
         });
+    }
+
+    public  void updateTable() {
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
     }
 
     private void checkStock() {
