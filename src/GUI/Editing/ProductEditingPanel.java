@@ -178,6 +178,10 @@ public class ProductEditingPanel extends JPanel {
         });
     }
 
+    TablePanel getTablePanel() {
+        return tablePanel;
+    }
+
     private void checkFields() {
         //to change enable
         Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfNewProductName.getText());
@@ -199,9 +203,5 @@ public class ProductEditingPanel extends JPanel {
             return;
         }
         btnEdit.setEnabled(true);
-    }
-
-    public TablePanel getTablePanel() {
-        return tablePanel;
     }
 }

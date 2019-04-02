@@ -111,6 +111,10 @@ public class GroupEditingPanel extends JPanel {
         else btnEdit.setVisible(true);
     }
 
+    TablePanel getTablePanel() {
+        return tablePanel;
+    }
+
     private void addElementsToGroupEditingPanel() {
         add(backgroundHeader, new GridBagConstraints(0, 0, 1, 1, 1, 0.6,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -153,7 +157,4 @@ public class GroupEditingPanel extends JPanel {
         tfGroupNameSearch.setBounds(423, 88, 340, 25);
     }
 
-    public TablePanel getTablePanel() {
-        return tablePanel;
-    }
 }

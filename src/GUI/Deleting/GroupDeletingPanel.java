@@ -55,7 +55,7 @@ public class GroupDeletingPanel extends JPanel {
 
     }
 
-    public TablePanel getTablePanel() {
+     TablePanel getTablePanel() {
         return tablePanel;
     }
 

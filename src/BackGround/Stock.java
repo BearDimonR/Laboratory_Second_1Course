@@ -25,7 +25,7 @@ public class Stock {
         return null;
     }
 
-     public static ArrayList<Product> getAllProducts() {
+    public static ArrayList<Product> getAllProducts() {
         ArrayList<Product> products = new ArrayList<>();
         for(int i=0;i<groups.size();i++){
             products.addAll(groups.get(i).getProducts());

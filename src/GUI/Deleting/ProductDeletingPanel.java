@@ -74,7 +74,7 @@ public class ProductDeletingPanel extends JPanel {
 
     }
 
-    public TablePanel getTablePanel() {
+     TablePanel getTablePanel() {
         return tablePanel;
     }
 
