@@ -91,8 +91,7 @@ public class GroupEditingPanel extends JPanel {
         spOldDescription.setBounds(110, 123, 305, 120);
         tfNewGroupName.setBounds(536, 66, 305, 20);
         spNewDescription.setBounds(536, 123, 305, 120);
-        btnEdit.setBounds(375,410,165,40);
-
+        btnEdit.setBounds(375,490,165,40);
     }
 
     private void addElementsToClearBodyPanel() {

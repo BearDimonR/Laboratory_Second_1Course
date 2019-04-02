@@ -86,6 +86,7 @@ public class ProductEditingPanel extends JPanel {
         cbNewGroup.setBounds(537,247,303,20);
         tfNewManufacturer.setBounds(537,310,303,20);
         tfNewPrice.setBounds(537,370,303,20);
+        btnEdit.setBounds(375,420,165,40);
     }
 
     private void addElementsToBackgroundHeader() {
