@@ -13,7 +13,7 @@ public class GroupDeletingPanel extends JPanel {
     JLabel backgroundHeader = new JLabel(new ImageIcon("images/deleteComponents/groupDeleteHeader.jpg"));
     JLabel tableBackground = new JLabel(new ImageIcon("images/tableBodyBackground.jpg"));
     JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalBTN.jpg"));
-    JLabel btnDelete = new JLabel(new ImageIcon("images/createBTN.jpg"));
+    JLabel btnDelete = new JLabel(new ImageIcon("images/deleteBTN.jpg"));
     private static JLabel modeSwitchOn = new JLabel(new ImageIcon("images/groupCreateModeOnBTN.png"));
     private JTextField tfGroupNameSearch = new JTextField();
     private TablePanel tablePanel = new TablePanel(2);

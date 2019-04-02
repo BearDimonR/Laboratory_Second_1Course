@@ -12,7 +12,7 @@ public class ProductDeletingPanel extends JPanel {
     JLabel tableBackground = new JLabel(new ImageIcon("images/tableBodyBackground.jpg"));
     private static JLabel modeSwitchOff = new JLabel(new ImageIcon("images/groupCreateModeOffBTN.png"));
     private TablePanel tablePanel = new TablePanel(2);
-    JLabel btnDelete = new JLabel(new ImageIcon("images/createBTN.jpg"));
+    JLabel btnDelete = new JLabel(new ImageIcon("images/deleteBTN.jpg"));
     JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalBTN.jpg"));
     //Header elements
     private JTextField tfproductNameSearch = new JTextField();
