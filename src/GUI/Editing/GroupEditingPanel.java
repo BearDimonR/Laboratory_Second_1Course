@@ -108,6 +108,7 @@ public class GroupEditingPanel extends JPanel {
         //setVisible to edit
         if (!matcher.matches() || tfNewGroupName.getText().length() > 20) btnEdit.setVisible(false);
         else if (taNewDescription.getText() == null || taNewDescription.getText().equals("")) btnEdit.setVisible(false);
+        else if (Stock.findProductByName(tfNewGroupName.getText()) != null) btnEdit.setVisible(false);
         else btnEdit.setVisible(true);
     }
 

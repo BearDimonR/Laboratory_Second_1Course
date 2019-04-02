@@ -152,6 +152,10 @@ public class ProductCreatePanel extends JPanel {
             btnCreate.setEnabled(false);
             return;
         }
+        if(Stock.findProductByName(tfProductName.getText()) != null){
+            btnCreate.setEnabled(false);
+            return;
+        }
         if (taDescription.getText() == null || taDescription.getText().equals("")) {
             btnCreate.setEnabled(false);
             return;
