@@ -94,6 +94,7 @@ public class ProductCreatePanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 Stock.getGroups().get(cbProductGroup.getSelectedIndex()).addProduct(new Product(Stock.getGroups().get(cbProductGroup.getSelectedIndex()),
                         tfProductName.getText(), tfManufacturer.getText(), Double.valueOf(tfPrice.getText())));
+                Stock.saveData();
                 tfProductName.setText("");
                 taDescription.setText("");
                 tfManufacturer.setText("");
@@ -149,6 +150,10 @@ public class ProductCreatePanel extends JPanel {
         //to change enable
         Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfProductName.getText());
         if (!matcher.matches() || tfProductName.getText().length() > 20) {
+            btnCreate.setEnabled(false);
+            return;
+        }
+        if(Stock.findProductByName(tfProductName.getText()) != null){
             btnCreate.setEnabled(false);
             return;
         }

@@ -96,6 +96,7 @@ public class ProductDeletingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(tablePanel.getSelectedProduct() == null) return;
                 tablePanel.getSelectedProduct().getGroupProducts().removeProduct(tablePanel.getSelectedProduct());
+                Stock.saveData();
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
             }
         });

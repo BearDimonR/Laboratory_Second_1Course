@@ -1,5 +1,6 @@
 package BackGround;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class Stock {
@@ -32,6 +33,28 @@ public class Stock {
         }
         if(products.size()==0) return new ArrayList<>();
         return products;
+    }
+
+    public static void loadData() {
+        try {
+            ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream("dataStore\\DataStock"));
+            ArrayList<GroupOfProduct> arrayList = new ArrayList<>();
+            arrayList = (ArrayList<GroupOfProduct>) objectInput.readObject();
+            groups = arrayList;
+            objectInput.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveData() {
+        try {
+            ObjectOutputStream objectOutput = new ObjectOutputStream(new FileOutputStream("dataStore\\DataStock"));
+            objectOutput.writeObject(groups);
+            objectOutput.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     //    /**
 //     * ми зводимо до маленьких літер

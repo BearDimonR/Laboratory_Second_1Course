@@ -1,6 +1,8 @@
 package BackGround;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
     private GroupOfProduct groupGoods;      //товар групи
     private String name;            //імя товару

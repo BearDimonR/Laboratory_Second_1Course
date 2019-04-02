@@ -56,6 +56,7 @@ public class GroupCreatePanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Stock.getGroups().add(new GroupOfProduct(tfGroupName.getText(), taDescription.getText()));
+                Stock.saveData();
                 tfGroupName.setText("");
                 taDescription.setText("");
                 //to change enabled
@@ -69,6 +70,7 @@ public class GroupCreatePanel extends JPanel {
         //to change enabled
         if (!matcher.matches() || tfGroupName.getText().length() > 20) btnCreate.setEnabled(false);
         else if (taDescription.getText() == null || taDescription.getText().equals("")) btnCreate.setEnabled(false);
+        else if (Stock.findGroup(tfGroupName.getText()) != null) btnCreate.setEnabled(false);
         else btnCreate.setEnabled(true);
     }
 

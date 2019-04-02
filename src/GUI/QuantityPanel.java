@@ -128,6 +128,7 @@ public class QuantityPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(tablePanel.getSelectedProduct() == null) return;
                 tablePanel.getSelectedProduct().setQuantityInStock(Integer.parseInt(tfInStock.getText()) + addAmount - removeAmount);
+                Stock.saveData();
                 checkStock();
                 addAmount = 0;
                 removeAmount = 0;
@@ -137,7 +138,7 @@ public class QuantityPanel extends JPanel {
         });
     }
 
-    public  void updateTable() {
+    public void updateTable() {
         tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
     }
 

@@ -10,10 +10,7 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,6 +49,8 @@ public class ProductEditingPanel extends JPanel {
         tableBodyBackground.setLayout(AppStyles.gridBagLayout);
         editFieldsBodyBackground.setVisible(false);
         tableBodyBackground.setVisible(true);
+        //to change enable
+        btnEdit.setEnabled(false);
 
         addElementsToProductEditingPanel();
         addMouseListenersToBTNS();
@@ -166,8 +165,9 @@ public class ProductEditingPanel extends JPanel {
                 product.setDescription(taNewDescription.getText());
                 product.setPrice(Double.parseDouble(tfNewPrice.getText()));
                 product.setManufacturer(tfNewManufacturer.getText());
-                product.setGroupProducts(Stock.findGroup((String) cbNewGroup.getSelectedItem()));
+                product.setGroupProducts((GroupOfProduct) cbNewGroup.getSelectedItem());
                 product.setProductName(tfNewProductName.getText());
+                Stock.saveData();
                 taNewDescription.setText("");
                 taOldDescription.setText("");
                 tfNewProductName.setText("");
@@ -177,6 +177,20 @@ public class ProductEditingPanel extends JPanel {
                 tableBodyBackground.setVisible(true);
             }
         });
+        tfNewPrice.addKeyListener(keyListener());
+        tfNewManufacturer.addKeyListener(keyListener());
+        tfNewProductName.addKeyListener(keyListener());
+        taNewDescription.addKeyListener(keyListener());
+        cbNewGroup.addKeyListener(keyListener());
+    }
+
+    private KeyListener keyListener() {
+        return new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                checkFields();
+            }
+        };
     }
 
     TablePanel getTablePanel() {
@@ -187,6 +201,10 @@ public class ProductEditingPanel extends JPanel {
         //to change enable
         Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfNewProductName.getText());
         if (!matcher.matches() || tfNewProductName.getText().length() > 20) {
+            btnEdit.setEnabled(false);
+            return;
+        }
+        if (Stock.findProductByName(tfNewProductName.getText()) != null){
             btnEdit.setEnabled(false);
             return;
         }
