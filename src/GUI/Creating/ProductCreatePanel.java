@@ -94,6 +94,7 @@ public class ProductCreatePanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 Stock.getGroups().get(cbProductGroup.getSelectedIndex()).addProduct(new Product(Stock.getGroups().get(cbProductGroup.getSelectedIndex()),
                         tfProductName.getText(), tfManufacturer.getText(), Double.valueOf(tfPrice.getText())));
+                Stock.saveData();
                 tfProductName.setText("");
                 taDescription.setText("");
                 tfManufacturer.setText("");

@@ -77,6 +77,7 @@ public class GroupDeletingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(tablePanel.getSelectedGroup() == null) return;
                 Stock.getGroups().remove(tablePanel.getSelectedGroup());
+                Stock.saveData();
                 tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
             }
         });

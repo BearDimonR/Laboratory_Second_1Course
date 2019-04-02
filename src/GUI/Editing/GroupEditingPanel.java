@@ -78,6 +78,7 @@ public class GroupEditingPanel extends JPanel {
                 tablePanel.getTable().clearSelection();
                 group.setDescription(taNewDescription.getText());
                 group.setName(tfNewGroupName.getText());
+                Stock.saveData();
                 taNewDescription.setText("");
                 taOldDescription.setText("");
                 tfNewGroupName.setText("");

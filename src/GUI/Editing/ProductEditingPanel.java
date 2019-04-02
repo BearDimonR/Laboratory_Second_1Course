@@ -167,6 +167,7 @@ public class ProductEditingPanel extends JPanel {
                 product.setManufacturer(tfNewManufacturer.getText());
                 product.setGroupProducts((GroupOfProduct) cbNewGroup.getSelectedItem());
                 product.setProductName(tfNewProductName.getText());
+                Stock.saveData();
                 taNewDescription.setText("");
                 taOldDescription.setText("");
                 tfNewProductName.setText("");

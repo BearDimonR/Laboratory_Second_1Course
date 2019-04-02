@@ -38,14 +38,23 @@ public class Stock {
     public static void loadData() {
         try {
             ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream("dataStore\\DataStock"));
-            objectInput.readObject();
+            ArrayList<GroupOfProduct> arrayList = new ArrayList<>();
+            arrayList = (ArrayList<GroupOfProduct>) objectInput.readObject();
+            groups = arrayList;
+            objectInput.close();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
     public static void saveData() {
-
+        try {
+            ObjectOutputStream objectOutput = new ObjectOutputStream(new FileOutputStream("dataStore\\DataStock"));
+            objectOutput.writeObject(groups);
+            objectOutput.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     //    /**
 //     * ми зводимо до маленьких літер
