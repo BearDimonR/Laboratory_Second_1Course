@@ -19,7 +19,7 @@ import static GUI.Deleting.DeletingPanel.updateTable;
 
 public class ProductEditingPanel extends JPanel {
     private JLabel btnEdit = new JLabel(new ImageIcon("images/editBTN.jpg"));
-    private JLabel headerBackground = new JLabel(new ImageIcon("images/editComponents/productEditHeader.jpg"));
+    private JLabel backgroundHeader = new JLabel(new ImageIcon("images/editComponents/productEditHeader.jpg"));
     private JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalBTN.jpg"));
     private JLabel tableBodyBackground = new JLabel(new ImageIcon("images/tableBodyBackground.jpg"));
     private JLabel editFieldsBodyBackground = new JLabel(new ImageIcon("images/editComponents/productEditBody.jpg"));
@@ -36,20 +36,22 @@ public class ProductEditingPanel extends JPanel {
     private JTextField tfNewPrice = new JTextField();
     private JComboBox<String> cbOldGroup = new JComboBox<>();
     private JComboBox<String> cbNewGroup = new JComboBox<String>();
+    private static JLabel arrowBack = new JLabel(new ImageIcon("images/editComponents/back.png"));
     //Header elements
     private JTextField tfproductNameSearch = new JTextField();
     private JTextField tfManufacturerSearch = new JTextField();
     private JTextField tfLowestPriceearch = new JTextField();
     private JTextField tfHighestPriceSearch = new JTextField();
     private JComboBox cbProductGroupSearch = new JComboBox();
+    private static JLabel btnModeSwitchOff = new JLabel(new ImageIcon("images/groupCreateModeOffBTN.png"));
     //Table body elements
     private TablePanel tablePanel = new TablePanel(1);
 
     public ProductEditingPanel() {
         setLayout(AppStyles.gridBagLayout);
-        headerBackground.setLayout(null);
+        backgroundHeader.setLayout(null);
         editFieldsBodyBackground.setLayout(null);
-        tableBodyBackground.setLayout(AppStyles.gridBagLayout);
+        tableBodyBackground.setLayout(null);
         editFieldsBodyBackground.setVisible(false);
         tableBodyBackground.setVisible(true);
         //to change enable
@@ -84,7 +86,7 @@ public class ProductEditingPanel extends JPanel {
     }
 
     private void addElementsToProductEditingPanel() {
-        add(headerBackground, new GridBagConstraints(0, 0, 1, 1, 1, 0.6,
+        add(backgroundHeader, new GridBagConstraints(0, 0, 1, 1, 1, 0.6,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
         add(tableBodyBackground, new GridBagConstraints(0, 1, 1, 1, 1, 0.6,
@@ -95,7 +97,7 @@ public class ProductEditingPanel extends JPanel {
                 new Insets(0, 0, 0, 0), 0, 0));
         addElementsToBackgroundHeader();
         addElementsToBackgroundBody();
-        addElementsToClearBackgroundBody();
+        addElementsToTableBackgroundBody();
     }
 
     private void addElementsToBackgroundBody() {
@@ -110,12 +112,13 @@ public class ProductEditingPanel extends JPanel {
         editFieldsBodyBackground.add(tfOldPrice);
         editFieldsBodyBackground.add(tfNewPrice);
         editFieldsBodyBackground.add(btnEdit);
+        editFieldsBodyBackground.add(arrowBack);
         tfOldProductName.setBounds(112,30,303,20);
         spOldDescription.setBounds(112,86,303,122);
         cbOldGroup.setBounds(112,247,303,20);
         tfOldManufacturer.setBounds(112,310,303,20);
         tfOldPrice.setBounds(112,370,303,20);
-
+arrowBack. setBounds(0,0,26,26);
         tfNewProductName.setBounds(537,30,303,20);
         spNewDescription.setBounds(537,86,303,122);
         cbNewGroup.setBounds(537,247,303,20);
@@ -126,12 +129,14 @@ public class ProductEditingPanel extends JPanel {
 
     private void addElementsToBackgroundHeader() {
         btnFind.setBounds(13,47,54,110);
-        headerBackground.add(btnFind);
-        headerBackground.add(tfproductNameSearch);
-        headerBackground.add(cbProductGroupSearch);
-        headerBackground.add(tfManufacturerSearch);
-        headerBackground.add(tfLowestPriceearch);
-        headerBackground.add(tfHighestPriceSearch);
+        backgroundHeader.add(btnFind);
+        backgroundHeader.add(tfproductNameSearch);
+        backgroundHeader.add(cbProductGroupSearch);
+        backgroundHeader.add(tfManufacturerSearch);
+        backgroundHeader.add(tfLowestPriceearch);
+        backgroundHeader.add(tfHighestPriceSearch);
+        backgroundHeader.add(btnModeSwitchOff);
+        btnModeSwitchOff.setBounds(544, 5, 26, 26);
         tfproductNameSearch.setBounds(229,74,227,18);
         tfManufacturerSearch.setBounds(229,114,227,18);
         cbProductGroupSearch.setBounds(648,74,227,17);
@@ -139,10 +144,9 @@ public class ProductEditingPanel extends JPanel {
         tfHighestPriceSearch.setBounds(756,114,60,18);
     }
 
-    private void addElementsToClearBackgroundBody() {
-        tableBodyBackground.add(tablePanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                GridBagConstraints.CENTER, GridBagConstraints.CENTER,
-                new Insets(0, 0, 0, 0), 800, 0));
+    private void addElementsToTableBackgroundBody() {
+        tableBodyBackground.add(tablePanel);
+        tablePanel.setBounds(35, 20, 850, 441);
     }
 
     private void addMouseListenersToBTNS() {
@@ -176,6 +180,13 @@ public class ProductEditingPanel extends JPanel {
             }
         });
 
+        arrowBack.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                tableBodyBackground.setVisible(true);
+                editFieldsBodyBackground.setVisible(false);
+            }
+        });
         btnEdit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -187,6 +198,7 @@ public class ProductEditingPanel extends JPanel {
                 product.setManufacturer(tfNewManufacturer.getText());
                 product.setGroupProducts((GroupOfProduct) cbNewGroup.getSelectedItem());
                 product.setProductName(tfNewProductName.getText());
+                Stock.saveData();
                 taNewDescription.setText("");
                 taOldDescription.setText("");
                 tfNewProductName.setText("");
@@ -194,6 +206,12 @@ public class ProductEditingPanel extends JPanel {
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
                 editFieldsBodyBackground.setVisible(false);
                 tableBodyBackground.setVisible(true);
+            }
+        });
+        btnModeSwitchOff.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                EditingPanel.showGroupDeleteTab();
             }
         });
         tfNewPrice.addKeyListener(keyListener());

@@ -15,7 +15,7 @@ public class ProductDeletingPanel extends JPanel {
     JLabel tableBackground = new JLabel(new ImageIcon("images/tableBodyBackground.jpg"));
     private static JLabel modeSwitchOff = new JLabel(new ImageIcon("images/groupCreateModeOffBTN.png"));
     private TablePanel tablePanel = new TablePanel(2);
-    JLabel btnDelete = new JLabel(new ImageIcon("images/createBTN.jpg"));
+    JLabel btnDelete = new JLabel(new ImageIcon("images/deleteBTN.jpg"));
     JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalBTN.jpg"));
     //Header elements
     private JTextField tfproductNameSearch = new JTextField();
@@ -33,7 +33,7 @@ public class ProductDeletingPanel extends JPanel {
         backgroundHeader.add(btnFind);
         btnFind.setBounds(13, 47, 54, 110);
         backgroundHeader.setBounds(0, 0, 914, 175);
-        modeSwitchOff.setBounds(536, 5, 26, 26);
+        modeSwitchOff.setBounds(544, 5, 26, 26);
         tableBackground.setBounds(0, 175, 914, 491);
         addElementsToProductDeltePanel();
         addListners();
@@ -73,7 +73,7 @@ public class ProductDeletingPanel extends JPanel {
         backgroundHeader.add(btnDelete);
         btnFind.setBounds(13, 47, 54, 110);
 
-        modeSwitchOff.setBounds(536, 5, 26, 26);
+        modeSwitchOff.setBounds(544, 5, 26, 26);
 
     }
 
@@ -110,9 +110,11 @@ public class ProductDeletingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(tablePanel.getSelectedProduct() == null) return;
                 tablePanel.getSelectedProduct().getGroupProducts().removeProduct(tablePanel.getSelectedProduct());
+                Stock.saveData();
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
             }
         });
+
     }
 
     public  void updateTable() {

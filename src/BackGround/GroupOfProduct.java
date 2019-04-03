@@ -1,8 +1,9 @@
 package BackGround;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GroupOfProduct {
+public class GroupOfProduct implements Serializable {
 
     private ArrayList<Product> products = new ArrayList<>();
 

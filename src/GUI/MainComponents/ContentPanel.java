@@ -5,6 +5,7 @@ import GUI.Creating.CreationPanel;
 import GUI.Deleting.DeletingPanel;
 import GUI.Editing.EditingPanel;
 import GUI.General.AppStyles;
+import GUI.Search.SearchPanel;
 
 import javax.swing.*;
 import java.awt.*;

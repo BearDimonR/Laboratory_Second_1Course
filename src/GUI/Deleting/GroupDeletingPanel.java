@@ -12,9 +12,9 @@ import java.awt.event.MouseEvent;
 
 public class GroupDeletingPanel extends JPanel {
     JLabel backgroundHeader = new JLabel(new ImageIcon("images/deleteComponents/groupDeleteHeader.jpg"));
-    JLabel tableBackground = new JLabel(new ImageIcon("images/tableBodyBackground.jpg"));
-    JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalBTN.jpg"));
-    JLabel btnDelete = new JLabel(new ImageIcon("images/createBTN.jpg"));
+    JLabel tableBackground = new JLabel(new ImageIcon("images/tableGroupBodyBackground.jpg"));
+    JLabel btnFind = new JLabel(new ImageIcon("images/findHorizontalBTN.jpg"));
+    JLabel btnDelete = new JLabel(new ImageIcon("images/deleteBTN.jpg"));
     private static JLabel modeSwitchOn = new JLabel(new ImageIcon("images/groupCreateModeOnBTN.png"));
     private JTextField tfGroupNameSearch = new JTextField();
     private TablePanel tablePanel = new TablePanel(2);
@@ -32,8 +32,8 @@ public class GroupDeletingPanel extends JPanel {
     }
 
     private void addElementsToGroupDeltePanel() {
-        backgroundHeader.setBounds(0, 0, 914, 175);
-        tableBackground.setBounds(0, 175, 914, 491);
+        backgroundHeader.setBounds(0, 0, 914, 117);
+        tableBackground.setBounds(0, 117, 914, 549);
         addElementsToHeaderBackground();
         addElementsToTableBackground();
     }
@@ -50,9 +50,9 @@ public class GroupDeletingPanel extends JPanel {
         backgroundHeader.add(modeSwitchOn);
         backgroundHeader.add(tfGroupNameSearch);
         backgroundHeader.add(btnDelete);
-        btnFind.setBounds(13, 47, 54, 110);
-        tfGroupNameSearch.setBounds(423, 88, 340, 25);
-        modeSwitchOn.setBounds(536, 5, 26, 26);
+        btnFind.setBounds(14, 48, 107, 53);
+        tfGroupNameSearch.setBounds(410, 67, 228, 20);
+        modeSwitchOn.setBounds(544, 5, 26, 26);
 
     }
 
@@ -84,6 +84,7 @@ public class GroupDeletingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(tablePanel.getSelectedGroup() == null) return;
                 Stock.getGroups().remove(tablePanel.getSelectedGroup());
+                Stock.saveData();
                 tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
             }
         });

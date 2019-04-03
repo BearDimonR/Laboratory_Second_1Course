@@ -135,6 +135,7 @@ public class QuantityPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(tablePanel.getSelectedProduct() == null) return;
                 tablePanel.getSelectedProduct().setQuantityInStock(Integer.parseInt(tfInStock.getText()) + addAmount - removeAmount);
+                Stock.saveData();
                 checkStock();
                 addAmount = 0;
                 removeAmount = 0;
@@ -165,6 +166,7 @@ public class QuantityPanel extends JPanel {
 
     }
 
+
     public  void updateTable() {
         String group = cbProductGroupSearch.getToolTipText();
         String product = tfProductNameSearch.getText();
@@ -172,24 +174,25 @@ public class QuantityPanel extends JPanel {
         String priceFrom = tfLowestPriceearch.getText();
         String priceTo = tfHighestPriceSearch.getText();
 
-            double prFrom = 0;
-            if (tfLowestPriceearch.getText().matches("[ ]*") == true) {
-                prFrom = 0;
-            } else if (tfLowestPriceearch.getText().matches("[\\d]+[.]?[\\d]*") == true) {
-                prFrom = Double.valueOf(priceFrom);
-            }
+        double prFrom = 0;
+        if (tfLowestPriceearch.getText().matches("[ ]*") == true) {
+            prFrom = 0;
+        } else if (tfLowestPriceearch.getText().matches("[\\d]+[.]?[\\d]*") == true) {
+            prFrom = Double.valueOf(priceFrom);
+        }
 
         double prTo = 150;
-        if(tfHighestPriceSearch.getText().equals(""))
+        if (tfHighestPriceSearch.getText().equals(""))
             prTo = 0;
         else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
-        tablePanel.addDataToGoodsTable(Utilities.mainSearch(group , product, manufacturer, prFrom, prTo), 1);
+        tablePanel.addDataToGoodsTable(Utilities.mainSearch(group, product, manufacturer, prFrom, prTo), 1);
         //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
         System.out.println("price From= " + prFrom);
-        System.out.println("price to='" + prTo+"'");
-    }
+        System.out.println("price to='" + prTo + "'");
 
+    }
     private void checkStock() {
+        if(tablePanel.getSelectedProduct() == null) return;
         if(tablePanel.getSelectedProduct().getQuantityInStock() == Integer.parseInt(tfInStock.getText())) return;
         tfInStock.setText(String.valueOf(tablePanel.getSelectedProduct().getQuantityInStock()));
     }
