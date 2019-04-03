@@ -42,26 +42,26 @@ public class ProductCreatePanel extends JPanel {
     private void setStylesOfUserInputFields() {
         //tfProductName
         tfProductName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        tfProductName.setFont(AppStyles.fieldFont);
+        tfProductName.setFont(AppStyles.appH1Font);
         tfProductName.setForeground(AppStyles.DeselectedColor);
 
         //taDescription
         taDescription.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        taDescription.setFont(AppStyles.fieldFont);
+        taDescription.setFont(AppStyles.appH1Font);
         taDescription.setForeground(AppStyles.DeselectedColor);
         spDescription.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         //tfManufacturer
         tfManufacturer.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        tfManufacturer.setFont(AppStyles.fieldFont);
+        tfManufacturer.setFont(AppStyles.appH1Font);
         tfManufacturer.setForeground(AppStyles.DeselectedColor);
         //tfPrice
         tfPrice.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        tfPrice.setFont(AppStyles.fieldFont);
+        tfPrice.setFont(AppStyles.appH1Font);
         tfPrice.setForeground(AppStyles.DeselectedColor);
         //cbProductGroup
         cbProductGroup.setBackground(Color.WHITE);
         cbProductGroup.setUI(new BasicComboBoxUI());
-        cbProductGroup.setFont(AppStyles.fieldFont);
+        cbProductGroup.setFont(AppStyles.appH1Font);
         cbProductGroup.setForeground(AppStyles.MainColor);
     }
 

@@ -50,7 +50,7 @@ public class GroupEditingPanel extends JPanel {
         tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(tablePanel.getTable().getSelectedRow() == -1) return;
+                if (tablePanel.getTable().getSelectedRow() == -1) return;
                 tableBodyBackground.setVisible(false);
                 editFieldsBodyBackground.setVisible(true);
                 tfOldGroupName.setText(tablePanel.getSelectedGroup().getName());
@@ -61,9 +61,17 @@ public class GroupEditingPanel extends JPanel {
         });
         addElementsToGroupEditingPanel();
         addMouseListenersToBTNS();
+
+        setStyleOfHeaderElements();
     }
 
+    /**
+     * Method adds action listeners to all buttons
+     * of group edit panel
+     */
     private void addMouseListenersToBTNS() {
+
+        // Action listener of
         arrowBack.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -71,6 +79,8 @@ public class GroupEditingPanel extends JPanel {
                 editFieldsBodyBackground.setVisible(false);
             }
         });
+
+        // Action listener of find button
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -78,6 +88,8 @@ public class GroupEditingPanel extends JPanel {
                 //tablePanel.addDataToGroupOFGoodsTable(,2);
             }
         });
+
+        // Action listener of edit button
         btnEdit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -92,23 +104,29 @@ public class GroupEditingPanel extends JPanel {
                 taOldDescription.setText("");
                 tfNewGroupName.setText("");
                 tfOldGroupName.setText("");
-                tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
+                tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(), 2);
                 editFieldsBodyBackground.setVisible(false);
                 tableBodyBackground.setVisible(true);
             }
         });
-btnModeSwitchOn.addMouseListener(new MouseAdapter() {
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        EditingPanel.showProductDeleteTab();
-    }
-});
+
+        // Action listener of toggle button
+        btnModeSwitchOn.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                EditingPanel.showProductDeleteTab();
+            }
+        });
+
+        // Key listener of new group name text field
         tfNewGroupName.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 checkFields();
             }
         });
+
+        // Key listener of new group description text area
         taNewDescription.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -117,6 +135,9 @@ btnModeSwitchOn.addMouseListener(new MouseAdapter() {
         });
     }
 
+    /**
+     * Method which check if fields are filled properly
+     */
     private void checkFields() {
         Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfNewGroupName.getText());
         //setVisible to edit
@@ -126,10 +147,9 @@ btnModeSwitchOn.addMouseListener(new MouseAdapter() {
         else btnEdit.setVisible(true);
     }
 
-    TablePanel getTablePanel() {
-        return tablePanel;
-    }
-
+    /**
+     * Method adds elements to group editing panel
+     */
     private void addElementsToGroupEditingPanel() {
         add(backgroundHeader, new GridBagConstraints(0, 0, 1, 1, 1, 0.2,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -142,32 +162,39 @@ btnModeSwitchOn.addMouseListener(new MouseAdapter() {
                 new Insets(0, 0, 0, 0), 0, 0));
         addElementsToHeaderBackground();
         addElementsToBodyPanel();
-        addElementsToClearBodyPanel();
+        addElementsToTableBodyPanel();
     }
 
+    /**
+     * Method adds elements to body with txt fields
+     */
     private void addElementsToBodyPanel() {
-
         editFieldsBodyBackground.add(tfOldGroupName);
         editFieldsBodyBackground.add(spOldDescription);
         editFieldsBodyBackground.add(tfNewGroupName);
         editFieldsBodyBackground.add(spNewDescription);
         editFieldsBodyBackground.add(btnEdit);
         editFieldsBodyBackground.add(arrowBack);
-        arrowBack. setBounds(0,0,26,26);
+        arrowBack.setBounds(0, 0, 26, 26);
         tfOldGroupName.setBounds(112, 124, 305, 20);
         spOldDescription.setBounds(110, 181, 305, 120);
         tfNewGroupName.setBounds(536, 124, 305, 20);
         spNewDescription.setBounds(536, 181, 305, 120);
-
         btnEdit.setBounds(375, 410, 165, 40);
-        
+
     }
 
-    private void addElementsToClearBodyPanel() {
+    /**
+     * Method adds table to table body panel
+     */
+    private void addElementsToTableBodyPanel() {
         tableBodyBackground.add(tablePanel);
         tablePanel.setBounds(35, 20, 850, 500);
     }
 
+    /**
+     * Method adds elements to header background
+     */
     private void addElementsToHeaderBackground() {
         backgroundHeader.add(btnFind);
         backgroundHeader.add(tfGroupNameSearch);
@@ -177,4 +204,16 @@ btnModeSwitchOn.addMouseListener(new MouseAdapter() {
         tfGroupNameSearch.setBounds(410, 67, 228, 20);
     }
 
+    /**
+     * Method set style of elements which are on header
+     */
+    private void setStyleOfHeaderElements(){
+        tfGroupNameSearch.setFont(AppStyles.appH2Font);
+        tfGroupNameSearch.setForeground(AppStyles.MainColor);
+        tfGroupNameSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    }
+
+    TablePanel getTablePanel() {
+        return tablePanel;
+    }
 }
