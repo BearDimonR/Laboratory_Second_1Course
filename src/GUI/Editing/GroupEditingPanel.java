@@ -32,6 +32,7 @@ public class GroupEditingPanel extends JPanel {
     private JTextField tfGroupNameSearch = new JTextField();
     private TablePanel tablePanel = new TablePanel(2);
     private static JLabel btnModeSwitchOn = new JLabel(new ImageIcon("images/groupCreateModeOnBTN.png"));
+    private static JLabel arrowBack = new JLabel(new ImageIcon("images/editComponents/back.png"));
 
     public GroupEditingPanel() {
         setLayout(AppStyles.gridBagLayout);
@@ -63,6 +64,13 @@ public class GroupEditingPanel extends JPanel {
     }
 
     private void addMouseListenersToBTNS() {
+        arrowBack.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                tableBodyBackground.setVisible(true);
+                editFieldsBodyBackground.setVisible(false);
+            }
+        });
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -144,6 +152,8 @@ btnModeSwitchOn.addMouseListener(new MouseAdapter() {
         editFieldsBodyBackground.add(tfNewGroupName);
         editFieldsBodyBackground.add(spNewDescription);
         editFieldsBodyBackground.add(btnEdit);
+        editFieldsBodyBackground.add(arrowBack);
+        arrowBack. setBounds(0,0,26,26);
         tfOldGroupName.setBounds(112, 124, 305, 20);
         spOldDescription.setBounds(110, 181, 305, 120);
         tfNewGroupName.setBounds(536, 124, 305, 20);
