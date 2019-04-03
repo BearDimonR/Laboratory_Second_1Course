@@ -30,7 +30,7 @@ public class ProductDeletingPanel extends JPanel {
         backgroundHeader.add(btnFind);
         btnFind.setBounds(13, 47, 54, 110);
         backgroundHeader.setBounds(0, 0, 914, 175);
-        modeSwitchOff.setBounds(536, 5, 26, 26);
+        modeSwitchOff.setBounds(544, 5, 26, 26);
         tableBackground.setBounds(0, 175, 914, 491);
         addElementsToProductDeltePanel();
         addListners();
@@ -70,7 +70,7 @@ public class ProductDeletingPanel extends JPanel {
         backgroundHeader.add(btnDelete);
         btnFind.setBounds(13, 47, 54, 110);
 
-        modeSwitchOff.setBounds(536, 5, 26, 26);
+        modeSwitchOff.setBounds(544, 5, 26, 26);
 
     }
 
@@ -100,6 +100,7 @@ public class ProductDeletingPanel extends JPanel {
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
             }
         });
+
     }
 
 }

@@ -39,6 +39,7 @@ public class ProductEditingPanel extends JPanel {
     private JTextField tfLowestPriceearch = new JTextField();
     private JTextField tfHighestPriceSearch = new JTextField();
     private JComboBox cbProductGroupSearch = new JComboBox();
+    private static JLabel btnModeSwitchOff = new JLabel(new ImageIcon("images/groupCreateModeOffBTN.png"));
     //Table body elements
     private TablePanel tablePanel = new TablePanel(1);
 
@@ -46,7 +47,7 @@ public class ProductEditingPanel extends JPanel {
         setLayout(AppStyles.gridBagLayout);
         headerBackground.setLayout(null);
         editFieldsBodyBackground.setLayout(null);
-        tableBodyBackground.setLayout(AppStyles.gridBagLayout);
+        tableBodyBackground.setLayout(null);
         editFieldsBodyBackground.setVisible(false);
         tableBodyBackground.setVisible(true);
         //to change enable
@@ -129,6 +130,8 @@ public class ProductEditingPanel extends JPanel {
         headerBackground.add(tfManufacturerSearch);
         headerBackground.add(tfLowestPriceearch);
         headerBackground.add(tfHighestPriceSearch);
+        headerBackground.add(btnModeSwitchOff);
+        btnModeSwitchOff.setBounds(544, 5, 26, 26);
         tfproductNameSearch.setBounds(229,74,227,18);
         tfManufacturerSearch.setBounds(229,114,227,18);
         cbProductGroupSearch.setBounds(648,74,227,17);
@@ -137,9 +140,8 @@ public class ProductEditingPanel extends JPanel {
     }
 
     private void addElementsToClearBackgroundBody() {
-        tableBodyBackground.add(tablePanel, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                GridBagConstraints.CENTER, GridBagConstraints.CENTER,
-                new Insets(0, 0, 0, 0), 800, 0));
+        tableBodyBackground.add(tablePanel);
+        tablePanel.setBounds(35, 20, 850, 441);
     }
 
     private void addMouseListenersToBTNS() {
@@ -175,6 +177,12 @@ public class ProductEditingPanel extends JPanel {
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
                 editFieldsBodyBackground.setVisible(false);
                 tableBodyBackground.setVisible(true);
+            }
+        });
+        btnModeSwitchOff.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                EditingPanel.showGroupDeleteTab();
             }
         });
         tfNewPrice.addKeyListener(keyListener());

@@ -20,9 +20,9 @@ public class GroupEditingPanel extends JPanel {
 
     private JLabel btnEdit = new JLabel(new ImageIcon("images/editBTN.jpg"));
     private JLabel backgroundHeader = new JLabel(new ImageIcon("images/editComponents/groupEditHeader.jpg"));
-    private JLabel tableBodyBackground = new JLabel(new ImageIcon("images/tableBodyBackground.jpg"));
+    private JLabel tableBodyBackground = new JLabel(new ImageIcon("images/tableGroupBodyBackground.jpg"));
     private JLabel editFieldsBodyBackground = new JLabel(new ImageIcon("images/editComponents/groupEditBody.jpg"));
-    private JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalBTN.jpg"));
+    private JLabel btnFind = new JLabel(new ImageIcon("images/findHorizontalBTN.jpg"));
     private JTextField tfNewGroupName = new JTextField();
     private JTextArea taNewDescription = new JTextArea();
     private JTextField tfOldGroupName = new JTextField();
@@ -31,6 +31,7 @@ public class GroupEditingPanel extends JPanel {
     private JScrollPane spOldDescription = new JScrollPane(taOldDescription);
     private JTextField tfGroupNameSearch = new JTextField();
     private TablePanel tablePanel = new TablePanel(2);
+    private static JLabel btnModeSwitchOn = new JLabel(new ImageIcon("images/groupCreateModeOnBTN.png"));
 
     public GroupEditingPanel() {
         setLayout(AppStyles.gridBagLayout);
@@ -86,10 +87,14 @@ public class GroupEditingPanel extends JPanel {
                 tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
                 editFieldsBodyBackground.setVisible(false);
                 tableBodyBackground.setVisible(true);
-
-
             }
         });
+btnModeSwitchOn.addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        EditingPanel.showProductDeleteTab();
+    }
+});
         tfNewGroupName.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -118,13 +123,13 @@ public class GroupEditingPanel extends JPanel {
     }
 
     private void addElementsToGroupEditingPanel() {
-        add(backgroundHeader, new GridBagConstraints(0, 0, 1, 1, 1, 0.6,
+        add(backgroundHeader, new GridBagConstraints(0, 0, 1, 1, 1, 0.2,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
-        add(tableBodyBackground, new GridBagConstraints(0, 1, 1, 1, 1, 0.6,
+        add(tableBodyBackground, new GridBagConstraints(0, 1, 1, 1, 1, 0.8,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
-        add(editFieldsBodyBackground, new GridBagConstraints(0, 1, 1, 1, 1, 0.6,
+        add(editFieldsBodyBackground, new GridBagConstraints(0, 1, 1, 1, 1, 0.8,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
         addElementsToHeaderBackground();
@@ -139,10 +144,10 @@ public class GroupEditingPanel extends JPanel {
         editFieldsBodyBackground.add(tfNewGroupName);
         editFieldsBodyBackground.add(spNewDescription);
         editFieldsBodyBackground.add(btnEdit);
-        tfOldGroupName.setBounds(112, 66, 305, 20);
-        spOldDescription.setBounds(110, 123, 305, 120);
-        tfNewGroupName.setBounds(536, 66, 305, 20);
-        spNewDescription.setBounds(536, 123, 305, 120);
+        tfOldGroupName.setBounds(112, 124, 305, 20);
+        spOldDescription.setBounds(110, 181, 305, 120);
+        tfNewGroupName.setBounds(536, 124, 305, 20);
+        spNewDescription.setBounds(536, 181, 305, 120);
 
         btnEdit.setBounds(375, 410, 165, 40);
         
@@ -150,14 +155,16 @@ public class GroupEditingPanel extends JPanel {
 
     private void addElementsToClearBodyPanel() {
         tableBodyBackground.add(tablePanel);
-        tablePanel.setBounds(35, 20, 850, 430);
+        tablePanel.setBounds(35, 20, 850, 500);
     }
 
     private void addElementsToHeaderBackground() {
         backgroundHeader.add(btnFind);
         backgroundHeader.add(tfGroupNameSearch);
-        btnFind.setBounds(13, 47, 54, 110);
-        tfGroupNameSearch.setBounds(423, 88, 340, 25);
+        backgroundHeader.add(btnModeSwitchOn);
+        btnModeSwitchOn.setBounds(544, 5, 26, 26);
+        btnFind.setBounds(14, 48, 107, 53);
+        tfGroupNameSearch.setBounds(410, 67, 228, 20);
     }
 
 }
