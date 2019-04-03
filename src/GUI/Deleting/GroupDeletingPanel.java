@@ -1,6 +1,7 @@
 package GUI.Deleting;
 
 import BackGround.Stock;
+import BackGround.Utilities;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
@@ -60,11 +61,17 @@ public class GroupDeletingPanel extends JPanel {
     }
 
     private void addListners() {
-        btnFind.addMouseListener(new MouseAdapter() {
+        btnFind.addMouseListener(new MouseAdapter(){
             @Override
-            public void mouseClicked(MouseEvent e) {
 
-            }
+            public void mouseClicked(MouseEvent e){
+//                if(tfGroupNameSearch.getText().matches("[ ]*")==false
+//
+//                ){
+                System.out.println("кнопка FIND натиснута" );
+                    updateTable(tfGroupNameSearch.getText());
+                              }
+//            }
         });
         modeSwitchOn.addMouseListener(new MouseAdapter() {
             @Override
@@ -80,5 +87,12 @@ public class GroupDeletingPanel extends JPanel {
                 tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
             }
         });
+
+    }
+    public void updateTable(String group) {
+
+        tablePanel.addDataToGroupOFGoodsTable(Utilities.mainSearch2(group ), 1);
+        //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+
     }
 }

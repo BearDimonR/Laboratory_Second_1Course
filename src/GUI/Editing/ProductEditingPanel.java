@@ -3,6 +3,7 @@ package GUI.Editing;
 import BackGround.GroupOfProduct;
 import BackGround.Product;
 import BackGround.Stock;
+import BackGround.Utilities;
 import GUI.General.AppStyles;
 import GUI.General.TablePanel;
 
@@ -13,6 +14,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static GUI.Deleting.DeletingPanel.updateTable;
 
 public class ProductEditingPanel extends JPanel {
     private JLabel btnEdit = new JLabel(new ImageIcon("images/editBTN.jpg"));
@@ -149,13 +152,30 @@ public class ProductEditingPanel extends JPanel {
                 checkFields();
             }
         });
-        btnFind.addMouseListener(new MouseAdapter() {
+//        btnFind.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                 //метод додавання інформації до таблиці перший параметр - масив груп, другий елемент - тип таблиці (1 - goods, 2-group)
+//               // tablePanel.addDataToGroupOFGoodsTable(,1);
+//            }
+//        });
+        btnFind.addMouseListener(new MouseAdapter(){
             @Override
-            public void mouseClicked(MouseEvent e) {
-                 //метод додавання інформації до таблиці перший параметр - масив груп, другий елемент - тип таблиці (1 - goods, 2-group)
-                //tablePanel.addDataToGroupOFGoodsTable(,1);
+            public void mouseClicked(MouseEvent e){
+
+                if(tfproductNameSearch.getText().matches("[ ]*")==false||
+                        tfManufacturerSearch.getText().matches("[ ]*")==false||
+                        tfLowestPriceearch.getText().matches("[ ]*")==false||
+                        tfHighestPriceSearch.getText().matches("[ ]*")==false
+                    //  cbProductGroupSearch.getText().matches("[ ]*")==false
+                ){
+
+                    System.out.println("кнопка FIND натиснута  Edit"  );
+                    updateTable();
+                }
             }
         });
+
         btnEdit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -221,5 +241,28 @@ public class ProductEditingPanel extends JPanel {
             return;
         }
         btnEdit.setEnabled(true);
+    }
+    public  void updateTable() {
+        String group = cbProductGroupSearch.getToolTipText();
+        String product = tfproductNameSearch.getText();
+        String manufacturer = tfManufacturerSearch.getText();
+        String priceFrom = tfLowestPriceearch.getText();
+        String priceTo = tfHighestPriceSearch.getText();
+
+        double prFrom = 0;
+        if (tfLowestPriceearch.getText().matches("[ ]*") == true) {
+            prFrom = 0;
+        } else if (tfLowestPriceearch.getText().matches("[\\d]+[.]?[\\d]*") == true) {
+            prFrom = Double.valueOf(priceFrom);
+        }
+
+        double prTo = 150;
+        if(tfHighestPriceSearch.getText().equals(""))
+            prTo = 0;
+        else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
+        tablePanel.addDataToGoodsTable(Utilities.mainSearch(group , product, manufacturer, prFrom, prTo), 1);
+        //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+        System.out.println("price From= " + prFrom);
+        System.out.println("price to='" + prTo+"'");
     }
 }

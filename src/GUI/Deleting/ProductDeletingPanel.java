@@ -1,11 +1,14 @@
 package GUI.Deleting;
 
 import BackGround.Stock;
+import BackGround.Utilities;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import static GUI.Deleting.DeletingPanel.updateTable;
 
 public class ProductDeletingPanel extends JPanel {
     JLabel backgroundHeader = new JLabel(new ImageIcon("images/deleteComponents/productDeleteHeader.jpg"));
@@ -79,10 +82,21 @@ public class ProductDeletingPanel extends JPanel {
     }
 
     private void addListners() {
-        btnFind.addMouseListener(new MouseAdapter() {
+        btnFind.addMouseListener(new MouseAdapter(){
             @Override
-            public void mouseClicked(MouseEvent e) {
 
+            public void mouseClicked(MouseEvent e){
+
+                if(tfproductNameSearch.getText().matches("[ ]*")==false||
+                        tfManufacturerSearch.getText().matches("[ ]*")==false||
+                        tfLowestPriceearch.getText().matches("[ ]*")==false||
+                        tfHighestPriceSearch.getText().matches("[ ]*")==false
+                    //  cbProductGroupSearch.getText().matches("[ ]*")==false
+                ){
+
+                    System.out.println("кнопка FIND натиснута"  );
+                    updateTable();
+                }
             }
         });
         modeSwitchOff.addMouseListener(new MouseAdapter() {
@@ -99,6 +113,30 @@ public class ProductDeletingPanel extends JPanel {
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
             }
         });
+    }
+
+    public  void updateTable() {
+        String group = cbProductGroupSearch.getToolTipText();
+        String product = tfproductNameSearch.getText();
+        String manufacturer = tfManufacturerSearch.getText();
+        String priceFrom = tfLowestPriceearch.getText();
+        String priceTo = tfHighestPriceSearch.getText();
+
+        double prFrom = 0;
+        if (tfLowestPriceearch.getText().matches("[ ]*") == true) {
+            prFrom = 0;
+        } else if (tfLowestPriceearch.getText().matches("[\\d]+[.]?[\\d]*") == true) {
+            prFrom = Double.valueOf(priceFrom);
+        }
+
+        double prTo = 150;
+        if(tfHighestPriceSearch.getText().equals(""))
+            prTo = 0;
+        else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
+        tablePanel.addDataToGoodsTable(Utilities.mainSearch(group , product, manufacturer, prFrom, prTo), 1);
+        //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+        System.out.println("price From= " + prFrom);
+        System.out.println("price to='" + prTo+"'");
     }
 
 }

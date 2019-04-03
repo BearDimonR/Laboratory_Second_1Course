@@ -2,6 +2,7 @@ package GUI.Editing;
 
 import BackGround.GroupOfProduct;
 import BackGround.Stock;
+import BackGround.Utilities;
 import GUI.General.AppStyles;
 import GUI.General.TablePanel;
 
@@ -62,11 +63,18 @@ public class GroupEditingPanel extends JPanel {
     }
 
     private void addMouseListenersToBTNS() {
-        btnFind.addMouseListener(new MouseAdapter() {
+        btnFind.addMouseListener(new MouseAdapter(){
             @Override
-            public void mouseClicked(MouseEvent e) {
-                //метод додавання інформації до таблиці перший параметр - масив груп, другий елемент - тип таблиці (1 - goods, 2-group)
-                //tablePanel.addDataToGroupOFGoodsTable(,2);
+
+            public void mouseClicked(MouseEvent e){
+//                if(tfGroupNameSearch.getText().matches("[ ]*")==false
+//
+//                ){
+                    //метод додавання інформації до таблиці перший параметр - масив груп, другий елемент - тип таблиці (1 - goods, 2-group)
+                    //tablePanel.addDataToGroupOFGoodsTable(,2);
+                    System.out.println("кнопка FIND натиснута" );
+                    updateTable(tfGroupNameSearch.getText());
+ //               }
             }
         });
         btnEdit.addMouseListener(new MouseAdapter() {
@@ -157,6 +165,13 @@ public class GroupEditingPanel extends JPanel {
         backgroundHeader.add(tfGroupNameSearch);
         btnFind.setBounds(13, 47, 54, 110);
         tfGroupNameSearch.setBounds(423, 88, 340, 25);
+    }
+
+    public void updateTable(String group) {
+
+        tablePanel.addDataToGroupOFGoodsTable(Utilities.mainSearch2(group ), 1);
+        //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+
     }
 
 }

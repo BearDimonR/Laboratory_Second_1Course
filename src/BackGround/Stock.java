@@ -35,6 +35,13 @@ public class Stock {
         return products;
     }
 
+    public static ArrayList<GroupOfProduct> getAllGroup(){
+        ArrayList<GroupOfProduct> group = new ArrayList<>();
+        group.addAll(groups);
+        if(group.size()==0)return new ArrayList<>();
+        return group;
+    }
+
     public static void loadData() {
         try {
             ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream("dataStore\\DataStock"));

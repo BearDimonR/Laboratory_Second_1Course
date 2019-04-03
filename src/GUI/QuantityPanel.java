@@ -1,6 +1,7 @@
 package GUI;
 
 import BackGround.Stock;
+import BackGround.Utilities;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
@@ -32,6 +33,12 @@ public class QuantityPanel extends JPanel {
     private JTextField tfLowestPriceearch = new JTextField();
     private JTextField tfHighestPriceSearch = new JTextField();
     private JComboBox cbProductGroupSearch = new JComboBox();
+//
+//    String group = cbProductGroupSearch.getToolTipText();
+//    String product = tfProductNameSearch.getText();
+//    String manufacturer = tfManufacturerSearch.getText();
+    //double priceFrom = Double.valueOf(tfLowestPriceearch.getText());
+   // double priceTo = Double.valueOf(tfHighestPriceSearch.getText());
 
     public QuantityPanel() {
         setLayout(null);
@@ -47,7 +54,7 @@ public class QuantityPanel extends JPanel {
         background.add(tfRemoveFromStock);
         background.add(tfInStock);
 
-        updateTable();
+      //  updateTable();
         tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -135,14 +142,56 @@ public class QuantityPanel extends JPanel {
                 tfRemoveFromStock.setText(String.valueOf(removeAmount));
             }
         });
+
+        btnFind.addMouseListener(new MouseAdapter(){
+            @Override
+
+            public void mouseClicked(MouseEvent e){
+
+                if(tfProductNameSearch.getText().matches("[ ]*")==false||
+                        tfManufacturerSearch.getText().matches("[ ]*")==false||
+                        tfLowestPriceearch.getText().matches("[ ]*")==false||
+                        tfHighestPriceSearch.getText().matches("[ ]*")==false
+                      //  cbProductGroupSearch.getText().matches("[ ]*")==false
+                ){
+
+                    updateTable();
+
+                }
+            }
+        });
+
+
+
     }
 
     public  void updateTable() {
-        tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+        String group = cbProductGroupSearch.getToolTipText();
+        String product = tfProductNameSearch.getText();
+        String manufacturer = tfManufacturerSearch.getText();
+        String priceFrom = tfLowestPriceearch.getText();
+        String priceTo = tfHighestPriceSearch.getText();
+
+            double prFrom = 0;
+            if (tfLowestPriceearch.getText().matches("[ ]*") == true) {
+                prFrom = 0;
+            } else if (tfLowestPriceearch.getText().matches("[\\d]+[.]?[\\d]*") == true) {
+                prFrom = Double.valueOf(priceFrom);
+            }
+
+        double prTo = 150;
+        if(tfHighestPriceSearch.getText().equals(""))
+            prTo = 0;
+        else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
+        tablePanel.addDataToGoodsTable(Utilities.mainSearch(group , product, manufacturer, prFrom, prTo), 1);
+        //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+        System.out.println("price From= " + prFrom);
+        System.out.println("price to='" + prTo+"'");
     }
 
     private void checkStock() {
         if(tablePanel.getSelectedProduct().getQuantityInStock() == Integer.parseInt(tfInStock.getText())) return;
         tfInStock.setText(String.valueOf(tablePanel.getSelectedProduct().getQuantityInStock()));
     }
+
 }
