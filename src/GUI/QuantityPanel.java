@@ -143,6 +143,7 @@ public class QuantityPanel extends JPanel {
     }
 
     private void checkStock() {
+        if(tablePanel.getSelectedProduct() == null) return;
         if(tablePanel.getSelectedProduct().getQuantityInStock() == Integer.parseInt(tfInStock.getText())) return;
         tfInStock.setText(String.valueOf(tablePanel.getSelectedProduct().getQuantityInStock()));
     }
