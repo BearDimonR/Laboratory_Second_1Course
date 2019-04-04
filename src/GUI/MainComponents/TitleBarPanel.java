@@ -55,7 +55,7 @@ public class TitleBarPanel extends JPanel {
         {
             background.setLayout(AppStyles.gridBagLayout);
             userNameLabel.setForeground(AppStyles.MainColor);
-            userNameLabel.setFont(AppStyles.appH1Font);
+            userNameLabel.setFont(AppStyles.untitled);
         }
 
         //set style of search text field

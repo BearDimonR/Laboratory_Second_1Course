@@ -211,7 +211,7 @@ arrowBack. setBounds(0,0,26,26);
         btnModeSwitchOff.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                EditingPanel.showGroupDeleteTab();
+                EditingPanel.showGroupEditTab();
             }
         });
         tfNewPrice.addKeyListener(keyListener());

@@ -4,21 +4,15 @@ import BackGround.Stock;
 import GUI.General.AppStyles;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Arrays;
 
 public class EditingPanel extends JPanel {
     private static ProductEditingPanel productEditPanel = new ProductEditingPanel();
     private static GroupEditingPanel groupEditPanel = new GroupEditingPanel();
 
-
     public EditingPanel() {
         setLayout(null);
         setDefaultVisibility();
         addSubPanels();
-
     }
 
     /**
@@ -28,8 +22,6 @@ public class EditingPanel extends JPanel {
     public static void setDefaultVisibility() {
         productEditPanel.setVisible(true);
         groupEditPanel.setVisible(false);
-
-
     }
 
     /**
@@ -48,23 +40,31 @@ public class EditingPanel extends JPanel {
     }
 
     /**
-     * Method adds action listeners to togle btn images
+     * Method shows group edit tab and hide product edit tab
      */
-
-    public static void showGroupDeleteTab(){
+    public static void showGroupEditTab() {
         productEditPanel.setVisible(false);
         groupEditPanel.setVisible(true);
-        groupEditPanel.getTablePanel().addDataToGroupOFGoodsTable(Stock.getGroups(),2);
+        groupEditPanel.getTablePanel().addDataToGroupOFGoodsTable(Stock.getGroups(), 2);
     }
-    public static void showProductDeleteTab(){
+
+    /**
+     * Method shows product edit tab and hide group edit tab
+     */
+    public static void showProductDeleteTab() {
         productEditPanel.setVisible(true);
         groupEditPanel.setVisible(false);
-        productEditPanel.getTablePanel().addDataToGoodsTable(Stock.getAllProducts(),1);
+        productEditPanel.getTablePanel().addDataToGoodsTable(Stock.getAllProducts(), 1);
     }
-    public void updateTable(){
-        if(groupEditPanel.isVisible())
-            showGroupDeleteTab();
+
+    /**
+     * Method updates table
+     */
+    public void updateTable() {
+        if (groupEditPanel.isVisible())
+            showGroupEditTab();
         else
             showProductDeleteTab();
     }
+
 }
