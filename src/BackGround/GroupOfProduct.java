@@ -54,4 +54,12 @@ public class GroupOfProduct implements Serializable {
     public String toString() {
         return name;
     }
+
+    public double getGroupPrice() {
+        double res = 0;
+        for(int i=0;i<products.size();i++){
+            res += products.get(i).getPrice();
+        }
+        return res;
+    }
 }
