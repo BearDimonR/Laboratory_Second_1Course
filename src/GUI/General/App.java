@@ -13,10 +13,14 @@ public class App {
         //set dimension and visibility of frames
         {
             mainFrame.setSize(new Dimension(1010, 700));
-            mainFrame.setVisible(true);
+            mainFrame.setVisible(false);
             mainFrame.setLocation(new Point(100, 50));
-           /* loginFrame.setSize(new Dimension(750, 500));
-            loginFrame.setVisible(true);*/
+           loginFrame.setSize(new Dimension(750, 500));
+            loginFrame.setVisible(true);
         }
+    }
+    public static void makeMainFrameVisible(){
+        mainFrame.setVisible(true);
+        loginFrame.setVisible(false);
     }
 }
