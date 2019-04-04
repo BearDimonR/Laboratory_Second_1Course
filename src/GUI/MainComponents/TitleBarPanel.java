@@ -14,11 +14,14 @@ public class TitleBarPanel extends JPanel {
     JLabel userNameLabel = new JLabel("User name");// label which contains user name info
     JLabel background = new JLabel(new ImageIcon("images/mainFrame/titleBarBackground.jpg"));//background picture of title bar
     JLabel userProfilePic = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
+    JLabel totalPrice = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
+    JLabel totalAmount = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
     JTextField tfSearch = new JTextField();
 
     public TitleBarPanel() {
-        setLayout(AppStyles.gridBagLayout);
-
+        setLayout(null);
+        background.setLayout(null);
+        background.setVisible(true);
         //set size of toll bar panel
         {
             setSize(new Dimension(915, 35));
@@ -68,24 +71,22 @@ public class TitleBarPanel extends JPanel {
 
         //add elements to title bar
         {
-            add(background, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 0, 0, 0), 0, 0));
-            background.add(tfSearch, new GridBagConstraints(0, 0, 1, 1, 0.1, 1,
-                    GridBagConstraints.WEST, GridBagConstraints.CENTER,
-                    new Insets(0, 65, 3, 0), 140, 0));
-            background.add(userProfilePic, new GridBagConstraints(1, 0, 1, 1, 0.001, 1,
-                    GridBagConstraints.EAST, GridBagConstraints.CENTER,
-                    new Insets(0, 0, 0, 0), 0, 0));
-            background.add(userNameLabel, new GridBagConstraints(2, 0, 1, 1, 0.01, 1,
-                    GridBagConstraints.EAST, GridBagConstraints.CENTER,
-                    new Insets(0, -45, 0, 20), 0, 0));
-            background.add(btnMinimize, new GridBagConstraints(3, 0, 1, 1, 0.001, 1,
-                    GridBagConstraints.EAST, GridBagConstraints.CENTER,
-                    new Insets(0, 0, 0, 2), 0, 0));
-            background.add(btnCancel, new GridBagConstraints(4, 0, 1, 1, 0.0012, 1,
-                    GridBagConstraints.EAST, GridBagConstraints.CENTER,
-                    new Insets(0, 0, 0, 3), 0, 0));
+            add(background);
+background.add(tfSearch);
+background.add(userProfilePic);
+/*background.add(userNameLabel);
+background.add(btnMinimize);
+background.add(btnCancel);
+background.add(totalAmount);
+background.add(totalPrice);*/
+background.setBounds(0,0,914,35);
+userProfilePic.setBounds(716,3,26,26);
+/*userNameLabel.setBounds(1058,10,142,14);
+btnMinimize.setBounds(848,0,27,27);
+btnCancel.setBounds(884,0,27,27);*/
+            /*totalAmount.setBounds(0, 0, 914, 35);
+            totalPrice.setBounds(0, 0, 914, 35);*/
+
         }
 
         //add mouse listener to close and minimize btn

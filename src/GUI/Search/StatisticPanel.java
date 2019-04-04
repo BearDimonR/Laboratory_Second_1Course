@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
 
 public class StatisticPanel extends JPanel {
     JLabel backgroundHeader = new JLabel(new ImageIcon("images/Search/statisticHeader.jpg"));
-    JLabel tableBackground = new JLabel(new ImageIcon("images/tableGroupBodyBackground.jpg"));
+    JLabel tableBackground = new JLabel(new ImageIcon("images/statisticTableBackground.jpg"));
     private JLabel btnFind = new JLabel(new ImageIcon("images/Search/showHorizontalBTN.jpg"));
     private JLabel tickAll = new JLabel(new ImageIcon("images/Search/tick.jpg"));
     private JLabel tickGroup = new JLabel(new ImageIcon("images/Search/tick.jpg"));
@@ -74,7 +74,7 @@ public class StatisticPanel extends JPanel {
 
     private void addElementsToTableBackgroundBody() {
         tableBackground.add(tablePanel);
-        tablePanel.setBounds(35, 20, 850, 441);
+        tablePanel.setBounds(35, 20, 850, 480);
     }
 private void setDefaultVisibility(){
         tickAll.setVisible(true);
