@@ -162,7 +162,6 @@ public class TitleBarPanel extends JPanel {
     }
 
     public static void setStats() {
-        setUserName();
         setTotalAmount(Stock.getAllAmount());
         setTotalPrice(Stock.getAllPrice());
     }

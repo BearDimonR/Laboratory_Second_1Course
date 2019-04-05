@@ -1,12 +1,16 @@
 package GUI;
 
+import BackGround.Stock;
 import GUI.General.AppStyles;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class SettingPanel extends JPanel {
     JLabel changeNameBTN = new JLabel(new ImageIcon("images/changeNameBTN.jpg"));
@@ -64,6 +68,7 @@ public class SettingPanel extends JPanel {
          addListenersToBTNS();
          addListenersToTickBTNS();
     }
+
     private void setStyleOfWorkerChooser(){
         workerChoser.setBackground(Color.WHITE);
         workerChoser.setFont(AppStyles.appH2Font);
@@ -81,6 +86,57 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
             }
         });
+        workerChoser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ArrayList<Boolean> access = null;
+                if(Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess() != null) {
+                    access = Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess();
+                    if (access.get(0)){
+                        createTick.setVisible(true);
+                        deCreateTick.setVisible(false);
+                    }
+                    else{
+                        createTick.setVisible(false);
+                        deCreateTick.setVisible(true);
+                    }
+                    if (access.get(1)){
+                        editTick.setVisible(true);
+                        deEditTick.setVisible(false);
+                    }
+                    else {
+                        editTick.setVisible(false);
+                        deEditTick.setVisible(true);
+                    }
+                    if (access.get(2)) {
+                        deleteTick.setVisible(true);
+                        deDeleteTick.setVisible(false);
+                    }
+                    else {
+                        deleteTick.setVisible(false);
+                        deDeleteTick.setVisible(true);
+                    }
+                    if (access.get(3)) {
+                        quantityTick.setVisible(true);
+                        deQuantityTick.setVisible(false);
+                    }
+                    else {
+                        quantityTick.setVisible(false);
+                        deQuantityTick.setVisible(true);
+                    }
+                    if (access.get(4)) {
+                        searchTick.setVisible(true);
+                        deSearchTick.setVisible(false);
+                    }
+                    else {
+                        searchTick.setVisible(false);
+                        deSearchTick.setVisible(true);
+                    }
+
+                }
+
+            }
+        });
     }
     private void addListenersToTickBTNS(){
         createTick.addMouseListener(new MouseAdapter() {
@@ -88,6 +144,7 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 createTick.setVisible(false);
                 deCreateTick.setVisible(true);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(0,false);
             }
         });
         deCreateTick.addMouseListener(new MouseAdapter() {
@@ -95,6 +152,8 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 createTick.setVisible(true);
                 deCreateTick.setVisible(false);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(0,true);
+                Stock.saveUsers();
             }
         });
         editTick.addMouseListener(new MouseAdapter() {
@@ -102,6 +161,8 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 editTick.setVisible(false);
                 deEditTick.setVisible(true);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(1,false);
+                Stock.saveUsers();
             }
         });
         deEditTick.addMouseListener(new MouseAdapter() {
@@ -109,6 +170,8 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 editTick.setVisible(true);
                 deEditTick.setVisible(false);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(1,true);
+                Stock.saveUsers();
             }
         });
         deleteTick.addMouseListener(new MouseAdapter() {
@@ -116,6 +179,8 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 deleteTick.setVisible(false);
                 deDeleteTick.setVisible(true);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(2,false);
+                Stock.saveUsers();
             }
         });
         deDeleteTick.addMouseListener(new MouseAdapter() {
@@ -123,6 +188,8 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 deleteTick.setVisible(true);
                 deDeleteTick.setVisible(false);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(2,true);
+                Stock.saveUsers();
             }
         });
         quantityTick.addMouseListener(new MouseAdapter() {
@@ -130,6 +197,8 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 quantityTick.setVisible(false);
                 deQuantityTick.setVisible(true);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(3,false);
+                Stock.saveUsers();
             }
         });
         deQuantityTick.addMouseListener(new MouseAdapter() {
@@ -137,6 +206,8 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 quantityTick.setVisible(true);
                 deQuantityTick.setVisible(false);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(3,true);
+                Stock.saveUsers();
             }
         });
         searchTick.addMouseListener(new MouseAdapter() {
@@ -144,6 +215,8 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 searchTick.setVisible(false);
                 deSearchTick.setVisible(true);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(4,false);
+                Stock.saveUsers();
             }
         });
         deSearchTick.addMouseListener(new MouseAdapter() {
@@ -151,6 +224,8 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 searchTick.setVisible(true);
                 deSearchTick.setVisible(false);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(4,true);
+                Stock.saveUsers();
             }
         });
         blockTick.addMouseListener(new MouseAdapter() {
@@ -158,6 +233,8 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 blockTick.setVisible(false);
                 deBlockTick.setVisible(true);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(1,false);
+                Stock.saveUsers();
             }
         });
         deBlockTick.addMouseListener(new MouseAdapter() {
@@ -165,9 +242,21 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 blockTick.setVisible(true);
                 deBlockTick.setVisible(false);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(1,false);
+                Stock.saveUsers();
             }
         });
     }
+
+    public void updateData() {
+        if(!Stock.getLoginUser().isAdmin()){
+            // close the possibility to change access
+        }
+        for(int i=0;i< Stock.getUsers().size();i++) {
+            if(!Stock.getUsers().get(i).isAdmin()) workerChoser.addItem(Stock.getUsers().get(i).getName());
+        }
+    }
+
 }
 
 

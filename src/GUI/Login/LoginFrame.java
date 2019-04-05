@@ -4,7 +4,9 @@ import BackGround.Stock;
 import BackGround.User;
 import GUI.General.App;
 import GUI.General.AppStyles;
+import GUI.MainComponents.ContentPanel;
 import GUI.MainComponents.TitleBarPanel;
+import GUI.SettingPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -64,6 +66,7 @@ public class LoginFrame extends JFrame {
                             Stock.setLoginUser(user);
                             TitleBarPanel.setUserName();
                             TitleBarPanel.setStats();
+                            ContentPanel.initPanel();
                             App.makeMainFrameVisible();
                         } else ;//set red color of the password
                     }
