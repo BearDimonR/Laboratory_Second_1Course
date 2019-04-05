@@ -17,7 +17,7 @@ public class StatisticPanel extends JPanel {
     private JLabel tickGroup = new JLabel(new ImageIcon("images/Search/tick.jpg"));
     private JLabel deTickAll = new JLabel(new ImageIcon("images/Search/emptyTick.jpg"));
     private JLabel deTickGroup = new JLabel(new ImageIcon("images/Search/emptyTick.jpg"));
-
+    private JLabel totalPriceOfGroup = new JLabel("034545" );
     private JComboBox cbProductGroupSearch = new JComboBox();
     private static JLabel btnModeSwitchOn = new JLabel(new ImageIcon("images/groupCreateModeOnBTN.png"));
     private TablePanel tablePanel = new TablePanel(1);
@@ -71,6 +71,7 @@ public class StatisticPanel extends JPanel {
             }
         });
 
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
     }
 
     private void addElementsToBackgroundHeader() {
@@ -94,6 +95,8 @@ public class StatisticPanel extends JPanel {
 
         tableBackground.add(tablePanel);
         tablePanel.setBounds(35, 20, 850, 480);
+        tableBackground.add(totalPriceOfGroup);
+        totalPriceOfGroup.setBounds(126,507,100,20);
     }
 
     private void setDefaultVisibility() {
