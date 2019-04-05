@@ -25,19 +25,18 @@ public class TablePanel extends JPanel {
     private  String[] GroupTitles = {"id", "Group of products"};
     private  JTable table = new JTable();
     private JScrollPane scrollPane = new JScrollPane(table);
-    private DefaultTableModel model = (DefaultTableModel) table.getModel();
     private JList studentList = new JList();
 
     GridBagLayout gbl = new GridBagLayout();
 
     public TablePanel(int titleType) {
-        init(titleType);
+        setModel(null,titleType);
         setLayout(gbl);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         studentList.setVisible(true);
 
         setBackground(Color.WHITE);
-        init(1);
+        setModel(null ,1);
         add(scrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(1, 0, 0, 0), 0, 430));
@@ -45,8 +44,7 @@ public class TablePanel extends JPanel {
     }
 
     public  void addDataToGoodsTable(ArrayList<Product> products, int titleNum) {
-        String[] titles = titlesChoser(titleNum);
-        Object[][] studs = new Object[products.size()][];
+        Object[][] objects = new Object[products.size()][];
         for (int i = 0; i < products.size(); i++) {
             String[] productLine = new String[6];
             productLine[0] = (i + 1) + ".";
@@ -54,32 +52,29 @@ public class TablePanel extends JPanel {
             productLine[2] = products.get(i).getGroupProducts().getName();
             productLine[3] = products.get(i).getManufacturer();
             productLine[4] = String.valueOf(products.get(i).getPrice());
-            studs[i] = productLine;
+            objects[i] = productLine;
         }
 
-        model.setDataVector(studs, titles);
-        table.setModel(model);
+
+//        model.setDataVector(studs, titles);
+//        table.setModel(model);
+
+        setModel(objects,titleNum);
+
     }
 
     public  void addDataToGroupOFGoodsTable(ArrayList<GroupOfProduct> groupOfProduct, int titleNum) {
-        String[] titles = titlesChoser(titleNum);
-        Object[][] groups = new Object[groupOfProduct.size()][];
+        Object[][] objects = new Object[groupOfProduct.size()][];
         for (int i = 0; i < groupOfProduct.size(); i++) {
             String[] groupLine = new String[2];
             groupLine[0] = (i + 1) + ".";
             groupLine[1] = groupOfProduct.get(i).getName();
-            groups[i] = groupLine;
+            objects[i] = groupLine;
         }
-        model.setDataVector(groups, titles);
-        table.setModel(model);
-    }
-
-    public  void init(int titleNum) {
-        table.setModel(new DefaultTableModel(null, titlesChoser(titleNum)));
+        setModel(objects,titleNum);
     }
 
     private  String[] titlesChoser(int titleNum) {
-        String[] titles;
         switch (titleNum) {
             case 1:
                 return GoodsTitles;
@@ -104,8 +99,17 @@ public class TablePanel extends JPanel {
         return Stock.findGroup((String) table.getValueAt(table.getSelectedRow(),1));
     }
 
-    public void crearAll(){
-        model = new DefaultTableModel();
+    private void setModel(Object[][] data, int titleNum){
+        table.setModel(new javax.swing.table.DefaultTableModel(
+                data
+                ,
+                titlesChoser(titleNum)
+        ){
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        });
     }
 
     public void AddActionListener(){

@@ -24,4 +24,5 @@ public class SearchPanel extends JPanel {
         statisticPanel.setVisible(true);
         productSearchPanel.setVisible(false);
     }
+
 }
