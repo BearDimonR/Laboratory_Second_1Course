@@ -41,6 +41,7 @@ public class TablePanel extends JPanel {
         add(scrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(1, 0, 0, 0), 0, 430));
+        AddActionListener();
     }
 
     public  void addDataToGoodsTable(ArrayList<Product> products, int titleNum) {
@@ -55,6 +56,7 @@ public class TablePanel extends JPanel {
             productLine[4] = String.valueOf(products.get(i).getPrice());
             studs[i] = productLine;
         }
+
         model.setDataVector(studs, titles);
         table.setModel(model);
     }
@@ -105,5 +107,23 @@ public class TablePanel extends JPanel {
     public void crearAll(){
         model = new DefaultTableModel();
     }
+
+    public void AddActionListener(){
+        table.getTableHeader().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("shlop po pope");
+//                if(table.){
+//                    System.out.println("group");
+//                }
+//                else{
+//                    System.out.println("kek");
+//                }
+            }
+        });
+    }
+
+
+
 
 }

@@ -14,7 +14,9 @@ public class SearchPanel extends JPanel {
         statisticPanel.setBounds(0, 0, 914, 666);
         productSearchPanel.setVisible(true);
         statisticPanel.setVisible(false);
-    } public static void showSearchPanel(){
+
+    }
+    public static void showSearchPanel(){
         statisticPanel.setVisible(false);
         productSearchPanel.setVisible(true);
     }

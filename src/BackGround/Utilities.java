@@ -17,11 +17,12 @@ public class Utilities {
 //    }
 
     public static ArrayList Search(String line) {
-        ArrayList<Product> array = new ArrayList<>();
-        if (line == null || line.equals("[ ]*")) {
+        ArrayList<Product> spaceLine = Stock.getAllProducts();
+        ArrayList<Product> array= new ArrayList<>();
+        if ( line.equals("[ ]*")) {
             System.out.println("incorrect ");
 
-            return null;
+            return spaceLine;
         } else {
             System.out.println("line = '" + line + "'");
 
@@ -41,7 +42,8 @@ public class Utilities {
                 System.out.println("word");
                 line = line.replaceAll(" ", "");
                 for (int i = 0; i < product.size(); i++) {
-                    if (product.get(i).getGroupProducts().equals(line) ||
+                    String group = (String) String.valueOf(product.get(i).getGroupProducts());
+                    if (    group.equals(line) ||
                             product.get(i).getProductName().equals(line) ||
                             product.get(i).getManufacturer().equals(line)
                     )
@@ -64,10 +66,11 @@ public class Utilities {
             line = line.replaceAll(" ", "");
             String word = "";
             for (int i = 0; i < array.size(); i++) {
-                if ((array.get(i).getGroupProducts().equals(line))) {
+            //    String s = String.valueOf(array.get(i).getGroupProducts());
+                if (!(String.valueOf(array.get(i).getGroupProducts()).equals(line))) {
                 //if (!(array.get(i).getGroupProducts().equals(line))) {//????????????????????????????ВАЖЛИВО
+                    System.out.println("удалило групу-" + array.get(i).getGroupProducts());
                     array.remove(i);
-                    System.out.println("удалило групу" + array.get(i));
                     i--;
                 }
             }
@@ -225,10 +228,7 @@ public class Utilities {
 
     public static ArrayList<Product> mainSearch(String lineProductGroup, String lineProductName, String lineManufacturer, double priceFrom, double priceTo) {
         ArrayList<Product> copyArray = Stock.getAllProducts();
-        //тут ми додаємо всі елементи
-        // copyArray.addAll(product);
-
-        copyArray = findByGroup(lineProductGroup, copyArray);
+         copyArray = findByGroup(lineProductGroup, copyArray);
         System.out.println("сорт за групами" + copyArray);
         copyArray = findByProductName(lineProductName, copyArray);
         System.out.println("сорт за продуктами" + copyArray);
@@ -245,6 +245,17 @@ public class Utilities {
         System.out.println("сорт за групами та лише групами" + copyArray);
         copyArray = findByGroup2(lineProductGroup, copyArray);
 
+        return copyArray;
+    }
+
+    /**
+     * method which used in class StatisticPAanel to sort
+     * @param group
+     * @return
+     */
+    public static ArrayList<Product> searchGroup(String group){
+        ArrayList<Product> copyArray = Stock.getAllProducts();
+        copyArray = findByGroup(group,copyArray);
         return copyArray;
     }
 

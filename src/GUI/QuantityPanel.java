@@ -40,6 +40,8 @@ public class QuantityPanel extends JPanel {
     //double priceFrom = Double.valueOf(tfLowestPriceearch.getText());
    // double priceTo = Double.valueOf(tfHighestPriceSearch.getText());
 
+   // private TablePanel tablePanel = new TablePanel(1);
+
     public QuantityPanel() {
         setLayout(null);
         background.setLayout(null);
@@ -53,13 +55,31 @@ public class QuantityPanel extends JPanel {
         background.add(tfAddToStock);
         background.add(tfRemoveFromStock);
         background.add(tfInStock);
-
+cheakBox();
       //  updateTable();
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
         tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 tfInStock.setText("0");
                 checkStock();
+//                if (tablePanel.getTable().getSelectedRow() == -1) return;
+//                tableBodyBackground.setVisible(false);
+//                editFieldsBodyBackground.setVisible(true);
+//                tfNewProductName.setText(tablePanel.getSelectedProduct().getProductName());
+//                tfOldProductName.setText(tablePanel.getSelectedProduct().getProductName());
+//                taNewDescription.setText(tablePanel.getSelectedProduct().getDescription());
+//                taOldDescription.setText(tablePanel.getSelectedProduct().getDescription());
+//                tfOldManufacturer.setText(tablePanel.getSelectedProduct().getManufacturer());
+//                tfNewManufacturer.setText(tablePanel.getSelectedProduct().getManufacturer());
+//                tfOldPrice.setText(String.valueOf(tablePanel.getSelectedProduct().getPrice()));
+//                tfNewPrice.setText(String.valueOf(tablePanel.getSelectedProduct().getPrice()));
+//                cbOldGroup.addItem(String.valueOf(tablePanel.getSelectedProduct().getGroupProducts()));
+//                cbOldGroup.setSelectedIndex(0);
+//                ComboBoxModel model = new DefaultComboBoxModel<>();
+//                ((DefaultComboBoxModel) model).addAll(Stock.getGroups());
+//                cbNewGroup.setModel(model);
+//                cbNewGroup.setSelectedItem(tablePanel.getSelectedProduct().getGroupProducts());
             }
         });
 
@@ -196,5 +216,10 @@ public class QuantityPanel extends JPanel {
         if(tablePanel.getSelectedProduct().getQuantityInStock() == Integer.parseInt(tfInStock.getText())) return;
         tfInStock.setText(String.valueOf(tablePanel.getSelectedProduct().getQuantityInStock()));
     }
-
+    public void cheakBox(){
+        cbProductGroupSearch.removeAllItems();
+        for(int i = 0; i< Stock.getGroups().size();i++){
+            cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
+        }
+    }
 }

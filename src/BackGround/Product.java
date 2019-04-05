@@ -3,6 +3,7 @@ package BackGround;
 import java.io.Serializable;
 
 public class Product implements Serializable {
+  //  private static final long serialVersionUID = 2277697447823786252L;
 
     private GroupOfProduct groupGoods;      //товар групи
     private String name;            //імя товару

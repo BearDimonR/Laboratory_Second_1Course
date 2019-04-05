@@ -1,5 +1,7 @@
 package GUI.Search;
 
+import BackGround.Stock;
+import BackGround.Utilities;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
@@ -20,6 +22,7 @@ public class StatisticPanel extends JPanel {
     private TablePanel tablePanel = new TablePanel(1);
 
     public StatisticPanel() {
+
         setLayout(null);
         backgroundHeader.setLayout(null);
         add(backgroundHeader);
@@ -29,6 +32,7 @@ public class StatisticPanel extends JPanel {
         addElementsToBackgroundHeader();
         addElementsToTableBackgroundBody();
         setDefaultVisibility();
+        cheakBox();
         btnModeSwitchOn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -53,6 +57,16 @@ public class StatisticPanel extends JPanel {
                 tickAll.setVisible(true);
             }
         });
+        btnFind.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
+  //              updateTable(group);
+
+            }
+        });
+
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
     }
 
     private void addElementsToBackgroundHeader() {
@@ -73,13 +87,39 @@ public class StatisticPanel extends JPanel {
     }
 
     private void addElementsToTableBackgroundBody() {
+
         tableBackground.add(tablePanel);
         tablePanel.setBounds(35, 20, 850, 441);
     }
-private void setDefaultVisibility(){
+
+    private void setDefaultVisibility() {
         tickAll.setVisible(true);
         deTickAll.setVisible(false);
         tickGroup.setVisible(false);
         deTickGroup.setVisible(true);
-}
+    }
+
+    public void cheakBox() {
+        cbProductGroupSearch.removeAllItems();
+        for (int i = 0; i < Stock.getGroups().size(); i++) {
+            cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
+        }
+    }
+
+//    private void addMouseListenersToBTNS() {
+//        btnFind.addMouseListener(new MouseAdapter() {
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
+//               // updateTable(group);
+//            }
+//        });
+//    }
+//    public void updateTable(String group) {
+//
+//        tablePanel.addDataToGroupOFGoodsTable(Utilities.mainSearch2(group), 1);
+//
+//
+//    }
+
 }
