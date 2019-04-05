@@ -67,8 +67,8 @@ public class ProductSearchPanel extends JPanel {
         cbProductGroupSearch.setBounds(648, 74, 227, 17);
         tfLowestPriceSearch.setBounds(649, 114, 60, 18);
         tfHighestPriceSearch.setBounds(756, 114, 60, 18);
-        tablePanel.addDataToGoodsTable(Utilities.Search(TitleBarPanel.tfSearch.getText()), 1);
-        System.out.println(Utilities.Search(TitleBarPanel.tfSearch.getText()) + ")");
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
+       // System.out.println(Utilities.Search(TitleBarPanel.tfSearch.getText()) + ")");
     }
 
     private void addElementsToTableBackgroundBody() {
