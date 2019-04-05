@@ -63,7 +63,7 @@ public class ProductEditingPanel extends JPanel {
         tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                if(tablePanel.getTable().getSelectedRow() == -1) return;
+                if (tablePanel.getTable().getSelectedRow() == -1) return;
                 tableBodyBackground.setVisible(false);
                 editFieldsBodyBackground.setVisible(true);
                 tfNewProductName.setText(tablePanel.getSelectedProduct().getProductName());
@@ -82,8 +82,12 @@ public class ProductEditingPanel extends JPanel {
             }
         });
 
+        cheakBox();
+
+
         setStyleOfHeaderElements();
         setStyleOfUserInputElements();
+
     }
 
     private void addElementsToProductEditingPanel() {
@@ -115,23 +119,38 @@ public class ProductEditingPanel extends JPanel {
         editFieldsBodyBackground.add(btnEdit);
         editFieldsBodyBackground.add(btnDesEdit);
         editFieldsBodyBackground.add(arrowBack);
-        tfOldProductName.setBounds(112,30,303,20);
-        spOldDescription.setBounds(112,86,303,122);
-        lbOldGroup.setBounds(112,247,303,20);
-        tfOldManufacturer.setBounds(112,310,303,20);
-        tfOldPrice.setBounds(112,370,303,20);
-        arrowBack. setBounds(20,0,26,26);
-        tfNewProductName.setBounds(537,30,303,20);
-        spNewDescription.setBounds(537,86,303,122);
-        cbNewGroup.setBounds(537,247,303,20);
-        tfNewManufacturer.setBounds(537,310,303,20);
-        tfNewPrice.setBounds(537,370,303,20);
-        btnEdit.setBounds(375,420,165,40);
-        btnDesEdit.setBounds(375,420,165,40);
+
+        tfOldProductName.setBounds(112, 30, 303, 20);
+        spOldDescription.setBounds(112, 86, 303, 122);
+        lbOldGroup.setBounds(112, 247, 303, 20);
+        tfOldManufacturer.setBounds(112, 310, 303, 20);
+        tfOldPrice.setBounds(112, 370, 303, 20);
+        arrowBack.setBounds(0, 0, 26, 26);
+        tfNewProductName.setBounds(537, 30, 303, 20);
+        spNewDescription.setBounds(537, 86, 303, 122);
+        cbNewGroup.setBounds(537, 247, 303, 20);
+        tfNewManufacturer.setBounds(537, 310, 303, 20);
+        tfNewPrice.setBounds(537, 370, 303, 20);
+        btnEdit.setBounds(375, 420, 165, 40);
+
+//        tfOldProductName.setBounds(112,30,303,20);
+//        spOldDescription.setBounds(112,86,303,122);
+//        lbOldGroup.setBounds(112,247,303,20);
+//        tfOldManufacturer.setBounds(112,310,303,20);
+//        tfOldPrice.setBounds(112,370,303,20);
+//        arrowBack. setBounds(20,0,26,26);
+//        tfNewProductName.setBounds(537,30,303,20);
+//        spNewDescription.setBounds(537,86,303,122);
+//        cbNewGroup.setBounds(537,247,303,20);
+//        tfNewManufacturer.setBounds(537,310,303,20);
+//        tfNewPrice.setBounds(537,370,303,20);
+//        btnEdit.setBounds(375,420,165,40);
+//        btnDesEdit.setBounds(375,420,165,40);
+
     }
 
     private void addElementsToBackgroundHeader() {
-        btnFind.setBounds(13,47,54,110);
+        btnFind.setBounds(13, 47, 54, 110);
         backgroundHeader.add(btnFind);
         backgroundHeader.add(tfproductNameSearch);
         backgroundHeader.add(cbProductGroupSearch);
@@ -140,11 +159,13 @@ public class ProductEditingPanel extends JPanel {
         backgroundHeader.add(tfHighestPriceSearch);
         backgroundHeader.add(btnModeSwitchOff);
         btnModeSwitchOff.setBounds(544, 5, 26, 26);
-        tfproductNameSearch.setBounds(229,74,227,18);
-        tfManufacturerSearch.setBounds(229,114,227,18);
-        cbProductGroupSearch.setBounds(648,74,227,17);
-        tfLowestPriceSearch.setBounds(649,114,60,18);
-        tfHighestPriceSearch.setBounds(756,114,60,18);
+
+        tfproductNameSearch.setBounds(229, 74, 227, 18);
+        tfManufacturerSearch.setBounds(229, 114, 227, 18);
+        cbProductGroupSearch.setBounds(648, 74, 227, 17);
+        tfLowestPriceSearch.setBounds(649, 114, 60, 18);
+        tfHighestPriceSearch.setBounds(756, 114, 60, 18);
+
     }
 
     private void addElementsToTableBackgroundBody() {
@@ -166,18 +187,19 @@ public class ProductEditingPanel extends JPanel {
 //               // tablePanel.addDataToGroupOFGoodsTable(,1);
 //            }
 //        });
-        btnFind.addMouseListener(new MouseAdapter(){
+        btnFind.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e){
+            public void mouseClicked(MouseEvent e) {
+                String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
+                if (tfproductNameSearch.getText().matches("[ ]*") == false ||
+                        tfManufacturerSearch.getText().matches("[ ]*") == false ||
+                        tfLowestPriceSearch.getText().matches("[ ]*") == false ||
+                        tfHighestPriceSearch.getText().matches("[ ]*") == false||
+                group.matches("[ ]*") == false
 
-                if(tfproductNameSearch.getText().matches("[ ]*")==false||
-                        tfManufacturerSearch.getText().matches("[ ]*")==false||
-                        tfLowestPriceSearch.getText().matches("[ ]*")==false||
-                        tfHighestPriceSearch.getText().matches("[ ]*")==false
-                    //  cbProductGroupSearch.getText().matches("[ ]*")==false
                 ){
 
-                    System.out.println("кнопка FIND натиснута  Edit"  );
+                    System.out.println("кнопка FIND натиснута  Edit");
                     updateTable();
                 }
             }
@@ -207,7 +229,7 @@ public class ProductEditingPanel extends JPanel {
                 taOldDescription.setText("");
                 tfNewProductName.setText("");
                 tfOldProductName.setText("");
-                tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+                tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
                 editFieldsBodyBackground.setVisible(false);
                 tableBodyBackground.setVisible(true);
             }
@@ -360,8 +382,16 @@ public class ProductEditingPanel extends JPanel {
         }
         setEditEnable();
     }
-    public  void updateTable() {
-        String group = cbProductGroupSearch.getToolTipText();
+
+    public void cheakBox() {
+        cbProductGroupSearch.removeAllItems();
+        for (int i = 0; i < Stock.getGroups().size(); i++) {
+            cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
+        }
+    }
+
+    private void updateTable() {
+        String group = (String) cbProductGroupSearch.getSelectedItem();
         String product = tfproductNameSearch.getText();
         String manufacturer = tfManufacturerSearch.getText();
         String priceFrom = tfLowestPriceSearch.getText();
@@ -375,13 +405,13 @@ public class ProductEditingPanel extends JPanel {
         }
 
         double prTo = 150;
-        if(tfHighestPriceSearch.getText().equals(""))
+        if (tfHighestPriceSearch.getText().equals(""))
             prTo = 0;
         else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
-        tablePanel.addDataToGoodsTable(Utilities.mainSearch(group , product, manufacturer, prFrom, prTo), 1);
+        tablePanel.addDataToGoodsTable(Utilities.mainSearch(group, product, manufacturer, prFrom, prTo), 1);
         //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
         System.out.println("price From= " + prFrom);
-        System.out.println("price to='" + prTo+"'");
+        System.out.println("price to='" + prTo + "'");
     }
 
 

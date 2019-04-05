@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class GroupOfProduct implements Serializable {
+  //  private static final long serialVersionUID = 1794588862599937839L;
 
     private ArrayList<Product> products = new ArrayList<>();
 

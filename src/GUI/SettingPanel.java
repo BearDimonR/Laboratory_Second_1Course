@@ -3,9 +3,14 @@ package GUI;
 import GUI.General.AppStyles;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class SettingPanel extends JPanel {
+    JLabel changeNameBTN = new JLabel(new ImageIcon("images/changeNameBTN.jpg"));
+    JLabel changePictureBTN = new JLabel(new ImageIcon("images/changePictureBTN.jpg"));
     JLabel background = new JLabel(new ImageIcon("images/Settings.jpg"));
     JLabel createTick = new JLabel(new ImageIcon("images/Tick.jpg"));
     JLabel deCreateTick = new JLabel(new ImageIcon("images/deTick.jpg"));
@@ -19,11 +24,13 @@ public class SettingPanel extends JPanel {
     JLabel deSearchTick = new JLabel(new ImageIcon("images/deTick.jpg"));
     JLabel blockTick = new JLabel(new ImageIcon("images/Tick.jpg"));
     JLabel deBlockTick = new JLabel(new ImageIcon("images/deTick.jpg"));
+    JComboBox workerChoser = new JComboBox();
 
     public SettingPanel() {
         setLayout(null);
         add(background);
         background.setBounds(0, 0, 914, 666);
+        background.add(workerChoser);
         background.add(createTick);
         background.add(deCreateTick);
         background.add(editTick);
@@ -36,6 +43,8 @@ public class SettingPanel extends JPanel {
         background.add(deSearchTick);
         background.add(blockTick);
         background.add(deBlockTick);
+        background.add(changePictureBTN);
+        background.add(changeNameBTN);
         createTick.setBounds(456, 197, 28, 28);
         deCreateTick.setBounds(456, 197, 28, 28);
         editTick.setBounds(456, 262, 28, 28);
@@ -48,5 +57,29 @@ public class SettingPanel extends JPanel {
         deSearchTick.setBounds(456, 452, 28, 28);
         blockTick.setBounds(456, 514, 28, 28);
         deBlockTick.setBounds(456, 514, 28, 28);
+        workerChoser.setBounds(486,110,280,20);
+        changeNameBTN.setBounds(64,498,212,32);
+        changePictureBTN.setBounds(64,569,212,32);
+         setStyleOfWorkerChooser();
+         addListenersToBTNS();
+    }
+    private void setStyleOfWorkerChooser(){
+        workerChoser.setBackground(Color.WHITE);
+        workerChoser.setFont(AppStyles.appH2Font);
+        workerChoser.setForeground(AppStyles.MainColor);
+        workerChoser.setUI(new BasicComboBoxUI());
+    }
+    private void addListenersToBTNS(){
+        changePictureBTN.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+        });
+        changeNameBTN.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            }
+        });
     }
 }
+

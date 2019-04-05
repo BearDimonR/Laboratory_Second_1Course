@@ -26,6 +26,9 @@ public class ProductDeletingPanel extends JPanel {
     private JComboBox cbProductGroupSearch = new JComboBox();
 
     public ProductDeletingPanel() {
+
+
+
         setLayout(null);
         backgroundHeader.setLayout(null);
         add(backgroundHeader);
@@ -39,8 +42,11 @@ public class ProductDeletingPanel extends JPanel {
         addElementsToProductDeltePanel();
         addListners();
 
+        cheakBox();
         tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+
         setStyleOfHeader();
+
     }
 
     private void addElementsToProductDeltePanel() {
@@ -88,15 +94,22 @@ public class ProductDeletingPanel extends JPanel {
             @Override
 
             public void mouseClicked(MouseEvent e){
+                String group = (String)cbProductGroupSearch.getSelectedItem();
 
                 if(tfProductNameSearch.getText().matches("[ ]*")==false||
+
                         tfManufacturerSearch.getText().matches("[ ]*")==false||
                         tfLowestPriceSearch.getText().matches("[ ]*")==false||
                         tfHighestPriceSearch.getText().matches("[ ]*")==false
-                    //  cbProductGroupSearch.getText().matches("[ ]*")==false
+                       ||group.matches("[ ]*")==false
                 ){
 
-                    System.out.println("кнопка FIND натиснута"  );
+
+//                     group = (String)cbProductGroupSearch.getSelectedItem();
+//                    String product = tfproductNameSearch.getText();
+//                    String manufacturer = tfManufacturerSearch.getText();
+//                    String priceFrom = tfLowestPriceearch.getText();
+//                    String priceTo = tfHighestPriceSearch.getText();
                     updateTable();
                 }
             }
@@ -118,6 +131,23 @@ public class ProductDeletingPanel extends JPanel {
         });
 
     }
+    public void cheakBox(){
+        cbProductGroupSearch.removeAllItems();
+        for(int i = 0; i< Stock.getGroups().size();i++){
+            cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
+        }
+    }
+
+
+/*
+метод зчитує та виводить потрібний масив
+ */
+ //   public  void updateTable(String group,String product,String manufacturer,String priceFrom,String priceTo) {
+//       String group = (String)cbProductGroupSearch.getSelectedItem();
+//        String product = tfproductNameSearch.getText();
+//        String manufacturer = tfManufacturerSearch.getText();
+//        String priceFrom = tfLowestPriceearch.getText();
+//        String priceTo = tfHighestPriceSearch.getText();System.out.println("/*/*/*/**//*/*/*/*/*/\ngroup'" + group+"'");
 
     public  void updateTable() {
         String group = cbProductGroupSearch.getToolTipText();
@@ -126,6 +156,7 @@ public class ProductDeletingPanel extends JPanel {
         String priceFrom = tfLowestPriceSearch.getText();
         String priceTo = tfHighestPriceSearch.getText();
 
+
         double prFrom = 0;
         if (tfLowestPriceSearch.getText().matches("[ ]*") == true) {
             prFrom = 0;
@@ -133,15 +164,17 @@ public class ProductDeletingPanel extends JPanel {
             prFrom = Double.valueOf(priceFrom);
         }
 
+
+
         double prTo = 150;
         if(tfHighestPriceSearch.getText().equals(""))
             prTo = 0;
         else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
         tablePanel.addDataToGoodsTable(Utilities.mainSearch(group , product, manufacturer, prFrom, prTo), 1);
         //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
-        System.out.println("price From= " + prFrom);
-        System.out.println("price to='" + prTo+"'");
+
     }
+
 private void setStyleOfHeader(){
     tfHighestPriceSearch.setFont(AppStyles.appH2Font);
     tfHighestPriceSearch.setForeground(AppStyles.MainColor);
@@ -164,4 +197,5 @@ private void setStyleOfHeader(){
     cbProductGroupSearch.setForeground(AppStyles.MainColor);
     cbProductGroupSearch.setUI(new BasicComboBoxUI());
 }
+
 }
