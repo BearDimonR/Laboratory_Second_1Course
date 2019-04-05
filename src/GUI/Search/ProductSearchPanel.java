@@ -1,7 +1,13 @@
 package GUI.Search;
 
+
+import BackGround.Stock;
+import BackGround.Utilities;
+
 import GUI.General.AppStyles;
+
 import GUI.General.TablePanel;
+import GUI.MainComponents.TitleBarPanel;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
@@ -29,14 +35,21 @@ public class ProductSearchPanel extends JPanel {
         backgroundHeader.setBounds(0, 0, 914, 175);
         tableBackground.setBounds(0, 175, 914, 491);
         addElementsToBackgroundHeader();
+
         addElementsToTableBackgroundBody();
+
         btnModeSwitchOff.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 SearchPanel.showStatistickPanel();
             }
         });
-        setStyleOfHeaderElements();
+
+        addMouseListenersToBTNS();
+        cheakBox();
+
+        //   setStyleOfHeaderElements();
+
     }
 
     private void addElementsToBackgroundHeader() {
@@ -54,12 +67,74 @@ public class ProductSearchPanel extends JPanel {
         cbProductGroupSearch.setBounds(648, 74, 227, 17);
         tfLowestPriceSearch.setBounds(649, 114, 60, 18);
         tfHighestPriceSearch.setBounds(756, 114, 60, 18);
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
+       // System.out.println(Utilities.Search(TitleBarPanel.tfSearch.getText()) + ")");
     }
 
     private void addElementsToTableBackgroundBody() {
         tableBackground.add(tablePanel);
         tablePanel.setBounds(35, 20, 850, 441);
     }
+
+    private void addEctionListener() {
+        btnFind.addMouseListener(new MouseAdapter() {
+            @Override
+
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("1234567890");
+//                String group = (String ) String.valueOf(cbProductGroupSearch.getSelectedItem());
+//                if(tfProductNameSearch.getText().matches("[ ]*")==false||
+//                        tfManufacturerSearch.getText().matches("[ ]*")==false||
+//                        tfLowestPriceearch.getText().matches("[ ]*")==false||
+//                        tfHighestPriceSearch.getText().matches("[ ]*")==false
+//                        || group.matches("[ ]*")==false
+//                ){
+//
+//                    updateTable();
+//
+//                }
+            }
+        });
+    }
+
+    public void cheakBox() {
+        cbProductGroupSearch.removeAllItems();
+        for (int i = 0; i < Stock.getGroups().size(); i++) {
+            cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
+        }
+    }
+
+    private void addMouseListenersToBTNS() {
+        btnFind.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("pidr");
+                updateTable();
+            }
+        });
+    }
+
+    private void updateTable() {
+        String group = (String) cbProductGroupSearch.getSelectedItem();
+        String product = tfproductNameSearch.getText();
+        String manufacturer = tfManufacturerSearch.getText();
+        String priceFrom = tfLowestPriceSearch.getText();
+        String priceTo = tfHighestPriceSearch.getText();
+
+        double prFrom = 0;
+        if (tfLowestPriceSearch.getText().matches("[ ]*") == true) {
+            prFrom = 0;
+        } else if (tfLowestPriceSearch.getText().matches("[\\d]+[.]?[\\d]*") == true) {
+            prFrom = Double.valueOf(priceFrom);
+        }
+        double prTo = 150;
+        if (tfHighestPriceSearch.getText().equals(""))
+            prTo = 0;
+        else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
+        tablePanel.addDataToGoodsTable(Utilities.mainSearch(group, product, manufacturer, prFrom, prTo), 1);
+        //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+    }
+
     private void setStyleOfHeaderElements() {
         tfHighestPriceSearch.setFont(AppStyles.appH2Font);
         tfHighestPriceSearch.setForeground(AppStyles.MainColor);
@@ -81,5 +156,7 @@ public class ProductSearchPanel extends JPanel {
         cbProductGroupSearch.setFont(AppStyles.appH2Font);
         cbProductGroupSearch.setForeground(AppStyles.MainColor);
         cbProductGroupSearch.setUI(new BasicComboBoxUI());
+
     }
 }
+

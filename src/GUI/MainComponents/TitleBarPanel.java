@@ -1,12 +1,17 @@
 package GUI.MainComponents;
 
+import BackGround.Utilities;
 import GUI.General.AppStyles;
 import GUI.General.App;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import static BackGround.Utilities.Search;
 
 public class TitleBarPanel extends JPanel {
     JLabel btnCancel = new JLabel(new ImageIcon("images/mainFrame/cancelBTN.jpg"));//icon of cancel btn
@@ -14,9 +19,12 @@ public class TitleBarPanel extends JPanel {
     JLabel userNameLabel = new JLabel("User name");// label which contains user name info
     JLabel background = new JLabel(new ImageIcon("images/mainFrame/titleBarBackground.jpg"));//background picture of title bar
     JLabel userProfilePic = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
+
     private static JLabel totalPrice = new JLabel("0");//icon of user profile picture
     private static JLabel totalAmount = new JLabel("0");//icon of user profile picture
+
     JTextField tfSearch = new JTextField();
+
 
     public TitleBarPanel() {
         setLayout(null);
@@ -117,15 +125,40 @@ public class TitleBarPanel extends JPanel {
                     App.mainFrame.setState(Frame.ICONIFIED);
                 }
             });
-            tfSearch.addMouseListener(new MouseAdapter() {
+//            tfSearch.addMouseListener(new MouseAdapter() {
+//                @Override
+//                public void mouseClicked(MouseEvent e) {
+//                    ToolBarPanel.deselectAllButtonsOnToolBar();
+//                    ContentPanel.showPanel(6);
+//
+//                }
+//            });
+            tfSearch.addKeyListener(new KeyListener() {
                 @Override
-                public void mouseClicked(MouseEvent e) {
-                    ToolBarPanel.deselectAllButtonsOnToolBar();
-                    ContentPanel.showPanel(6);
+                public void keyTyped(KeyEvent e) {
+                }
 
+                @Override
+                public void keyPressed(KeyEvent e) {
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        ToolBarPanel.deselectAllButtonsOnToolBar();
+                        ContentPanel.showPanel(6);
+                        String search = tfSearch.getText();
+                        System.out.println("text in textFileld search = " + search);
+                        updateTable(search);
+                    }
                 }
             });
         }
+
+    }
+    private void  updateTable(String search){
+
+        //tablePanel.addDataToGoodsTable(Utilities.Search(search), 1);
 
     }
 

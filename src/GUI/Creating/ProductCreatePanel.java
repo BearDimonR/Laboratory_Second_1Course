@@ -287,6 +287,9 @@ public class ProductCreatePanel extends JPanel {
         }
     }
 
+
+
+
     /**
      * Empty string checker
      */
@@ -342,4 +345,13 @@ public class ProductCreatePanel extends JPanel {
         tfPrice.setText("Product price");
     }
 
+    /**
+
+     */
+    public void cheakBox(){
+        cbProductGroup.removeAllItems();
+        for(int i = 0; i< Stock.getGroups().size();i++){
+            cbProductGroup.addItem((Stock.getGroups().get(i).getName()));
+        }
+    }
 }
