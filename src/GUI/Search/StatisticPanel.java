@@ -17,7 +17,7 @@ public class StatisticPanel extends JPanel {
     private JLabel tickGroup = new JLabel(new ImageIcon("images/Search/tick.jpg"));
     private JLabel deTickAll = new JLabel(new ImageIcon("images/Search/emptyTick.jpg"));
     private JLabel deTickGroup = new JLabel(new ImageIcon("images/Search/emptyTick.jpg"));
-    private JLabel totalPriceOfGroup = new JLabel("034545" );
+    private JLabel totalPriceOfGroup = new JLabel("0" );
     private JComboBox cbProductGroupSearch = new JComboBox();
     private static JLabel btnModeSwitchOn = new JLabel(new ImageIcon("images/groupCreateModeOnBTN.png"));
     private TablePanel tablePanel = new TablePanel(1);
@@ -64,13 +64,6 @@ public class StatisticPanel extends JPanel {
                 update();
             }
         });
-        cbProductGroupSearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
         tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
     }
 
@@ -114,8 +107,14 @@ public class StatisticPanel extends JPanel {
     }
 
     public void update() {
-      if(!deTickAll.isVisible())  tablePanel.addStatsToGroupOFGoodsTable(Stock.getGroups(),3);
-      else tablePanel.addStatsToGoodsTable(Stock.findGroup(String.valueOf(cbProductGroupSearch.getSelectedItem())).getProducts(),4);
+      if(!deTickAll.isVisible()) {
+          tablePanel.addStatsToGroupOFGoodsTable(Stock.getGroups(),3);
+          totalPriceOfGroup.setText(String.valueOf(Stock.getAllPrice()));
+      }
+      else {
+          tablePanel.addStatsToGoodsTable(Stock.findGroup(String.valueOf(cbProductGroupSearch.getSelectedItem())).getProducts(),4);
+          totalPriceOfGroup.setText(String.valueOf(Stock.findGroup(String.valueOf(cbProductGroupSearch.getSelectedItem())).getGroupPrice()));
+      }
     }
 
     //    private void addMouseListenersToBTNS() {
