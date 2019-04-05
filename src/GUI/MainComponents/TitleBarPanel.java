@@ -21,14 +21,15 @@ public class TitleBarPanel extends JPanel {
     JLabel background = new JLabel(new ImageIcon("images/mainFrame/titleBarBackground.jpg"));//background picture of title bar
     JLabel userProfilePic = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
 
-    static JLabel totalPrice = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
-    static JLabel totalAmount = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
+    private static JLabel totalPrice = new JLabel("0");//icon of user profile picture
+    private static JLabel totalAmount = new JLabel("0");//icon of user profile picture
+
     JTextField tfSearch = new JTextField();
 
 
     public TitleBarPanel() {
-        setLayout(AppStyles.gridBagLayout);
-        background.setLayout(AppStyles.gridBagLayout);
+        setLayout(null);
+        background.setLayout(null);
         //set size of toll bar panel
         {
             setSize(new Dimension(915, 35));
@@ -37,7 +38,7 @@ public class TitleBarPanel extends JPanel {
             setMinimumSize(new Dimension(915, 35));
         }
 
-        //set size of cancel button
+      /*  //set size of cancel button
         {
             btnCancel.setSize(new Dimension(28, 28));
             btnCancel.setPreferredSize(new Dimension(28, 28));
@@ -67,7 +68,7 @@ public class TitleBarPanel extends JPanel {
             userNameLabel.setForeground(AppStyles.MainColor);
             userNameLabel.setFont(AppStyles.untitled);
         }
-
+*/
         //set style of search text field
         {
             tfSearch.setOpaque(false);
@@ -80,13 +81,23 @@ public class TitleBarPanel extends JPanel {
         {
 
 
-            add(background, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 0, 0, 0), 0, 0));
-            background.add(tfSearch, new GridBagConstraints(0, 0, 1, 1, 0.1, 1,
-                    GridBagConstraints.WEST, GridBagConstraints.CENTER,
-                    new Insets(0, 65, 3, 0), 140, 0));
-            background.add(userProfilePic, new GridBagConstraints(1, 0, 1, 1, 0.001, 1,
+            add(background);
+            background.setBounds(0, 0, 914, 35);
+            background.add(tfSearch);
+            background.add(btnCancel);
+            background.add(userProfilePic);
+            background.add(userNameLabel);
+            background.add(btnMinimize);
+            background.add(totalPrice);
+            background.add(totalAmount);
+            tfSearch.setBounds(70, 4, 140, 24);
+            btnCancel.setBounds(881, 4, 26, 26);
+            totalPrice.setBounds(335, 4, 60, 24);
+            totalAmount.setBounds(500, 4, 60, 24);
+            userProfilePic.setBounds(716, 3, 31, 31);
+            userNameLabel.setBounds(750, 5, 100, 26);
+            btnMinimize.setBounds(847, 3, 26, 26);
+           /* background.add(userProfilePic, new GridBagConstraints(1, 0, 1, 1, 0.001, 1,
                     GridBagConstraints.EAST, GridBagConstraints.CENTER,
                     new Insets(0, 0, 0, 0), 0, 0));
             background.add(userNameLabel, new GridBagConstraints(2, 0, 1, 1, 0.01, 1,
@@ -97,7 +108,7 @@ public class TitleBarPanel extends JPanel {
                     new Insets(0, 0, 0, 2), 0, 0));
             background.add(btnCancel, new GridBagConstraints(4, 0, 1, 1, 0.0012, 1,
                     GridBagConstraints.EAST, GridBagConstraints.CENTER,
-                    new Insets(0, 0, 0, 3), 0, 0));
+                    new Insets(0, 0, 0, 3), 0, 0));*/
         }
 
         //add mouse listener to close and minimize btn
@@ -155,7 +166,16 @@ public class TitleBarPanel extends JPanel {
         totalPrice.setText(String.valueOf(Stock.getAllPrice()));
     }
 
-    public static void setUserName(){
+    public static void setUserName() {
         userNameLabel.setText(Stock.getLoginUser().getName());
+    }
+    public static void setTotalPrice(int price) {
+        price += Integer.valueOf(totalPrice.getText());
+        totalPrice.setText(String.valueOf(price));
+    }
+
+    public static void setTotalAmount(int amount) {
+        amount += Integer.valueOf(totalAmount.getText());
+        totalAmount.setText(String.valueOf(amount));
     }
 }
