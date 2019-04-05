@@ -6,6 +6,7 @@ import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
 import GUI.General.TablePanel;
+import GUI.MainComponents.TitleBarPanel;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -225,6 +226,7 @@ public class ProductEditingPanel extends JPanel {
                 product.setGroupProducts((GroupOfProduct) cbNewGroup.getSelectedItem());
                 product.setProductName(tfNewProductName.getText());
                 Stock.saveData();
+                TitleBarPanel.setStats();
                 taNewDescription.setText("");
                 taOldDescription.setText("");
                 tfNewProductName.setText("");

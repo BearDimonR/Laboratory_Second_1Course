@@ -1,10 +1,11 @@
 package GUI.Search;
 
 import BackGround.Stock;
-import BackGround.Utilities;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -32,7 +33,7 @@ public class StatisticPanel extends JPanel {
         addElementsToBackgroundHeader();
         addElementsToTableBackgroundBody();
         setDefaultVisibility();
-        cheakBox();
+        checkBox();
         btnModeSwitchOn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -60,13 +61,16 @@ public class StatisticPanel extends JPanel {
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
-  //              updateTable(group);
+                update();
+            }
+        });
+        cbProductGroupSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
             }
         });
 
-        tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
     }
 
     private void addElementsToBackgroundHeader() {
@@ -99,14 +103,19 @@ public class StatisticPanel extends JPanel {
         deTickGroup.setVisible(true);
     }
 
-    public void cheakBox() {
+    public void checkBox() {
         cbProductGroupSearch.removeAllItems();
         for (int i = 0; i < Stock.getGroups().size(); i++) {
             cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
         }
     }
 
-//    private void addMouseListenersToBTNS() {
+    public void update() {
+      if(!deTickAll.isVisible())  tablePanel.addStatsToGroupOFGoodsTable(Stock.getGroups(),3);
+      else tablePanel.addStatsToGoodsTable(Stock.findGroup(String.valueOf(cbProductGroupSearch.getSelectedItem())).getProducts(),4);
+    }
+
+    //    private void addMouseListenersToBTNS() {
 //        btnFind.addMouseListener(new MouseAdapter() {
 //            @Override
 //            public void mouseClicked(MouseEvent e) {

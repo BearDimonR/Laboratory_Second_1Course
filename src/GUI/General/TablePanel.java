@@ -23,6 +23,8 @@ import java.util.ArrayList;
 public class TablePanel extends JPanel {
     private  String[] GoodsTitles = {"id", "Product", "Group", "Manufacturer", "Price"};
     private  String[] GroupTitles = {"id", "Group of products"};
+    private String[] GroupStats = {"id","Group of products","Total price","Total amount","Description"};
+    private String[] GoodsStats = {"id","Product","Manufacturer","Price","Amount","Description"};
     private  JTable table = new JTable();
     private JScrollPane scrollPane = new JScrollPane(table);
     private JList studentList = new JList();
@@ -54,11 +56,6 @@ public class TablePanel extends JPanel {
             productLine[4] = String.valueOf(products.get(i).getPrice());
             objects[i] = productLine;
         }
-
-
-//        model.setDataVector(studs, titles);
-//        table.setModel(model);
-
         setModel(objects,titleNum);
 
     }
@@ -80,6 +77,10 @@ public class TablePanel extends JPanel {
                 return GoodsTitles;
             case 2:
                 return GroupTitles;
+            case 3:
+                return GroupStats;
+            case 4:
+                return GoodsStats;
             default:
                 return GoodsTitles;
         }
@@ -128,6 +129,33 @@ public class TablePanel extends JPanel {
     }
 
 
+    public void addStatsToGroupOFGoodsTable(ArrayList<GroupOfProduct> groups, int titleNum) {
+        Object[][] objects = new Object[groups.size()][];
+        for (int i = 0; i < groups.size(); i++) {
+            String[] groupLine = new String[5];
+            groupLine[0] = (i + 1) + ".";
+            groupLine[1] = groups.get(i).getName();
+            groupLine[2] = String.valueOf(groups.get(i).getGroupPrice());
+            groupLine[3] = String.valueOf(groups.get(i).getGroupAmount());
+            groupLine[4] = groups.get(i).getDescription();
+            objects[i] = groupLine;
+        }
+        setModel(objects,titleNum);
+    }
 
+    public void addStatsToGoodsTable(ArrayList<Product> products, int titleNum) {
+        Object[][] objects = new Object[products.size()][];
+        for (int i = 0; i < products.size(); i++) {
+            String[] productLine = new String[6];
+            productLine[0] = (i + 1) + ".";
+            productLine[1] = products.get(i).getProductName();
+            productLine[2] = products.get(i).getManufacturer();
+            productLine[3] = String.valueOf(products.get(i).getPrice());
+            productLine[4] = String.valueOf(products.get(i).getQuantityInStock());
+            productLine[5] = products.get(i).getDescription();
+            objects[i] = productLine;
+        }
+        setModel(objects,titleNum);
+    }
 
 }

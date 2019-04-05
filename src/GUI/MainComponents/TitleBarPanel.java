@@ -162,20 +162,20 @@ public class TitleBarPanel extends JPanel {
     }
 
     public static void setStats() {
-
-        totalPrice.setText(String.valueOf(Stock.getAllPrice()));
+        setUserName();
+        setTotalAmount(Stock.getAllAmount());
+        setTotalPrice(Stock.getAllPrice());
     }
 
     public static void setUserName() {
         userNameLabel.setText(Stock.getLoginUser().getName());
     }
-    public static void setTotalPrice(int price) {
-        price += Integer.valueOf(totalPrice.getText());
+
+    public static void setTotalPrice(double price) {
         totalPrice.setText(String.valueOf(price));
     }
 
     public static void setTotalAmount(int amount) {
-        amount += Integer.valueOf(totalAmount.getText());
         totalAmount.setText(String.valueOf(amount));
     }
 }

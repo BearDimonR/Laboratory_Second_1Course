@@ -4,6 +4,7 @@ import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
 import GUI.General.TablePanel;
+import GUI.MainComponents.TitleBarPanel;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
@@ -86,6 +87,7 @@ setStyleOfHeader();
                 if(tablePanel.getSelectedGroup() == null) return;
                 Stock.getGroups().remove(tablePanel.getSelectedGroup());
                 Stock.saveData();
+                TitleBarPanel.setStats();
                 tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
             }
         });

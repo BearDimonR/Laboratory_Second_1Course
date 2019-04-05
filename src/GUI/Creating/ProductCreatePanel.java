@@ -3,6 +3,7 @@ package GUI.Creating;
 import BackGround.Product;
 import BackGround.Stock;
 import GUI.General.AppStyles;
+import GUI.MainComponents.TitleBarPanel;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
@@ -101,6 +102,7 @@ public class ProductCreatePanel extends JPanel {
                 Stock.getGroups().get(cbProductGroup.getSelectedIndex()).addProduct(new Product(Stock.getGroups().get(cbProductGroup.getSelectedIndex()),
                         tfProductName.getText(), tfManufacturer.getText(), Double.valueOf(tfPrice.getText())));
                 Stock.saveData();
+                TitleBarPanel.setStats();
                 setDefaultTextToTF();
                 setAllFieldsForegroundDeselected();
                 setFocusOnNameTF();

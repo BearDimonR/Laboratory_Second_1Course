@@ -1,5 +1,6 @@
 package BackGround;
 
+import GUI.MainComponents.TitleBarPanel;
 import com.sun.jdi.request.ExceptionRequest;
 
 import java.io.*;

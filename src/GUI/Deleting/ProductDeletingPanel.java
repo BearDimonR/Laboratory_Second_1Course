@@ -4,6 +4,7 @@ import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
 import GUI.General.TablePanel;
+import GUI.MainComponents.TitleBarPanel;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
@@ -126,6 +127,7 @@ public class ProductDeletingPanel extends JPanel {
                 if(tablePanel.getSelectedProduct() == null) return;
                 tablePanel.getSelectedProduct().getGroupProducts().removeProduct(tablePanel.getSelectedProduct());
                 Stock.saveData();
+                TitleBarPanel.setStats();
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
             }
         });
