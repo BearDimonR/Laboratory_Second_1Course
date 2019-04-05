@@ -17,13 +17,16 @@ public class Main {
 //
 //        Stock.getGroups().add(groupOfProduct);
 //        Stock.getGroups().add(groupOfProduct1);
+//        Stock.saveData();
 //        Stock.getUsers().add(new User("Vasia","petro228","admin"));
 //        Stock.saveUsers();
-        Stock.loadData();
-        Stock.addUsers();
-        System.out.println(Stock.getUsers().get(2).isAdmin());
-        Stock.saveUsers();
-        new App().main(null);
+
+
+       Stock.loadData();
+       Stock.loadUsers();
+       Stock.addUsers();
+       Stock.saveUsers();
+       new App().main(null);
 
     }
 }

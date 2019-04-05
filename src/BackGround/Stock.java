@@ -4,6 +4,7 @@ import com.sun.jdi.request.ExceptionRequest;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Stock {
 
@@ -65,6 +66,14 @@ public class Stock {
         return res;
     }
 
+    public static int getAllAmount(){
+        int res = 0;
+        for(int i=0;i<groups.size();i++){
+            res += groups.get(i).getGroupAmount();
+        }
+        return res;
+    }
+
     public static void loadData() {
         groups = (ArrayList<GroupOfProduct>) load("dataStore\\DataStock");
     }
@@ -75,8 +84,8 @@ public class Stock {
 
     public static ArrayList load(String name){
         try {
-            ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(name));
-            ArrayList arrayList = new ArrayList<>();
+            ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(new File(name)));
+            ArrayList arrayList;
             arrayList = (ArrayList<Object>) objectInput.readObject();
             objectInput.close();
             return arrayList;
@@ -91,7 +100,7 @@ public class Stock {
     }
 
     public static void saveUsers() {
-        save(groups,"dataStore\\UserStock");
+        save(users,"dataStore\\UserStock");
         saveNamePasswords();
     }
 
@@ -110,7 +119,7 @@ public class Stock {
 
     public static void save(ArrayList arrayList,String name) {
         try {
-            ObjectOutputStream objectOutput = new ObjectOutputStream(new FileOutputStream("name"));
+            ObjectOutputStream objectOutput = new ObjectOutputStream(new FileOutputStream(name));
             objectOutput.writeObject(arrayList);
             objectOutput.close();
         } catch (IOException e) {

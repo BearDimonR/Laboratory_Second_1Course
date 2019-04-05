@@ -1,5 +1,6 @@
 package GUI.MainComponents;
 
+import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
 import GUI.General.App;
@@ -16,12 +17,12 @@ import static BackGround.Utilities.Search;
 public class TitleBarPanel extends JPanel {
     JLabel btnCancel = new JLabel(new ImageIcon("images/mainFrame/cancelBTN.jpg"));//icon of cancel btn
     JLabel btnMinimize = new JLabel(new ImageIcon("images/mainFrame/minimiseBTN.jpg"));//icon of minimize btn
-    JLabel userNameLabel = new JLabel("User name");// label which contains user name info
+    static JLabel userNameLabel = new JLabel("User name");// label which contains user name info
     JLabel background = new JLabel(new ImageIcon("images/mainFrame/titleBarBackground.jpg"));//background picture of title bar
     JLabel userProfilePic = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
 
-    JLabel totalPrice = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
-    JLabel totalAmount = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
+    static JLabel totalPrice = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
+    static JLabel totalAmount = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
     JTextField tfSearch = new JTextField();
 
 
@@ -146,10 +147,15 @@ public class TitleBarPanel extends JPanel {
 
     }
     private void  updateTable(String search){
-
         //tablePanel.addDataToGoodsTable(Utilities.Search(search), 1);
-
     }
 
+    public static void setStats() {
 
+        totalPrice.setText(String.valueOf(Stock.getAllPrice()));
+    }
+
+    public static void setUserName(){
+        userNameLabel.setText(Stock.getLoginUser().getName());
+    }
 }
