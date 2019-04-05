@@ -1,12 +1,13 @@
 package GUI.Login;
 
+import BackGround.Stock;
+import BackGround.User;
 import GUI.General.App;
 import GUI.General.AppStyles;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class LoginFrame extends JFrame {
     JTextField loginField = new JTextField();
@@ -30,6 +31,21 @@ public class LoginFrame extends JFrame {
             loginField.setForeground(AppStyles.MainColor);
             loginField.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
+            loginField.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    if (!Character.isDigit(e.getKeyChar()) && !Character.isAlphabetic(e.getKeyChar()) && e.getKeyChar() != '_')
+                        e.consume();
+                }
+            });
+            passwordField.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    if(e.getKeyChar()<=32) e.consume();
+                }
+            });
+        }
+
             passwordField.setFont(AppStyles.appH1Font);
             passwordField.setForeground(AppStyles.MainColor);
             passwordField.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -39,10 +55,16 @@ public class LoginFrame extends JFrame {
             logInBTN.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    App.makeMainFrameVisible();
+                    if(Stock.findUserByName(loginField.getText()) == null) ;//set red color of the login
+                    else  {
+                        User user = Stock.findUserByName(loginField.getText());
+                        String password = String.valueOf(passwordField.getPassword());
+                        if(user.getPassword().equals(password)) {
+                            Stock.setLoginUser(user);
+                            App.makeMainFrameVisible();
+                        } else ;//set red color of the password
+                    }
                 }
             });
         }
     }
-
-}

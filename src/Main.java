@@ -1,6 +1,7 @@
 import BackGround.GroupOfProduct;
 import BackGround.Product;
 import BackGround.Stock;
+import BackGround.User;
 import GUI.General.App;
 
 import java.util.Arrays;
@@ -16,7 +17,12 @@ public class Main {
 //
 //        Stock.getGroups().add(groupOfProduct);
 //        Stock.getGroups().add(groupOfProduct1);
+//        Stock.getUsers().add(new User("Vasia","petro228","admin"));
+//        Stock.saveUsers();
         Stock.loadData();
+        Stock.addUsers();
+        System.out.println(Stock.getUsers().get(2).isAdmin());
+        Stock.saveUsers();
         new App().main(null);
 
     }
