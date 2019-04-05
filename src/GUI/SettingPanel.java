@@ -62,6 +62,7 @@ public class SettingPanel extends JPanel {
         changePictureBTN.setBounds(64,569,212,32);
          setStyleOfWorkerChooser();
          addListenersToBTNS();
+         addListenersToTickBTNS();
     }
     private void setStyleOfWorkerChooser(){
         workerChoser.setBackground(Color.WHITE);
@@ -81,5 +82,92 @@ public class SettingPanel extends JPanel {
             }
         });
     }
+    private void addListenersToTickBTNS(){
+        createTick.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                createTick.setVisible(false);
+                deCreateTick.setVisible(true);
+            }
+        });
+        deCreateTick.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                createTick.setVisible(true);
+                deCreateTick.setVisible(false);
+            }
+        });
+        editTick.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                editTick.setVisible(false);
+                deEditTick.setVisible(true);
+            }
+        });
+        deEditTick.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                editTick.setVisible(true);
+                deEditTick.setVisible(false);
+            }
+        });
+        deleteTick.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                deleteTick.setVisible(false);
+                deDeleteTick.setVisible(true);
+            }
+        });
+        deDeleteTick.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                deleteTick.setVisible(true);
+                deDeleteTick.setVisible(false);
+            }
+        });
+        quantityTick.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                quantityTick.setVisible(false);
+                deQuantityTick.setVisible(true);
+            }
+        });
+        deQuantityTick.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                quantityTick.setVisible(true);
+                deQuantityTick.setVisible(false);
+            }
+        });
+        searchTick.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                searchTick.setVisible(false);
+                deSearchTick.setVisible(true);
+            }
+        });
+        deSearchTick.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                searchTick.setVisible(true);
+                deSearchTick.setVisible(false);
+            }
+        });
+        blockTick.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                blockTick.setVisible(false);
+                deBlockTick.setVisible(true);
+            }
+        });
+        deBlockTick.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                blockTick.setVisible(true);
+                deBlockTick.setVisible(false);
+            }
+        });
+    }
 }
+
 
