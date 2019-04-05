@@ -20,14 +20,13 @@ import java.util.regex.Pattern;
 public class GroupEditingPanel extends JPanel {
 
     private JLabel btnEdit = new JLabel(new ImageIcon("images/editBTN.jpg"));
-    private JLabel btnDesEdit = new JLabel(new ImageIcon("images/deselectedEditBTN.jpg"));
     private JLabel backgroundHeader = new JLabel(new ImageIcon("images/editComponents/groupEditHeader.jpg"));
     private JLabel tableBodyBackground = new JLabel(new ImageIcon("images/tableGroupBodyBackground.jpg"));
     private JLabel editFieldsBodyBackground = new JLabel(new ImageIcon("images/editComponents/groupEditBody.jpg"));
     private JLabel btnFind = new JLabel(new ImageIcon("images/findHorizontalBTN.jpg"));
     private JTextField tfNewGroupName = new JTextField();
     private JTextArea taNewDescription = new JTextArea();
-    private JLabel lbOldGroupName = new JLabel();
+    private JTextField tfOldGroupName = new JTextField();
     private JTextArea taOldDescription = new JTextArea();
     private JScrollPane spNewDescription = new JScrollPane(taNewDescription);
     private JScrollPane spOldDescription = new JScrollPane(taOldDescription);
@@ -43,10 +42,10 @@ public class GroupEditingPanel extends JPanel {
         tableBodyBackground.setLayout(null);
         tableBodyBackground.setVisible(true);
         editFieldsBodyBackground.setVisible(false);
+        tfOldGroupName.setEditable(false);
         taOldDescription.setEditable(false);
-
+        //to edit
         btnEdit.setVisible(false);
-
 
         tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(), 2);
         tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -55,7 +54,7 @@ public class GroupEditingPanel extends JPanel {
                 if (tablePanel.getTable().getSelectedRow() == -1) return;
                 tableBodyBackground.setVisible(false);
                 editFieldsBodyBackground.setVisible(true);
-                lbOldGroupName.setText(tablePanel.getSelectedGroup().getName());
+                tfOldGroupName.setText(tablePanel.getSelectedGroup().getName());
                 taOldDescription.setText(tablePanel.getSelectedGroup().getDescription());
                 tfNewGroupName.setText(tablePanel.getSelectedGroup().getName());
                 taNewDescription.setText(tablePanel.getSelectedGroup().getDescription());
@@ -65,7 +64,6 @@ public class GroupEditingPanel extends JPanel {
         addMouseListenersToBTNS();
 
         setStyleOfHeaderElements();
-        setStyleOfUserInputElements();
     }
 
     /**
@@ -87,13 +85,13 @@ public class GroupEditingPanel extends JPanel {
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
 
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(MouseEvent e){
 //                if(tfGroupNameSearch.getText().matches("[ ]*")==false
 //
 //                ){
                 //метод додавання інформації до таблиці перший параметр - масив груп, другий елемент - тип таблиці (1 - goods, 2-group)
                 //tablePanel.addDataToGroupOFGoodsTable(,2);
-                System.out.println("кнопка FIND натиснута");
+                System.out.println("кнопка FIND натиснута" );
                 updateTable(tfGroupNameSearch.getText());
                 //               }
             }
@@ -103,6 +101,8 @@ public class GroupEditingPanel extends JPanel {
         btnEdit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                //setVisible to edit
+                if (!btnEdit.isVisible()) return;
                 GroupOfProduct group = tablePanel.getSelectedGroup();
                 tablePanel.getTable().clearSelection();
                 group.setDescription(taNewDescription.getText());
@@ -111,7 +111,7 @@ public class GroupEditingPanel extends JPanel {
                 taNewDescription.setText("");
                 taOldDescription.setText("");
                 tfNewGroupName.setText("");
-                lbOldGroupName.setText("");
+                tfOldGroupName.setText("");
                 tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(), 2);
                 editFieldsBodyBackground.setVisible(false);
                 tableBodyBackground.setVisible(true);
@@ -149,10 +149,10 @@ public class GroupEditingPanel extends JPanel {
     private void checkFields() {
         Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfNewGroupName.getText());
         //setVisible to edit
-        if (!matcher.matches() || tfNewGroupName.getText().length() > 20) setEditDisabled();
-        else if (taNewDescription.getText() == null || taNewDescription.getText().equals("")) setEditDisabled();
-        else if (Stock.findProductByName(tfNewGroupName.getText()) != null) setEditDisabled();
-        else setEditEnable();
+        if (!matcher.matches() || tfNewGroupName.getText().length() > 20) btnEdit.setVisible(false);
+        else if (taNewDescription.getText() == null || taNewDescription.getText().equals("")) btnEdit.setVisible(false);
+        else if (Stock.findProductByName(tfNewGroupName.getText()) != null) btnEdit.setVisible(false);
+        else btnEdit.setVisible(true);
     }
 
     /**
@@ -177,20 +177,18 @@ public class GroupEditingPanel extends JPanel {
      * Method adds elements to body with txt fields
      */
     private void addElementsToBodyPanel() {
-        editFieldsBodyBackground.add(lbOldGroupName);
+        editFieldsBodyBackground.add(tfOldGroupName);
         editFieldsBodyBackground.add(spOldDescription);
         editFieldsBodyBackground.add(tfNewGroupName);
         editFieldsBodyBackground.add(spNewDescription);
         editFieldsBodyBackground.add(btnEdit);
-        editFieldsBodyBackground.add(btnDesEdit);
         editFieldsBodyBackground.add(arrowBack);
-        arrowBack.setBounds(20, 0, 26, 26);
-        lbOldGroupName.setBounds(112, 123, 305, 20);
+        arrowBack.setBounds(0, 0, 26, 26);
+        tfOldGroupName.setBounds(112, 124, 305, 20);
         spOldDescription.setBounds(110, 181, 305, 120);
         tfNewGroupName.setBounds(536, 124, 305, 20);
         spNewDescription.setBounds(536, 181, 305, 120);
         btnEdit.setBounds(375, 410, 165, 40);
-        btnDesEdit.setBounds(375, 410, 165, 40);
 
     }
 
@@ -216,7 +214,7 @@ public class GroupEditingPanel extends JPanel {
 
     public void updateTable(String group) {
 
-        tablePanel.addDataToGroupOFGoodsTable(Utilities.mainSearch2(group), 1);
+        tablePanel.addDataToGroupOFGoodsTable(Utilities.mainSearch2(group ), 1);
         //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
 
     }
@@ -224,46 +222,10 @@ public class GroupEditingPanel extends JPanel {
     /**
      * Method set style of elements which are on header
      */
-    private void setStyleOfHeaderElements() {
+    private void setStyleOfHeaderElements(){
         tfGroupNameSearch.setFont(AppStyles.appH2Font);
         tfGroupNameSearch.setForeground(AppStyles.MainColor);
         tfGroupNameSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-
-
-    }
-
-    /**
-     * Method set style of elements which are on header
-     */
-    private void setStyleOfUserInputElements() {
-        lbOldGroupName.setFont(AppStyles.appH2Font);
-        lbOldGroupName.setForeground(AppStyles.MainColor);
-        lbOldGroupName.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        tfNewGroupName.setFont(AppStyles.appH2Font);
-        tfNewGroupName.setForeground(AppStyles.MainColor);
-        tfNewGroupName.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        taOldDescription.setFont(AppStyles.appH2Font);
-        taOldDescription.setForeground(AppStyles.MainColor);
-        spOldDescription.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        taNewDescription.setFont(AppStyles.appH2Font);
-        taNewDescription.setForeground(AppStyles.MainColor);
-        spNewDescription.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-    }
-
-    /**
-     * Method set edit button in disabled mode
-     */
-    private void setEditEnable() {
-        btnEdit.setVisible(true);
-        btnDesEdit.setVisible(false);
-    }
-
-    /**
-     * Method set edit button in disabled mode
-     */
-    private void setEditDisabled() {
-        btnEdit.setVisible(false);
-        btnDesEdit.setVisible(true);
     }
 
     TablePanel getTablePanel() {

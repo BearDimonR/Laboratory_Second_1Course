@@ -2,12 +2,11 @@ package GUI.Deleting;
 
 import BackGround.Stock;
 import BackGround.Utilities;
-import GUI.General.AppStyles;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-import java.awt.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -26,13 +25,13 @@ public class GroupDeletingPanel extends JPanel {
         tableBackground.setLayout(null);
         add(backgroundHeader);
         add(tableBackground);
-        addElementsToGroupDeletePanel();
+        addElementsToGroupDeltePanel();
         addListners();
-setStyleOfHeader();
+
         tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
     }
 
-    private void addElementsToGroupDeletePanel() {
+    private void addElementsToGroupDeltePanel() {
         backgroundHeader.setBounds(0, 0, 914, 117);
         tableBackground.setBounds(0, 117, 914, 549);
         addElementsToHeaderBackground();
@@ -57,7 +56,7 @@ setStyleOfHeader();
 
     }
 
-     TablePanel getTablePanel() {
+    TablePanel getTablePanel() {
         return tablePanel;
     }
 
@@ -70,8 +69,8 @@ setStyleOfHeader();
 //
 //                ){
                 System.out.println("кнопка FIND натиснута" );
-                    updateTable(tfGroupNameSearch.getText());
-                              }
+                updateTable(tfGroupNameSearch.getText());
+            }
 //            }
         });
         modeSwitchOn.addMouseListener(new MouseAdapter() {
@@ -95,10 +94,6 @@ setStyleOfHeader();
 
         tablePanel.addDataToGroupOFGoodsTable(Utilities.mainSearch2(group ), 1);
         //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
-    }
-    private void setStyleOfHeader(){
-        tfGroupNameSearch.setFont(AppStyles.appH2Font);
-        tfGroupNameSearch.setForeground(AppStyles.MainColor);
-        tfGroupNameSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+
     }
 }

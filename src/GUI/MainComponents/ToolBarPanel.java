@@ -50,8 +50,8 @@ public class ToolBarPanel extends JPanel {
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(75, 0, 0, 0), 0, 0));
             toolBarBackground.add(btnDeselectedCreate, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
-                GridBagConstraints.NORTH, GridBagConstraints.NORTH,
-                new Insets(75, 0, 0, 0), 0, 0));
+                    GridBagConstraints.NORTH, GridBagConstraints.NORTH,
+                    new Insets(75, 0, 0, 0), 0, 0));
             toolBarBackground.add(btnSelectedEdit, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(160, 0, 0, 0), 0, 0));

@@ -19,15 +19,11 @@ public class TitleBarPanel extends JPanel {
     JLabel userNameLabel = new JLabel("User name");// label which contains user name info
     JLabel background = new JLabel(new ImageIcon("images/mainFrame/titleBarBackground.jpg"));//background picture of title bar
     JLabel userProfilePic = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
-
-    JLabel totalPrice = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
-    JLabel totalAmount = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
-    JTextField tfSearch = new JTextField();
-
+    public static  JTextField tfSearch = new JTextField();
 
     public TitleBarPanel() {
         setLayout(AppStyles.gridBagLayout);
-        background.setLayout(AppStyles.gridBagLayout);
+
         //set size of toll bar panel
         {
             setSize(new Dimension(915, 35));
@@ -77,8 +73,6 @@ public class TitleBarPanel extends JPanel {
 
         //add elements to title bar
         {
-
-
             add(background, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));
