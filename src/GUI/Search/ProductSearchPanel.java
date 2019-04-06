@@ -2,12 +2,14 @@ package GUI.Search;
 
 import BackGround.Stock;
 import BackGround.Utilities;
+import GUI.Editing.ProductEditingPanel;
 import GUI.General.TablePanel;
+import GUI.MainComponents.ContentPanel;
 import GUI.MainComponents.TitleBarPanel;
+import GUI.MainComponents.ToolBarPanel;
 
 import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class ProductSearchPanel extends JPanel {
     JLabel backgroundHeader = new JLabel(new ImageIcon("images/Search/SearchHeader.jpg"));
@@ -19,7 +21,7 @@ public class ProductSearchPanel extends JPanel {
     private JTextField tfHighestPriceSearch = new JTextField();
     private JComboBox cbProductGroupSearch = new JComboBox();
     private static JLabel btnModeSwitchOff = new JLabel(new ImageIcon("images/groupCreateModeOffBTN.png"));
-    private TablePanel tablePanel = new TablePanel(1);
+    public static   TablePanel tablePanel = new TablePanel(1);
 
     public ProductSearchPanel() {
         setLayout(null);
@@ -38,7 +40,7 @@ public class ProductSearchPanel extends JPanel {
                 SearchPanel.showStatistickPanel();
             }
         });
-        addMouseListenersToBTNS();
+        addEctionListener();
         cheakBox();
     }
 
@@ -57,9 +59,43 @@ public class ProductSearchPanel extends JPanel {
         cbProductGroupSearch.setBounds(648, 74, 227, 17);
         tfLowestPriceearch.setBounds(649, 114, 60, 18);
         tfHighestPriceSearch.setBounds(756, 114, 60, 18);
-        tablePanel.addDataToGoodsTable(Utilities.Search(TitleBarPanel.tfSearch.getText()),1);
-        System.out.println(Utilities.Search(TitleBarPanel.tfSearch.getText())+")");
+
+        addKeyListener();
+         //   tablePanel.addDataToGoodsTable(Utilities.Search(TitleBarPanel.tfSearch.getText()), 1);
+            System.out.println(TitleBarPanel.tfSearch.getText() + "=search1");
+            // tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+
+
     }
+private void addKeyListener(){
+    TitleBarPanel.tfSearch.addKeyListener(new KeyListener() {
+        @Override
+        public void keyTyped(KeyEvent e) {
+            System.out.println("77777");
+            System.out.println(TitleBarPanel.tfSearch.getText()+"=search");
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            System.out.println("88888");
+            System.out.println(TitleBarPanel.tfSearch.getText()+"=search");
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                System.out.println("99999");
+                System.out.println(TitleBarPanel.tfSearch.getText()+"=search");
+                String group = TitleBarPanel.tfSearch.getText();
+               // tablePanel.addDataToGoodsTable(Utilities.mainSearch(group,group,group,0,50), 1);
+               // tablePanel.addDataToGoodsTable(Utilities.Search(group), 1);
+
+            }
+        }
+    });
+}
+
+
 
     private void addElementsToTableBackgroundBody() {
         tableBackground.add(tablePanel);
@@ -71,17 +107,17 @@ public class ProductSearchPanel extends JPanel {
 
             public void mouseClicked(MouseEvent e){
                 System.out.println("1234567890");
-//                String group = (String ) String.valueOf(cbProductGroupSearch.getSelectedItem());
-//                if(tfProductNameSearch.getText().matches("[ ]*")==false||
-//                        tfManufacturerSearch.getText().matches("[ ]*")==false||
-//                        tfLowestPriceearch.getText().matches("[ ]*")==false||
-//                        tfHighestPriceSearch.getText().matches("[ ]*")==false
-//                        || group.matches("[ ]*")==false
-//                ){
-//
-//                    updateTable();
-//
-//                }
+                String group = (String ) String.valueOf(cbProductGroupSearch.getSelectedItem());
+                if(tfproductNameSearch.getText().matches("[ ]*")==false||
+                        tfManufacturerSearch.getText().matches("[ ]*")==false||
+                        tfLowestPriceearch.getText().matches("[ ]*")==false||
+                        tfHighestPriceSearch.getText().matches("[ ]*")==false
+                        || group.matches("[ ]*")==false
+                ){
+
+                 updateTable();
+
+                }
             }
         });
     }
@@ -92,15 +128,7 @@ public class ProductSearchPanel extends JPanel {
         }
     }
 
-    private void addMouseListenersToBTNS() {
-        btnFind.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("pidr");
-                updateTable();
-            }
-        });
-    }
+
 
     private void updateTable() {
         String group = (String) cbProductGroupSearch.getSelectedItem();

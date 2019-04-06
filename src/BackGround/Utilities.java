@@ -1,5 +1,6 @@
 package BackGround;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -18,41 +19,80 @@ public class Utilities {
 
     public static ArrayList Search(String line) {
         ArrayList<Product> spaceLine = Stock.getAllProducts();
-        ArrayList<Product> array= new ArrayList<>();
-        if ( line.equals("[ ]*")) {
-            System.out.println("incorrect ");
 
+        if (line.equals("[ ]*") || line.equals("")) {
+            System.out.println("incorrect ");
             return spaceLine;
         } else {
             System.out.println("line = '" + line + "'");
 
-            //if (line.equals("[ ]*[0-9]+[.]?[0-9]*[ ]*")) {
+            //якщо це число одне
             if (line.matches("[ ]*[0-9]+[.]?[0-9]*[ ]*") == true) {
                 System.out.println("number");
                 line = line.replaceAll(" ", "");
                 double num = Double.valueOf(line);
-                for (int i = 0; i < product.size(); i++) {
-                    if ((product.get(i).getPrice() == num || product.get(i).getQuantityInStock() == num))
-                        array.add(product.get(i));
-
+                System.out.println("num=" + num);
+                for (int i = 0; i < spaceLine.size(); i++) {
+                    //if ((spaceLine.get(i).getPrice() != num && spaceLine.get(i).getQuantityInStock() != num))
+                    if ((spaceLine.get(i).getPrice() != num && spaceLine.get(i).getQuantityInStock() != num)) {
+                        spaceLine.remove(i);
+                        i--;
+                    }
                 }
+                return spaceLine;
             }
-            //else if (line.equals("[ ]*[A-Za-z]+[ ]*")) {
-            else if (line.matches("[ ]*[A-Za-zА-Яа-я]+[ ]*") == true) {
-                System.out.println("word");
+            //якщо це межа чисел
+            else if (line.matches("[ ]*[\\d]+[.]?[\\d]*[ ]*[-][ ]*[\\d]+[.]?[\\d]*[ ]*") == true) {
+                String[] array = line.split("-");
+                String prFrom = array[0];
+                String prTo = array[1];
+                prFrom = prFrom.replaceAll(" ", "");
+                prTo = prTo.replaceAll(" ", "");
+                double priceFrom = Double.parseDouble(prFrom);
+                double priceTo = Double.parseDouble(prTo);
+                spaceLine = findFromPriceTo(priceFrom, priceTo, spaceLine);
+                return spaceLine;
+            }
+
+            //else if (line.matches("[ ]*[A-Za-zА-Яа-яії]+[ ]*") == true)
+            else {
+                System.out.println("це слово");
                 line = line.replaceAll(" ", "");
-                for (int i = 0; i < product.size(); i++) {
-                    String group = (String) String.valueOf(product.get(i).getGroupProducts());
-                    if (    group.equals(line) ||
-                            product.get(i).getProductName().equals(line) ||
-                            product.get(i).getManufacturer().equals(line)
-                    )
-                        array.add(product.get(i));
+                System.out.println(spaceLine.size());
+                for (int i = 0; i < spaceLine.size(); i++) {
+                    String groupProduct = (String) String.valueOf(spaceLine.get(i).getGroupProducts());
+                    String product = "";
+                    String group = "";
+                    String manufacturer = "";
+                    for (int j = 0; j < line.length(); j++) {
+                        if (spaceLine.get(i).getProductName().length() > line.length())
+                            product += spaceLine.get(i).getProductName().charAt(j);
+                        if (groupProduct.length()>line.length())
+                            group += groupProduct.charAt(j);
+                        if (spaceLine.get(i).getManufacturer().length() > line.length())
+                            manufacturer += spaceLine.get(i).getManufacturer().charAt(j);
+                    }
+
+                    if (!(group.equals(line) ||
+                            product.equals(line) ||
+                            manufacturer.equals(line)
+                    )) {
+
+                        spaceLine.remove(i);
+                        i--;
+                    }
                 }
+                return spaceLine;
 
             }
-            System.out.println("dontWork");
-            return array;
+            //коли неправильни ввід
+//            else {
+//                JOptionPane.showMessageDialog(null,"Your write incorrect info","Arial",JOptionPane.ERROR_MESSAGE);
+//               // JOptionPane.showMessageDialog(null, "Справка","Reference",JOptionPane.QUESTION_MESSAGE);
+//                return null;
+//            }
+
+
         }
     }
 
@@ -66,9 +106,9 @@ public class Utilities {
             line = line.replaceAll(" ", "");
             String word = "";
             for (int i = 0; i < array.size(); i++) {
-            //    String s = String.valueOf(array.get(i).getGroupProducts());
+                //    String s = String.valueOf(array.get(i).getGroupProducts());
                 if (!(String.valueOf(array.get(i).getGroupProducts()).equals(line))) {
-                //if (!(array.get(i).getGroupProducts().equals(line))) {//????????????????????????????ВАЖЛИВО
+                    //if (!(array.get(i).getGroupProducts().equals(line))) {//????????????????????????????ВАЖЛИВО
                     System.out.println("удалило групу-" + array.get(i).getGroupProducts());
                     array.remove(i);
                     i--;
@@ -87,8 +127,8 @@ public class Utilities {
             line = line.replaceAll(" ", "");
             String word = "";
             for (int i = 0; i < array.size(); i++) {
-                for(int j = 0 ; j < line.length();j++){
-                    if(!(array.get(i).getName().length()<line.length())){
+                for (int j = 0; j < line.length(); j++) {
+                    if (!(array.get(i).getName().length() < line.length())) {
                         word += array.get(i).getName().charAt(j);
                     }
                 }
@@ -119,12 +159,12 @@ public class Utilities {
                         word += array.get(i).getProductName().charAt(j);
                     }
                 }
-              //  if (!(array.get(i).getProductName().equals(line))) {
+                //  if (!(array.get(i).getProductName().equals(line))) {
                 if (!(word.equals(line))) {
-                    System.out.println("удалило продукт" + array.get(i)+"   i="+i + "   array.size() = arr"+array.size()) ;
+                    System.out.println("удалило продукт" + array.get(i) + "   i=" + i + "   array.size() = arr" + array.size());
                     array.remove(i);
                     i--;
-                    System.out.println("word ='" + word+"'");
+                    System.out.println("word ='" + word + "'");
                 }
                 word = "";
             }
@@ -146,14 +186,14 @@ public class Utilities {
                 }
 
                 if (!(word.equals(line))) {
-               // if (word.equals(line)) {
-                    System.out.println("word ='" + word+"'");
+                    // if (word.equals(line)) {
+                    System.out.println("word ='" + word + "'");
                     System.out.println("удалило виробника");
                     System.out.println(array.get(i));
                     array.remove(i);
                     i--;
                 }
-                word="";
+                word = "";
             }
             return array;
         }
@@ -193,18 +233,17 @@ public class Utilities {
                 }
             }
             return array;
-        }
-        else if (priceTo==0&&priceFrom==0){
+        } else if (priceTo == 0 && priceFrom == 0) {
             return array;
-        } else{
+        } else {
 
-                for (int i = 0; i < array.size(); i++) {
-                    if (!(array.get(i).getPrice() >= priceFrom && array.get(i).getPrice() <= priceTo)) {
-                        array.remove(i);
-                        System.out.println("удалило ціну");
-                        i--;/////т тут чи требазавжди справно напевно тесту мало
-                    }
+            for (int i = 0; i < array.size(); i++) {
+                if (!(array.get(i).getPrice() >= priceFrom && array.get(i).getPrice() <= priceTo)) {
+                    array.remove(i);
+                    System.out.println("удалило ціну");
+                    i--;/////т тут чи требазавжди справно напевно тесту мало
                 }
+            }
 
             return array;
         }
@@ -228,7 +267,7 @@ public class Utilities {
 
     public static ArrayList<Product> mainSearch(String lineProductGroup, String lineProductName, String lineManufacturer, double priceFrom, double priceTo) {
         ArrayList<Product> copyArray = Stock.getAllProducts();
-         copyArray = findByGroup(lineProductGroup, copyArray);
+        copyArray = findByGroup(lineProductGroup, copyArray);
         System.out.println("сорт за групами" + copyArray);
         copyArray = findByProductName(lineProductName, copyArray);
         System.out.println("сорт за продуктами" + copyArray);
@@ -239,6 +278,7 @@ public class Utilities {
 
         return copyArray;
     }
+
     public static ArrayList<GroupOfProduct> mainSearch2(String lineProductGroup) {
         ArrayList<GroupOfProduct> copyArray = Stock.getAllGroup();
 
@@ -250,12 +290,13 @@ public class Utilities {
 
     /**
      * method which used in class StatisticPAanel to sort
+     *
      * @param group
      * @return
      */
-    public static ArrayList<Product> searchGroup(String group){
+    public static ArrayList<Product> searchGroup(String group) {
         ArrayList<Product> copyArray = Stock.getAllProducts();
-        copyArray = findByGroup(group,copyArray);
+        copyArray = findByGroup(group, copyArray);
         return copyArray;
     }
 

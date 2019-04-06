@@ -3,6 +3,7 @@ package GUI.MainComponents;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
 import GUI.General.App;
+import GUI.Search.ProductSearchPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ public class TitleBarPanel extends JPanel {
     JLabel userNameLabel = new JLabel("User name");// label which contains user name info
     JLabel background = new JLabel(new ImageIcon("images/mainFrame/titleBarBackground.jpg"));//background picture of title bar
     JLabel userProfilePic = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
-    public static  JTextField tfSearch = new JTextField();
+    public static JTextField tfSearch = new JTextField();
 
     public TitleBarPanel() {
         setLayout(AppStyles.gridBagLayout);
@@ -118,30 +119,37 @@ public class TitleBarPanel extends JPanel {
 //            });
             tfSearch.addKeyListener(new KeyListener() {
                 @Override
-                public void keyTyped(KeyEvent e) {
-                }
-
+                public void keyTyped(KeyEvent e) { }
                 @Override
-                public void keyPressed(KeyEvent e) {
-                }
-
+                public void keyPressed(KeyEvent e) { }
                 @Override
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        ToolBarPanel.deselectAllButtonsOnToolBar();
-                        ContentPanel.showPanel(6);
-                        String search = tfSearch.getText();
-                        System.out.println("text in textFileld search = " + search);
-                        updateTable(search);
+
+                        System.out.println("text in textFileld search = " + tfSearch.getText());
+
+                        if (tfSearch.getText().matches("[ ]*") == false &&
+                                tfSearch.getText().matches("[ ]*[0-9]+[.]?[0-9]*[ ]*") == false &&
+                                tfSearch.getText().matches("[ ]*[A-Za-zА-Яа-яії]+[ ]*") == false &&
+                                tfSearch.getText().matches("[ ]*[\\d]+[.]?[\\d]*[ ]*[-][ ]*[\\d]+[.]?[\\d]*[ ]*") == false
+
+                        ) {
+                            JOptionPane.showMessageDialog(null, "Your write incorrect info", "Arial", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            ToolBarPanel.deselectAllButtonsOnToolBar();
+                            ContentPanel.showPanel(6);
+                            updateTable(tfSearch.getText());
+                        }
                     }
                 }
             });
         }
 
     }
-    private void  updateTable(String search){
 
-        //tablePanel.addDataToGoodsTable(Utilities.Search(search), 1);
+    private void updateTable(String search) {
+
+        ProductSearchPanel.tablePanel.addDataToGoodsTable(Utilities.Search(search), 1);
 
     }
 

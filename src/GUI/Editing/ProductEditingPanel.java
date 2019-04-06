@@ -237,7 +237,7 @@ public class ProductEditingPanel extends JPanel {
 
     private void checkFields() {
         //to change enable
-        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZРђ-РЇa-СЏ]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZРђ-РЇa-СЏС”С—]+\\d*[\"]?)+").matcher(tfNewProductName.getText());
+        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfNewProductName.getText());
         if (!matcher.matches() || tfNewProductName.getText().length() > 20) {
             btnEdit.setEnabled(false);
             return;

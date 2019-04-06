@@ -31,8 +31,9 @@ public class StatisticPanel extends JPanel {
         tableBackground.setBounds(0, 117, 914, 549);
         addElementsToBackgroundHeader();
         addElementsToTableBackgroundBody();
-        setDefaultVisibility();
         cheakBox();
+        setDefaultVisibility();
+
         btnModeSwitchOn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
