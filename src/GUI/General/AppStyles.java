@@ -10,6 +10,6 @@ public class AppStyles {
     public static Font untitled = new Font("Arial Rounded MT Bold", Font.PLAIN, 14);
     public static Font appH2Font = new Font("Arial Rounded MT Bold", Font.PLAIN, 14);
     public static Font searchFont = new Font("Arial", Font.PLAIN, 14);
-    public static Font smallText = new Font("Arial Rounded MT Bold", Font.PLAIN, 16);
+    public static Font loginErrorMSG = new Font("Arial Rounded MT Bold", Font.PLAIN, 14);
     public static Font appH1Font = new Font("Arial", Font.PLAIN, 18);
 }

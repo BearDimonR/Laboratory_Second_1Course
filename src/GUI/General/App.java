@@ -20,7 +20,8 @@ public class App {
         }
     }
     public static void makeMainFrameVisible(){
-        mainFrame.setVisible(true);
         loginFrame.setVisible(false);
+        mainFrame.setVisible(true);
+       // loginFrame.setVisible(false);
     }
 }
