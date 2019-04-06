@@ -17,6 +17,7 @@ public class SettingPanel extends JPanel {
     JLabel changePictureBTN = new JLabel(new ImageIcon("images/changePictureBTN.jpg"));
     JLabel profileSetBackground = new JLabel(new ImageIcon("images/SettingsProfilePlace.jpg"));
     JLabel adminTickSetBackground = new JLabel(new ImageIcon("images/SettingsTicksPlace.jpg"));
+    JLabel userTickSetBackground = new JLabel(new ImageIcon("images/UserSettingBackground.jpg"));
     JLabel createTick = new JLabel(new ImageIcon("images/Tick.jpg"));
     JLabel deCreateTick = new JLabel(new ImageIcon("images/deTick.jpg"));
     JLabel editTick = new JLabel(new ImageIcon("images/Tick.jpg"));
@@ -35,8 +36,10 @@ public class SettingPanel extends JPanel {
         setLayout(null);
         add(profileSetBackground);
         add(adminTickSetBackground);
+        add(userTickSetBackground);
         profileSetBackground.setBounds(0, 0, 352, 666);
         adminTickSetBackground.setBounds(352, 0, 562, 666);
+        userTickSetBackground.setBounds(352, 0, 562, 666);
         adminTickSetBackground.add(workerChoser);
         adminTickSetBackground.add(createTick);
         adminTickSetBackground.add(deCreateTick);
@@ -52,6 +55,7 @@ public class SettingPanel extends JPanel {
         adminTickSetBackground.add(deBlockTick);
         profileSetBackground.add(changePictureBTN);
         profileSetBackground.add(changeNameBTN);
+        userTickSetBackground.setVisible(false);
         createTick.setBounds(105, 197, 28, 28);
         deCreateTick.setBounds(105, 197, 28, 28);
         editTick.setBounds(105, 262, 28, 28);
@@ -253,7 +257,8 @@ public class SettingPanel extends JPanel {
 
     public void updateData() {
         if(!Stock.getLoginUser().isAdmin()){
-            // close the possibility to change access
+            adminTickSetBackground.setVisible(false);
+            userTickSetBackground.setVisible(true);
         }
         for(int i=0;i< Stock.getUsers().size();i++) {
             if(!Stock.getUsers().get(i).isAdmin()) workerChoser.addItem(Stock.getUsers().get(i).getName());
