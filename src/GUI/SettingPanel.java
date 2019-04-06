@@ -13,7 +13,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class SettingPanel extends JPanel {
-    JLabel userName = new JLabel("scscas");
     JLabel changeNameBTN = new JLabel(new ImageIcon("images/changeNameBTN.jpg"));
     JLabel changePictureBTN = new JLabel(new ImageIcon("images/changePictureBTN.jpg"));
     JLabel profileSetBackground = new JLabel(new ImageIcon("images/SettingsProfilePlace.jpg"));
@@ -41,7 +40,6 @@ public class SettingPanel extends JPanel {
         profileSetBackground.setBounds(0, 0, 352, 666);
         adminTickSetBackground.setBounds(352, 0, 562, 666);
         userTickSetBackground.setBounds(352, 0, 562, 666);
-        profileSetBackground.add(userName);
         adminTickSetBackground.add(workerChoser);
         adminTickSetBackground.add(createTick);
         adminTickSetBackground.add(deCreateTick);
@@ -58,7 +56,6 @@ public class SettingPanel extends JPanel {
         profileSetBackground.add(changePictureBTN);
         profileSetBackground.add(changeNameBTN);
         userTickSetBackground.setVisible(false);
-        userName.setBounds(88,234,155,25);
         createTick.setBounds(105, 197, 28, 28);
         deCreateTick.setBounds(105, 197, 28, 28);
         editTick.setBounds(105, 262, 28, 28);
