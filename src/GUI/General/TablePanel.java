@@ -6,18 +6,12 @@ import BackGround.GroupOfProduct;
 import BackGround.Stock;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 public class TablePanel extends JPanel {
@@ -27,7 +21,6 @@ public class TablePanel extends JPanel {
     private String[] GoodsStats = {"id","Product","Manufacturer","Price","Amount","Description"};
     private  JTable table = new JTable();
     private JScrollPane scrollPane = new JScrollPane(table);
-    private JList studentList = new JList();
 
     GridBagLayout gbl = new GridBagLayout();
 
@@ -35,13 +28,31 @@ public class TablePanel extends JPanel {
         setModel(null,titleType);
         setLayout(gbl);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        studentList.setVisible(true);
 
-        setBackground(Color.WHITE);
         setModel(null ,1);
         add(scrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(1, 0, 0, 0), 0, 430));
+
+        {
+            setBackground(Color.WHITE);
+            scrollPane.setBackground(Color.WHITE);
+            scrollPane.setForeground(Color.WHITE);
+            scrollPane.setOpaque(false);
+            scrollPane.getViewport().setOpaque(false);
+            scrollPane.setBorder(new EmptyBorder(0,0,0,0));
+            table.setFont(new java.awt.Font("Verdana", 0, 16));
+            table.setBackground(Color.WHITE);
+            table.setBorder(new EmptyBorder(0,0,0,0));
+            table.setOpaque(false);
+            ((DefaultTableCellRenderer)table.getDefaultRenderer(Object.class)).setOpaque(false);
+            ((DefaultTableCellRenderer)table.getDefaultRenderer(Object.class)).setHorizontalAlignment(JLabel.CENTER);
+            table.getTableHeader().setOpaque(false);
+            table.getTableHeader().setBackground(AppStyles.MainColor);
+            table.getTableHeader().setForeground(Color.white);
+            table.setShowGrid(false);
+            table.setSelectionBackground(Color.LIGHT_GRAY);
+        }
         AddActionListener();
     }
 
@@ -111,6 +122,18 @@ public class TablePanel extends JPanel {
                 return false;
             }
         });
+
+        TableColumn column;
+        for (int i = 0; i < titlesChoser(titleNum).length; i++) {
+            column = table.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(40);
+            }else if(i == 4){
+                column.setPreferredWidth(150);
+            } else {
+                column.setPreferredWidth(300);
+            }
+        }
     }
 
     public void AddActionListener(){
