@@ -1,10 +1,11 @@
 package GUI.Search;
 
 import BackGround.Stock;
-import BackGround.Utilities;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -16,7 +17,7 @@ public class StatisticPanel extends JPanel {
     private JLabel tickGroup = new JLabel(new ImageIcon("images/Search/tick.jpg"));
     private JLabel deTickAll = new JLabel(new ImageIcon("images/Search/emptyTick.jpg"));
     private JLabel deTickGroup = new JLabel(new ImageIcon("images/Search/emptyTick.jpg"));
-
+    private JLabel totalPriceOfGroup = new JLabel("0" );
     private JComboBox cbProductGroupSearch = new JComboBox();
     private static JLabel btnModeSwitchOn = new JLabel(new ImageIcon("images/groupCreateModeOnBTN.png"));
     private TablePanel tablePanel = new TablePanel(1);
@@ -31,8 +32,12 @@ public class StatisticPanel extends JPanel {
         tableBackground.setBounds(0, 117, 914, 549);
         addElementsToBackgroundHeader();
         addElementsToTableBackgroundBody();
-        cheakBox();
+
+//        cheakBox();
+//        setDefaultVisibility();
+
         setDefaultVisibility();
+        checkBox();
 
         btnModeSwitchOn.addMouseListener(new MouseAdapter() {
             @Override
@@ -61,13 +66,16 @@ public class StatisticPanel extends JPanel {
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
-                //              updateTable(group);
+
+//                String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
+//                //              updateTable(group);
+
+
+                update();
 
             }
         });
-
-        tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
     }
 
     private void addElementsToBackgroundHeader() {
@@ -90,7 +98,12 @@ public class StatisticPanel extends JPanel {
     private void addElementsToTableBackgroundBody() {
 
         tableBackground.add(tablePanel);
-        tablePanel.setBounds(35, 20, 850, 441);
+
+ //       tablePanel.setBounds(35, 20, 850, 441);
+        tablePanel.setBounds(35, 20, 850, 480);
+        tableBackground.add(totalPriceOfGroup);
+        totalPriceOfGroup.setBounds(126,507,100,20);
+
     }
 
     private void setDefaultVisibility() {
@@ -100,14 +113,25 @@ public class StatisticPanel extends JPanel {
         deTickGroup.setVisible(true);
     }
 
-    public void cheakBox() {
+    public void checkBox() {
         cbProductGroupSearch.removeAllItems();
         for (int i = 0; i < Stock.getGroups().size(); i++) {
             cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
         }
     }
 
-//    private void addMouseListenersToBTNS() {
+    public void update() {
+      if(!deTickAll.isVisible()) {
+          tablePanel.addStatsToGroupOFGoodsTable(Stock.getGroups(),3);
+          totalPriceOfGroup.setText(String.valueOf(Stock.getAllPrice()));
+      }
+      else {
+          tablePanel.addStatsToGoodsTable(Stock.findGroup(String.valueOf(cbProductGroupSearch.getSelectedItem())).getProducts(),4);
+          totalPriceOfGroup.setText(String.valueOf(Stock.findGroup(String.valueOf(cbProductGroupSearch.getSelectedItem())).getGroupPrice()));
+      }
+    }
+
+    //    private void addMouseListenersToBTNS() {
 //        btnFind.addMouseListener(new MouseAdapter() {
 //            @Override
 //            public void mouseClicked(MouseEvent e) {

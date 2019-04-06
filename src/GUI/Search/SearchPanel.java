@@ -21,6 +21,7 @@ public class SearchPanel extends JPanel {
         productSearchPanel.setVisible(true);
     }
     public static void showStatistickPanel(){
+        statisticPanel.update();
         statisticPanel.setVisible(true);
         productSearchPanel.setVisible(false);
     }

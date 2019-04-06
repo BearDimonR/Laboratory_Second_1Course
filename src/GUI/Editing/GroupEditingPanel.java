@@ -78,6 +78,7 @@ public class GroupEditingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 tableBodyBackground.setVisible(true);
                 editFieldsBodyBackground.setVisible(false);
+                tablePanel.getTable().clearSelection();
             }
         });
 

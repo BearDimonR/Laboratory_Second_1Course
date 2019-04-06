@@ -3,6 +3,7 @@ package GUI.Deleting;
 import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.TablePanel;
+import GUI.MainComponents.TitleBarPanel;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -121,6 +122,7 @@ public class ProductDeletingPanel extends JPanel {
                 if(tablePanel.getSelectedProduct() == null) return;
                 tablePanel.getSelectedProduct().getGroupProducts().removeProduct(tablePanel.getSelectedProduct());
                 Stock.saveData();
+                TitleBarPanel.setStats();
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
             }
         });

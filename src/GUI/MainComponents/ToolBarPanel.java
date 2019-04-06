@@ -1,5 +1,7 @@
 package GUI.MainComponents;
 
+import BackGround.Stock;
+import BackGround.User;
 import GUI.General.AppStyles;
 import GUI.Creating.CreationPanel;
 
@@ -29,6 +31,7 @@ public class ToolBarPanel extends JPanel {
 
         //set default btn selection
         {
+            btnSelectedCreate.setVisible(false);
             btnSelectedEdit.setVisible(false);
             btnSelectedDelete.setVisible(false);
             btnSelectedQuantity.setVisible(false);
@@ -83,6 +86,7 @@ public class ToolBarPanel extends JPanel {
             btnDeselectedCreate.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    if(!Stock.getLoginUser().getAccess(1)) return;
                     //Button selection
                     {
                         btnSelectedCreate.setVisible(true);
@@ -100,6 +104,7 @@ public class ToolBarPanel extends JPanel {
                     //Panel selection
                     {
                         CreationPanel.setDefaultVisibility();
+                        if(Stock.getLoginUser().getAccess(1))
                         ContentPanel.showPanel(1);
                     }
 
@@ -108,6 +113,7 @@ public class ToolBarPanel extends JPanel {
             btnDeselectedEdit.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    if(!Stock.getLoginUser().getAccess(2)) return;
                     //Button selection
                     {
                         btnSelectedCreate.setVisible(false);
@@ -133,6 +139,7 @@ public class ToolBarPanel extends JPanel {
             btnDeselectedDelete.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    if(!Stock.getLoginUser().getAccess(3)) return;
                     //Button selection
                     {
                         btnSelectedCreate.setVisible(false);
@@ -156,6 +163,7 @@ public class ToolBarPanel extends JPanel {
             btnDeselectedQuantity.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    if(!Stock.getLoginUser().getAccess(4)) return;
                     //Button selection
                     {
                         btnSelectedCreate.setVisible(false);
@@ -219,4 +227,28 @@ public class ToolBarPanel extends JPanel {
     }
 
 
+    public static void selectBtn(int i) {
+            switch (i){
+                case 1: {
+                    btnSelectedCreate.setVisible(true);
+                    break;
+                }
+                case 2: {
+                    btnDeselectedEdit.setVisible(true);
+                    break;
+                }
+                case 3: {
+                    btnSelectedDelete.setVisible(true);
+                    break;
+                }
+                case 4: {
+                    btnSelectedQuantity.setVisible(true);
+                    break;
+                }
+                case 5: {
+                    btnSelectedSettings.setVisible(true);
+                    break;
+                }
+            }
+    }
 }

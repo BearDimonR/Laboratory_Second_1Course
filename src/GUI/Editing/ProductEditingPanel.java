@@ -6,6 +6,7 @@ import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
 import GUI.General.TablePanel;
+import GUI.MainComponents.TitleBarPanel;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -186,6 +187,7 @@ public class ProductEditingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 tableBodyBackground.setVisible(true);
                 editFieldsBodyBackground.setVisible(false);
+                tablePanel.getTable().clearSelection();
             }
         });
         btnEdit.addMouseListener(new MouseAdapter() {
@@ -200,6 +202,7 @@ public class ProductEditingPanel extends JPanel {
                 product.setGroupProducts((GroupOfProduct) cbNewGroup.getSelectedItem());
                 product.setProductName(tfNewProductName.getText());
                 Stock.saveData();
+                TitleBarPanel.setStats();
                 taNewDescription.setText("");
                 taOldDescription.setText("");
                 tfNewProductName.setText("");
@@ -219,7 +222,12 @@ public class ProductEditingPanel extends JPanel {
         tfNewManufacturer.addKeyListener(keyListener());
         tfNewProductName.addKeyListener(keyListener());
         taNewDescription.addKeyListener(keyListener());
-        cbNewGroup.addKeyListener(keyListener());
+        cbNewGroup.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                checkFields();
+            }
+        });
     }
 
     private KeyListener keyListener() {
@@ -236,15 +244,21 @@ public class ProductEditingPanel extends JPanel {
     }
 
     private void checkFields() {
-        //to change enable
         Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfNewProductName.getText());
         if (!matcher.matches() || tfNewProductName.getText().length() > 20) {
             btnEdit.setEnabled(false);
             return;
         }
-        if (Stock.findProductByName(tfNewProductName.getText()) != null) {
-            btnEdit.setEnabled(false);
-            return;
+
+//        if (Stock.findProductByName(tfNewProductName.getText()) != null) {
+//            btnEdit.setEnabled(false);
+//            return;
+
+        if (Stock.findProductByName(tfNewProductName.getText()) != null){
+            if(Stock.findProductByName(tfNewProductName.getText()) != tablePanel.getSelectedProduct()) {
+                setEditDisabled();
+                return;
+
         }
         if (taNewDescription.getText() == null || taNewDescription.getText().equals("")) {
             btnEdit.setEnabled(false);

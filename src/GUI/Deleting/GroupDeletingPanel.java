@@ -3,6 +3,7 @@ package GUI.Deleting;
 import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.TablePanel;
+import GUI.MainComponents.TitleBarPanel;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -85,6 +86,7 @@ public class GroupDeletingPanel extends JPanel {
                 if(tablePanel.getSelectedGroup() == null) return;
                 Stock.getGroups().remove(tablePanel.getSelectedGroup());
                 Stock.saveData();
+                TitleBarPanel.setStats();
                 tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
             }
         });

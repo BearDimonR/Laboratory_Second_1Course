@@ -19,4 +19,11 @@ public class App {
             loginFrame.setVisible(true);*/
         }
     }
+
+    public static void makeMainFrameVisible(){
+        loginFrame.setVisible(false);
+        mainFrame.setVisible(true);
+       // loginFrame.setVisible(false);
+    }
+
 }
