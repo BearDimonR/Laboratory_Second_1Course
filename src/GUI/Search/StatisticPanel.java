@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 
 public class StatisticPanel extends JPanel {
     JLabel backgroundHeader = new JLabel(new ImageIcon("images/Search/statisticHeader.jpg"));
-    JLabel tableBackground = new JLabel(new ImageIcon("images/statisticTableBackground.jpg"));
+    JLabel tableBackground = new JLabel(new ImageIcon("images/tableGroupBodyBackground.jpg"));
     private JLabel btnFind = new JLabel(new ImageIcon("images/Search/showHorizontalBTN.jpg"));
     private JLabel tickAll = new JLabel(new ImageIcon("images/Search/tick.jpg"));
     private JLabel tickGroup = new JLabel(new ImageIcon("images/Search/tick.jpg"));
@@ -32,8 +32,13 @@ public class StatisticPanel extends JPanel {
         tableBackground.setBounds(0, 117, 914, 549);
         addElementsToBackgroundHeader();
         addElementsToTableBackgroundBody();
+
+//        cheakBox();
+//        setDefaultVisibility();
+
         setDefaultVisibility();
         checkBox();
+
         btnModeSwitchOn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -61,7 +66,13 @@ public class StatisticPanel extends JPanel {
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
+//                String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
+//                //              updateTable(group);
+
+
                 update();
+
             }
         });
         tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
@@ -87,9 +98,12 @@ public class StatisticPanel extends JPanel {
     private void addElementsToTableBackgroundBody() {
 
         tableBackground.add(tablePanel);
+
+ //       tablePanel.setBounds(35, 20, 850, 441);
         tablePanel.setBounds(35, 20, 850, 480);
         tableBackground.add(totalPriceOfGroup);
         totalPriceOfGroup.setBounds(126,507,100,20);
+
     }
 
     private void setDefaultVisibility() {

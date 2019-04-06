@@ -1,8 +1,10 @@
 package GUI.Login;
 
+
 import BackGround.Stock;
 import BackGround.User;
 import GUI.General.App;
+
 import GUI.General.AppStyles;
 import GUI.MainComponents.ContentPanel;
 import GUI.MainComponents.TitleBarPanel;
@@ -10,6 +12,11 @@ import GUI.SettingPanel;
 
 import javax.swing.*;
 import java.awt.*;
+
+
+//public class LoginFrame extends JFrame {
+//    public LoginFrame(){
+
 import java.awt.event.*;
 
 public class LoginFrame extends JFrame {
@@ -28,11 +35,19 @@ public class LoginFrame extends JFrame {
     private JLabel closeBTN = new JLabel(new ImageIcon("images/closeLoginBTN.png"));
 
     public LoginFrame() {
-        //set Frame settings
-        {
-            setUndecorated(true);
-            setLayout(null);
-            setResizable(false);
+
+//        //set Frame settings
+//        {
+//            setUndecorated(true);
+//            setLayout(AppStyles.gridBagLayout);
+//            setResizable(false);
+
+            setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
+            setContentPane(new JLabel(new ImageIcon("images/loginBackground.png")));
+            setSize(750,500);
+            setLocation(300,100);
+            pack();
+
             setBackground(new Color(1.0f, 1.0f, 1.0f, 0.0f));
             add(loginBackground);
             add(loadingBackground);
@@ -85,6 +100,7 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                     if (e.getKeyChar() <= 32) e.consume();
                 }
             });
+
         }
         help.setVisible(false);
         loginErrorMSG.setVisible(false);
@@ -142,6 +158,7 @@ gotItBTN.addMouseListener(new MouseAdapter() {
         });
     }
 
+
     private void showLoadingpanel() {
         loadingBackground.add(loadingBar);
         loadingBar.setBounds(200, 350, 356, 36);
@@ -152,4 +169,6 @@ gotItBTN.addMouseListener(new MouseAdapter() {
         App.makeMainFrameVisible();
 
     }
+
 }
+// THIS CLASS IS UNDER CONSTRUCTION :)

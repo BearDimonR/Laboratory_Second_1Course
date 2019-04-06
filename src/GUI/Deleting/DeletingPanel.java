@@ -24,8 +24,8 @@ public class DeletingPanel extends JLabel {
     }
     public static void showGroupDeleteTab(){
         productDeletingPanel.setVisible(false);
-       groupDeletingPanel.setVisible(true);
-       groupDeletingPanel.getTablePanel().addDataToGroupOFGoodsTable(Stock.getGroups(),2);
+        groupDeletingPanel.setVisible(true);
+        groupDeletingPanel.getTablePanel().addDataToGroupOFGoodsTable(Stock.getGroups(),2);
     }
     public static void showProductDeleteTab(){
         productDeletingPanel.setVisible(true);

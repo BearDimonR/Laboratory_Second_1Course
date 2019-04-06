@@ -43,7 +43,7 @@ public class ProductCreatePanel extends JPanel {
     private void setStylesOfUserInputFields() {
         //tfProductName
         tfProductName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        tfProductName.setFont(AppStyles.appH2Font);
+        tfProductName.setFont(AppStyles.appH1Font);
         tfProductName.setForeground(AppStyles.DeselectedColor);
 
         //taDescription
@@ -249,7 +249,7 @@ public class ProductCreatePanel extends JPanel {
      * Method which check if fields are filled properly
      */
     private void checkFields() {
-        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfProductName.getText());
+        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?)+").matcher(tfProductName.getText());
         if (!matcher.matches() || tfProductName.getText().length() > 20) {
             setCreateDisabled();
             return;

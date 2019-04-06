@@ -6,6 +6,16 @@ import GUI.General.AppStyles;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
+
+
+//public class SettingPanel extends JPanel {
+//    JLabel uc = new JLabel(new ImageIcon("images/UC.jpg"));
+//    public SettingPanel(){
+//        setLayout(AppStyles.gridBagLayout);
+//        add(uc, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+//                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+//                new Insets(0, 0, 0, 0), 0, 0));
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -269,5 +279,4 @@ public class SettingPanel extends JPanel {
     }
 
 }
-
 

@@ -2,15 +2,14 @@ package GUI.Deleting;
 
 import BackGround.Stock;
 import BackGround.Utilities;
-import GUI.General.AppStyles;
 import GUI.General.TablePanel;
 import GUI.MainComponents.TitleBarPanel;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import static GUI.Deleting.DeletingPanel.updateTable;
 
 public class ProductDeletingPanel extends JPanel {
     JLabel backgroundHeader = new JLabel(new ImageIcon("images/deleteComponents/productDeleteHeader.jpg"));
@@ -20,9 +19,9 @@ public class ProductDeletingPanel extends JPanel {
     JLabel btnDelete = new JLabel(new ImageIcon("images/deleteBTN.jpg"));
     JLabel btnFind = new JLabel(new ImageIcon("images/findVerticalBTN.jpg"));
     //Header elements
-    private JTextField tfProductNameSearch = new JTextField();
+    private JTextField tfproductNameSearch = new JTextField();
     private JTextField tfManufacturerSearch = new JTextField();
-    private JTextField tfLowestPriceSearch = new JTextField();
+    private JTextField tfLowestPriceearch = new JTextField();
     private JTextField tfHighestPriceSearch = new JTextField();
     private JComboBox cbProductGroupSearch = new JComboBox();
 
@@ -46,8 +45,6 @@ public class ProductDeletingPanel extends JPanel {
         cheakBox();
         tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
 
-        setStyleOfHeader();
-
     }
 
     private void addElementsToProductDeltePanel() {
@@ -68,15 +65,15 @@ public class ProductDeletingPanel extends JPanel {
 
         backgroundHeader.add(modeSwitchOff);
         backgroundHeader.add(btnFind);
-        backgroundHeader.add(tfProductNameSearch);
+        backgroundHeader.add(tfproductNameSearch);
         backgroundHeader.add(cbProductGroupSearch);
         backgroundHeader.add(tfManufacturerSearch);
-        backgroundHeader.add(tfLowestPriceSearch);
+        backgroundHeader.add(tfLowestPriceearch);
         backgroundHeader.add(tfHighestPriceSearch);
-        tfProductNameSearch.setBounds(229, 74, 227, 18);
+        tfproductNameSearch.setBounds(229, 74, 227, 18);
         tfManufacturerSearch.setBounds(229, 114, 227, 18);
         cbProductGroupSearch.setBounds(648, 74, 227, 17);
-        tfLowestPriceSearch.setBounds(649, 114, 60, 18);
+        tfLowestPriceearch.setBounds(649, 114, 60, 18);
         tfHighestPriceSearch.setBounds(756, 114, 60, 18);
 
         backgroundHeader.add(btnDelete);
@@ -86,7 +83,7 @@ public class ProductDeletingPanel extends JPanel {
 
     }
 
-     TablePanel getTablePanel() {
+    TablePanel getTablePanel() {
         return tablePanel;
     }
 
@@ -96,22 +93,20 @@ public class ProductDeletingPanel extends JPanel {
 
             public void mouseClicked(MouseEvent e){
                 String group = (String)cbProductGroupSearch.getSelectedItem();
-
-                if(tfProductNameSearch.getText().matches("[ ]*")==false||
-
+                if(tfproductNameSearch.getText().matches("[ ]*")==false||
                         tfManufacturerSearch.getText().matches("[ ]*")==false||
-                        tfLowestPriceSearch.getText().matches("[ ]*")==false||
+                        tfLowestPriceearch.getText().matches("[ ]*")==false||
                         tfHighestPriceSearch.getText().matches("[ ]*")==false
-                       ||group.matches("[ ]*")==false
+                        ||group.matches("[ ]*")==false
                 ){
 
 
-//                     group = (String)cbProductGroupSearch.getSelectedItem();
-//                    String product = tfproductNameSearch.getText();
-//                    String manufacturer = tfManufacturerSearch.getText();
-//                    String priceFrom = tfLowestPriceearch.getText();
-//                    String priceTo = tfHighestPriceSearch.getText();
-                    updateTable();
+                    group = (String)cbProductGroupSearch.getSelectedItem();
+                    String product = tfproductNameSearch.getText();
+                    String manufacturer = tfManufacturerSearch.getText();
+                    String priceFrom = tfLowestPriceearch.getText();
+                    String priceTo = tfHighestPriceSearch.getText();
+                    updateTable(group,product,manufacturer,priceFrom,priceTo);
                 }
             }
         });
@@ -140,29 +135,20 @@ public class ProductDeletingPanel extends JPanel {
         }
     }
 
-
-/*
-метод зчитує та виводить потрібний масив
- */
- //   public  void updateTable(String group,String product,String manufacturer,String priceFrom,String priceTo) {
+    /*
+    РјРµС‚РѕРґ Р·С‡РёС‚СѓС” С‚Р° РІРёРІРѕРґРёС‚СЊ РїРѕС‚СЂС–Р±РЅРёР№ РјР°СЃРёРІ
+     */
+    public  void updateTable(String group,String product,String manufacturer,String priceFrom,String priceTo) {
 //       String group = (String)cbProductGroupSearch.getSelectedItem();
 //        String product = tfproductNameSearch.getText();
 //        String manufacturer = tfManufacturerSearch.getText();
 //        String priceFrom = tfLowestPriceearch.getText();
 //        String priceTo = tfHighestPriceSearch.getText();System.out.println("/*/*/*/**//*/*/*/*/*/\ngroup'" + group+"'");
 
-    public  void updateTable() {
-        String group = cbProductGroupSearch.getToolTipText();
-        String product = tfProductNameSearch.getText();
-        String manufacturer = tfManufacturerSearch.getText();
-        String priceFrom = tfLowestPriceSearch.getText();
-        String priceTo = tfHighestPriceSearch.getText();
-
-
         double prFrom = 0;
-        if (tfLowestPriceSearch.getText().matches("[ ]*") == true) {
+        if (tfLowestPriceearch.getText().matches("[ ]*") == true) {
             prFrom = 0;
-        } else if (tfLowestPriceSearch.getText().matches("[\\d]+[.]?[\\d]*") == true) {
+        } else if (tfLowestPriceearch.getText().matches("[\\d]+[.]?[\\d]*") == true) {
             prFrom = Double.valueOf(priceFrom);
         }
 
@@ -177,27 +163,6 @@ public class ProductDeletingPanel extends JPanel {
 
     }
 
-private void setStyleOfHeader(){
-    tfHighestPriceSearch.setFont(AppStyles.appH2Font);
-    tfHighestPriceSearch.setForeground(AppStyles.MainColor);
-    tfHighestPriceSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
-    tfLowestPriceSearch.setFont(AppStyles.appH2Font);
-    tfLowestPriceSearch.setForeground(AppStyles.MainColor);
-    tfLowestPriceSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-
-    tfManufacturerSearch.setFont(AppStyles.appH2Font);
-    tfManufacturerSearch.setForeground(AppStyles.MainColor);
-    tfManufacturerSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-
-    tfProductNameSearch.setFont(AppStyles.appH2Font);
-    tfProductNameSearch.setForeground(AppStyles.MainColor);
-    tfProductNameSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-
-    cbProductGroupSearch.setBackground(Color.WHITE);
-    cbProductGroupSearch.setFont(AppStyles.appH2Font);
-    cbProductGroupSearch.setForeground(AppStyles.MainColor);
-    cbProductGroupSearch.setUI(new BasicComboBoxUI());
-}
 
 }
