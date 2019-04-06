@@ -4,7 +4,9 @@ import BackGround.Stock;
 import BackGround.User;
 import GUI.General.App;
 import GUI.General.AppStyles;
+import GUI.MainComponents.ContentPanel;
 import GUI.MainComponents.TitleBarPanel;
+import GUI.SettingPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -105,13 +107,14 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                 if (Stock.findUserByName(loginField.getText()) == null) {loginErrorMSG.setVisible(true);
                 numberOfTries++;
                 }
-                else {
+                else  {
                     User user = Stock.findUserByName(loginField.getText());
                     String password = String.valueOf(passwordField.getPassword());
-                    if (user.getPassword().equals(password)) {
+                    if(user.getPassword().equals(password)) {
                         Stock.setLoginUser(user);
                         TitleBarPanel.setUserName();
                         TitleBarPanel.setStats();
+                        ContentPanel.initPanel();
                         App.makeMainFrameVisible();
                     } else {
                         passwordErrorMSG.setVisible(true);
