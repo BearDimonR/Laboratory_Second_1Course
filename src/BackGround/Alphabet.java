@@ -24,23 +24,12 @@ public class Alphabet {
         return products;
     }
 
-//    public static ArrayList<GroupOfProduct> alphabetGroup() {
-//        ArrayList<GroupOfProduct> group = Stock.getAllGroup();
-//        Collections.sort(group, new Comparator() {
-//            @Override
-//            public int compare(Object groupOne, Object groupTwo) {
-//                return ((GroupOfProduct) groupOne).getName().compareTo(((GroupOfProduct) groupTwo).getName());
-//            }
-//        });
-//        return group;
-//    }
-    //String.valueOf(array.get(i).getGroupProducts()
-    public static ArrayList<Product> alphabetGroup() {
-        ArrayList<Product> group = Stock.getAllProducts();
+    public static ArrayList<GroupOfProduct> alphabetGroup() {
+        ArrayList<GroupOfProduct> group = Stock.getAllGroup();
         Collections.sort(group, new Comparator() {
             @Override
             public int compare(Object groupOne, Object groupTwo) {
-                return ((Product) groupOne).getGroupProducts().getName().compareTo(((Product) groupTwo).getGroupProducts().getName());
+                return ((GroupOfProduct) groupOne).getName().compareTo(((GroupOfProduct) groupTwo).getName());
             }
         });
         return group;
@@ -55,16 +44,6 @@ public class Alphabet {
             }
         });
         return manufacturer;
-    }
-    public static ArrayList<Product> alphabetPrice (){
-        ArrayList<Product> price = Stock.getAllProducts();
-        Collections.sort(price,new Comparator() {
-            @Override
-            public int compare(Object priceOne, Object priceTwo) {
-                return (new Double (((Product)priceOne).getPrice()).compareTo(((Product)priceTwo).getPrice()));
-            }
-        });
-        return price;
     }
 
 }

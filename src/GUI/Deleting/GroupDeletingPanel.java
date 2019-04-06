@@ -2,12 +2,13 @@ package GUI.Deleting;
 
 import BackGround.Stock;
 import BackGround.Utilities;
+import GUI.General.AppStyles;
 import GUI.General.TablePanel;
 import GUI.MainComponents.TitleBarPanel;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -26,13 +27,13 @@ public class GroupDeletingPanel extends JPanel {
         tableBackground.setLayout(null);
         add(backgroundHeader);
         add(tableBackground);
-        addElementsToGroupDeltePanel();
+        addElementsToGroupDeletePanel();
         addListners();
-
+setStyleOfHeader();
         tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
     }
 
-    private void addElementsToGroupDeltePanel() {
+    private void addElementsToGroupDeletePanel() {
         backgroundHeader.setBounds(0, 0, 914, 117);
         tableBackground.setBounds(0, 117, 914, 549);
         addElementsToHeaderBackground();
@@ -57,7 +58,7 @@ public class GroupDeletingPanel extends JPanel {
 
     }
 
-    TablePanel getTablePanel() {
+     TablePanel getTablePanel() {
         return tablePanel;
     }
 
@@ -70,8 +71,8 @@ public class GroupDeletingPanel extends JPanel {
 //
 //                ){
                 System.out.println("кнопка FIND натиснута" );
-                updateTable(tfGroupNameSearch.getText());
-            }
+                    updateTable(tfGroupNameSearch.getText());
+                              }
 //            }
         });
         modeSwitchOn.addMouseListener(new MouseAdapter() {
@@ -96,6 +97,10 @@ public class GroupDeletingPanel extends JPanel {
 
         tablePanel.addDataToGroupOFGoodsTable(Utilities.mainSearch2(group ), 1);
         //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
-
+    }
+    private void setStyleOfHeader(){
+        tfGroupNameSearch.setFont(AppStyles.appH2Font);
+        tfGroupNameSearch.setForeground(AppStyles.MainColor);
+        tfGroupNameSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     }
 }

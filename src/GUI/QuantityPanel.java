@@ -42,10 +42,11 @@ public class QuantityPanel extends JPanel {
 //    String product = tfProductNameSearch.getText();
 //    String manufacturer = tfManufacturerSearch.getText();
     //double priceFrom = Double.valueOf(tfLowestPriceSearch.getText());
-    // double priceTo = Double.valueOf(tfHighestPriceSearch.getText());
+   // double priceTo = Double.valueOf(tfHighestPriceSearch.getText());
+
+   // private TablePanel tablePanel = new TablePanel(1);
 
     public QuantityPanel() {
-
         setLayout(null);
         background.setLayout(null);
         add(background);
@@ -58,13 +59,31 @@ public class QuantityPanel extends JPanel {
         background.add(tfAddToStock);
         background.add(tfRemoveFromStock);
         background.add(tfInStock);
-
-        //  updateTable();
+        cheakBox();
+      //  updateTable();
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
         tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 tfInStock.setText("0");
                 checkStock();
+//                if (tablePanel.getTable().getSelectedRow() == -1) return;
+//                tableBodyBackground.setVisible(false);
+//                editFieldsBodyBackground.setVisible(true);
+//                tfNewProductName.setText(tablePanel.getSelectedProduct().getProductName());
+//                tfOldProductName.setText(tablePanel.getSelectedProduct().getProductName());
+//                taNewDescription.setText(tablePanel.getSelectedProduct().getDescription());
+//                taOldDescription.setText(tablePanel.getSelectedProduct().getDescription());
+//                tfOldManufacturer.setText(tablePanel.getSelectedProduct().getManufacturer());
+//                tfNewManufacturer.setText(tablePanel.getSelectedProduct().getManufacturer());
+//                tfOldPrice.setText(String.valueOf(tablePanel.getSelectedProduct().getPrice()));
+//                tfNewPrice.setText(String.valueOf(tablePanel.getSelectedProduct().getPrice()));
+//                cbOldGroup.addItem(String.valueOf(tablePanel.getSelectedProduct().getGroupProducts()));
+//                cbOldGroup.setSelectedIndex(0);
+//                ComboBoxModel model = new DefaultComboBoxModel<>();
+//                ((DefaultComboBoxModel) model).addAll(Stock.getGroups());
+//                cbNewGroup.setModel(model);
+//                cbNewGroup.setSelectedItem(tablePanel.getSelectedProduct().getGroupProducts());
             }
         });
 
@@ -82,6 +101,7 @@ public class QuantityPanel extends JPanel {
         tfLowestPriceSearch.setBounds(649, 82, 60, 18);
         tfHighestPriceSearch.setBounds(756, 82, 60, 18);
         tablePanel.setBounds(23, 148, 659, 494);
+
 
         background.setBounds(0, 0, 914, 666);
         btnFind.setBounds(15, 16, 54, 110);
@@ -148,16 +168,31 @@ public class QuantityPanel extends JPanel {
             }
         });
 
+        btnFind.addMouseListener(new MouseAdapter(){
+            @Override
+
+            public void mouseClicked(MouseEvent e){
+
+                if(tfProductNameSearch.getText().matches("[ ]*")==false||
+                        tfManufacturerSearch.getText().matches("[ ]*")==false||
+                        tfLowestPriceSearch.getText().matches("[ ]*")==false||
+                        tfHighestPriceSearch.getText().matches("[ ]*")==false
+                      //  cbProductGroupSearch.getText().matches("[ ]*")==false
+                ){
+
+                    updateTable();
+
+                }
+            }
+        });
+
 
         setStyleOfHeader();
-
-        cheakBox();
-        addeMouseListenerToBTNS();
     }
 
 
     public  void updateTable() {
-        String group = (String) cbProductGroupSearch.getSelectedItem();
+        String group = cbProductGroupSearch.getToolTipText();
         String product = tfProductNameSearch.getText();
         String manufacturer = tfManufacturerSearch.getText();
         String priceFrom = tfLowestPriceSearch.getText();
@@ -175,6 +210,9 @@ public class QuantityPanel extends JPanel {
             prTo = 0;
         else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
         tablePanel.addDataToGoodsTable(Utilities.mainSearch(group, product, manufacturer, prFrom, prTo), 1);
+        //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+        System.out.println("price From= " + prFrom);
+        System.out.println("price to='" + prTo + "'");
 
     }
     private void checkStock() {
@@ -182,6 +220,14 @@ public class QuantityPanel extends JPanel {
         if(tablePanel.getSelectedProduct().getQuantityInStock() == Integer.parseInt(tfInStock.getText())) return;
         tfInStock.setText(String.valueOf(tablePanel.getSelectedProduct().getQuantityInStock()));
     }
+
+    public void cheakBox() {
+        cbProductGroupSearch.removeAllItems();
+        for (int i = 0; i < Stock.getGroups().size(); i++) {
+            cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
+        }
+    }
+
     private void setStyleOfHeader(){
         tfHighestPriceSearch.setFont(AppStyles.appH2Font);
         tfHighestPriceSearch.setForeground(AppStyles.MainColor);
@@ -216,31 +262,6 @@ public class QuantityPanel extends JPanel {
         tfRemoveFromStock.setFont(AppStyles.appH2Font);
         tfRemoveFromStock.setForeground(AppStyles.MainColor);
         tfRemoveFromStock.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-    }
 
-    public void cheakBox() {
-        cbProductGroupSearch.removeAllItems();
-        for (int i = 0; i < Stock.getGroups().size(); i++) {
-            cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
-        }
-    }
-    private  void addeMouseListenerToBTNS(){
-        btnFind.addMouseListener(new MouseAdapter(){
-            @Override
-
-            public void mouseClicked(MouseEvent e){
-                String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
-//                if (tfProductNameSearch.getText().matches("[ ]*") == false ||
-//                        tfManufacturerSearch.getText().matches("[ ]*") == false ||
-//                        tfLowestPriceSearch.getText().matches("[ ]*") == false ||
-//                        tfHighestPriceSearch.getText().matches("[ ]*") == false||
-//                        group.matches("[ ]*") == false
-//                ){
-
-                    updateTable();
-
-          //      }
-            }
-        });
     }
 }

@@ -4,7 +4,6 @@ import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
 import GUI.General.App;
-import GUI.Search.ProductSearchPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,13 +21,6 @@ public class TitleBarPanel extends JPanel {
     JLabel background = new JLabel(new ImageIcon("images/mainFrame/titleBarBackground.jpg"));//background picture of title bar
     JLabel userProfilePic = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
 
-//    public static JTextField tfSearch = new JTextField();
-//
-//    public TitleBarPanel() {
-//        setLayout(AppStyles.gridBagLayout);
-
-
-
     private static JLabel totalPrice = new JLabel("0");//icon of user profile picture
     private static JLabel totalAmount = new JLabel("0");//icon of user profile picture
 
@@ -38,7 +30,6 @@ public class TitleBarPanel extends JPanel {
     public TitleBarPanel() {
         setLayout(null);
         background.setLayout(null);
-
         //set size of toll bar panel
         {
             setSize(new Dimension(915, 35));
@@ -89,15 +80,6 @@ public class TitleBarPanel extends JPanel {
         //add elements to title bar
         {
 
-                //????????????????????/
-            add(background, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 0, 0, 0), 0, 0));
-            background.add(tfSearch, new GridBagConstraints(0, 0, 1, 1, 0.1, 1,
-                    GridBagConstraints.WEST, GridBagConstraints.CENTER,
-                    new Insets(0, 65, 3, 0), 140, 0));
-
-//??????????????????
 
             add(background);
             background.setBounds(0, 0, 914, 35);
@@ -116,7 +98,6 @@ public class TitleBarPanel extends JPanel {
             userNameLabel.setBounds(750, 5, 100, 26);
             btnMinimize.setBounds(847, 3, 26, 26);
            /* background.add(userProfilePic, new GridBagConstraints(1, 0, 1, 1, 0.001, 1,
-//?????????????????
                     GridBagConstraints.EAST, GridBagConstraints.CENTER,
                     new Insets(0, 0, 0, 0), 0, 0));
             background.add(userNameLabel, new GridBagConstraints(2, 0, 1, 1, 0.01, 1,
@@ -155,43 +136,30 @@ public class TitleBarPanel extends JPanel {
 //            });
             tfSearch.addKeyListener(new KeyListener() {
                 @Override
-                public void keyTyped(KeyEvent e) { }
+                public void keyTyped(KeyEvent e) {
+                }
+
                 @Override
-                public void keyPressed(KeyEvent e) { }
+                public void keyPressed(KeyEvent e) {
+                }
+
                 @Override
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-
-                        System.out.println("text in textFileld search = " + tfSearch.getText());
-
-                        if (tfSearch.getText().matches("[ ]*") == false &&
-                                tfSearch.getText().matches("[ ]*[0-9]+[.]?[0-9]*[ ]*") == false &&
-                                tfSearch.getText().matches("[ ]*[A-Za-zА-Яа-яії]+[ ]*") == false &&
-                                tfSearch.getText().matches("[ ]*[\\d]+[.]?[\\d]*[ ]*[-][ ]*[\\d]+[.]?[\\d]*[ ]*") == false
-
-                        ) {
-                            JOptionPane.showMessageDialog(null, "Your write incorrect info", "Arial", JOptionPane.ERROR_MESSAGE);
-                        } else {
-                            ToolBarPanel.deselectAllButtonsOnToolBar();
-                            ContentPanel.showPanel(6);
-                            updateTable(tfSearch.getText());
-                        }
+                        ToolBarPanel.deselectAllButtonsOnToolBar();
+                        ContentPanel.showPanel(6);
+                        String search = tfSearch.getText();
+                        System.out.println("text in textFileld search = " + search);
+                        updateTable(search);
                     }
                 }
             });
         }
 
     }
-
-
-    private void updateTable(String search) {
-
-        ProductSearchPanel.tablePanel.addDataToGoodsTable(Utilities.Search(search), 1);
-
-//    private void  updateTable(String search){
-//        //tablePanel.addDataToGoodsTable(Utilities.Search(search), 1);
-//    }
-
+    private void  updateTable(String search){
+        //tablePanel.addDataToGoodsTable(Utilities.Search(search), 1);
+    }
 
     public static void setStats() {
         setTotalAmount(Stock.getAllAmount());
