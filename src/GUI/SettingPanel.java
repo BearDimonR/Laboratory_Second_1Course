@@ -39,7 +39,7 @@ public class SettingPanel extends JPanel {
     JLabel blockTick = new JLabel(new ImageIcon("images/Tick.jpg"));
     JLabel deBlockTick = new JLabel(new ImageIcon("images/deTick.jpg"));
     JComboBox workerChoser = new JComboBox();
-    JLabel userName = new JLabel("cvdvdsvdsvds");
+    JLabel userName = new JLabel("");
 
     public SettingPanel() {
         setLayout(null);
@@ -85,13 +85,14 @@ public class SettingPanel extends JPanel {
         changeNameBTN.setBounds(64,369,212,32);
         changePictureBTN.setBounds(64,440,212,32);
         logOutBTN.setBounds(64,510,212,32);
-        userName.setBounds(88,236,154,22);
+        userName.setBounds(10,236,315,22);
          setStyleOfWorkerChooser();
          addListenersToBTNS();
          addListenersToTickBTNS();
         userName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         userName.setFont(AppStyles.appH0Font);
         userName.setForeground(AppStyles.MainColor);
+        userName.setHorizontalAlignment(0);
     }
 
     private void setStyleOfWorkerChooser(){
