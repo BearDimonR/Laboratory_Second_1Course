@@ -70,7 +70,7 @@ public class NameChooser extends JFrame {
                     // error
                     return;
                 }
-                Matcher matcher = Pattern.compile("[A-Za-zА-Яїєіа-я_0-9]{3,20}").matcher(newUserName.getText());
+                Matcher matcher = Pattern.compile("[A-Za-zА-ЯЇЄІїєіа-я_0-9]{3,20}").matcher(newUserName.getText());
                 User currentUser =Stock.getLoginUser();
                 if(matcher.matches()) {
                     for (int i = 0; i < Stock.getUsers().size(); i++) {

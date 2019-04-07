@@ -269,7 +269,7 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 blockTick.setVisible(false);
                 deBlockTick.setVisible(true);
-                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(1,false);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).setBlocked(false);
                 Stock.saveUsers();
             }
         });
@@ -278,7 +278,7 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 blockTick.setVisible(true);
                 deBlockTick.setVisible(false);
-                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(1,false);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).setBlocked(true);
                 Stock.saveUsers();
             }
         });

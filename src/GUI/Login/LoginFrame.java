@@ -114,6 +114,13 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                 }
                 else  {
                     User user = Stock.findUserByName(loginField.getText());
+                    if(user.isBlocked()){
+                        //error
+                        numberOfTries++;
+                        loginField.setText("");
+                        passwordField.setText("");
+                        return;
+                    }
                     String password = String.valueOf(passwordField.getPassword());
                     if(user.getPassword().equals(password)) {
                         Stock.setLoginUser(user);

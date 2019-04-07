@@ -151,7 +151,7 @@ public class Stock {
     private static void checkUser(String str) {
             String[] words = str.split("[ ]");
             if(words.length!=3) throw new UnknownError("Users in file are not correct!!!! Must be: [name password type]");
-            Matcher matcher = Pattern.compile("[A-Za-zА-Яїєіа-я_0-9]{3,20}").matcher(words[0]);
+            Matcher matcher = Pattern.compile("[A-Za-zА-ЯЇЄІїєіа-я_0-9]{3,20}").matcher(words[0]);
             if(!matcher.matches()) throw new UnknownError("Users in file are not correct!!!! Must be: [name password type]");
             if(Stock.findUserByName(words[0]) == null) {
                 User user = new User(words[0], words[1], words[2]);
