@@ -73,7 +73,7 @@ public class TitleBarPanel extends JPanel {
         {
             tfSearch.setOpaque(false);
             tfSearch.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-            tfSearch.setFont(AppStyles.searchFont);
+            tfSearch.setFont(AppStyles.appH2Font);
             tfSearch.setForeground(AppStyles.MainColor);
         }
 

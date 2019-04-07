@@ -89,9 +89,9 @@ gotItBTN.addMouseListener(new MouseAdapter() {
         help.setVisible(false);
         loginErrorMSG.setVisible(false);
         passwordErrorMSG.setVisible(false);
-        loginErrorMSG.setFont(AppStyles.loginErrorMSG);
+        loginErrorMSG.setFont(AppStyles.appH2Font);
         loginErrorMSG.setForeground(Color.RED);
-        passwordErrorMSG.setFont(AppStyles.loginErrorMSG);
+        passwordErrorMSG.setFont(AppStyles.appH2Font);
         passwordErrorMSG.setForeground(Color.RED);
         passwordField.setFont(AppStyles.appH1Font);
         passwordField.setForeground(AppStyles.MainColor);

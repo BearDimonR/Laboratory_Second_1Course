@@ -43,7 +43,7 @@ public class ProductCreatePanel extends JPanel {
     private void setStylesOfUserInputFields() {
         //tfProductName
         tfProductName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        tfProductName.setFont(AppStyles.appH2Font);
+        tfProductName.setFont(AppStyles.appH1Font);
         tfProductName.setForeground(AppStyles.DeselectedColor);
 
         //taDescription

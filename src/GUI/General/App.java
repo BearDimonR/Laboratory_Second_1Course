@@ -17,6 +17,7 @@ public class App {
             mainFrame.setLocation(new Point(100, 50));
            loginFrame.setSize(new Dimension(750, 500));
             loginFrame.setVisible(true);
+
         }
     }
     public static void makeMainFrameVisible(){
