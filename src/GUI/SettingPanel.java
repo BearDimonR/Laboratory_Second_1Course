@@ -89,6 +89,9 @@ public class SettingPanel extends JPanel {
          setStyleOfWorkerChooser();
          addListenersToBTNS();
          addListenersToTickBTNS();
+        userName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        userName.setFont(AppStyles.appH0Font);
+        userName.setForeground(AppStyles.MainColor);
     }
 
     private void setStyleOfWorkerChooser(){

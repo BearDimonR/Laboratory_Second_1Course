@@ -4,6 +4,7 @@ import BackGround.GroupOfProduct;
 import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
+import GUI.General.DonePanel;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
@@ -116,6 +117,8 @@ public class GroupEditingPanel extends JPanel {
                 tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(), 2);
                 editFieldsBodyBackground.setVisible(false);
                 tableBodyBackground.setVisible(true);
+                DonePanel d = new DonePanel();
+
             }
         });
 

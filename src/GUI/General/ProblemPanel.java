@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class DonePanel extends JFrame {
-    JLabel background = new JLabel(new ImageIcon("images/done.png"));
+public class ProblemPanel extends JFrame {
+    JLabel background = new JLabel(new ImageIcon("images/exception.png"));
     JLabel okBTN = new JLabel(new ImageIcon("images/okBTN.png"));
 
-    public DonePanel() {
+    public ProblemPanel() {
         setLayout(null);
         setUndecorated(true);
         setVisible(true);

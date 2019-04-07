@@ -5,6 +5,7 @@ import BackGround.Product;
 import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
+import GUI.General.DonePanel;
 import GUI.General.TablePanel;
 import GUI.MainComponents.TitleBarPanel;
 
@@ -234,6 +235,9 @@ public class ProductEditingPanel extends JPanel {
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
                 editFieldsBodyBackground.setVisible(false);
                 tableBodyBackground.setVisible(true);
+                DonePanel d = new DonePanel();
+
+
             }
         });
         btnModeSwitchOff.addMouseListener(new MouseAdapter() {
