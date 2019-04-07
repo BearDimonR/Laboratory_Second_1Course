@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class SettingPanel extends JPanel {
     JLabel changeNameBTN = new JLabel(new ImageIcon("images/changeNameBTN.jpg"));
     JLabel changePictureBTN = new JLabel(new ImageIcon("images/changePictureBTN.jpg"));
+    JLabel profilePhoto = new JLabel(new ImageIcon("images/picture chooser/pictures150x150/1.png"));
     JLabel logOutBTN = new JLabel(new ImageIcon("images/logOutBTN.jpg"));
     JLabel profileSetBackground = new JLabel(new ImageIcon("images/SettingsProfilePlace.jpg"));
     JLabel adminTickSetBackground = new JLabel(new ImageIcon("images/SettingsTicksPlace.jpg"));
@@ -61,10 +62,12 @@ public class SettingPanel extends JPanel {
         adminTickSetBackground.add(blockTick);
         adminTickSetBackground.add(deBlockTick);
         profileSetBackground.add(changePictureBTN);
+        profileSetBackground.add(profilePhoto);
         profileSetBackground.add(changeNameBTN);
         userTickSetBackground.setVisible(false);
         profileSetBackground.add(userName);
         profileSetBackground.add(logOutBTN);
+        profilePhoto.setBounds(89,60,150,150);
         createTick.setBounds(105, 197, 28, 28);
         deCreateTick.setBounds(105, 197, 28, 28);
         editTick.setBounds(105, 262, 28, 28);
