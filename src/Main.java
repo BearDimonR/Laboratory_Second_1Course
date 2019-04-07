@@ -1,10 +1,6 @@
-import BackGround.GroupOfProduct;
-import BackGround.Product;
-import BackGround.Stock;
-import BackGround.User;
-import GUI.General.App;
 
-import java.util.Arrays;
+import BackGround.Stock;
+import GUI.General.App;
 
 public class Main {
     public static void main(String[] args){

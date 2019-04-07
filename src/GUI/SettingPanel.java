@@ -127,7 +127,7 @@ public class SettingPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ArrayList<Boolean> access = null;
-                if(Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess() != null) {
+                if(workerChoser.getSelectedItem()!= null && Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess() != null) {
                     access = Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess();
                     if (access.get(0)){
                         createTick.setVisible(true);
@@ -168,6 +168,14 @@ public class SettingPanel extends JPanel {
                     else {
                         searchTick.setVisible(false);
                         deSearchTick.setVisible(true);
+                    }
+                    if(Stock.findUserByName((String) workerChoser.getSelectedItem()).isBlocked()){
+                        blockTick.setVisible(true);
+                        deBlockTick.setVisible(false);
+                    }
+                    else {
+                        blockTick.setVisible(false);
+                        deBlockTick.setVisible(true);
                     }
 
                 }
@@ -292,6 +300,10 @@ public class SettingPanel extends JPanel {
             adminTickSetBackground.setVisible(false);
             userTickSetBackground.setVisible(true);
         }
+    }
+
+    public void setBoxUsers(){
+        workerChoser.removeAllItems();
         for(int i=0;i< Stock.getUsers().size();i++) {
             if(!Stock.getUsers().get(i).isAdmin()) workerChoser.addItem(Stock.getUsers().get(i).getName());
         }

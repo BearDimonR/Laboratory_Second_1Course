@@ -115,6 +115,7 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                 else  {
                     User user = Stock.findUserByName(loginField.getText());
                     if(user.isBlocked()){
+                        System.out.println(user.isBlocked());
                         //error
                         numberOfTries++;
                         loginField.setText("");
@@ -128,6 +129,7 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                         TitleBarPanel.setStats();
                         ContentPanel.initPanel();
                         ContentPanel.settingPanel.updateData();
+                        ContentPanel.settingPanel.setBoxUsers();
                         showLoadingpanel();
                     } else {
                         passwordErrorMSG.setVisible(true);
