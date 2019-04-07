@@ -6,6 +6,7 @@ import GUI.General.AppStyles;
 import GUI.General.NameChooser;
 import GUI.General.PictureChooser;
 import GUI.MainComponents.ContentPanel;
+import GUI.MainComponents.TitleBarPanel;
 import GUI.MainComponents.ToolBarPanel;
 
 import javax.swing.*;
@@ -103,8 +104,7 @@ public class SettingPanel extends JPanel {
         logOutBTN.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ContentPanel.showPanel(1);
-                ToolBarPanel.selectBtn(1);
+                ToolBarPanel.deselectAllButtonsOnToolBar();
                 App.makeLoginFrameVisible();
 
             }
@@ -284,6 +284,7 @@ public class SettingPanel extends JPanel {
     }
 
     public void updateData() {
+        userName.setText(Stock.getLoginUser().getName());
         if(!Stock.getLoginUser().isAdmin()){
             adminTickSetBackground.setVisible(false);
             userTickSetBackground.setVisible(true);

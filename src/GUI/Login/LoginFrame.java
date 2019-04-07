@@ -77,12 +77,14 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                 public void keyTyped(KeyEvent e) {
                     if (!Character.isDigit(e.getKeyChar()) && !Character.isAlphabetic(e.getKeyChar()) && e.getKeyChar() != '_')
                         e.consume();
+                    else if(loginField.getText().length() == 12) e.consume();
                 }
             });
             passwordField.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyTyped(KeyEvent e) {
                     if (e.getKeyChar() <= 32) e.consume();
+                    else if(passwordField.getPassword().length == 19) e.consume();
                 }
             });
         }

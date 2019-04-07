@@ -64,7 +64,7 @@ public class CreationPanel extends JPanel {
                 btnModeSwitchOn.setVisible(false);
                 groupCreatePanel.setVisible(false);
                 productCreatePanel.setVisible(true);
-                productCreatePanel.checkBox();
+                updateBox();
             }
         });
         btnModeSwitchBTNOff.addMouseListener(new MouseAdapter() {
@@ -76,5 +76,9 @@ public class CreationPanel extends JPanel {
                 productCreatePanel.setVisible(false);
             }
         });
+    }
+
+    public static void updateBox() {
+        productCreatePanel.checkBox();
     }
 }

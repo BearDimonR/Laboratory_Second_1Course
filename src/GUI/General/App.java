@@ -25,7 +25,7 @@ public class App {
         mainFrame.setVisible(true);
     }
     public static void makeLoginFrameVisible(){
-        loginFrame.setVisible(true);
         mainFrame.setVisible(false);
+        loginFrame.setVisible(true);
     }
 }
