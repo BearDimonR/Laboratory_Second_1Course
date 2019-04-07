@@ -4,6 +4,7 @@ import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
 import GUI.General.App;
+import GUI.Search.ProductSearchPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -136,29 +137,50 @@ public class TitleBarPanel extends JPanel {
 //            });
             tfSearch.addKeyListener(new KeyListener() {
                 @Override
-                public void keyTyped(KeyEvent e) {
-                }
-
+                public void keyTyped(KeyEvent e) { }
                 @Override
-                public void keyPressed(KeyEvent e) {
-                }
-
+                public void keyPressed(KeyEvent e) { }
                 @Override
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                        ToolBarPanel.deselectAllButtonsOnToolBar();
-                        ContentPanel.showPanel(6);
-                        String search = tfSearch.getText();
-                        System.out.println("text in textFileld search = " + search);
-                        updateTable(search);
+
+                        System.out.println("text in textFileld search = " + tfSearch.getText());
+
+                        if (CheckSearchLine(tfSearch.getText())==false
+//                                tfSearch.getText().matches("[ ]*") == false &&
+//                                tfSearch.getText().matches("[ ]*[0-9]+[.]?[0-9]*[ ]*") == false &&
+//                                tfSearch.getText().matches("[ ]*[A-Za-zА-Яа-яії]+[ ]*") == false &&
+//                                tfSearch.getText().matches("[ ]*[\\d]+[.]?[\\d]*[ ]*[-][ ]*[\\d]+[.]?[\\d]*[ ]*") == false
+
+                        ) {
+                            JOptionPane.showMessageDialog(null, "Your write incorrect info", "Arial", JOptionPane.ERROR_MESSAGE);
+                        } else {
+                            ToolBarPanel.deselectAllButtonsOnToolBar();
+                            ContentPanel.showPanel(6);
+                           //  updateTable(tfSearch.getText());
+                            ProductSearchPanel.tablePanel.addDataToGoodsTable(Utilities.Search(tfSearch.getText()), 1);
+                        }
                     }
                 }
             });
         }
 
     }
-    private void  updateTable(String search){
-        //tablePanel.addDataToGoodsTable(Utilities.Search(search), 1);
+
+    /**
+     * check search line
+     * @param search
+     * @return
+     */
+    private boolean  CheckSearchLine(String search){
+       if(search.matches("[ ]*") == false &&
+               search.matches("[ ]*[0-9]+[.]?[0-9]*[ ]*") == false &&
+               search.matches("[ ]*[A-Za-zА-Яа-яії]+[ ]*") == false &&
+               search.matches("[ ]*[\\d]+[.]?[\\d]*[ ]*[-][ ]*[\\d]+[.]?[\\d]*[ ]*") == false)
+       {
+           return false;
+       }
+       return true;
     }
 
     public static void setStats() {

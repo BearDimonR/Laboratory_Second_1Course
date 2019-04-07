@@ -248,7 +248,7 @@ public class ProductCreatePanel extends JPanel {
     /**
      * Method which check if fields are filled properly
      */
-    private void checkFields() {
+    private  void checkFields() {
         Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfProductName.getText());
         if (!matcher.matches() || tfProductName.getText().length() > 20) {
             setCreateDisabled();
@@ -288,8 +288,6 @@ public class ProductCreatePanel extends JPanel {
             cbProductGroup.addItem(Stock.getGroups().get(i).getName());
         }
     }
-
-
 
 
     /**
@@ -347,13 +345,5 @@ public class ProductCreatePanel extends JPanel {
         tfPrice.setText("Product price");
     }
 
-    /**
 
-     */
-    public void cheakBox(){
-        cbProductGroup.removeAllItems();
-        for(int i = 0; i< Stock.getGroups().size();i++){
-            cbProductGroup.addItem((Stock.getGroups().get(i).getName()));
-        }
-    }
 }

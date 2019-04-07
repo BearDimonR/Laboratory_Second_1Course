@@ -10,7 +10,10 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -37,14 +40,6 @@ public class QuantityPanel extends JPanel {
     private JTextField tfLowestPriceSearch = new JTextField();
     private JTextField tfHighestPriceSearch = new JTextField();
     private JComboBox cbProductGroupSearch = new JComboBox();
-//
-//    String group = cbProductGroupSearch.getToolTipText();
-//    String product = tfProductNameSearch.getText();
-//    String manufacturer = tfManufacturerSearch.getText();
-    //double priceFrom = Double.valueOf(tfLowestPriceSearch.getText());
-   // double priceTo = Double.valueOf(tfHighestPriceSearch.getText());
-
-   // private TablePanel tablePanel = new TablePanel(1);
 
     public QuantityPanel() {
         setLayout(null);
@@ -59,8 +54,20 @@ public class QuantityPanel extends JPanel {
         background.add(tfAddToStock);
         background.add(tfRemoveFromStock);
         background.add(tfInStock);
-        cheakBox();
-      //  updateTable();
+        tfLowestPriceSearch.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyTyped(KeyEvent e){
+                if(!Character.isDigit(e.getKeyChar())&&e.getKeyChar()!='.'){
+                    e.consume(); }}});
+        tfHighestPriceSearch.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if(!Character.isDigit(e.getKeyChar())&&e.getKeyChar()!='.'){
+                    e.consume();
+                }
+            }
+        });
+        //  updateTable();
         tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
         tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -102,7 +109,6 @@ public class QuantityPanel extends JPanel {
         tfHighestPriceSearch.setBounds(756, 82, 60, 18);
         tablePanel.setBounds(23, 148, 659, 494);
 
-
         background.setBounds(0, 0, 914, 666);
         btnFind.setBounds(15, 16, 54, 110);
         btnAddMinus.setBounds(709, 326, 26, 26);
@@ -118,10 +124,13 @@ public class QuantityPanel extends JPanel {
         tfRemoveFromStock.setText(String.valueOf(removeAmount));
         tfRemoveFromStock.setHorizontalAlignment(0);
         tfInStock.setHorizontalAlignment(0);
+//        System.out.println("group = " + cbProductGroupSearch.getSelectedItem());
+//        System.out.println("group = " + (String) String.valueOf(cbProductGroupSearch.getSelectedItem()));
+//        System.out.println("group = " + (String) cbProductGroupSearch.getSelectedItem());
         btnAddPlus.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(tablePanel.getSelectedProduct() == null) return;
+                if (tablePanel.getSelectedProduct() == null) return;
                 addAmount++;
                 tfAddToStock.setText(String.valueOf(addAmount));
             }
@@ -129,8 +138,8 @@ public class QuantityPanel extends JPanel {
         btnAddMinus.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(tablePanel.getSelectedProduct() == null) return;
-                if(addAmount == 0) return;
+                if (tablePanel.getSelectedProduct() == null) return;
+                if (addAmount == 0) return;
                 addAmount--;
                 tfAddToStock.setText(String.valueOf(addAmount));
             }
@@ -138,8 +147,8 @@ public class QuantityPanel extends JPanel {
         btnRemovePlus.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(tablePanel.getSelectedProduct() == null) return;
-                if(removeAmount == Integer.parseInt(tfInStock.getText())) return;
+                if (tablePanel.getSelectedProduct() == null) return;
+                if (removeAmount == Integer.parseInt(tfInStock.getText())) return;
                 removeAmount++;
                 tfRemoveFromStock.setText(String.valueOf(removeAmount));
             }
@@ -147,8 +156,8 @@ public class QuantityPanel extends JPanel {
         btnRemoveMinus.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(tablePanel.getSelectedProduct() == null) return;
-                if(removeAmount == 0) return;
+                if (tablePanel.getSelectedProduct() == null) return;
+                if (removeAmount == 0) return;
                 removeAmount--;
                 tfRemoveFromStock.setText(String.valueOf(removeAmount));
             }
@@ -156,7 +165,7 @@ public class QuantityPanel extends JPanel {
         btnChange.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(tablePanel.getSelectedProduct() == null) return;
+                if (tablePanel.getSelectedProduct() == null) return;
                 tablePanel.getSelectedProduct().setQuantityInStock(Integer.parseInt(tfInStock.getText()) + addAmount - removeAmount);
                 Stock.saveData();
                 TitleBarPanel.setStats();
@@ -168,17 +177,20 @@ public class QuantityPanel extends JPanel {
             }
         });
 
-        btnFind.addMouseListener(new MouseAdapter(){
+        btnFind.addMouseListener(new MouseAdapter() {
             @Override
 
-            public void mouseClicked(MouseEvent e){
-
-                if(tfProductNameSearch.getText().matches("[ ]*")==false||
-                        tfManufacturerSearch.getText().matches("[ ]*")==false||
-                        tfLowestPriceSearch.getText().matches("[ ]*")==false||
-                        tfHighestPriceSearch.getText().matches("[ ]*")==false
-                      //  cbProductGroupSearch.getText().matches("[ ]*")==false
-                ){
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("group = " + cbProductGroupSearch.getSelectedItem());
+                System.out.println("group = " + (String) String.valueOf(cbProductGroupSearch.getSelectedItem()));
+                System.out.println("group = " + (String) cbProductGroupSearch.getSelectedItem());
+                String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
+                if (tfProductNameSearch.getText().matches("[ ]*") == false ||
+                        tfManufacturerSearch.getText().matches("[ ]*") == false ||
+                        tfLowestPriceSearch.getText().matches("[ ]*") == false ||
+                        tfHighestPriceSearch.getText().matches("[ ]*") == false||
+                        group.matches("[ ]*")==false
+                ) {
 
                     updateTable();
 
@@ -187,12 +199,19 @@ public class QuantityPanel extends JPanel {
         });
 
 
+        cheakBox();
+
         setStyleOfHeader();
     }
+    public void cheakBox() {
+        cbProductGroupSearch.removeAllItems();
+        for (int i = 0; i < Stock.getGroups().size(); i++) {
+            cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
+        }
+    }
 
-
-    public  void updateTable() {
-        String group = cbProductGroupSearch.getToolTipText();
+    private void updateTable() {
+        String group = (String) cbProductGroupSearch.getSelectedItem();
         String product = tfProductNameSearch.getText();
         String manufacturer = tfManufacturerSearch.getText();
         String priceFrom = tfLowestPriceSearch.getText();
@@ -215,20 +234,16 @@ public class QuantityPanel extends JPanel {
         System.out.println("price to='" + prTo + "'");
 
     }
+
     private void checkStock() {
-        if(tablePanel.getSelectedProduct() == null) return;
-        if(tablePanel.getSelectedProduct().getQuantityInStock() == Integer.parseInt(tfInStock.getText())) return;
+        if (tablePanel.getSelectedProduct() == null) return;
+        if (tablePanel.getSelectedProduct().getQuantityInStock() == Integer.parseInt(tfInStock.getText())) return;
         tfInStock.setText(String.valueOf(tablePanel.getSelectedProduct().getQuantityInStock()));
     }
 
-    public void cheakBox() {
-        cbProductGroupSearch.removeAllItems();
-        for (int i = 0; i < Stock.getGroups().size(); i++) {
-            cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
-        }
-    }
 
-    private void setStyleOfHeader(){
+
+    private void setStyleOfHeader() {
         tfHighestPriceSearch.setFont(AppStyles.appH2Font);
         tfHighestPriceSearch.setForeground(AppStyles.MainColor);
         tfHighestPriceSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -250,7 +265,8 @@ public class QuantityPanel extends JPanel {
         cbProductGroupSearch.setForeground(AppStyles.MainColor);
         cbProductGroupSearch.setUI(new BasicComboBoxUI());
     }
-    private void setStyleOfBOdy(){
+
+    private void setStyleOfBOdy() {
         tfInStock.setFont(AppStyles.appH2Font);
         tfInStock.setForeground(AppStyles.MainColor);
         tfInStock.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -264,4 +280,6 @@ public class QuantityPanel extends JPanel {
         tfRemoveFromStock.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
     }
+
+
 }
