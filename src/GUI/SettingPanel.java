@@ -1,7 +1,13 @@
 package GUI;
 
 import BackGround.Stock;
+import GUI.General.App;
 import GUI.General.AppStyles;
+import GUI.General.NameChooser;
+import GUI.General.PictureChooser;
+import GUI.MainComponents.ContentPanel;
+import GUI.MainComponents.TitleBarPanel;
+import GUI.MainComponents.ToolBarPanel;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
@@ -15,6 +21,8 @@ import java.util.ArrayList;
 public class SettingPanel extends JPanel {
     JLabel changeNameBTN = new JLabel(new ImageIcon("images/changeNameBTN.jpg"));
     JLabel changePictureBTN = new JLabel(new ImageIcon("images/changePictureBTN.jpg"));
+    JLabel profilePhoto = new JLabel(new ImageIcon("images/picture chooser/pictures150x150/1.png"));
+    JLabel logOutBTN = new JLabel(new ImageIcon("images/logOutBTN.jpg"));
     JLabel profileSetBackground = new JLabel(new ImageIcon("images/SettingsProfilePlace.jpg"));
     JLabel adminTickSetBackground = new JLabel(new ImageIcon("images/SettingsTicksPlace.jpg"));
     JLabel userTickSetBackground = new JLabel(new ImageIcon("images/UserSettingBackground.jpg"));
@@ -31,6 +39,7 @@ public class SettingPanel extends JPanel {
     JLabel blockTick = new JLabel(new ImageIcon("images/Tick.jpg"));
     JLabel deBlockTick = new JLabel(new ImageIcon("images/deTick.jpg"));
     JComboBox workerChoser = new JComboBox();
+    JLabel userName = new JLabel("");
 
     public SettingPanel() {
         setLayout(null);
@@ -54,8 +63,12 @@ public class SettingPanel extends JPanel {
         adminTickSetBackground.add(blockTick);
         adminTickSetBackground.add(deBlockTick);
         profileSetBackground.add(changePictureBTN);
+        profileSetBackground.add(profilePhoto);
         profileSetBackground.add(changeNameBTN);
         userTickSetBackground.setVisible(false);
+        profileSetBackground.add(userName);
+        profileSetBackground.add(logOutBTN);
+        profilePhoto.setBounds(89,60,150,150);
         createTick.setBounds(105, 197, 28, 28);
         deCreateTick.setBounds(105, 197, 28, 28);
         editTick.setBounds(105, 262, 28, 28);
@@ -69,11 +82,17 @@ public class SettingPanel extends JPanel {
         blockTick.setBounds(105, 514, 28, 28);
         deBlockTick.setBounds(105, 514, 28, 28);
         workerChoser.setBounds(135,110,280,20);
-        changeNameBTN.setBounds(64,498,212,32);
-        changePictureBTN.setBounds(64,569,212,32);
+        changeNameBTN.setBounds(64,369,212,32);
+        changePictureBTN.setBounds(64,440,212,32);
+        logOutBTN.setBounds(64,510,212,32);
+        userName.setBounds(10,236,315,22);
          setStyleOfWorkerChooser();
          addListenersToBTNS();
          addListenersToTickBTNS();
+        userName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        userName.setFont(AppStyles.appH0Font);
+        userName.setForeground(AppStyles.MainColor);
+        userName.setHorizontalAlignment(0);
     }
 
     private void setStyleOfWorkerChooser(){
@@ -83,16 +102,25 @@ public class SettingPanel extends JPanel {
         workerChoser.setUI(new BasicComboBoxUI());
     }
     private void addListenersToBTNS(){
+        logOutBTN.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ToolBarPanel.deselectAllButtonsOnToolBar();
+                App.makeLoginFrameVisible();
+
+            }
+        });
         changePictureBTN.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
+                PictureChooser p = new PictureChooser();
+                updateData();
             }
         });
         changeNameBTN.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                
+                NameChooser c = new NameChooser();
             }
         });
         workerChoser.addActionListener(new ActionListener() {
@@ -242,7 +270,7 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 blockTick.setVisible(false);
                 deBlockTick.setVisible(true);
-                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(1,false);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).setBlocked(false);
                 Stock.saveUsers();
             }
         });
@@ -251,19 +279,64 @@ public class SettingPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 blockTick.setVisible(true);
                 deBlockTick.setVisible(false);
-                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess().set(1,false);
+                Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).setBlocked(true);
                 Stock.saveUsers();
             }
         });
     }
 
     public void updateData() {
+        userName.setText(Stock.getLoginUser().getName());
+        setIconPhotos();
         if(!Stock.getLoginUser().isAdmin()){
             adminTickSetBackground.setVisible(false);
             userTickSetBackground.setVisible(true);
         }
         for(int i=0;i< Stock.getUsers().size();i++) {
             if(!Stock.getUsers().get(i).isAdmin()) workerChoser.addItem(Stock.getUsers().get(i).getName());
+        }
+    }
+
+    private void setIconPhotos() {
+        if(Stock.getLoginUser().getImage() == null){
+            profilePhoto.setIcon(null);
+            TitleBarPanel.setIcon(null);
+            return;
+        }
+        profilePhoto.setIcon(new ImageIcon(Stock.getLoginUser().getImage()));
+        switch (Stock.getLoginUser().getImage()){
+            case "images/picture chooser/pictures96x96/1.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/1.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/2.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/2.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/3.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/3.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/4.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/4.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/5.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/5.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/6.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/6.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/7.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/7.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/8.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/8.png");
+                break;
+            }
         }
     }
 

@@ -3,6 +3,7 @@ package GUI.Deleting;
 import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
+import GUI.General.DonePanel;
 import GUI.General.TablePanel;
 import GUI.MainComponents.TitleBarPanel;
 
@@ -86,6 +87,8 @@ setStyleOfHeader();
                 Stock.saveData();
                 TitleBarPanel.setStats();
                 tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
+                DonePanel d = new DonePanel();
+
             }
         });
 

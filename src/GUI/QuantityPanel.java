@@ -3,6 +3,8 @@ package GUI;
 import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
+import GUI.General.DonePanel;
+import GUI.General.ProblemPanel;
 import GUI.General.TablePanel;
 import GUI.MainComponents.TitleBarPanel;
 
@@ -165,7 +167,10 @@ public class QuantityPanel extends JPanel {
         btnChange.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (tablePanel.getSelectedProduct() == null) return;
+                if(tablePanel.getSelectedProduct() == null){
+                    ProblemPanel p = new ProblemPanel();
+                    return;
+                }
                 tablePanel.getSelectedProduct().setQuantityInStock(Integer.parseInt(tfInStock.getText()) + addAmount - removeAmount);
                 Stock.saveData();
                 TitleBarPanel.setStats();
@@ -174,6 +179,8 @@ public class QuantityPanel extends JPanel {
                 removeAmount = 0;
                 tfAddToStock.setText(String.valueOf(addAmount));
                 tfRemoveFromStock.setText(String.valueOf(removeAmount));
+                DonePanel d = new DonePanel();
+
             }
         });
 

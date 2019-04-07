@@ -59,7 +59,7 @@ public class GroupOfProduct implements Serializable {
     public double getGroupPrice() {
         double res = 0;
         for(int i=0;i<products.size();i++){
-            res += products.get(i).getPrice();
+            res += products.get(i).getPrice()*products.get(i).getQuantityInStock();
         }
         return res;
     }

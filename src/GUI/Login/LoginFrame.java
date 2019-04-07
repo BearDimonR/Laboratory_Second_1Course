@@ -77,21 +77,23 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                 public void keyTyped(KeyEvent e) {
                     if (!Character.isDigit(e.getKeyChar()) && !Character.isAlphabetic(e.getKeyChar()) && e.getKeyChar() != '_')
                         e.consume();
+                    else if(loginField.getText().length() == 12) e.consume();
                 }
             });
             passwordField.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyTyped(KeyEvent e) {
                     if (e.getKeyChar() <= 32) e.consume();
+                    else if(passwordField.getPassword().length == 19) e.consume();
                 }
             });
         }
         help.setVisible(false);
         loginErrorMSG.setVisible(false);
         passwordErrorMSG.setVisible(false);
-        loginErrorMSG.setFont(AppStyles.loginErrorMSG);
+        loginErrorMSG.setFont(AppStyles.appH2Font);
         loginErrorMSG.setForeground(Color.RED);
-        passwordErrorMSG.setFont(AppStyles.loginErrorMSG);
+        passwordErrorMSG.setFont(AppStyles.appH2Font);
         passwordErrorMSG.setForeground(Color.RED);
         passwordField.setFont(AppStyles.appH1Font);
         passwordField.setForeground(AppStyles.MainColor);
@@ -112,13 +114,21 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                 }
                 else  {
                     User user = Stock.findUserByName(loginField.getText());
+                    if(user.isBlocked()){
+                        //error
+                        numberOfTries++;
+                        loginField.setText("");
+                        passwordField.setText("");
+                        return;
+                    }
                     String password = String.valueOf(passwordField.getPassword());
                     if(user.getPassword().equals(password)) {
                         Stock.setLoginUser(user);
                         TitleBarPanel.setUserName();
                         TitleBarPanel.setStats();
                         ContentPanel.initPanel();
-                        App.makeMainFrameVisible();
+                        ContentPanel.settingPanel.updateData();
+                        showLoadingpanel();
                     } else {
                         passwordErrorMSG.setVisible(true);
                         passwordField.setText("");
@@ -145,15 +155,23 @@ gotItBTN.addMouseListener(new MouseAdapter() {
             }
         });
     }
+    private void clearLoginForm(){
+        help.setVisible(false);
 
+        loginField.setText("");
+        passwordField.setText("");
+    }
     private void showLoadingpanel() {
         loadingBackground.add(loadingBar);
         loadingBar.setBounds(200, 350, 356, 36);
         loadingBackground.setVisible(true);
         loginBackground.setVisible(false);
-//pause
+
         loadingBackground.setVisible(false);
+        loginBackground.setVisible(true);
+        clearLoginForm();
         App.makeMainFrameVisible();
 
     }
+
 }
