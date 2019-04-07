@@ -118,7 +118,7 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                         TitleBarPanel.setUserName();
                         TitleBarPanel.setStats();
                         ContentPanel.initPanel();
-                        App.makeMainFrameVisible();
+                        showLoadingpanel();
                     } else {
                         passwordErrorMSG.setVisible(true);
                         passwordField.setText("");
@@ -145,15 +145,22 @@ gotItBTN.addMouseListener(new MouseAdapter() {
             }
         });
     }
-
+    private void clearLoginForm(){
+        help.setVisible(false);
+        loginField.setText("");
+        passwordField.setText("");
+    }
     private void showLoadingpanel() {
         loadingBackground.add(loadingBar);
         loadingBar.setBounds(200, 350, 356, 36);
         loadingBackground.setVisible(true);
         loginBackground.setVisible(false);
-//pause
+for(int i=-1000000000;i<0;i++){
+
+}
         loadingBackground.setVisible(false);
         App.makeMainFrameVisible();
 
     }
+
 }
