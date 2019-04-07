@@ -1,7 +1,12 @@
 package GUI;
 
 import BackGround.Stock;
+import GUI.General.App;
 import GUI.General.AppStyles;
+import GUI.General.NameChooser;
+import GUI.General.PictureChooser;
+import GUI.MainComponents.ContentPanel;
+import GUI.MainComponents.ToolBarPanel;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
@@ -15,6 +20,7 @@ import java.util.ArrayList;
 public class SettingPanel extends JPanel {
     JLabel changeNameBTN = new JLabel(new ImageIcon("images/changeNameBTN.jpg"));
     JLabel changePictureBTN = new JLabel(new ImageIcon("images/changePictureBTN.jpg"));
+    JLabel logOutBTN = new JLabel(new ImageIcon("images/logOutBTN.jpg"));
     JLabel profileSetBackground = new JLabel(new ImageIcon("images/SettingsProfilePlace.jpg"));
     JLabel adminTickSetBackground = new JLabel(new ImageIcon("images/SettingsTicksPlace.jpg"));
     JLabel userTickSetBackground = new JLabel(new ImageIcon("images/UserSettingBackground.jpg"));
@@ -31,6 +37,7 @@ public class SettingPanel extends JPanel {
     JLabel blockTick = new JLabel(new ImageIcon("images/Tick.jpg"));
     JLabel deBlockTick = new JLabel(new ImageIcon("images/deTick.jpg"));
     JComboBox workerChoser = new JComboBox();
+    JLabel userName = new JLabel("cvdvdsvdsvds");
 
     public SettingPanel() {
         setLayout(null);
@@ -56,6 +63,8 @@ public class SettingPanel extends JPanel {
         profileSetBackground.add(changePictureBTN);
         profileSetBackground.add(changeNameBTN);
         userTickSetBackground.setVisible(false);
+        profileSetBackground.add(userName);
+        profileSetBackground.add(logOutBTN);
         createTick.setBounds(105, 197, 28, 28);
         deCreateTick.setBounds(105, 197, 28, 28);
         editTick.setBounds(105, 262, 28, 28);
@@ -69,8 +78,10 @@ public class SettingPanel extends JPanel {
         blockTick.setBounds(105, 514, 28, 28);
         deBlockTick.setBounds(105, 514, 28, 28);
         workerChoser.setBounds(135,110,280,20);
-        changeNameBTN.setBounds(64,498,212,32);
-        changePictureBTN.setBounds(64,569,212,32);
+        changeNameBTN.setBounds(64,369,212,32);
+        changePictureBTN.setBounds(64,440,212,32);
+        logOutBTN.setBounds(64,510,212,32);
+        userName.setBounds(88,236,154,22);
          setStyleOfWorkerChooser();
          addListenersToBTNS();
          addListenersToTickBTNS();
@@ -83,14 +94,24 @@ public class SettingPanel extends JPanel {
         workerChoser.setUI(new BasicComboBoxUI());
     }
     private void addListenersToBTNS(){
+        logOutBTN.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ContentPanel.showPanel(1);
+                ToolBarPanel.selectBtn(1);
+                App.makeLoginFrameVisible();
+            }
+        });
         changePictureBTN.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                PictureChooser p = new PictureChooser();
             }
         });
         changeNameBTN.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                NameChooser c = new NameChooser();
             }
         });
         workerChoser.addActionListener(new ActionListener() {
