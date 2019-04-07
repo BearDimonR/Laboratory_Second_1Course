@@ -104,8 +104,11 @@ gotItBTN.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 loginErrorMSG.setVisible(false);
                 passwordErrorMSG.setVisible(false);
-                if (Stock.findUserByName(loginField.getText()) == null) {loginErrorMSG.setVisible(true);
-                numberOfTries++;
+                if (Stock.findUserByName(loginField.getText()) == null) {
+                    loginErrorMSG.setVisible(true);
+                    numberOfTries++;
+                    loginField.setText("");
+                    passwordField.setText("");
                 }
                 else  {
                     User user = Stock.findUserByName(loginField.getText());
@@ -118,7 +121,8 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                         showLoadingpanel();
                     } else {
                         passwordErrorMSG.setVisible(true);
-                    numberOfTries++;
+                        passwordField.setText("");
+                        numberOfTries++;
                     }
                 }
                 if(numberOfTries>3){
