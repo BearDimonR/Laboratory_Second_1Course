@@ -8,6 +8,9 @@ import BackGround.Stock;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.ScrollBarUI;
+import javax.swing.plaf.TableUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
@@ -18,10 +21,11 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class TablePanel extends JPanel implements MouseListener {
-    private  String[] GoodsTitles = {"id", "Product", "Group", "Manufacturer", "Price"};
-    private  String[] GroupTitles = {"id", "Group of products"};
-    private String[] GroupStats = {"id","Group of products","Total price","Total amount","Description"};
-    private String[] GoodsStats = {"id","Product","Manufacturer","Price","Amount","Description"};
+
+    private  String[] GoodsTitles = {"№", "Product", "Group", "Manufacturer", "Price"};
+    private  String[] GroupTitles = {"№", "Group of products"};
+    private String[] GroupStats = {"№","Group of products","Total price","Total amount","Description"};
+    private String[] GoodsStats = {"№","Product","Manufacturer","Price","Amount","Description"};
     private  JTable table = new JTable();
     private JScrollPane scrollPane = new JScrollPane(table);
 
@@ -53,8 +57,11 @@ public class TablePanel extends JPanel implements MouseListener {
             table.getTableHeader().setOpaque(false);
             table.getTableHeader().setBackground(AppStyles.MainColor);
             table.getTableHeader().setForeground(Color.white);
-            table.setShowGrid(false);
+            table.setShowGrid(true);
             table.setSelectionBackground(Color.LIGHT_GRAY);
+            table.setIntercellSpacing(new Dimension(5,5));
+            table.getTableHeader().setFont(new java.awt.Font("Verdana", 0, 16));
+            table.setRowHeight(50);
         }
 /**
  * **********************************************************************************************************************************
@@ -67,11 +74,12 @@ public class TablePanel extends JPanel implements MouseListener {
 
     }
 
+
     public  void addDataToGoodsTable(ArrayList<Product> products, int titleNum) {
         Object[][] objects = new Object[products.size()][];
         for (int i = 0; i < products.size(); i++) {
             String[] productLine = new String[6];
-            productLine[0] = (i + 1) + ".";
+            productLine[0] = (i + 1) + "";
             productLine[1] = products.get(i).getProductName();
             productLine[2] = products.get(i).getGroupProducts().getName();
             productLine[3] = products.get(i).getManufacturer();
@@ -86,7 +94,7 @@ public class TablePanel extends JPanel implements MouseListener {
         Object[][] objects = new Object[groupOfProduct.size()][];
         for (int i = 0; i < groupOfProduct.size(); i++) {
             String[] groupLine = new String[2];
-            groupLine[0] = (i + 1) + ".";
+            groupLine[0] = (i + 1) + "";
             groupLine[1] = groupOfProduct.get(i).getName();
             objects[i] = groupLine;
         }
@@ -153,7 +161,7 @@ public class TablePanel extends JPanel implements MouseListener {
         Object[][] objects = new Object[groups.size()][];
         for (int i = 0; i < groups.size(); i++) {
             String[] groupLine = new String[5];
-            groupLine[0] = (i + 1) + ".";
+            groupLine[0] = (i + 1) + "";
             groupLine[1] = groups.get(i).getName();
             groupLine[2] = String.valueOf(groups.get(i).getGroupPrice());
             groupLine[3] = String.valueOf(groups.get(i).getGroupAmount());
@@ -167,7 +175,7 @@ public class TablePanel extends JPanel implements MouseListener {
         Object[][] objects = new Object[products.size()][];
         for (int i = 0; i < products.size(); i++) {
             String[] productLine = new String[6];
-            productLine[0] = (i + 1) + ".";
+            productLine[0] = (i + 1) + "";
             productLine[1] = products.get(i).getProductName();
             productLine[2] = products.get(i).getManufacturer();
             productLine[3] = String.valueOf(products.get(i).getPrice());
