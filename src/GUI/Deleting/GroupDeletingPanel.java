@@ -68,11 +68,8 @@ setStyleOfHeader();
             @Override
 
             public void mouseClicked(MouseEvent e){
-//                if(tfGroupNameSearch.getText().matches("[ ]*")==false
-//
-//                ){
-                System.out.println("кнопка FIND натиснута" );
-                    updateTable(tfGroupNameSearch.getText());
+                tablePanel.addDataToGroupOFGoodsTable((Utilities.mainSearch2(tfGroupNameSearch.getText())),2);
+
                               }
 //            }
         });
@@ -99,11 +96,14 @@ setStyleOfHeader();
     public void updateTable(String group) {
 
         tablePanel.addDataToGroupOFGoodsTable(Utilities.mainSearch2(group ), 1);
-        //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
     }
     private void setStyleOfHeader(){
         tfGroupNameSearch.setFont(AppStyles.appH2Font);
         tfGroupNameSearch.setForeground(AppStyles.MainColor);
         tfGroupNameSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     }
+
+
+
+
 }
