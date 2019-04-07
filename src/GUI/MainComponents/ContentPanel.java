@@ -1,10 +1,12 @@
 package GUI.MainComponents;
 
+import BackGround.Stock;
 import GUI.*;
 import GUI.Creating.CreationPanel;
 import GUI.Deleting.DeletingPanel;
 import GUI.Editing.EditingPanel;
 import GUI.General.AppStyles;
+import GUI.Search.SearchPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +21,6 @@ public class ContentPanel extends JPanel {
 
     public ContentPanel() {
         setLayout(AppStyles.gridBagLayout);
-        showPanel(1);
         //set size of content panel
         {
             setSize(new Dimension(914, 665));
@@ -51,6 +52,26 @@ public class ContentPanel extends JPanel {
         }
     }
 
+    public static void initPanel() {
+        for(int i=1;i<6;i++) {
+            if(Stock.getLoginUser().getAccess(i)) {
+                if(i==5){
+                    showPanel(6);
+                    ToolBarPanel.selectBtn(i+1);
+                    break;
+                } else {
+                    showPanel(i);
+                    ToolBarPanel.selectBtn(i);
+                    break;
+                }
+            }
+            if(i==5){
+                showPanel(5);
+                ToolBarPanel.selectBtn(5);
+            }
+        }
+    }
+
     public static void showPanel(int j) {
         creationPanel.setVisible(false);
         deletingPanel.setVisible(false);
@@ -64,15 +85,19 @@ public class ContentPanel extends JPanel {
                 break;
             case 2:
                 editingPanel.setVisible(true);
+                editingPanel.updateTable();
                 break;
             case 3:
                 deletingPanel.setVisible(true);
+                DeletingPanel.updateTable();
                 break;
             case 4:
                 quantityPanel.setVisible(true);
+                quantityPanel.updateTable();
                 break;
             case 5:
                 settingPanel.setVisible(true);
+                settingPanel.updateData();
                 break;
             case 6:
                 searchPanel.setVisible(true);

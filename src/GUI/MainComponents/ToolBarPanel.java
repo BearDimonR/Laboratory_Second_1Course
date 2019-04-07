@@ -1,5 +1,7 @@
 package GUI.MainComponents;
 
+import BackGround.Stock;
+import BackGround.User;
 import GUI.General.AppStyles;
 import GUI.Creating.CreationPanel;
 
@@ -10,12 +12,14 @@ import java.awt.event.MouseEvent;
 
 public class ToolBarPanel extends JPanel {
     private static JLabel toolBarBackground = new JLabel(new ImageIcon("images/mainFrame/toolBarBackground.jpg"));//Background of tool bar
+
     private static JLabel btnSelectedCreate = new JLabel(new ImageIcon("images/toolBarButtons/selectedCreate.jpg"));
     private static JLabel btnSelectedEdit = new JLabel(new ImageIcon("images/toolBarButtons/selectedEdit.jpg"));
     private static JLabel btnSelectedDelete = new JLabel(new ImageIcon("images/toolBarButtons/selectedDelete.jpg"));
     private static JLabel btnSelectedQuantity = new JLabel(new ImageIcon("images/toolBarButtons/selectedQuantity.jpg"));
     private static JLabel btnSelectedSettings = new JLabel(new ImageIcon("images/toolBarButtons/selectedSettings.jpg"));
-    private static JLabel btnSeselectedCreate = new JLabel(new ImageIcon("images/toolBarButtons/deselectedCreate.jpg"));
+
+    private static JLabel btnDeselectedCreate = new JLabel(new ImageIcon("images/toolBarButtons/deselectedCreate.jpg"));
     private static JLabel btnDeselectedEdit = new JLabel(new ImageIcon("images/toolBarButtons/deselectedEdit.jpg"));
     private static JLabel btnDeselectedDelete = new JLabel(new ImageIcon("images/toolBarButtons/deselectedDelete.jpg"));
     private static JLabel btnDeselectedQuantity = new JLabel(new ImageIcon("images/toolBarButtons/deselectedQuantity.jpg"));
@@ -27,6 +31,7 @@ public class ToolBarPanel extends JPanel {
 
         //set default btn selection
         {
+            btnSelectedCreate.setVisible(false);
             btnSelectedEdit.setVisible(false);
             btnSelectedDelete.setVisible(false);
             btnSelectedQuantity.setVisible(false);
@@ -47,9 +52,9 @@ public class ToolBarPanel extends JPanel {
             toolBarBackground.add(btnSelectedCreate, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(75, 0, 0, 0), 0, 0));
-            toolBarBackground.add(btnSeselectedCreate, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
-                    GridBagConstraints.NORTH, GridBagConstraints.NORTH,
-                    new Insets(75, 0, 0, 0), 0, 0));
+            toolBarBackground.add(btnDeselectedCreate, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
+                GridBagConstraints.NORTH, GridBagConstraints.NORTH,
+                new Insets(75, 0, 0, 0), 0, 0));
             toolBarBackground.add(btnSelectedEdit, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(160, 0, 0, 0), 0, 0));
@@ -74,17 +79,18 @@ public class ToolBarPanel extends JPanel {
             toolBarBackground.add(btnDeselectedSettings, new GridBagConstraints(0, 0, 1, 1, 1, 0.25,
                     GridBagConstraints.NORTH, GridBagConstraints.NORTH,
                     new Insets(420, 0, 0, 0), 0, 0));
-        }
 
+        }
         //add mouse listeners to buttons of tool bar
         {
-            btnSeselectedCreate.addMouseListener(new MouseAdapter() {
+            btnDeselectedCreate.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    if(!Stock.getLoginUser().getAccess(1)) return;
                     //Button selection
                     {
                         btnSelectedCreate.setVisible(true);
-                        btnSeselectedCreate.setVisible(false);
+                        btnDeselectedCreate.setVisible(false);
                         btnSelectedEdit.setVisible(false);
                         btnDeselectedEdit.setVisible(true);
                         btnSelectedDelete.setVisible(false);
@@ -98,6 +104,7 @@ public class ToolBarPanel extends JPanel {
                     //Panel selection
                     {
                         CreationPanel.setDefaultVisibility();
+                        if(Stock.getLoginUser().getAccess(1))
                         ContentPanel.showPanel(1);
                     }
 
@@ -106,10 +113,11 @@ public class ToolBarPanel extends JPanel {
             btnDeselectedEdit.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    if(!Stock.getLoginUser().getAccess(2)) return;
                     //Button selection
                     {
                         btnSelectedCreate.setVisible(false);
-                        btnSeselectedCreate.setVisible(true);
+                        btnDeselectedCreate.setVisible(true);
                         btnSelectedEdit.setVisible(true);
                         btnDeselectedEdit.setVisible(false);
                         btnSelectedDelete.setVisible(false);
@@ -118,6 +126,7 @@ public class ToolBarPanel extends JPanel {
                         btnDeselectedQuantity.setVisible(true);
                         btnSelectedSettings.setVisible(false);
                         btnDeselectedSettings.setVisible(true);
+
                     }
 
                     //Panel selection
@@ -130,10 +139,11 @@ public class ToolBarPanel extends JPanel {
             btnDeselectedDelete.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    if(!Stock.getLoginUser().getAccess(3)) return;
                     //Button selection
                     {
                         btnSelectedCreate.setVisible(false);
-                        btnSeselectedCreate.setVisible(true);
+                        btnDeselectedCreate.setVisible(true);
                         btnSelectedEdit.setVisible(false);
                         btnDeselectedEdit.setVisible(true);
                         btnSelectedDelete.setVisible(true);
@@ -153,10 +163,11 @@ public class ToolBarPanel extends JPanel {
             btnDeselectedQuantity.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
+                    if(!Stock.getLoginUser().getAccess(4)) return;
                     //Button selection
                     {
                         btnSelectedCreate.setVisible(false);
-                        btnSeselectedCreate.setVisible(true);
+                        btnDeselectedCreate.setVisible(true);
                         btnSelectedEdit.setVisible(false);
                         btnDeselectedEdit.setVisible(true);
                         btnSelectedDelete.setVisible(false);
@@ -180,7 +191,7 @@ public class ToolBarPanel extends JPanel {
                     //Button selection
                     {
                         btnSelectedCreate.setVisible(false);
-                        btnSeselectedCreate.setVisible(true);
+                        btnDeselectedCreate.setVisible(true);
                         btnSelectedEdit.setVisible(false);
                         btnDeselectedEdit.setVisible(true);
                         btnSelectedDelete.setVisible(false);
@@ -204,7 +215,7 @@ public class ToolBarPanel extends JPanel {
 
     public static void deselectAllButtonsOnToolBar() {
         btnSelectedCreate.setVisible(false);
-        btnSeselectedCreate.setVisible(true);
+        btnDeselectedCreate.setVisible(true);
         btnSelectedEdit.setVisible(false);
         btnDeselectedEdit.setVisible(true);
         btnSelectedDelete.setVisible(false);
@@ -216,4 +227,28 @@ public class ToolBarPanel extends JPanel {
     }
 
 
+    public static void selectBtn(int i) {
+            switch (i){
+                case 1: {
+                    btnSelectedCreate.setVisible(true);
+                    break;
+                }
+                case 2: {
+                    btnDeselectedEdit.setVisible(true);
+                    break;
+                }
+                case 3: {
+                    btnSelectedDelete.setVisible(true);
+                    break;
+                }
+                case 4: {
+                    btnSelectedQuantity.setVisible(true);
+                    break;
+                }
+                case 5: {
+                    btnSelectedSettings.setVisible(true);
+                    break;
+                }
+            }
+    }
 }

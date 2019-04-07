@@ -1,5 +1,6 @@
 package GUI.Deleting;
 
+import BackGround.Stock;
 import GUI.General.AppStyles;
 
 import javax.swing.*;
@@ -16,15 +17,24 @@ public class DeletingPanel extends JLabel {
         add(groupDeletingPanel);
         groupDeletingPanel.setBounds(0, 0, 914, 666);
         productDeletingPanel.setBounds(0, 0, 914, 666);
+        productDeletingPanel.setVisible(true);
+        groupDeletingPanel.setVisible(false);
 
 
     }
     public static void showGroupDeleteTab(){
         productDeletingPanel.setVisible(false);
        groupDeletingPanel.setVisible(true);
+       groupDeletingPanel.getTablePanel().addDataToGroupOFGoodsTable(Stock.getGroups(),2);
     }
     public static void showProductDeleteTab(){
         productDeletingPanel.setVisible(true);
         groupDeletingPanel.setVisible(false);
+        productDeletingPanel.getTablePanel().addDataToGoodsTable(Stock.getAllProducts(),1);
+    }
+
+    public static void updateTable(){
+        if(productDeletingPanel.isVisible()) showProductDeleteTab();
+        else showGroupDeleteTab();
     }
 }

@@ -17,12 +17,12 @@ public class CreationPanel extends JPanel {
         setLayout(AppStyles.gridBagLayout);
         setDefaultVisibility();
         addSubPanels();
-        addListenersToModeTogleBTN();
+        addListenersToModeToggleBTN();
     }
 
     /**
      * Method sets visible product creation panel and
-     * mode seletion togle btn set in off position
+     * mode selection toggle btn set in off position
      */
     public static void setDefaultVisibility() {
         productCreatePanel.setVisible(true);
@@ -35,7 +35,7 @@ public class CreationPanel extends JPanel {
      * Method adds creation sub panels
      * - groupCreatePanel
      * - productCreatePanel
-     * and mode togle btn to main creation panel
+     * and mode toggle btn to main creation panel
      */
     private void addSubPanels() {
         add(btnModeSwitchOn, new GridBagConstraints(0, 0, 1, 1, 1, 1,
@@ -54,9 +54,9 @@ public class CreationPanel extends JPanel {
     }
 
     /**
-     * Method adds action listeners to togle btn images
+     * Method adds action listeners to toggle btn images
      */
-    private void addListenersToModeTogleBTN() {
+    private void addListenersToModeToggleBTN() {
         btnModeSwitchOn.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

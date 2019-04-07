@@ -1,8 +1,10 @@
 package BackGround;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GroupOfProduct {
+public class GroupOfProduct implements Serializable {
+  //  private static final long serialVersionUID = 1794588862599937839L;
 
     private ArrayList<Product> products = new ArrayList<>();
 
@@ -47,5 +49,26 @@ public class GroupOfProduct {
     public void removeProduct(Product product){
         products.remove(product);
         product.setGroupProducts(null);
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public double getGroupPrice() {
+        double res = 0;
+        for(int i=0;i<products.size();i++){
+            res += products.get(i).getPrice();
+        }
+        return res;
+    }
+
+    public int getGroupAmount(){
+        int res = 0;
+        for(int i=0;i<products.size();i++){
+            res += products.get(i).getQuantityInStock();
+        }
+        return res;
     }
 }
