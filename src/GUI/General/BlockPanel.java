@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class DonePanel extends JFrame {
-    JLabel background = new JLabel(new ImageIcon("images/done.png"));
+public class BlockPanel extends JFrame {
+    JLabel background = new JLabel(new ImageIcon("images/block.png"));
     JLabel okBTN = new JLabel(new ImageIcon("images/okBTN.png"));
 
-    public DonePanel() {
+    public BlockPanel() {
         setLayout(null);
         setUndecorated(true);
         setVisible(true);
@@ -21,14 +21,16 @@ public class DonePanel extends JFrame {
         background.setBounds(0, 0, 300, 68);
         okBTN.setBounds(257, 0, 43, 67);
         addListenersToControlElements();
-        App.setMainFrameUnAble();
+        App.setLoginFrameUnAble();
+
     }
     private void addListenersToControlElements() {
         okBTN.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 setVisible(false);
-                App.setMainFrameEnAble();
+                App.setLoginFrameEnAble();
+
             }
         });
     }

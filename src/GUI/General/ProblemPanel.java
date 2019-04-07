@@ -21,12 +21,14 @@ public class ProblemPanel extends JFrame {
         background.setBounds(0, 0, 300, 68);
         okBTN.setBounds(257, 0, 43, 67);
         addListenersToControlElements();
+        App.setMainFrameUnAble();
     }
     private void addListenersToControlElements() {
         okBTN.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 setVisible(false);
+                App.setMainFrameEnAble();
             }
         });
     }
