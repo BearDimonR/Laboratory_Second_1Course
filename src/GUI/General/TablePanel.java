@@ -1,6 +1,7 @@
 package GUI.General;
 
 
+import BackGround.Alphabet;
 import BackGround.Product;
 import BackGround.GroupOfProduct;
 import BackGround.Stock;
@@ -8,13 +9,16 @@ import BackGround.Stock;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-public class TablePanel extends JPanel {
+public class TablePanel extends JPanel implements MouseListener {
+
     private  String[] GoodsTitles = {"№", "Product", "Group", "Manufacturer", "Price"};
     private  String[] GroupTitles = {"№", "Group of products"};
     private String[] GroupStats = {"№","Group of products","Total price","Total amount","Description"};
@@ -56,7 +60,15 @@ public class TablePanel extends JPanel {
             table.getTableHeader().setFont(new java.awt.Font("Verdana", 0, 16));
             table.setRowHeight(50);
         }
-        AddActionListener();
+/**
+ * **********************************************************************************************************************************
+ */
+
+      //  AddActionListener();
+/**
+ * **********************************************************************************************************************************
+ */
+
     }
 
 
@@ -140,20 +152,6 @@ public class TablePanel extends JPanel {
         }
     }
 
-    public void AddActionListener(){
-        table.getTableHeader().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("shlop po pope");
-//                if(table.){
-//                    System.out.println("group");
-//                }
-//                else{
-//                    System.out.println("kek");
-//                }
-            }
-        });
-    }
 
 
     public void addStatsToGroupOFGoodsTable(ArrayList<GroupOfProduct> groups, int titleNum) {
@@ -185,4 +183,49 @@ public class TablePanel extends JPanel {
         setModel(objects,titleNum);
     }
 
+    public  void AddActionListener() {
+        table.getTableHeader().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JTableHeader header = table.getTableHeader();
+                header.addMouseListener(new TablePanel(table));
+                Point point = e.getPoint();
+                if(table.getColumnCount()==5) {
+                    int column = table.columnAtPoint(point);
+                    System.out.println("i1=" + column);
+                    if (column == 1) {
+                        addDataToGoodsTable(Alphabet.alphabetProduct(), 1);
+                    }
+                    if (column == 2) {
+                        addDataToGoodsTable(Alphabet.alphabetGroup(), 1);
+                    }
+                    if (column == 3) {
+                        addDataToGoodsTable(Alphabet.alphabetManufacturer(), 1);
+                    } else if (column == 4) {
+                        addDataToGoodsTable(Alphabet.alphabetPrice(), 1);
+                    }
+                }
+                //якщо ми знаходимося в таблиці де лише групи
+                else if(table.getColumnCount()==2){
+                    int column = table.columnAtPoint(point);
+                    if (column == 1) {
+                        System.out.println("лише групи товарів");
+                        addDataToGroupOFGoodsTable(Alphabet.alphabetOnlyGroup(), 1);
+                    }
+                }
+            }
+        });
+    }
+    TablePanel(JTable table){
+        this.table = table; }
+    @Override
+    public void mouseClicked(MouseEvent e) { }
+    @Override
+    public void mousePressed(MouseEvent e) { }
+    @Override
+    public void mouseReleased(MouseEvent e) { }
+    @Override
+    public void mouseEntered(MouseEvent e) { }
+    @Override
+    public void mouseExited(MouseEvent e) { }
 }

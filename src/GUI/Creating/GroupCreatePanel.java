@@ -5,7 +5,6 @@ import BackGround.Stock;
 import GUI.General.AppStyles;
 import GUI.General.DonePanel;
 import GUI.MainComponents.ContentPanel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -75,7 +74,7 @@ public class GroupCreatePanel extends JPanel {
      * Method which check if fields are filled properly
      */
     private void checkFields() {
-        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfGroupName.getText());
+        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-яіїє]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яієї]+\\d*[\"]?)+").matcher(tfGroupName.getText());
         if (!matcher.matches() || tfGroupName.getText().length() > 20) setCreateDisabled();
         else if (taDescription.getText() == null || taDescription.getText().equals("")) setCreateDisabled();
         else if (Stock.findGroup(tfGroupName.getText()) != null) setCreateDisabled();

@@ -2,6 +2,7 @@ package GUI.Deleting;
 
 import BackGround.Stock;
 import BackGround.Utilities;
+import GUI.Creating.ProductCreatePanel;
 import GUI.General.AppStyles;
 import GUI.General.DonePanel;
 import GUI.General.TablePanel;
@@ -10,8 +11,7 @@ import GUI.MainComponents.TitleBarPanel;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class ProductDeletingPanel extends JPanel {
     JLabel backgroundHeader = new JLabel(new ImageIcon("images/deleteComponents/productDeleteHeader.jpg"));
@@ -26,8 +26,11 @@ public class ProductDeletingPanel extends JPanel {
     private JTextField tfLowestPriceSearch = new JTextField();
     private JTextField tfHighestPriceSearch = new JTextField();
     private JComboBox cbProductGroupSearch = new JComboBox();
+    // private JComboBox cbProductGroupSearch = ProductCreatePanel.cbProductGroup;
 
     public ProductDeletingPanel() {
+      //  tablePanel.AddActionListener(Stock.getAllProducts());
+      // System.out.println("12312312312312312312312312313123131312312123123123");
         setLayout(null);
         backgroundHeader.setLayout(null);
         add(backgroundHeader);
@@ -38,10 +41,26 @@ public class ProductDeletingPanel extends JPanel {
         backgroundHeader.setBounds(0, 0, 914, 175);
         modeSwitchOff.setBounds(544, 5, 26, 26);
         tableBackground.setBounds(0, 175, 914, 491);
+        tfLowestPriceSearch.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '.') {
+                    e.consume();
+                }
+            }
+        });
+        tfHighestPriceSearch.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if (!Character.isDigit(e.getKeyChar()) && e.getKeyChar() != '.') {
+                    e.consume();
+                }
+            }
+        });
         addElementsToProductDeltePanel();
         addListners();
         cheakBox();
-        tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+        tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
         setStyleOfHeader();
     }
 
@@ -81,30 +100,44 @@ public class ProductDeletingPanel extends JPanel {
 
     }
 
-     TablePanel getTablePanel() {
+    TablePanel getTablePanel() {
         return tablePanel;
     }
 
     private void addListners() {
-        btnFind.addMouseListener(new MouseAdapter(){
+        btnFind.addMouseListener(new MouseAdapter() {
             @Override
+            public void mouseClicked(MouseEvent e) {
+                String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
 
-            public void mouseClicked(MouseEvent e){
-                String group = (String)cbProductGroupSearch.getSelectedItem();
+                if (tfProductNameSearch.getText().matches("[ ]*") == false ||
 
-                if(tfProductNameSearch.getText().matches("[ ]*")==false||
+                        tfManufacturerSearch.getText().matches("[ ]*") == false ||
+                        tfLowestPriceSearch.getText().matches("[ ]*") == false ||
+                        tfHighestPriceSearch.getText().matches("[ ]*") == false
+                        || group.matches("[ ]*") == false
+                ) {
+                    String group1 = (String) cbProductGroupSearch.getSelectedItem();
+                    String product = tfProductNameSearch.getText();
+                    String manufacturer = tfManufacturerSearch.getText();
+                    String priceFrom = tfLowestPriceSearch.getText();
+                    String priceTo = tfHighestPriceSearch.getText();
 
-                        tfManufacturerSearch.getText().matches("[ ]*")==false||
-                        tfLowestPriceSearch.getText().matches("[ ]*")==false||
-                        tfHighestPriceSearch.getText().matches("[ ]*")==false
-                       ||group.matches("[ ]*")==false
-                ){
-//                     group = (String)cbProductGroupSearch.getSelectedItem();
-//                    String product = tfproductNameSearch.getText();
-//                    String manufacturer = tfManufacturerSearch.getText();
-//                    String priceFrom = tfLowestPriceearch.getText();
-//                    String priceTo = tfHighestPriceSearch.getText();
-                    updateTable();
+                    double prFrom = 0;
+                    if (tfLowestPriceSearch.getText().matches("[ ]*") == true) {
+                        prFrom = 0;
+                    } else if (tfLowestPriceSearch.getText().matches("[\\d]+[.]?[\\d]*") == true) {
+                        prFrom = Double.valueOf(priceFrom);
+                    }
+                    double prTo = 0;
+                    if (tfHighestPriceSearch.getText().equals(""))
+                        prTo = 0;
+                    else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
+
+
+                    updateTable(group1, product, manufacturer, prFrom, prTo);
+
+                //    tablePanel.AddActionListener(Utilities.mainSearch(group1, product, manufacturer, prFrom, prTo));
                 }
             }
         });
@@ -117,82 +150,63 @@ public class ProductDeletingPanel extends JPanel {
         btnDelete.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(tablePanel.getSelectedProduct() == null) return;
+                if (tablePanel.getSelectedProduct() == null) return;
                 tablePanel.getSelectedProduct().getGroupProducts().removeProduct(tablePanel.getSelectedProduct());
                 Stock.saveData();
                 TitleBarPanel.setStats();
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
                 DonePanel d = new DonePanel();
-
             }
         });
-
     }
-    public void cheakBox(){
+
+    public void cheakBox() {
         cbProductGroupSearch.removeAllItems();
-        for(int i = 0; i< Stock.getGroups().size();i++){
+        for (int i = 0; i < Stock.getGroups().size(); i++) {
             cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
         }
     }
 
-
-/*
-метод зчитує та виводить потрібний масив
- */
- //   public  void updateTable(String group,String product,String manufacturer,String priceFrom,String priceTo) {
-//       String group = (String)cbProductGroupSearch.getSelectedItem();
-//        String product = tfproductNameSearch.getText();
+    public void updateTable(String group, String product, String manufacturer, double prFrom, double prTo) {
+//        String group = (String) cbProductGroupSearch.getSelectedItem();
+//        String product = tfProductNameSearch.getText();
 //        String manufacturer = tfManufacturerSearch.getText();
-//        String priceFrom = tfLowestPriceearch.getText();
-//        String priceTo = tfHighestPriceSearch.getText();System.out.println("/*/*/*/**//*/*/*/*/*/\ngroup'" + group+"'");
-
-    public  void updateTable() {
-        String group = cbProductGroupSearch.getToolTipText();
-        String product = tfProductNameSearch.getText();
-        String manufacturer = tfManufacturerSearch.getText();
-        String priceFrom = tfLowestPriceSearch.getText();
-        String priceTo = tfHighestPriceSearch.getText();
-
-
-        double prFrom = 0;
-        if (tfLowestPriceSearch.getText().matches("[ ]*") == true) {
-            prFrom = 0;
-        } else if (tfLowestPriceSearch.getText().matches("[\\d]+[.]?[\\d]*") == true) {
-            prFrom = Double.valueOf(priceFrom);
-        }
-
-
-
-        double prTo = 150;
-        if(tfHighestPriceSearch.getText().equals(""))
-            prTo = 0;
-        else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
-        tablePanel.addDataToGoodsTable(Utilities.mainSearch(group , product, manufacturer, prFrom, prTo), 1);
-        //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
-
+//        String priceFrom = tfLowestPriceSearch.getText();
+//        String priceTo = tfHighestPriceSearch.getText();
+//        double prFrom = 0;
+//        if (tfLowestPriceSearch.getText().matches("[ ]*") == true) {
+//            prFrom = 0;
+//        } else if (tfLowestPriceSearch.getText().matches("[\\d]+[.]?[\\d]*") == true) {
+//            prFrom = Double.valueOf(priceFrom);
+//        }
+//        double prTo = 150;
+//        if(tfHighestPriceSearch.getText().equals(""))
+//            prTo = 0;
+//        else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
+        tablePanel.addDataToGoodsTable(Utilities.mainSearch(group, product, manufacturer, prFrom, prTo), 1);
     }
 
-private void setStyleOfHeader(){
-    tfHighestPriceSearch.setFont(AppStyles.appH2Font);
-    tfHighestPriceSearch.setForeground(AppStyles.MainColor);
-    tfHighestPriceSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    private void setStyleOfHeader() {
+        tfHighestPriceSearch.setFont(AppStyles.appH2Font);
+        tfHighestPriceSearch.setForeground(AppStyles.MainColor);
+        tfHighestPriceSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
-    tfLowestPriceSearch.setFont(AppStyles.appH2Font);
-    tfLowestPriceSearch.setForeground(AppStyles.MainColor);
-    tfLowestPriceSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        tfLowestPriceSearch.setFont(AppStyles.appH2Font);
+        tfLowestPriceSearch.setForeground(AppStyles.MainColor);
+        tfLowestPriceSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
-    tfManufacturerSearch.setFont(AppStyles.appH2Font);
-    tfManufacturerSearch.setForeground(AppStyles.MainColor);
-    tfManufacturerSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        tfManufacturerSearch.setFont(AppStyles.appH2Font);
+        tfManufacturerSearch.setForeground(AppStyles.MainColor);
+        tfManufacturerSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
-    tfProductNameSearch.setFont(AppStyles.appH2Font);
-    tfProductNameSearch.setForeground(AppStyles.MainColor);
-    tfProductNameSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        tfProductNameSearch.setFont(AppStyles.appH2Font);
+        tfProductNameSearch.setForeground(AppStyles.MainColor);
+        tfProductNameSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
-    cbProductGroupSearch.setBackground(Color.WHITE);
-    cbProductGroupSearch.setFont(AppStyles.appH2Font);
-    cbProductGroupSearch.setForeground(AppStyles.MainColor);
-    cbProductGroupSearch.setUI(new BasicComboBoxUI());
-}
+        cbProductGroupSearch.setBackground(Color.WHITE);
+        cbProductGroupSearch.setFont(AppStyles.appH2Font);
+        cbProductGroupSearch.setForeground(AppStyles.MainColor);
+        cbProductGroupSearch.setUI(new BasicComboBoxUI());
+    }
 
 }

@@ -25,7 +25,7 @@ public class ProductSearchPanel extends JPanel {
     private JTextField tfHighestPriceSearch = new JTextField();
     private JComboBox cbProductGroupSearch = new JComboBox();
     private static JLabel btnModeSwitchOff = new JLabel(new ImageIcon("images/groupCreateModeOffBTN.png"));
-    private TablePanel tablePanel = new TablePanel(1);
+    public static TablePanel tablePanel = new TablePanel(1);
 
     public ProductSearchPanel() {
         setLayout(null);

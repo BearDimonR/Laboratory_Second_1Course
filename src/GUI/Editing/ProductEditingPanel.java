@@ -56,6 +56,21 @@ public class ProductEditingPanel extends JPanel {
         tableBodyBackground.setLayout(null);
         editFieldsBodyBackground.setVisible(false);
         tableBodyBackground.setVisible(true);
+
+        tfLowestPriceSearch.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyTyped(KeyEvent e){
+                if(!Character.isDigit(e.getKeyChar())&&e.getKeyChar()!='.'){
+                    e.consume(); }}});
+        tfHighestPriceSearch.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if(!Character.isDigit(e.getKeyChar())&&e.getKeyChar()!='.'){
+                    e.consume();
+                }
+            }
+        });
+
         setEditDisabled();
 
         addElementsToProductEditingPanel();
