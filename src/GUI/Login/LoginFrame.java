@@ -143,6 +143,7 @@ gotItBTN.addMouseListener(new MouseAdapter() {
     }
     private void clearLoginForm(){
         help.setVisible(false);
+
         loginField.setText("");
         passwordField.setText("");
     }
@@ -151,10 +152,10 @@ gotItBTN.addMouseListener(new MouseAdapter() {
         loadingBar.setBounds(200, 350, 356, 36);
         loadingBackground.setVisible(true);
         loginBackground.setVisible(false);
-for(int i=-1000000000;i<0;i++){
 
-}
         loadingBackground.setVisible(false);
+        loginBackground.setVisible(true);
+        clearLoginForm();
         App.makeMainFrameVisible();
 
     }

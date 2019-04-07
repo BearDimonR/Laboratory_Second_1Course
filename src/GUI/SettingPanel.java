@@ -100,6 +100,7 @@ public class SettingPanel extends JPanel {
                 ContentPanel.showPanel(1);
                 ToolBarPanel.selectBtn(1);
                 App.makeLoginFrameVisible();
+
             }
         });
         changePictureBTN.addMouseListener(new MouseAdapter() {
