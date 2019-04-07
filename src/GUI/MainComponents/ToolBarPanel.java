@@ -88,125 +88,41 @@ public class ToolBarPanel extends JPanel {
                 public void mouseClicked(MouseEvent e) {
                     if(!Stock.getLoginUser().getAccess(1)) return;
                     //Button selection
-                    {
-                        btnSelectedCreate.setVisible(true);
-                        btnDeselectedCreate.setVisible(false);
-                        btnSelectedEdit.setVisible(false);
-                        btnDeselectedEdit.setVisible(true);
-                        btnSelectedDelete.setVisible(false);
-                        btnDeselectedDelete.setVisible(true);
-                        btnSelectedQuantity.setVisible(false);
-                        btnDeselectedQuantity.setVisible(true);
-                        btnSelectedSettings.setVisible(false);
-                        btnDeselectedSettings.setVisible(true);
-                    }
-
-                    //Panel selection
-                    {
+                    selectBtn(1);
                         CreationPanel.setDefaultVisibility();
                         if(Stock.getLoginUser().getAccess(1))
                         ContentPanel.showPanel(1);
-                    }
-
                 }
             });
             btnDeselectedEdit.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if(!Stock.getLoginUser().getAccess(2)) return;
-                    //Button selection
-                    {
-                        btnSelectedCreate.setVisible(false);
-                        btnDeselectedCreate.setVisible(true);
-                        btnSelectedEdit.setVisible(true);
-                        btnDeselectedEdit.setVisible(false);
-                        btnSelectedDelete.setVisible(false);
-                        btnDeselectedDelete.setVisible(true);
-                        btnSelectedQuantity.setVisible(false);
-                        btnDeselectedQuantity.setVisible(true);
-                        btnSelectedSettings.setVisible(false);
-                        btnDeselectedSettings.setVisible(true);
-
-                    }
-
-                    //Panel selection
-                    {
+                    selectBtn(2);
                         ContentPanel.showPanel(2);
                     }
-
-                }
             });
             btnDeselectedDelete.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if(!Stock.getLoginUser().getAccess(3)) return;
-                    //Button selection
-                    {
-                        btnSelectedCreate.setVisible(false);
-                        btnDeselectedCreate.setVisible(true);
-                        btnSelectedEdit.setVisible(false);
-                        btnDeselectedEdit.setVisible(true);
-                        btnSelectedDelete.setVisible(true);
-                        btnDeselectedDelete.setVisible(false);
-                        btnSelectedQuantity.setVisible(false);
-                        btnDeselectedQuantity.setVisible(true);
-                        btnSelectedSettings.setVisible(false);
-                        btnDeselectedSettings.setVisible(true);
-                    }
-                    //Panel selection
-                    {
+                    selectBtn(3);
                         ContentPanel.showPanel(3);
-                    }
-
                 }
             });
             btnDeselectedQuantity.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if(!Stock.getLoginUser().getAccess(4)) return;
-                    //Button selection
-                    {
-                        btnSelectedCreate.setVisible(false);
-                        btnDeselectedCreate.setVisible(true);
-                        btnSelectedEdit.setVisible(false);
-                        btnDeselectedEdit.setVisible(true);
-                        btnSelectedDelete.setVisible(false);
-                        btnDeselectedDelete.setVisible(true);
-                        btnSelectedQuantity.setVisible(true);
-                        btnDeselectedQuantity.setVisible(false);
-                        btnSelectedSettings.setVisible(false);
-                        btnDeselectedSettings.setVisible(true);
-                    }
-
-                    //Panel selection
-                    {
+                    selectBtn(4);
                         ContentPanel.showPanel(4);
-                    }
-
                 }
             });
             btnDeselectedSettings.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    //Button selection
-                    {
-                        btnSelectedCreate.setVisible(false);
-                        btnDeselectedCreate.setVisible(true);
-                        btnSelectedEdit.setVisible(false);
-                        btnDeselectedEdit.setVisible(true);
-                        btnSelectedDelete.setVisible(false);
-                        btnDeselectedDelete.setVisible(true);
-                        btnSelectedQuantity.setVisible(false);
-                        btnDeselectedQuantity.setVisible(true);
-                        btnSelectedSettings.setVisible(true);
-                        btnDeselectedSettings.setVisible(false);
-                    }
-
-                    //Panel selection
-                    {
+                    selectBtn(5);
                         ContentPanel.showPanel(5);
-                    }
-
                 }
             });
         }
@@ -228,13 +144,14 @@ public class ToolBarPanel extends JPanel {
 
 
     public static void selectBtn(int i) {
+        deselectAllButtonsOnToolBar();
             switch (i){
                 case 1: {
                     btnSelectedCreate.setVisible(true);
                     break;
                 }
                 case 2: {
-                    btnDeselectedEdit.setVisible(true);
+                    btnSelectedEdit.setVisible(true);
                     break;
                 }
                 case 3: {

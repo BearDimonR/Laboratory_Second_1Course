@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class App {
     public static AppFrame mainFrame = new AppFrame();//main frame of the app
-    static LoginFrame loginFrame = new LoginFrame();// login frame of the app
+    public static LoginFrame loginFrame = new LoginFrame();// login frame of the app
 
     public static void main(String[] args) {
 
