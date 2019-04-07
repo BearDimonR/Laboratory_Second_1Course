@@ -91,6 +91,7 @@ public class SettingPanel extends JPanel {
         changeNameBTN.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
             }
         });
         workerChoser.addActionListener(new ActionListener() {
