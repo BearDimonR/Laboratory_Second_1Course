@@ -2,6 +2,7 @@ package GUI.General;
 
 import BackGround.Stock;
 import BackGround.User;
+import GUI.MainComponents.ContentPanel;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;
@@ -104,64 +105,80 @@ public class PictureChooser extends JFrame {
         picture1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                currentUser.setImage("1");
+                currentUser.setImage(String.valueOf(picture1.getIcon()));
                 setVisible(false);
+                ContentPanel.settingPanel.updateData();
+                Stock.saveUsers();
             }
         });
 
         picture2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                currentUser.setImage("2");
+                currentUser.setImage(String.valueOf(picture2.getIcon()));
                 setVisible(false);
+                ContentPanel.settingPanel.updateData();
+                Stock.saveUsers();
             }
         });
 
         picture3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                currentUser.setImage("3");
+                currentUser.setImage(String.valueOf(picture3.getIcon()));
                 setVisible(false);
+                ContentPanel.settingPanel.updateData();
+                Stock.saveUsers();
             }
         });
 
         picture4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                currentUser.setImage("4");
+                currentUser.setImage(String.valueOf(picture4.getIcon()));
                 setVisible(false);
+                ContentPanel.settingPanel.updateData();
+                Stock.saveUsers();
             }
         });
 
         picture5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                currentUser.setImage("5");
+                currentUser.setImage(String.valueOf(picture5.getIcon()));
                 setVisible(false);
+                ContentPanel.settingPanel.updateData();
+                Stock.saveUsers();
             }
         });
 
         picture6.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                currentUser.setImage("6");
+                currentUser.setImage(String.valueOf(picture6.getIcon()));
                 setVisible(false);
+                ContentPanel.settingPanel.updateData();
+                Stock.saveUsers();
             }
         });
 
         picture7.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                currentUser.setImage("7");
+                currentUser.setImage(String.valueOf(picture7.getIcon()));
                 setVisible(false);
+                ContentPanel.settingPanel.updateData();
+                Stock.saveUsers();
             }
         });
 
         picture8.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                currentUser.setImage("8");
+                currentUser.setImage(String.valueOf(picture8.getIcon()));
                 setVisible(false);
+                ContentPanel.settingPanel.updateData();
+                Stock.saveUsers();
             }
         });
     }

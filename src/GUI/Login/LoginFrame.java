@@ -120,6 +120,7 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                         TitleBarPanel.setUserName();
                         TitleBarPanel.setStats();
                         ContentPanel.initPanel();
+                        ContentPanel.settingPanel.updateData();
                         showLoadingpanel();
                     } else {
                         passwordErrorMSG.setVisible(true);

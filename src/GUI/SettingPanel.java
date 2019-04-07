@@ -110,6 +110,7 @@ public class SettingPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 PictureChooser p = new PictureChooser();
+                updateData();
             }
         });
         changeNameBTN.addMouseListener(new MouseAdapter() {
@@ -282,12 +283,56 @@ public class SettingPanel extends JPanel {
 
     public void updateData() {
         userName.setText(Stock.getLoginUser().getName());
+        setIconPhotos();
         if(!Stock.getLoginUser().isAdmin()){
             adminTickSetBackground.setVisible(false);
             userTickSetBackground.setVisible(true);
         }
         for(int i=0;i< Stock.getUsers().size();i++) {
             if(!Stock.getUsers().get(i).isAdmin()) workerChoser.addItem(Stock.getUsers().get(i).getName());
+        }
+    }
+
+    private void setIconPhotos() {
+        if(Stock.getLoginUser().getImage() == null){
+            profilePhoto.setIcon(null);
+            TitleBarPanel.setIcon(null);
+            return;
+        }
+        profilePhoto.setIcon(new ImageIcon(Stock.getLoginUser().getImage()));
+        switch (Stock.getLoginUser().getImage()){
+            case "images/picture chooser/pictures96x96/1.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/1.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/2.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/2.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/3.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/3.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/4.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/4.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/5.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/5.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/6.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/6.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/7.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/7.png");
+                break;
+            }
+            case "images/picture chooser/pictures96x96/8.png": {
+                TitleBarPanel.setIcon("images/picture chooser/pictures28x28/8.png");
+                break;
+            }
         }
     }
 
