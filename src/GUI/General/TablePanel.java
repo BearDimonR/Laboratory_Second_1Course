@@ -15,10 +15,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class TablePanel extends JPanel {
-    private  String[] GoodsTitles = {"id", "Product", "Group", "Manufacturer", "Price"};
-    private  String[] GroupTitles = {"id", "Group of products"};
-    private String[] GroupStats = {"id","Group of products","Total price","Total amount","Description"};
-    private String[] GoodsStats = {"id","Product","Manufacturer","Price","Amount","Description"};
     private  String[] GoodsTitles = {"№", "Product", "Group", "Manufacturer", "Price"};
     private  String[] GroupTitles = {"№", "Group of products"};
     private String[] GroupStats = {"№","Group of products","Total price","Total amount","Description"};
