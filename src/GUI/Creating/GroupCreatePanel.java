@@ -3,6 +3,7 @@ package GUI.Creating;
 import BackGround.GroupOfProduct;
 import BackGround.Stock;
 import GUI.General.AppStyles;
+import GUI.General.DonePanel;
 import GUI.MainComponents.ContentPanel;
 
 import javax.swing.*;
@@ -65,6 +66,7 @@ public class GroupCreatePanel extends JPanel {
                 setCreateDisabled();
                 setDefaultTextToTF();
                 setAllFieldsForegroundDeselected();
+                DonePanel d =new DonePanel();
             }
         });
     }

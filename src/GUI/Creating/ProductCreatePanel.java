@@ -3,6 +3,7 @@ package GUI.Creating;
 import BackGround.Product;
 import BackGround.Stock;
 import GUI.General.AppStyles;
+import GUI.General.DonePanel;
 import GUI.MainComponents.TitleBarPanel;
 
 import javax.swing.*;
@@ -107,6 +108,7 @@ public class ProductCreatePanel extends JPanel {
                 setAllFieldsForegroundDeselected();
                 setFocusOnNameTF();
                 setCreateDisabled();
+                DonePanel d =new DonePanel();
             }
         });
 

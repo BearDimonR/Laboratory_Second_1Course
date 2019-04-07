@@ -3,6 +3,7 @@ package GUI.Deleting;
 import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
+import GUI.General.DonePanel;
 import GUI.General.TablePanel;
 import GUI.MainComponents.TitleBarPanel;
 
@@ -27,9 +28,6 @@ public class ProductDeletingPanel extends JPanel {
     private JComboBox cbProductGroupSearch = new JComboBox();
 
     public ProductDeletingPanel() {
-
-
-
         setLayout(null);
         backgroundHeader.setLayout(null);
         add(backgroundHeader);
@@ -42,12 +40,9 @@ public class ProductDeletingPanel extends JPanel {
         tableBackground.setBounds(0, 175, 914, 491);
         addElementsToProductDeltePanel();
         addListners();
-
         cheakBox();
         tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
-
         setStyleOfHeader();
-
     }
 
     private void addElementsToProductDeltePanel() {
@@ -104,8 +99,6 @@ public class ProductDeletingPanel extends JPanel {
                         tfHighestPriceSearch.getText().matches("[ ]*")==false
                        ||group.matches("[ ]*")==false
                 ){
-
-
 //                     group = (String)cbProductGroupSearch.getSelectedItem();
 //                    String product = tfproductNameSearch.getText();
 //                    String manufacturer = tfManufacturerSearch.getText();
@@ -129,6 +122,8 @@ public class ProductDeletingPanel extends JPanel {
                 Stock.saveData();
                 TitleBarPanel.setStats();
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+                DonePanel d = new DonePanel();
+
             }
         });
 
