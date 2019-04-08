@@ -179,7 +179,7 @@ public class QuantityPanel extends JPanel {
                 removeAmount = 0;
                 tfAddToStock.setText(String.valueOf(addAmount));
                 tfRemoveFromStock.setText(String.valueOf(removeAmount));
-                DonePanel d = new DonePanel();
+              //  DonePanel d = new DonePanel();
 
             }
         });

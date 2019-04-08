@@ -155,7 +155,7 @@ public class ProductDeletingPanel extends JPanel {
                 Stock.saveData();
                 TitleBarPanel.setStats();
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
-                DonePanel d = new DonePanel();
+             //   DonePanel d = new DonePanel();
             }
         });
     }

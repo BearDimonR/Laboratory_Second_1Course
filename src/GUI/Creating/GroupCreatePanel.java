@@ -65,7 +65,7 @@ public class GroupCreatePanel extends JPanel {
                 setCreateDisabled();
                 setDefaultTextToTF();
                 setAllFieldsForegroundDeselected();
-                DonePanel d =new DonePanel();
+                //DonePanel d =new DonePanel();
             }
         });
     }

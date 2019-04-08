@@ -115,7 +115,7 @@ public class GroupEditingPanel extends JPanel {
                 tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(), 2);
                 editFieldsBodyBackground.setVisible(false);
                 tableBodyBackground.setVisible(true);
-                DonePanel d = new DonePanel();
+              //  DonePanel d = new DonePanel();
 
             }
         });

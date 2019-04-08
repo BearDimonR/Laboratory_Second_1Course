@@ -87,7 +87,7 @@ setStyleOfHeader();
                 Stock.saveData();
                 TitleBarPanel.setStats();
                 tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
-                DonePanel d = new DonePanel();
+              //  DonePanel d = new DonePanel();
 
             }
         });

@@ -250,7 +250,7 @@ public class ProductEditingPanel extends JPanel {
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
                 editFieldsBodyBackground.setVisible(false);
                 tableBodyBackground.setVisible(true);
-                DonePanel d = new DonePanel();
+              //  DonePanel d = new DonePanel();
 
 
             }

@@ -14,9 +14,10 @@ public class App {
         {
             mainFrame.setSize(new Dimension(1010, 700));
             mainFrame.setVisible(false);
+            mainFrame.setMaximumSize(new Dimension(1010,700));
             mainFrame.setLocation(new Point(100, 50));
            loginFrame.setSize(new Dimension(750, 500));
-           loginFrame.setLocation(200,200);
+           loginFrame.setLocation(200,100);
             loginFrame.setVisible(true);
 
         }
@@ -36,7 +37,7 @@ public class App {
     public static void setLoginFrameEnAble(){
         loginFrame.setEnabled(true);
         loginFrame.setExtendedState(loginFrame.getExtendedState() | loginFrame.MAXIMIZED_BOTH);
-        loginFrame.setLocation(200,200);
+        loginFrame.setLocation(200,100);
     }
 
     public static void setMainFrameUnAble(){
