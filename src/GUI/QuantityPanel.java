@@ -69,30 +69,12 @@ public class QuantityPanel extends JPanel {
                 }
             }
         });
-        //  updateTable();
         tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
         tablePanel.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 tfInStock.setText("0");
                 checkStock();
-//                if (tablePanel.getTable().getSelectedRow() == -1) return;
-//                tableBodyBackground.setVisible(false);
-//                editFieldsBodyBackground.setVisible(true);
-//                tfNewProductName.setText(tablePanel.getSelectedProduct().getProductName());
-//                tfOldProductName.setText(tablePanel.getSelectedProduct().getProductName());
-//                taNewDescription.setText(tablePanel.getSelectedProduct().getDescription());
-//                taOldDescription.setText(tablePanel.getSelectedProduct().getDescription());
-//                tfOldManufacturer.setText(tablePanel.getSelectedProduct().getManufacturer());
-//                tfNewManufacturer.setText(tablePanel.getSelectedProduct().getManufacturer());
-//                tfOldPrice.setText(String.valueOf(tablePanel.getSelectedProduct().getPrice()));
-//                tfNewPrice.setText(String.valueOf(tablePanel.getSelectedProduct().getPrice()));
-//                cbOldGroup.addItem(String.valueOf(tablePanel.getSelectedProduct().getGroupProducts()));
-//                cbOldGroup.setSelectedIndex(0);
-//                ComboBoxModel model = new DefaultComboBoxModel<>();
-//                ((DefaultComboBoxModel) model).addAll(Stock.getGroups());
-//                cbNewGroup.setModel(model);
-//                cbNewGroup.setSelectedItem(tablePanel.getSelectedProduct().getGroupProducts());
             }
         });
 
@@ -126,9 +108,6 @@ public class QuantityPanel extends JPanel {
         tfRemoveFromStock.setText(String.valueOf(removeAmount));
         tfRemoveFromStock.setHorizontalAlignment(0);
         tfInStock.setHorizontalAlignment(0);
-//        System.out.println("group = " + cbProductGroupSearch.getSelectedItem());
-//        System.out.println("group = " + (String) String.valueOf(cbProductGroupSearch.getSelectedItem()));
-//        System.out.println("group = " + (String) cbProductGroupSearch.getSelectedItem());
         btnAddPlus.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -188,10 +167,7 @@ public class QuantityPanel extends JPanel {
             @Override
 
             public void mouseClicked(MouseEvent e) {
-                System.out.println("group = " + cbProductGroupSearch.getSelectedItem());
-                System.out.println("group = " + (String) String.valueOf(cbProductGroupSearch.getSelectedItem()));
-                System.out.println("group = " + (String) cbProductGroupSearch.getSelectedItem());
-                String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
+                String group = String.valueOf(cbProductGroupSearch.getSelectedItem());
                 if (tfProductNameSearch.getText().matches("[ ]*") == false ||
                         tfManufacturerSearch.getText().matches("[ ]*") == false ||
                         tfLowestPriceSearch.getText().matches("[ ]*") == false ||
@@ -217,7 +193,7 @@ public class QuantityPanel extends JPanel {
         }
     }
 
-    private void updateTable() {
+    public void updateTable() {
         String group = (String) cbProductGroupSearch.getSelectedItem();
         String product = tfProductNameSearch.getText();
         String manufacturer = tfManufacturerSearch.getText();
@@ -236,10 +212,6 @@ public class QuantityPanel extends JPanel {
             prTo = 0;
         else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
         tablePanel.addDataToGoodsTable(Utilities.mainSearch(group, product, manufacturer, prFrom, prTo), 1);
-        //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
-        System.out.println("price From= " + prFrom);
-        System.out.println("price to='" + prTo + "'");
-
     }
 
     private void checkStock() {
@@ -288,5 +260,7 @@ public class QuantityPanel extends JPanel {
 
     }
 
-
+    public TablePanel getTablePanel() {
+        return tablePanel;
+    }
 }

@@ -8,8 +8,6 @@ import GUI.General.TablePanel;
 import GUI.MainComponents.TitleBarPanel;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -69,9 +67,7 @@ setStyleOfHeader();
 
             public void mouseClicked(MouseEvent e){
                 tablePanel.addDataToGroupOFGoodsTable((Utilities.mainSearch2(tfGroupNameSearch.getText())),2);
-
-                              }
-//            }
+            }
         });
         modeSwitchOn.addMouseListener(new MouseAdapter() {
             @Override

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class GroupOfProduct implements Serializable {
-  //  private static final long serialVersionUID = 1794588862599937839L;
 
     private ArrayList<Product> products = new ArrayList<>();
 
@@ -56,6 +55,10 @@ public class GroupOfProduct implements Serializable {
         return name;
     }
 
+    /**
+     *
+     * @return group price of products
+     */
     public double getGroupPrice() {
         double res = 0;
         for(int i=0;i<products.size();i++){
@@ -64,6 +67,10 @@ public class GroupOfProduct implements Serializable {
         return res;
     }
 
+    /**
+     *
+     * @return group amount of products
+     */
     public int getGroupAmount(){
         int res = 0;
         for(int i=0;i<products.size();i++){

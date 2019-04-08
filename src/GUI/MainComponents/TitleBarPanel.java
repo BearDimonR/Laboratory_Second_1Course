@@ -39,37 +39,6 @@ public class TitleBarPanel extends JPanel {
             setMinimumSize(new Dimension(915, 35));
         }
 
-      /*  //set size of cancel button
-        {
-            btnCancel.setSize(new Dimension(28, 28));
-            btnCancel.setPreferredSize(new Dimension(28, 28));
-            btnCancel.setMaximumSize(new Dimension(28, 28));
-            btnCancel.setMinimumSize(new Dimension(28, 28));
-        }
-
-        //set size of minimise button
-        {
-            btnMinimize.setSize(new Dimension(28, 28));
-            btnMinimize.setPreferredSize(new Dimension(28, 28));
-            btnMinimize.setMaximumSize(new Dimension(28, 28));
-            btnMinimize.setMinimumSize(new Dimension(28, 28));
-        }
-
-        //set size of User profile picture button
-        {
-            userProfilePic.setSize(new Dimension(31, 31));
-            userProfilePic.setPreferredSize(new Dimension(31, 31));
-            userProfilePic.setMaximumSize(new Dimension(31, 31));
-            userProfilePic.setMinimumSize(new Dimension(31, 31));
-        }
-
-        //set color and style of toll bar panel
-        {
-            background.setLayout(AppStyles.gridBagLayout);
-            userNameLabel.setForeground(AppStyles.MainColor);
-            userNameLabel.setFont(AppStyles.untitled);
-        }
-*/
         //set style of search text field
         {
             tfSearch.setOpaque(false);
@@ -98,18 +67,6 @@ public class TitleBarPanel extends JPanel {
             userProfilePic.setBounds(716, 3, 31, 31);
             userNameLabel.setBounds(750, 5, 100, 26);
             btnMinimize.setBounds(847, 3, 26, 26);
-           /* background.add(userProfilePic, new GridBagConstraints(1, 0, 1, 1, 0.001, 1,
-                    GridBagConstraints.EAST, GridBagConstraints.CENTER,
-                    new Insets(0, 0, 0, 0), 0, 0));
-            background.add(userNameLabel, new GridBagConstraints(2, 0, 1, 1, 0.01, 1,
-                    GridBagConstraints.EAST, GridBagConstraints.CENTER,
-                    new Insets(0, -45, 0, 20), 0, 0));
-            background.add(btnMinimize, new GridBagConstraints(3, 0, 1, 1, 0.001, 1,
-                    GridBagConstraints.EAST, GridBagConstraints.CENTER,
-                    new Insets(0, 0, 0, 2), 0, 0));
-            background.add(btnCancel, new GridBagConstraints(4, 0, 1, 1, 0.0012, 1,
-                    GridBagConstraints.EAST, GridBagConstraints.CENTER,
-                    new Insets(0, 0, 0, 3), 0, 0));*/
         }
 
         //add mouse listener to close and minimize btn
@@ -127,14 +84,6 @@ public class TitleBarPanel extends JPanel {
                     App.mainFrame.setState(Frame.ICONIFIED);
                 }
             });
-//            tfSearch.addMouseListener(new MouseAdapter() {
-//                @Override
-//                public void mouseClicked(MouseEvent e) {
-//                    ToolBarPanel.deselectAllButtonsOnToolBar();
-//                    ContentPanel.showPanel(6);
-//
-//                }
-//            });
             tfSearch.addKeyListener(new KeyListener() {
                 @Override
                 public void keyTyped(KeyEvent e) { }
@@ -144,20 +93,11 @@ public class TitleBarPanel extends JPanel {
                 public void keyReleased(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
-                        System.out.println("text in textFileld search = " + tfSearch.getText());
-
-                        if (CheckSearchLine(tfSearch.getText())==false
-//                                tfSearch.getText().matches("[ ]*") == false &&
-//                                tfSearch.getText().matches("[ ]*[0-9]+[.]?[0-9]*[ ]*") == false &&
-//                                tfSearch.getText().matches("[ ]*[A-Za-zА-Яа-яії]+[ ]*") == false &&
-//                                tfSearch.getText().matches("[ ]*[\\d]+[.]?[\\d]*[ ]*[-][ ]*[\\d]+[.]?[\\d]*[ ]*") == false
-
-                        ) {
-                            JOptionPane.showMessageDialog(null, "Your write incorrect info", "Arial", JOptionPane.ERROR_MESSAGE);
+                        if (CheckSearchLine(tfSearch.getText())==false) {
+                            tfSearch.setText("");
                         } else {
                             ToolBarPanel.deselectAllButtonsOnToolBar();
                             ContentPanel.showPanel(6);
-                           //  updateTable(tfSearch.getText());
                             ProductSearchPanel.tablePanel.addDataToGoodsTable(Utilities.Search(tfSearch.getText()), 1);
                         }
                     }

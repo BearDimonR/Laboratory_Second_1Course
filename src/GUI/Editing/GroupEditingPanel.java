@@ -84,17 +84,12 @@ public class GroupEditingPanel extends JPanel {
                 tablePanel.getTable().clearSelection();
             }
         });
-/**
- * ***************************************************************************************************************************
- */
+
         // Action listener of find button
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
 
             public void mouseClicked(MouseEvent e) {
-
-
-             //   updateTable(tfGroupNameSearch.getText());
                 tablePanel.addDataToGroupOFGoodsTable((Utilities.mainSearch2(tfGroupNameSearch.getText())),2);
             }
         });
@@ -268,6 +263,10 @@ public class GroupEditingPanel extends JPanel {
         btnDesEdit.setVisible(true);
     }
 
+    /**
+     * returns tablePanel
+     * @return tablePanel
+     */
     TablePanel getTablePanel() {
         return tablePanel;
     }

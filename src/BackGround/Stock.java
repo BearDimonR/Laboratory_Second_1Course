@@ -1,11 +1,7 @@
 package BackGround;
 
-import GUI.MainComponents.TitleBarPanel;
-import com.sun.jdi.request.ExceptionRequest;
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,6 +11,7 @@ public class Stock {
     private static ArrayList<User> users = new ArrayList<>();
     private static User loginUser;
 
+
     public static ArrayList<GroupOfProduct> getGroups() {
         return groups;
     }
@@ -23,13 +20,22 @@ public class Stock {
         return users;
     }
 
+    /**
+     * find group by name
+     * @param name to find
+     * @return result of searching
+     */
     public static GroupOfProduct findGroup(String name){
         for(int i=0;i<groups.size();i++){
             if(groups.get(i).getName().equals(name)) return groups.get(i);
         }
         return null;
     }
-
+    /**
+     * find product by name
+     * @param name to find
+     * @return result of searching
+     */
     public static Product findProductByName(String name){
         ArrayList<Product> products = getAllProducts();
         for(int i=0;i<products.size();i++){
@@ -37,7 +43,11 @@ public class Stock {
         }
         return null;
     }
-
+    /**
+     * find user by name
+     * @param name to find
+     * @return result of searching
+     */
     public static User findUserByName(String name){
         for(int i=0;i<users.size();i++){
             if(users.get(i).getName().equals(name)) return users.get(i);
@@ -45,6 +55,10 @@ public class Stock {
         return null;
     }
 
+    /**
+     *
+     * @return all products
+     */
     public static ArrayList<Product> getAllProducts() {
         ArrayList<Product> products = new ArrayList<>();
         for(int i=0;i<groups.size();i++){
@@ -54,6 +68,10 @@ public class Stock {
         return products;
     }
 
+    /**
+     *
+     * @return all groups
+     */
     public static ArrayList<GroupOfProduct> getAllGroup(){
         ArrayList<GroupOfProduct> group = new ArrayList<>();
         group.addAll(groups);
@@ -61,6 +79,10 @@ public class Stock {
         return group;
     }
 
+    /**
+     *
+     * @return allPrice of products in stock
+     */
     public static double getAllPrice(){
         double res = 0;
         for(int i=0;i<groups.size();i++){
@@ -69,6 +91,10 @@ public class Stock {
         return res;
     }
 
+    /**
+     *
+     * @return all amount of products in stock
+     */
     public static int getAllAmount(){
         int res = 0;
         for(int i=0;i<groups.size();i++){
@@ -77,14 +103,24 @@ public class Stock {
         return res;
     }
 
+    /**
+     * load groups from file
+     */
     public static void loadData() {
         groups = (ArrayList<GroupOfProduct>) load("dataStore\\DataStock");
     }
-
+    /**
+     * load users from file
+     */
     public static void loadUsers(){
         users = (ArrayList<User>) load("dataStore\\UserStock");
     }
 
+    /**
+     * loading method
+     * @param name file name
+     * @return loaded object
+     */
     public static ArrayList load(String name){
         try {
             ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(new File(name)));
@@ -98,15 +134,23 @@ public class Stock {
         }
     }
 
+    /**
+     * save groups
+     */
     public static void saveData() {
        save(groups,"dataStore\\DataStock");
     }
-
+    /**
+     * save users
+     */
     public static void saveUsers() {
         save(users,"dataStore\\UserStock");
         saveNamePasswords();
     }
 
+    /**
+     * save names+passwords
+     */
     private static void saveNamePasswords() {
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("dataStore\\Info"));
@@ -120,6 +164,11 @@ public class Stock {
 
     }
 
+    /**
+     * saving method
+     * @param arrayList of objects to save
+     * @param name file name
+     */
     public static void save(ArrayList arrayList,String name) {
         try {
             ObjectOutputStream objectOutput = new ObjectOutputStream(new FileOutputStream(name));
@@ -130,6 +179,9 @@ public class Stock {
         }
     }
 
+    /**
+     * add new users from file
+     */
     public static void addUsers() {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("dataStore\\Info"));
@@ -148,6 +200,10 @@ public class Stock {
         }
     }
 
+    /**
+     * check name of users
+     * @param str name
+     */
     private static void checkUser(String str) {
             String[] words = str.split("[ ]");
             if(words.length!=3) throw new UnknownError("Users in file are not correct!!!! Must be: [name password type]");

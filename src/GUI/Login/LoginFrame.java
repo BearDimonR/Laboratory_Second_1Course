@@ -6,8 +6,6 @@ import GUI.General.App;
 import GUI.General.AppStyles;
 import GUI.MainComponents.ContentPanel;
 import GUI.MainComponents.TitleBarPanel;
-import GUI.SettingPanel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -75,6 +73,11 @@ gotItBTN.addMouseListener(new MouseAdapter() {
             loginField.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyTyped(KeyEvent e) {
+                    if(e.getKeyChar() == 10){
+                        System.out.println();
+                        passwordField.grabFocus();
+                        return;
+                    }
                     if (!Character.isDigit(e.getKeyChar()) && !Character.isAlphabetic(e.getKeyChar()) && e.getKeyChar() != '_')
                         e.consume();
                     else if(loginField.getText().length() == 12) e.consume();
@@ -83,6 +86,10 @@ gotItBTN.addMouseListener(new MouseAdapter() {
             passwordField.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyTyped(KeyEvent e) {
+                    if(e.getKeyChar() == 10){
+                        loginField.grabFocus();
+                        return;
+                    }
                     if (e.getKeyChar() <= 32) e.consume();
                     else if(passwordField.getPassword().length == 19) e.consume();
                 }
