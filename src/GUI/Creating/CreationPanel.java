@@ -79,7 +79,7 @@ public class CreationPanel extends JPanel {
         });
     }
 
-    public  void updateBox() {
+    public static void updateBox() {
         productCreatePanel.checkBox();
     }
 }
