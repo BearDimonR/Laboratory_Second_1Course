@@ -1,9 +1,12 @@
 package GUI.Search;
 
 import BackGround.Stock;
+import GUI.General.AppStyles;
 import GUI.General.TablePanel;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -65,6 +68,7 @@ public class StatisticPanel extends JPanel {
             }
         });
         tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
+        setStyleOfHeaderElements();
     }
 
     private void addElementsToBackgroundHeader() {
@@ -116,7 +120,13 @@ public class StatisticPanel extends JPanel {
           totalPriceOfGroup.setText(String.valueOf(Stock.findGroup(String.valueOf(cbProductGroupSearch.getSelectedItem())).getGroupPrice()));
       }
     }
+    private void setStyleOfHeaderElements() {
+        cbProductGroupSearch.setBackground(Color.WHITE);
+        cbProductGroupSearch.setFont(AppStyles.appH2Font);
+        cbProductGroupSearch.setForeground(AppStyles.MainColor);
+        cbProductGroupSearch.setUI(new BasicComboBoxUI());
 
+    }
     //    private void addMouseListenersToBTNS() {
 //        btnFind.addMouseListener(new MouseAdapter() {
 //            @Override

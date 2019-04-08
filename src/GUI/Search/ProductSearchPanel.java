@@ -44,7 +44,7 @@ public class ProductSearchPanel extends JPanel {
                 SearchPanel.showStatistickPanel();
             }
         });
-
+setStyleOfHeaderElements();
         addMouseListenersToBTNS();
         cheakBox();
     }
