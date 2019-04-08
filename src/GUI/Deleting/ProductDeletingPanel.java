@@ -26,11 +26,8 @@ public class ProductDeletingPanel extends JPanel {
     private JTextField tfLowestPriceSearch = new JTextField();
     private JTextField tfHighestPriceSearch = new JTextField();
     private JComboBox cbProductGroupSearch = new JComboBox();
-    // private JComboBox cbProductGroupSearch = ProductCreatePanel.cbProductGroup;
 
     public ProductDeletingPanel() {
-      //  tablePanel.AddActionListener(Stock.getAllProducts());
-      // System.out.println("12312312312312312312312312313123131312312123123123");
         setLayout(null);
         backgroundHeader.setLayout(null);
         add(backgroundHeader);
@@ -108,7 +105,7 @@ public class ProductDeletingPanel extends JPanel {
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
+                String group = String.valueOf(cbProductGroupSearch.getSelectedItem());
 
                 if (tfProductNameSearch.getText().matches("[ ]*") == false ||
 
@@ -134,10 +131,7 @@ public class ProductDeletingPanel extends JPanel {
                         prTo = 0;
                     else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
 
-
                     updateTable(group1, product, manufacturer, prFrom, prTo);
-
-                //    tablePanel.AddActionListener(Utilities.mainSearch(group1, product, manufacturer, prFrom, prTo));
                 }
             }
         });
@@ -168,21 +162,6 @@ public class ProductDeletingPanel extends JPanel {
     }
 
     public void updateTable(String group, String product, String manufacturer, double prFrom, double prTo) {
-//        String group = (String) cbProductGroupSearch.getSelectedItem();
-//        String product = tfProductNameSearch.getText();
-//        String manufacturer = tfManufacturerSearch.getText();
-//        String priceFrom = tfLowestPriceSearch.getText();
-//        String priceTo = tfHighestPriceSearch.getText();
-//        double prFrom = 0;
-//        if (tfLowestPriceSearch.getText().matches("[ ]*") == true) {
-//            prFrom = 0;
-//        } else if (tfLowestPriceSearch.getText().matches("[\\d]+[.]?[\\d]*") == true) {
-//            prFrom = Double.valueOf(priceFrom);
-//        }
-//        double prTo = 150;
-//        if(tfHighestPriceSearch.getText().equals(""))
-//            prTo = 0;
-//        else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
         tablePanel.addDataToGoodsTable(Utilities.mainSearch(group, product, manufacturer, prFrom, prTo), 1);
     }
 

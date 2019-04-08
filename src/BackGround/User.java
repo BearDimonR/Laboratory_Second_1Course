@@ -1,11 +1,10 @@
 package BackGround;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class User implements Serializable {
+
     private String name;
     private String password;
     private String type;
@@ -23,6 +22,9 @@ public class User implements Serializable {
         checkAccess();
     }
 
+    /**
+     * check if user isAdmin
+     */
     private void checkAccess() {
         if(type.equals("admin")){
             admin = true;
@@ -39,6 +41,11 @@ public class User implements Serializable {
         }
     }
 
+    /**
+     *
+     * @param number number of selector
+     * @return if have access
+     */
     public boolean getAccess(int number) {
         return access.get(number-1);
     }

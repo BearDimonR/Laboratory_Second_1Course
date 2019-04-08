@@ -1,10 +1,7 @@
 package GUI.Deleting;
 
 import BackGround.Stock;
-import GUI.General.AppStyles;
-
 import javax.swing.*;
-import java.awt.*;
 
 public class DeletingPanel extends JLabel {
     private static ProductDeletingPanel productDeletingPanel = new ProductDeletingPanel();

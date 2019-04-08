@@ -93,7 +93,7 @@ public class ContentPanel extends JPanel {
                 break;
             case 4:
                 quantityPanel.setVisible(true);
-               // quantityPanel.updateTable();
+                quantityPanel.getTablePanel().addDataToGoodsTable(Stock.getAllProducts(), 1);
                 break;
             case 5:
                 settingPanel.setVisible(true);

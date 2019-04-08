@@ -5,7 +5,6 @@ import BackGround.Alphabet;
 import BackGround.Product;
 import BackGround.GroupOfProduct;
 import BackGround.Stock;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -18,16 +17,27 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class TablePanel extends JPanel implements MouseListener {
-
+    /**
+     * name of columns
+     */
     private  String[] GoodsTitles = {"№", "Product", "Group", "Manufacturer", "Price"};
     private  String[] GroupTitles = {"№", "Group of products"};
     private String[] GroupStats = {"№","Group of products","Total price","Total amount","Description"};
     private String[] GoodsStats = {"№","Product","Manufacturer","Price","Amount","Description"};
+    /**
+     * JTable and JScrollPane
+     */
     private  JTable table = new JTable();
     private JScrollPane scrollPane = new JScrollPane(table);
-
+    /**
+     * Layout
+     */
     GridBagLayout gbl = new GridBagLayout();
 
+    /**
+     * init table
+     * @param titleType type of columns
+     */
     public TablePanel(int titleType) {
         setModel(null,titleType);
         setLayout(gbl);
@@ -71,7 +81,11 @@ public class TablePanel extends JPanel implements MouseListener {
 
     }
 
-
+    /**
+     * add data to table
+     * @param products arraylist of products
+     * @param titleNum type of title
+     */
     public  void addDataToGoodsTable(ArrayList<Product> products, int titleNum) {
         Object[][] objects = new Object[products.size()][];
         for (int i = 0; i < products.size(); i++) {
@@ -87,6 +101,11 @@ public class TablePanel extends JPanel implements MouseListener {
 
     }
 
+    /**
+     * add data to table
+     * @param groupOfProduct arraylist of groups
+     * @param titleNum type of title
+     */
     public  void addDataToGroupOFGoodsTable(ArrayList<GroupOfProduct> groupOfProduct, int titleNum) {
         Object[][] objects = new Object[groupOfProduct.size()][];
         for (int i = 0; i < groupOfProduct.size(); i++) {
@@ -98,6 +117,11 @@ public class TablePanel extends JPanel implements MouseListener {
         setModel(objects,titleNum);
     }
 
+    /**
+     * selector of title
+     * @param titleNum type of title
+     * @return string[] titles
+     */
     private  String[] titlesChoser(int titleNum) {
         switch (titleNum) {
             case 1:
@@ -113,20 +137,37 @@ public class TablePanel extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * getTable
+     * @return JTable
+     */
     public  JTable getTable() {
         return table;
     }
 
+    /**
+     *
+     * @return selected product
+     */
     public  Product getSelectedProduct(){
         if(table.getSelectedRow() == -1) return null;
         return Stock.findProductByName((String) table.getValueAt(table.getSelectedRow(),1));
     }
 
+    /**
+     *
+     * @return selected group
+     */
     public  GroupOfProduct getSelectedGroup(){
         if(table.getSelectedRow() == -1) return null;
         return Stock.findGroup((String) table.getValueAt(table.getSelectedRow(),1));
     }
 
+    /**
+     * set new model to JTable
+     * @param data new data
+     * @param titleNum type of title
+     */
     private void setModel(Object[][] data, int titleNum){
         table.setModel(new javax.swing.table.DefaultTableModel(
                 data
@@ -153,7 +194,11 @@ public class TablePanel extends JPanel implements MouseListener {
     }
 
 
-
+    /**
+     *  add data to table
+     * @param groups arraylist of groups
+     * @param titleNum type of title
+     */
     public void addStatsToGroupOFGoodsTable(ArrayList<GroupOfProduct> groups, int titleNum) {
         Object[][] objects = new Object[groups.size()][];
         for (int i = 0; i < groups.size(); i++) {
@@ -168,6 +213,11 @@ public class TablePanel extends JPanel implements MouseListener {
         setModel(objects,titleNum);
     }
 
+    /**
+     * add data to table
+     * @param products arraylist of products
+     * @param titleNum type of title
+     */
     public void addStatsToGoodsTable(ArrayList<Product> products, int titleNum) {
         Object[][] objects = new Object[products.size()][];
         for (int i = 0; i < products.size(); i++) {
@@ -216,8 +266,14 @@ public class TablePanel extends JPanel implements MouseListener {
             }
         });
     }
+
+    /**
+     * get JTable
+     * @param table JTable
+     */
     TablePanel(JTable table){
         this.table = table; }
+
     @Override
     public void mouseClicked(MouseEvent e) { }
     @Override

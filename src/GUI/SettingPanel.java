@@ -126,7 +126,7 @@ public class SettingPanel extends JPanel {
         workerChoser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArrayList<Boolean> access = null;
+                ArrayList<Boolean> access;
                 if(workerChoser.getSelectedItem()!= null && Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess() != null) {
                     access = Stock.findUserByName(String.valueOf(workerChoser.getSelectedItem())).getAccess();
                     if (access.get(0)){

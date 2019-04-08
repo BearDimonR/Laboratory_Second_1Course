@@ -150,20 +150,6 @@ public class ProductEditingPanel extends JPanel {
         tfNewPrice.setBounds(537, 370, 303, 20);
         btnEdit.setBounds(375, 420, 165, 40);
 
-//        tfOldProductName.setBounds(112,30,303,20);
-//        spOldDescription.setBounds(112,86,303,122);
-//        lbOldGroup.setBounds(112,247,303,20);
-//        tfOldManufacturer.setBounds(112,310,303,20);
-//        tfOldPrice.setBounds(112,370,303,20);
-//        arrowBack. setBounds(20,0,26,26);
-//        tfNewProductName.setBounds(537,30,303,20);
-//        spNewDescription.setBounds(537,86,303,122);
-//        cbNewGroup.setBounds(537,247,303,20);
-//        tfNewManufacturer.setBounds(537,310,303,20);
-//        tfNewPrice.setBounds(537,370,303,20);
-//        btnEdit.setBounds(375,420,165,40);
-//        btnDesEdit.setBounds(375,420,165,40);
-
     }
 
     private void addElementsToBackgroundHeader() {
@@ -197,13 +183,7 @@ public class ProductEditingPanel extends JPanel {
                 checkFields();
             }
         });
-//        btnFind.addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                 //метод додавання інформації до таблиці перший параметр - масив груп, другий елемент - тип таблиці (1 - goods, 2-group)
-//               // tablePanel.addDataToGroupOFGoodsTable(,1);
-//            }
-//        });
+
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -215,8 +195,6 @@ public class ProductEditingPanel extends JPanel {
                 group.matches("[ ]*") == false
 
                 ){
-
-                    System.out.println("кнопка FIND натиснута  Edit");
                     updateTable();
                 }
             }
@@ -233,7 +211,6 @@ public class ProductEditingPanel extends JPanel {
         btnEdit.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-               // if (!btnEdit.isVisible()) return;
                 Product product = tablePanel.getSelectedProduct();
                 tablePanel.getTable().clearSelection();
                 product.setDescription(taNewDescription.getText());
@@ -430,9 +407,6 @@ public class ProductEditingPanel extends JPanel {
             prTo = 0;
         else prTo = Double.parseDouble(tfHighestPriceSearch.getText());
         tablePanel.addDataToGoodsTable(Utilities.mainSearch(group, product, manufacturer, prFrom, prTo), 1);
-        //tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
-        System.out.println("price From= " + prFrom);
-        System.out.println("price to='" + prTo + "'");
     }
 
 
