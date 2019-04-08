@@ -251,7 +251,7 @@ public class ProductCreatePanel extends JPanel {
      * Method which check if fields are filled properly
      */
     private  void checkFields() {
-        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-Яa-я]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї]+\\d*[\"]?)+").matcher(tfProductName.getText());
+        Matcher matcher = Pattern.compile("([\"]?[a-zA-ZА-ЯЇІЄЮa-яіїєю ]+\\d*[\"]?(\\s?|([-]?))[\"]?[a-zA-ZА-Яa-яєї ]+\\d*[\"]?)+").matcher(tfProductName.getText());
         if (!matcher.matches() || tfProductName.getText().length() > 20) {
             setCreateDisabled();
             return;
