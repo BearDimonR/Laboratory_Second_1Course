@@ -4,6 +4,7 @@ import BackGround.Stock;
 import BackGround.User;
 import GUI.General.App;
 import GUI.General.AppStyles;
+import GUI.General.BlockPanel;
 import GUI.MainComponents.ContentPanel;
 import GUI.MainComponents.TitleBarPanel;
 import javax.swing.*;
@@ -123,7 +124,7 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                     User user = Stock.findUserByName(loginField.getText());
                     if(user.isBlocked()){
                         System.out.println(user.isBlocked());
-                        //error
+                        BlockPanel b = new BlockPanel();
                         numberOfTries++;
                         loginField.setText("");
                         passwordField.setText("");
