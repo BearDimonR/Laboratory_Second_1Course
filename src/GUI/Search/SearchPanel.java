@@ -22,8 +22,13 @@ public class SearchPanel extends JPanel {
     }
     public static void showStatistickPanel(){
         statisticPanel.update();
+        statisticPanel.checkBox();
         statisticPanel.setVisible(true);
         productSearchPanel.setVisible(false);
+    }
+
+    public void update(){
+        statisticPanel.update();
     }
 
 }

@@ -196,7 +196,7 @@ public class Stock {
             saveUsers();
             bufferedReader.close();
         } catch (IOException e) {
-            System.out.println("Something with users!!!!");
+            throw new UnknownError("Users in file are not correct!!!! Must be: [name password type]");
         }
     }
 
@@ -214,7 +214,6 @@ public class Stock {
                 users.add(user);
             }
     }
-
     public static User getLoginUser() {
         return loginUser;
     }

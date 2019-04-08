@@ -82,6 +82,7 @@ public class ContentPanel extends JPanel {
         switch (j) {
             case 1:
                 creationPanel.setVisible(true);
+                creationPanel.updateBox();
                 break;
             case 2:
                 editingPanel.setVisible(true);
@@ -94,6 +95,7 @@ public class ContentPanel extends JPanel {
             case 4:
                 quantityPanel.setVisible(true);
                 quantityPanel.getTablePanel().addDataToGoodsTable(Stock.getAllProducts(), 1);
+                quantityPanel.cheakBox();
                 break;
             case 5:
                 settingPanel.setVisible(true);
@@ -101,7 +103,16 @@ public class ContentPanel extends JPanel {
                 break;
             case 6:
                 searchPanel.setVisible(true);
+                searchPanel.update();
                 break;
         }
+    }
+
+    public static void updateBoxes() {
+        creationPanel.updateBox();
+        editingPanel.updateTable();
+        DeletingPanel.updateTable();
+        quantityPanel.cheakBox();
+        searchPanel.update();
     }
 }

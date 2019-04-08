@@ -47,9 +47,6 @@ public class ProductSearchPanel extends JPanel {
 
         addMouseListenersToBTNS();
         cheakBox();
-
-        //   setStyleOfHeaderElements();
-
     }
 
     private void addElementsToBackgroundHeader() {
@@ -68,7 +65,6 @@ public class ProductSearchPanel extends JPanel {
         tfLowestPriceSearch.setBounds(649, 114, 60, 18);
         tfHighestPriceSearch.setBounds(756, 114, 60, 18);
         tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
-       // System.out.println(Utilities.Search(TitleBarPanel.tfSearch.getText()) + ")");
     }
 
     private void addElementsToTableBackgroundBody() {
@@ -108,7 +104,6 @@ public class ProductSearchPanel extends JPanel {
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("pidr");
                 updateTable();
             }
         });

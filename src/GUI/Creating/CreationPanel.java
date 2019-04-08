@@ -74,11 +74,12 @@ public class CreationPanel extends JPanel {
                 btnModeSwitchOn.setVisible(true);
                 groupCreatePanel.setVisible(true);
                 productCreatePanel.setVisible(false);
+                updateBox();
             }
         });
     }
 
-    public static void updateBox() {
+    public  void updateBox() {
         productCreatePanel.checkBox();
     }
 }
