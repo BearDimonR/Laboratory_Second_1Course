@@ -5,6 +5,7 @@ import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.Creating.ProductCreatePanel;
 import GUI.General.AppStyles;
+import GUI.General.DonePanel;
 import GUI.General.TablePanel;
 import GUI.MainComponents.TitleBarPanel;
 
@@ -60,10 +61,9 @@ public class ProductDeletingPanel extends JPanel {
         });
         addElementsToProductDeltePanel();
         addListners();
-
+        cheakBox();
         tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
         setStyleOfHeader();
-        cheakBox();
     }
 
     private void addElementsToProductDeltePanel() {
@@ -110,7 +110,6 @@ public class ProductDeletingPanel extends JPanel {
 
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
-
             public void mouseClicked(MouseEvent e) {
                 ArrayList<Product> prod = new ArrayList<>();
                 String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
@@ -165,7 +164,8 @@ public class ProductDeletingPanel extends JPanel {
                 tablePanel.getSelectedProduct().getGroupProducts().removeProduct(tablePanel.getSelectedProduct());
                 Stock.saveData();
                 TitleBarPanel.setStats();
-                tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
+                tablePanel.addDataToGoodsTable(Stock.getAllProducts(),1);
+                DonePanel d = new DonePanel();
             }
         });
 

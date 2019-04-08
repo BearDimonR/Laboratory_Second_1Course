@@ -12,12 +12,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ContentPanel extends JPanel {
-    private static CreationPanel creationPanel = new CreationPanel();
-    private static EditingPanel editingPanel = new EditingPanel();
-    private static DeletingPanel deletingPanel = new DeletingPanel();
-    private static SearchPanel searchPanel = new SearchPanel();
-    private static QuantityPanel quantityPanel = new QuantityPanel();
-    private static SettingPanel settingPanel = new SettingPanel();
+    public static CreationPanel creationPanel = new CreationPanel();
+    public static EditingPanel editingPanel = new EditingPanel();
+    public static DeletingPanel deletingPanel = new DeletingPanel();
+    public static SearchPanel searchPanel = new SearchPanel();
+    public static QuantityPanel quantityPanel = new QuantityPanel();
+    public static SettingPanel settingPanel = new SettingPanel();
 
     public ContentPanel() {
         setLayout(AppStyles.gridBagLayout);

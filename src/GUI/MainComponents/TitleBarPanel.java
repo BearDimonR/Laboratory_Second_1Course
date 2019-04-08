@@ -20,7 +20,7 @@ public class TitleBarPanel extends JPanel {
     JLabel btnMinimize = new JLabel(new ImageIcon("images/mainFrame/minimiseBTN.jpg"));//icon of minimize btn
     static JLabel userNameLabel = new JLabel("User name");// label which contains user name info
     JLabel background = new JLabel(new ImageIcon("images/mainFrame/titleBarBackground.jpg"));//background picture of title bar
-    JLabel userProfilePic = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
+    static JLabel userProfilePic = new JLabel(new ImageIcon("images/userProfilePic.png"));//icon of user profile picture
 
     private static JLabel totalPrice = new JLabel("0");//icon of user profile picture
     private static JLabel totalAmount = new JLabel("0");//icon of user profile picture
@@ -74,7 +74,7 @@ public class TitleBarPanel extends JPanel {
         {
             tfSearch.setOpaque(false);
             tfSearch.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-            tfSearch.setFont(AppStyles.searchFont);
+            tfSearch.setFont(AppStyles.appH2Font);
             tfSearch.setForeground(AppStyles.MainColor);
         }
 
@@ -181,6 +181,14 @@ public class TitleBarPanel extends JPanel {
            return false;
        }
        return true;
+   }
+    public static void setIcon(String s) {
+        if(s == null) userProfilePic.setIcon(new ImageIcon("images/userProfilePic.png"));
+        else userProfilePic.setIcon(new ImageIcon(s));
+    }
+
+    private void  updateTable(String search){
+        //tablePanel.addDataToGoodsTable(Utilities.Search(search), 1);
     }
 
     public static void setStats() {

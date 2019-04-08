@@ -8,9 +8,6 @@ import BackGround.Stock;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.ScrollBarUI;
-import javax.swing.plaf.TableUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;

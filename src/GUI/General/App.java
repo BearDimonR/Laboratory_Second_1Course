@@ -6,7 +6,7 @@ import java.awt.*;
 
 public class App {
     public static AppFrame mainFrame = new AppFrame();//main frame of the app
-    static LoginFrame loginFrame = new LoginFrame();// login frame of the app
+    public static LoginFrame loginFrame = new LoginFrame();// login frame of the app
 
     public static void main(String[] args) {
 
@@ -17,11 +17,15 @@ public class App {
             mainFrame.setLocation(new Point(100, 50));
            loginFrame.setSize(new Dimension(750, 500));
             loginFrame.setVisible(true);
+
         }
     }
     public static void makeMainFrameVisible(){
         loginFrame.setVisible(false);
         mainFrame.setVisible(true);
-       // loginFrame.setVisible(false);
+    }
+    public static void makeLoginFrameVisible(){
+        mainFrame.setVisible(false);
+        loginFrame.setVisible(true);
     }
 }
