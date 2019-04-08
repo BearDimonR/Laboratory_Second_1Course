@@ -260,7 +260,7 @@ public class TablePanel extends JPanel implements MouseListener {
                     int column = table.columnAtPoint(point);
                     if (column == 1) {
                         System.out.println("лише групи товарів");
-                        addDataToGroupOFGoodsTable(Alphabet.alphabetOnlyGroup(), 1);
+                        addDataToGroupOFGoodsTable(Alphabet.alphabetOnlyGroup(), 2  );
                     }
                 }
             }

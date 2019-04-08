@@ -108,7 +108,7 @@ public class ProductCreatePanel extends JPanel {
                 setAllFieldsForegroundDeselected();
                 setFocusOnNameTF();
                 setCreateDisabled();
-                DonePanel d =new DonePanel();
+               // DonePanel d =new DonePanel();
             }
         });
 
