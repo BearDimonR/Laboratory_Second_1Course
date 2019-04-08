@@ -7,10 +7,10 @@ import java.util.Comparator;
 
 public class Alphabet {
 
-    public static ArrayList<Product> alphabetProduct() {
-       // ArrayList<Product> products = (ArrayList<Product> )prod.clone();
+    public static ArrayList<Product> alphabetProduct(ArrayList<Product> productName) {
+        ArrayList<Product> products = (ArrayList<Product> )productName.clone();
 
-        ArrayList<Product> products = Stock.getAllProducts();
+       // ArrayList<Product> products = Stock.getAllProducts();
         Collections.sort(products, new Comparator() {
             @Override
             public int compare(Object productOne, Object productSecond) {
@@ -34,8 +34,10 @@ public class Alphabet {
         return group;
     }
     //String.valueOf(array.get(i).getGroupProducts()
-    public static ArrayList<Product> alphabetGroup() {
-        ArrayList<Product> group = Stock.getAllProducts();
+    public static ArrayList<Product> alphabetGroup(ArrayList<Product> productGroup) {
+       ArrayList<Product> group = (ArrayList<Product>)productGroup.clone();
+
+       // ArrayList<Product> group = Stock.getAllProducts();
         Collections.sort(group, new Comparator() {
             @Override
             public int compare(Object groupOne, Object groupTwo) {
@@ -45,8 +47,10 @@ public class Alphabet {
         return group;
     }
 
-    public static ArrayList<Product> alphabetManufacturer (){
-        ArrayList<Product> manufacturer = Stock.getAllProducts();
+    public static ArrayList<Product> alphabetManufacturer (ArrayList<Product> productManufacturer){
+        ArrayList<Product> manufacturer = (ArrayList<Product>)productManufacturer.clone();
+
+       // ArrayList<Product> manufacturer = Stock.getAllProducts();
         Collections.sort(manufacturer,new Comparator() {
             @Override
             public int compare(Object manufacturerOne, Object manufacturerTwo) {
@@ -55,8 +59,10 @@ public class Alphabet {
         });
         return manufacturer;
     }
-    public static ArrayList<Product> alphabetPrice (){
-        ArrayList<Product> price = Stock.getAllProducts();
+    public static ArrayList<Product> alphabetPrice (ArrayList<Product> productPrice){
+        ArrayList<Product> price = (ArrayList<Product> )productPrice.clone();
+
+      //  ArrayList<Product> price = Stock.getAllProducts();
         Collections.sort(price,new Comparator() {
             @Override
             public int compare(Object priceOne, Object priceTwo) {

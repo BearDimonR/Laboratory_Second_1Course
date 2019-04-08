@@ -22,21 +22,21 @@ import java.util.ArrayList;
 
 public class TablePanel extends JPanel implements MouseListener {
 
-    private  String[] GoodsTitles = {"№", "Product", "Group", "Manufacturer", "Price"};
-    private  String[] GroupTitles = {"№", "Group of products"};
-    private String[] GroupStats = {"№","Group of products","Total price","Total amount","Description"};
-    private String[] GoodsStats = {"№","Product","Manufacturer","Price","Amount","Description"};
-    private  JTable table = new JTable();
+    private String[] GoodsTitles = {"№", "Product", "Group", "Manufacturer", "Price"};
+    private String[] GroupTitles = {"№", "Group of products"};
+    private String[] GroupStats = {"№", "Group of products", "Total price", "Total amount", "Description"};
+    private String[] GoodsStats = {"№", "Product", "Manufacturer", "Price", "Amount", "Description"};
+    private JTable table = new JTable();
     private JScrollPane scrollPane = new JScrollPane(table);
 
     GridBagLayout gbl = new GridBagLayout();
 
     public TablePanel(int titleType) {
-        setModel(null,titleType);
+        setModel(null, titleType);
         setLayout(gbl);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        setModel(null ,1);
+        setModel(null, 1);
         add(scrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(1, 0, 0, 0), 0, 430));
@@ -47,27 +47,26 @@ public class TablePanel extends JPanel implements MouseListener {
             scrollPane.setForeground(Color.WHITE);
             scrollPane.setOpaque(false);
             scrollPane.getViewport().setOpaque(false);
-            scrollPane.setBorder(new EmptyBorder(0,0,0,0));
+            scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
             table.setFont(new java.awt.Font("Verdana", 0, 16));
             table.setBackground(Color.WHITE);
-            table.setBorder(new EmptyBorder(0,0,0,0));
+            table.setBorder(new EmptyBorder(0, 0, 0, 0));
             table.setOpaque(false);
-            ((DefaultTableCellRenderer)table.getDefaultRenderer(Object.class)).setOpaque(false);
-            ((DefaultTableCellRenderer)table.getDefaultRenderer(Object.class)).setHorizontalAlignment(JLabel.CENTER);
+            ((DefaultTableCellRenderer) table.getDefaultRenderer(Object.class)).setOpaque(false);
+            ((DefaultTableCellRenderer) table.getDefaultRenderer(Object.class)).setHorizontalAlignment(JLabel.CENTER);
             table.getTableHeader().setOpaque(false);
             table.getTableHeader().setBackground(AppStyles.MainColor);
             table.getTableHeader().setForeground(Color.white);
             table.setShowGrid(true);
             table.setSelectionBackground(Color.LIGHT_GRAY);
-            table.setIntercellSpacing(new Dimension(5,5));
+            table.setIntercellSpacing(new Dimension(5, 5));
             table.getTableHeader().setFont(new java.awt.Font("Verdana", 0, 16));
             table.setRowHeight(50);
         }
 /**
  * **********************************************************************************************************************************
  */
-
-      //  AddActionListener();
+        SortByAlpabetInjTable(Stock.getAllProducts());
 /**
  * **********************************************************************************************************************************
  */
@@ -75,7 +74,7 @@ public class TablePanel extends JPanel implements MouseListener {
     }
 
 
-    public  void addDataToGoodsTable(ArrayList<Product> products, int titleNum) {
+    public void addDataToGoodsTable(ArrayList<Product> products, int titleNum) {
         Object[][] objects = new Object[products.size()][];
         for (int i = 0; i < products.size(); i++) {
             String[] productLine = new String[6];
@@ -86,11 +85,11 @@ public class TablePanel extends JPanel implements MouseListener {
             productLine[4] = String.valueOf(products.get(i).getPrice());
             objects[i] = productLine;
         }
-        setModel(objects,titleNum);
+        setModel(objects, titleNum);
 
     }
 
-    public  void addDataToGroupOFGoodsTable(ArrayList<GroupOfProduct> groupOfProduct, int titleNum) {
+    public void addDataToGroupOFGoodsTable(ArrayList<GroupOfProduct> groupOfProduct, int titleNum) {
         Object[][] objects = new Object[groupOfProduct.size()][];
         for (int i = 0; i < groupOfProduct.size(); i++) {
             String[] groupLine = new String[2];
@@ -98,10 +97,10 @@ public class TablePanel extends JPanel implements MouseListener {
             groupLine[1] = groupOfProduct.get(i).getName();
             objects[i] = groupLine;
         }
-        setModel(objects,titleNum);
+        setModel(objects, titleNum);
     }
 
-    private  String[] titlesChoser(int titleNum) {
+    private String[] titlesChoser(int titleNum) {
         switch (titleNum) {
             case 1:
                 return GoodsTitles;
@@ -116,26 +115,26 @@ public class TablePanel extends JPanel implements MouseListener {
         }
     }
 
-    public  JTable getTable() {
+    public JTable getTable() {
         return table;
     }
 
-    public  Product getSelectedProduct(){
-        if(table.getSelectedRow() == -1) return null;
-        return Stock.findProductByName((String) table.getValueAt(table.getSelectedRow(),1));
+    public Product getSelectedProduct() {
+        if (table.getSelectedRow() == -1) return null;
+        return Stock.findProductByName((String) table.getValueAt(table.getSelectedRow(), 1));
     }
 
-    public  GroupOfProduct getSelectedGroup(){
-        if(table.getSelectedRow() == -1) return null;
-        return Stock.findGroup((String) table.getValueAt(table.getSelectedRow(),1));
+    public GroupOfProduct getSelectedGroup() {
+        if (table.getSelectedRow() == -1) return null;
+        return Stock.findGroup((String) table.getValueAt(table.getSelectedRow(), 1));
     }
 
-    private void setModel(Object[][] data, int titleNum){
+    private void setModel(Object[][] data, int titleNum) {
         table.setModel(new javax.swing.table.DefaultTableModel(
                 data
                 ,
                 titlesChoser(titleNum)
-        ){
+        ) {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return false;
@@ -147,14 +146,13 @@ public class TablePanel extends JPanel implements MouseListener {
             column = table.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(40);
-            }else if(i == 4){
+            } else if (i == 4) {
                 column.setPreferredWidth(150);
             } else {
                 column.setPreferredWidth(300);
             }
         }
     }
-
 
 
     public void addStatsToGroupOFGoodsTable(ArrayList<GroupOfProduct> groups, int titleNum) {
@@ -168,7 +166,7 @@ public class TablePanel extends JPanel implements MouseListener {
             groupLine[4] = groups.get(i).getDescription();
             objects[i] = groupLine;
         }
-        setModel(objects,titleNum);
+        setModel(objects, titleNum);
     }
 
     public void addStatsToGoodsTable(ArrayList<Product> products, int titleNum) {
@@ -183,52 +181,63 @@ public class TablePanel extends JPanel implements MouseListener {
             productLine[5] = products.get(i).getDescription();
             objects[i] = productLine;
         }
-        setModel(objects,titleNum);
+        setModel(objects, titleNum);
     }
 
-    public  void AddActionListener() {
+    public void SortByAlpabetInjTable(ArrayList<Product> arrayList) {
         table.getTableHeader().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 JTableHeader header = table.getTableHeader();
                 header.addMouseListener(new TablePanel(table));
                 Point point = e.getPoint();
-                if(table.getColumnCount()==5) {
+                if (table.getColumnCount() == 5) {
                     int column = table.columnAtPoint(point);
                     System.out.println("i1=" + column);
                     if (column == 1) {
-                        addDataToGoodsTable(Alphabet.alphabetProduct(), 1);
-                    }
-                    if (column == 2) {
-                        addDataToGoodsTable(Alphabet.alphabetGroup(), 1);
-                    }
-                    if (column == 3) {
-                        addDataToGoodsTable(Alphabet.alphabetManufacturer(), 1);
+                        addDataToGoodsTable(Alphabet.alphabetProduct(arrayList), 1);
+                    } else if (column == 2) {
+                        addDataToGoodsTable(Alphabet.alphabetGroup(arrayList), 1);
+                    } else if (column == 3) {
+                        addDataToGoodsTable(Alphabet.alphabetManufacturer(arrayList), 1);
                     } else if (column == 4) {
-                        addDataToGoodsTable(Alphabet.alphabetPrice(), 1);
+                        addDataToGoodsTable(Alphabet.alphabetPrice(arrayList), 1);
                     }
                 }
                 //якщо ми знаходимося в таблиці де лише групи
-                else if(table.getColumnCount()==2){
+                else if (table.getColumnCount() == 2) {
                     int column = table.columnAtPoint(point);
                     if (column == 1) {
                         System.out.println("лише групи товарів");
-                        addDataToGroupOFGoodsTable(Alphabet.alphabetOnlyGroup(), 1);
+                        //tablePanel.addDataToGroupOFGoodsTable((Utilities.mainSearch2(tfGroupNameSearch.getText())),2);
+                        addDataToGroupOFGoodsTable(Alphabet.alphabetOnlyGroup(), 2);
                     }
                 }
             }
         });
     }
-    TablePanel(JTable table){
-        this.table = table; }
+
+    TablePanel(JTable table) {
+        this.table = table;
+    }
+
     @Override
-    public void mouseClicked(MouseEvent e) { }
+    public void mouseClicked(MouseEvent e) {
+    }
+
     @Override
-    public void mousePressed(MouseEvent e) { }
+    public void mousePressed(MouseEvent e) {
+    }
+
     @Override
-    public void mouseReleased(MouseEvent e) { }
+    public void mouseReleased(MouseEvent e) {
+    }
+
     @Override
-    public void mouseEntered(MouseEvent e) { }
+    public void mouseEntered(MouseEvent e) {
+    }
+
     @Override
-    public void mouseExited(MouseEvent e) { }
+    public void mouseExited(MouseEvent e) {
+    }
 }

@@ -1,5 +1,6 @@
 package GUI.Deleting;
 
+import BackGround.Product;
 import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.Creating.ProductCreatePanel;
@@ -11,6 +12,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class ProductDeletingPanel extends JPanel {
     JLabel backgroundHeader = new JLabel(new ImageIcon("images/deleteComponents/productDeleteHeader.jpg"));
@@ -28,8 +30,8 @@ public class ProductDeletingPanel extends JPanel {
     // private JComboBox cbProductGroupSearch = ProductCreatePanel.cbProductGroup;
 
     public ProductDeletingPanel() {
-      //  tablePanel.AddActionListener(Stock.getAllProducts());
-      // System.out.println("12312312312312312312312312313123131312312123123123");
+       // tablePanel.SortByAlpabetInjTable(Stock.getAllProducts());
+        System.out.println("12312312312312312312312312313123131312312123123123");
         setLayout(null);
         backgroundHeader.setLayout(null);
         add(backgroundHeader);
@@ -59,11 +61,9 @@ public class ProductDeletingPanel extends JPanel {
         addElementsToProductDeltePanel();
         addListners();
 
-        cheakBox();
         tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
-
         setStyleOfHeader();
-
+        cheakBox();
     }
 
     private void addElementsToProductDeltePanel() {
@@ -107,12 +107,13 @@ public class ProductDeletingPanel extends JPanel {
     }
 
     private void addListners() {
+
         btnFind.addMouseListener(new MouseAdapter() {
             @Override
 
             public void mouseClicked(MouseEvent e) {
+                ArrayList<Product> prod = new ArrayList<>();
                 String group = (String) String.valueOf(cbProductGroupSearch.getSelectedItem());
-
                 if (tfProductNameSearch.getText().matches("[ ]*") == false ||
 
                         tfManufacturerSearch.getText().matches("[ ]*") == false ||
@@ -139,15 +140,22 @@ public class ProductDeletingPanel extends JPanel {
 
 
                     updateTable(group1, product, manufacturer, prFrom, prTo);
+//                    prod = Utilities.mainSearch(group1, product, manufacturer, prFrom, prTo);
+//                    tablePanel.SortByAlpabetInjTable(prod);
+//                    System.out.println("список по якому має сортувати");
+//                    System.out.println(prod);
 
-                //    tablePanel.AddActionListener(Utilities.mainSearch(group1, product, manufacturer, prFrom, prTo));
                 }
+                //tablePanel.SortByAlpabetInjTable(prod);
             }
+
         });
         modeSwitchOff.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                Stock.getGroups();
                 DeletingPanel.showGroupDeleteTab();
+
             }
         });
         btnDelete.addMouseListener(new MouseAdapter() {
@@ -160,12 +168,15 @@ public class ProductDeletingPanel extends JPanel {
                 tablePanel.addDataToGoodsTable(Stock.getAllProducts(), 1);
             }
         });
+
     }
 
     public void cheakBox() {
+        Stock.getGroups();
         cbProductGroupSearch.removeAllItems();
         for (int i = 0; i < Stock.getGroups().size(); i++) {
             cbProductGroupSearch.addItem((Stock.getGroups().get(i).getName()));
+            //addDataToGroupOFGoodsTable(Stock.getGroups()
         }
     }
 

@@ -29,8 +29,10 @@ public class GroupDeletingPanel extends JPanel {
         add(tableBackground);
         addElementsToGroupDeletePanel();
         addListners();
-setStyleOfHeader();
-        tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
+        setStyleOfHeader();
+        tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(), 2);
+
+        System.out.println("група \n" + Stock.getGroups());
     }
 
     private void addElementsToGroupDeletePanel() {
@@ -58,18 +60,18 @@ setStyleOfHeader();
 
     }
 
-     TablePanel getTablePanel() {
+    TablePanel getTablePanel() {
         return tablePanel;
     }
 
     private void addListners() {
-        btnFind.addMouseListener(new MouseAdapter(){
+        btnFind.addMouseListener(new MouseAdapter() {
             @Override
 
-            public void mouseClicked(MouseEvent e){
-                tablePanel.addDataToGroupOFGoodsTable((Utilities.mainSearch2(tfGroupNameSearch.getText())),2);
+            public void mouseClicked(MouseEvent e) {
+                tablePanel.addDataToGroupOFGoodsTable((Utilities.mainSearch2(tfGroupNameSearch.getText())), 2);
 
-                              }
+            }
 //            }
         });
         modeSwitchOn.addMouseListener(new MouseAdapter() {
@@ -81,26 +83,28 @@ setStyleOfHeader();
         btnDelete.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(tablePanel.getSelectedGroup() == null) return;
+                if (tablePanel.getSelectedGroup() == null) return;
                 Stock.getGroups().remove(tablePanel.getSelectedGroup());
+
                 Stock.saveData();
                 TitleBarPanel.setStats();
-                tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(),2);
+                tablePanel.addDataToGroupOFGoodsTable(Stock.getGroups(), 2);
+
             }
         });
 
     }
+
     public void updateTable(String group) {
 
-        tablePanel.addDataToGroupOFGoodsTable(Utilities.mainSearch2(group ), 1);
+        tablePanel.addDataToGroupOFGoodsTable(Utilities.mainSearch2(group), 1);
     }
-    private void setStyleOfHeader(){
+
+    private void setStyleOfHeader() {
         tfGroupNameSearch.setFont(AppStyles.appH2Font);
         tfGroupNameSearch.setForeground(AppStyles.MainColor);
         tfGroupNameSearch.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
     }
-
-
 
 
 }

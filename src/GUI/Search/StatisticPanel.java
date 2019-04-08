@@ -117,7 +117,7 @@ public class StatisticPanel extends JPanel {
       }
     }
 
-    //    private void addMouseListenersToBTNS() {
+//        private void addMouseListenersToBTNS() {
 //        btnFind.addMouseListener(new MouseAdapter() {
 //            @Override
 //            public void mouseClicked(MouseEvent e) {
