@@ -55,6 +55,7 @@ public class EditingPanel extends JPanel {
         productEditPanel.setVisible(true);
         groupEditPanel.setVisible(false);
         productEditPanel.getTablePanel().addDataToGoodsTable(Stock.getAllProducts(), 1);
+        productEditPanel.cheakBox();
     }
 
     /**
@@ -63,8 +64,11 @@ public class EditingPanel extends JPanel {
     public void updateTable() {
         if (groupEditPanel.isVisible())
             showGroupEditTab();
-        else
+        else {
             showProductDeleteTab();
+        }
     }
+
+
 
 }

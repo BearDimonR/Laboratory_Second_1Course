@@ -28,10 +28,13 @@ public class DeletingPanel extends JLabel {
         productDeletingPanel.setVisible(true);
         groupDeletingPanel.setVisible(false);
         productDeletingPanel.getTablePanel().addDataToGoodsTable(Stock.getAllProducts(),1);
+        productDeletingPanel.cheakBox();
     }
 
     public static void updateTable(){
-        if(productDeletingPanel.isVisible()) showProductDeleteTab();
+        if(productDeletingPanel.isVisible()) {
+            showProductDeleteTab();
+        }
         else showGroupDeleteTab();
     }
 }

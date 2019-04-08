@@ -180,8 +180,6 @@ public class QuantityPanel extends JPanel {
                 }
             }
         });
-
-
         cheakBox();
 
         setStyleOfHeader();

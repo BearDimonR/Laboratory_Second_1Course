@@ -4,6 +4,8 @@ import BackGround.GroupOfProduct;
 import BackGround.Stock;
 import GUI.General.AppStyles;
 import GUI.General.DonePanel;
+import GUI.MainComponents.ContentPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -60,6 +62,7 @@ public class GroupCreatePanel extends JPanel {
                 Stock.getGroups().add(new GroupOfProduct(tfGroupName.getText(), taDescription.getText()));
                 Stock.saveData();
                 CreationPanel.updateBox();
+                ContentPanel.updateBoxes();
                 setFocusOnNameTF();
                 setCreateDisabled();
                 setDefaultTextToTF();
