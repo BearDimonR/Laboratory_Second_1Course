@@ -4,7 +4,6 @@ import BackGround.Stock;
 import BackGround.Utilities;
 import GUI.General.AppStyles;
 import GUI.General.DonePanel;
-import GUI.General.ProblemPanel;
 import GUI.General.TablePanel;
 import GUI.MainComponents.TitleBarPanel;
 
@@ -147,7 +146,6 @@ public class QuantityPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(tablePanel.getSelectedProduct() == null){
-                    ProblemPanel p = new ProblemPanel();
                     return;
                 }
                 tablePanel.getSelectedProduct().setQuantityInStock(Integer.parseInt(tfInStock.getText()) + addAmount - removeAmount);

@@ -145,7 +145,7 @@ gotItBTN.addMouseListener(new MouseAdapter() {
                         numberOfTries++;
                     }
                 }
-                if(numberOfTries>3){
+                if(numberOfTries>2){
                     help.setVisible(true);
 
                 }

@@ -57,11 +57,11 @@ public class Utilities {
                     String group = "";
                     String manufacturer = "";
                     for (int j = 0; j < line.length(); j++) {
-                        if (spaceLine.get(i).getProductName().length() > line.length())
+                        if (spaceLine.get(i).getProductName().length() >= line.length())
                             product += spaceLine.get(i).getProductName().charAt(j);
-                        if (groupProduct.length()>line.length())
+                        if (groupProduct.length()>=line.length())
                             group += groupProduct.charAt(j);
-                        if (spaceLine.get(i).getManufacturer().length() > line.length())
+                        if (spaceLine.get(i).getManufacturer().length() >= line.length())
                             manufacturer += spaceLine.get(i).getManufacturer().charAt(j);
                     }
 
